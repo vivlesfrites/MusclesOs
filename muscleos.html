@@ -814,6 +814,111 @@
     }
 
     /* ════════════════════════════════════════════════════
+       ONGLET CARDIO
+       ════════════════════════════════════════════════════ */
+
+    .cardio-summary {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 8px; margin-bottom: 16px;
+    }
+    .cardio-stat {
+      background: var(--s1); border: 1px solid var(--b1);
+      border-radius: var(--rl); padding: 12px 12px 10px;
+    }
+    .cardio-stat-val {
+      font-family: var(--mono); font-size: 22px; font-weight: 600;
+      color: var(--t1); line-height: 1;
+    }
+    .cardio-stat-lbl {
+      font-family: var(--mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--t3); margin-top: 5px;
+    }
+
+    /* Barre de filtres */
+    .cardio-filters {
+      display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;
+    }
+    .cf-chip {
+      padding: 5px 11px; border-radius: 20px;
+      border: 1px solid var(--b1); background: var(--s2);
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--t3); cursor: pointer;
+      transition: all .12s;
+    }
+    .cf-chip:hover { border-color: var(--b3); color: var(--t2); }
+    .cf-chip.active { background: var(--amid); border-color: var(--accent); color: var(--accent); }
+
+    /* Graphe hebdo */
+    .cardio-chart-wrap {
+      background: var(--s1); border: 1px solid var(--b1);
+      border-radius: var(--rl); padding: 14px 14px 10px;
+      margin-bottom: 16px;
+    }
+    .cardio-chart-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .cardio-chart-canvas { display: block; width: 100%; height: 90px; }
+
+    /* Liste sessions */
+    .cardio-list { display: flex; flex-direction: column; gap: 5px; }
+
+    .crd-row {
+      background: var(--s1); border: 1px solid var(--b1);
+      border-radius: var(--r); padding: 10px 14px;
+      display: grid; grid-template-columns: 82px 96px 1fr 56px;
+      gap: 8px; align-items: center;
+      transition: border-color .12s;
+    }
+    .crd-row:hover { border-color: var(--b2); }
+
+    .crd-date {
+      font-family: var(--mono); font-size: 10px; color: var(--t3);
+      line-height: 1.4;
+    }
+    .crd-date strong { display: block; font-size: 11px; color: var(--t2); }
+
+    .crd-type {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      letter-spacing: .05em; padding: 3px 8px; border-radius: 10px;
+      text-align: center; white-space: nowrap;
+    }
+    /* Type colors — inspirés du design system */
+    .ct-run      { background: rgba(91,163,255,.12); color: var(--blue); }
+    .ct-longrun  { background: rgba(61,255,160,.08); color: var(--accent); }
+    .ct-recovery { background: rgba(91,163,255,.07); color: #7bbfff; }
+    .ct-intervals{ background: rgba(61,255,160,.15); color: var(--accent); border: 1px solid rgba(61,255,160,.25); }
+    .ct-race     { background: rgba(61,255,160,.2);  color: var(--accent); border: 1px solid rgba(61,255,160,.4); }
+    .ct-strength { background: rgba(255,170,61,.1);  color: var(--orange); }
+    .ct-walk     { background: rgba(108,120,140,.1); color: var(--t3); }
+    .ct-hike     { background: rgba(192,132,252,.1); color: #c084fc; }
+    .ct-volleyball{ background: rgba(255,213,102,.1);color: #ffd166; }
+    .ct-rest     { background: rgba(108,120,140,.07);color: var(--t3); }
+
+    .crd-details {
+      font-size: 12px; color: var(--t2);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .crd-int {
+      font-family: var(--mono); font-size: 10px; text-align: right;
+      font-weight: 600; letter-spacing: .04em;
+    }
+    .ci-low    { color: var(--accent); }
+    .ci-medium { color: var(--orange); }
+    .ci-high   { color: var(--red); }
+    .ci-stress { color: var(--red); }
+
+    .cardio-empty {
+      text-align: center; padding: 36px 16px;
+      border: 1px dashed var(--b1); border-radius: var(--rl);
+      color: var(--t3); font-size: 13px;
+    }
+    .cardio-empty em { color: var(--t2); font-style: normal; }
+
+    /* ════════════════════════════════════════════════════
        MODULE IA — Bouton header + Panel modal
        ════════════════════════════════════════════════════ */
 
@@ -999,6 +1104,7 @@
 <nav>
   <button class="tab-btn active" data-tab="today">Aujourd'hui</button>
   <button class="tab-btn" data-tab="history">Historique</button>
+  <button class="tab-btn" data-tab="cardio">Cardio</button>
   <button class="tab-btn" data-tab="fatigue">Fatigue</button>
   <button class="tab-btn" data-tab="progress">Progression</button>
 </nav>
@@ -1006,6 +1112,7 @@
 <main>
   <section id="tab-today" class="tab active"></section>
   <section id="tab-history" class="tab"></section>
+  <section id="tab-cardio" class="tab"></section>
   <section id="tab-fatigue" class="tab"></section>
   <section id="tab-progress" class="tab"></section>
 </main>
@@ -3079,6 +3186,7 @@ function switchTab(tab) {
     t.classList.toggle('active', t.id === `tab-${tab}`));
   if (tab === 'today') renderToday();
   if (tab === 'history') renderHistory();
+  if (tab === 'cardio') renderCardio();
   if (tab === 'fatigue') renderFatigue();
   if (tab === 'progress') renderProgress();
 }
@@ -3690,6 +3798,258 @@ Propose la séance la plus intelligente à faire aujourd'hui.`;
 
   return { init };
 })();
+
+// ════════════════════════════════════════════════════
+// CARDIO MODULE — Onglet log cardio/running
+// Clé localStorage : muscleos_v2_cardio (séparée des séances muscu)
+// ════════════════════════════════════════════════════
+
+const CARDIO_DB = {
+  KEY: 'muscleos_v2_cardio',
+
+  load() {
+    try { return JSON.parse(localStorage.getItem(this.KEY) || '[]'); }
+    catch { return []; }
+  },
+
+  // Tri DESC par défaut
+  sorted() {
+    return this.load().slice().sort((a, b) => b.date.localeCompare(a.date));
+  }
+};
+
+// Correspondance type → classe CSS badge
+const CARDIO_TYPE_CLASS = {
+  'Run':          'ct-run',
+  'Long Run':     'ct-longrun',
+  'Recovery Run': 'ct-recovery',
+  'Intervals':    'ct-intervals',
+  'Race':         'ct-race',
+  'Strength':     'ct-strength',
+  'Walk':         'ct-walk',
+  'Hike':         'ct-hike',
+  'Volleyball':   'ct-volleyball',
+  'Rest':         'ct-rest',
+};
+
+const CARDIO_INT_CLASS = {
+  'Low':       'ci-low',
+  'Medium':    'ci-medium',
+  'High':      'ci-high',
+  'Medium/High':'ci-high',
+  'High stress':'ci-stress',
+};
+
+// Groupes de types pour les filtres
+const CARDIO_FILTER_GROUPS = [
+  { key: 'all',      label: 'Tout',       types: null },
+  { key: 'run',      label: 'Course',     types: ['Run','Long Run','Recovery Run','Intervals','Race'] },
+  { key: 'strength', label: 'Force',      types: ['Strength'] },
+  { key: 'other',    label: 'Autre',      types: ['Hike','Walk','Volleyball'] },
+  { key: 'rest',     label: 'Repos',      types: ['Rest'] },
+];
+
+// État local de l'onglet cardio
+const CARDIO_S = { filter: 'all' };
+
+// ── Rendu du graphe hebdo ──────────────────────────
+function renderCardioChart(sessions) {
+  const canvas = document.getElementById('cardio-chart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const DPR = window.devicePixelRatio || 1;
+  const W = canvas.offsetWidth, H = canvas.offsetHeight;
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  ctx.scale(DPR, DPR);
+
+  if (!sessions.length) { ctx.clearRect(0,0,W,H); return; }
+
+  // Regrouper par semaine ISO (lundi)
+  function weekKey(dateStr) {
+    const [y, m, d] = dateStr.split('-').map(Number);
+    const dt = new Date(y, m-1, d);
+    const day = dt.getDay() || 7; // lundi = 1
+    const monday = new Date(dt);
+    monday.setDate(dt.getDate() - (day - 1));
+    return monday.toISOString().slice(0,10);
+  }
+
+  const weekMap = {};
+  for (const s of sessions) {
+    const wk = weekKey(s.date);
+    if (!weekMap[wk]) weekMap[wk] = { total: 0, run: 0, strength: 0, other: 0 };
+    const isRun = ['Run','Long Run','Recovery Run','Intervals','Race'].includes(s.type);
+    const isStr = s.type === 'Strength';
+    weekMap[wk].total++;
+    if (isRun) weekMap[wk].run++;
+    else if (isStr) weekMap[wk].strength++;
+    else if (s.type !== 'Rest') weekMap[wk].other++;
+  }
+
+  // 12 dernières semaines
+  const weeks = Object.keys(weekMap).sort().slice(-12);
+  if (!weeks.length) return;
+
+  const maxVal = Math.max(...weeks.map(w => weekMap[w].total), 1);
+  const PAD = { l: 0, r: 0, t: 8, b: 22 };
+  const gW = W - PAD.l - PAD.r;
+  const gH = H - PAD.t - PAD.b;
+  const bW = Math.max(4, (gW / weeks.length) * 0.55);
+  const gap = gW / weeks.length;
+
+  ctx.clearRect(0, 0, W, H);
+
+  weeks.forEach((wk, i) => {
+    const data = weekMap[wk];
+    const x = PAD.l + i * gap + gap / 2;
+    const barH = (data.total / maxVal) * gH;
+    const y = PAD.t + gH - barH;
+
+    // Barre empilement : run / strength / autre
+    let stackY = PAD.t + gH;
+    const segments = [
+      { val: data.run,      color: '#3dffa0' },
+      { val: data.strength, color: '#ffaa3d' },
+      { val: data.other,    color: '#c084fc' },
+    ];
+    for (const seg of segments) {
+      if (!seg.val) continue;
+      const segH = (seg.val / maxVal) * gH;
+      stackY -= segH;
+      ctx.fillStyle = seg.color + '99';
+      ctx.fillRect(x - bW/2, stackY, bW, segH);
+    }
+
+    // Total label
+    if (data.total > 0) {
+      ctx.fillStyle = '#6b7a94';
+      ctx.font = `500 9px IBM Plex Mono, monospace`;
+      ctx.textAlign = 'center';
+      ctx.fillText(data.total, x, y - 3);
+    }
+
+    // Label semaine (date lundi)
+    const parts = wk.split('-');
+    ctx.fillStyle = '#48556a';
+    ctx.font = `8px IBM Plex Mono, monospace`;
+    ctx.textAlign = 'center';
+    ctx.fillText(`${parts[2]}/${parts[1]}`, x, H - 4);
+  });
+}
+
+// ── Rendu principal de l'onglet Cardio ────────────
+function renderCardio() {
+  const el = document.getElementById('tab-cardio');
+  if (!el) return;
+
+  const all = CARDIO_DB.sorted();
+
+  if (all.length === 0) {
+    el.innerHTML = `
+      <div class="cardio-empty" style="margin-top:24px">
+        Aucune session cardio importée
+        <em>Utilise l'importer pour charger ton log de course</em>
+      </div>`;
+    return;
+  }
+
+  // ── Stats globales ─────────────────────────────
+  const totalSessions = all.length;
+  const totalRun = all.filter(s => ['Run','Long Run','Recovery Run','Intervals','Race'].includes(s.type)).length;
+  const totalStr = all.filter(s => s.type === 'Strength').length;
+  const totalHigh = all.filter(s => ['High','Medium/High'].includes(s.intensity)).length;
+
+  // ── Filtre actif ──────────────────────────────
+  const group = CARDIO_FILTER_GROUPS.find(g => g.key === CARDIO_S.filter);
+  const filtered = group?.types
+    ? all.filter(s => group.types.includes(s.type))
+    : all;
+
+  // ── Chips de filtre ───────────────────────────
+  const filterChips = CARDIO_FILTER_GROUPS.map(g => {
+    const count = g.types ? all.filter(s => g.types.includes(s.type)).length : all.length;
+    return `<button class="cf-chip${CARDIO_S.filter===g.key?' active':''}" data-cf="${g.key}">
+      ${g.label} <span style="opacity:.55">${count}</span>
+    </button>`;
+  }).join('');
+
+  // ── Légende graphe ────────────────────────────
+  const legendHtml = `
+    <div style="display:flex;gap:14px;font-family:var(--mono);font-size:10px;color:var(--t3)">
+      <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#3dffa099;margin-right:4px"></span>Course</span>
+      <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#ffaa3d99;margin-right:4px"></span>Force</span>
+      <span><span style="display:inline-block;width:8px;height:8px;border-radius:2px;background:#c084fc99;margin-right:4px"></span>Autre</span>
+    </div>`;
+
+  // ── Rows ──────────────────────────────────────
+  function fmtDate(iso) {
+    const [y, m, d] = iso.split('-').map(Number);
+    const dt = new Date(y, m-1, d);
+    const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+    const months = ['janv','févr','mars','avr','mai','juin','juil','août','sept','oct','nov','déc'];
+    return { day: days[dt.getDay()], date: `${d} ${months[m-1]}` };
+  }
+
+  const rowsHtml = filtered.length === 0
+    ? `<div class="cardio-empty">Aucune session dans cette catégorie</div>`
+    : filtered.map(s => {
+        const { day, date } = fmtDate(s.date);
+        const typeClass = CARDIO_TYPE_CLASS[s.type] || 'ct-rest';
+        const intClass  = CARDIO_INT_CLASS[s.intensity] || '';
+        return `<div class="crd-row">
+          <div class="crd-date"><strong>${day}</strong>${date}</div>
+          <div class="crd-type ${typeClass}">${s.type}</div>
+          <div class="crd-details" title="${s.details}">${s.details}</div>
+          <div class="crd-int ${intClass}">${s.intensity}</div>
+        </div>`;
+      }).join('');
+
+  el.innerHTML = `
+    <div style="margin-bottom:16px">
+      <div class="cardio-summary">
+        <div class="cardio-stat">
+          <div class="cardio-stat-val">${totalSessions}</div>
+          <div class="cardio-stat-lbl">Sessions</div>
+        </div>
+        <div class="cardio-stat">
+          <div class="cardio-stat-val" style="color:var(--accent)">${totalRun}</div>
+          <div class="cardio-stat-lbl">Course</div>
+        </div>
+        <div class="cardio-stat">
+          <div class="cardio-stat-val" style="color:var(--orange)">${totalStr}</div>
+          <div class="cardio-stat-lbl">Force</div>
+        </div>
+        <div class="cardio-stat">
+          <div class="cardio-stat-val" style="color:var(--red)">${totalHigh}</div>
+          <div class="cardio-stat-lbl">Haute int.</div>
+        </div>
+      </div>
+
+      <div class="cardio-chart-wrap">
+        <div class="cardio-chart-hdr">
+          <span class="lbl">Sessions / semaine (12 sem.)</span>
+          ${legendHtml}
+        </div>
+        <canvas id="cardio-chart" class="cardio-chart-canvas"></canvas>
+      </div>
+    </div>
+
+    <div class="cardio-filters" id="cardio-filters">${filterChips}</div>
+
+    <div class="cardio-list">${rowsHtml}</div>
+  `;
+
+  // Bind filtres
+  el.querySelectorAll('.cf-chip').forEach(chip =>
+    chip.addEventListener('click', () => {
+      CARDIO_S.filter = chip.dataset.cf;
+      renderCardio();
+    })
+  );
+
+  // Graphe (après injection dans le DOM)
+  requestAnimationFrame(() => renderCardioChart(all));
+}
 
 // ════════════════════════════════════════════════════
 // INIT
