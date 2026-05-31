@@ -1,0 +1,1436 @@
+{
+  "_meta": {
+    "category": "core",
+    "label": "Core / Abdominaux",
+    "description": "Exercices — Core / Abdominaux"
+  },
+  "exercises": {
+    "planche": {
+      "label": "Planche (plank)",
+      "category": "gainage",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "anti_extension",
+      "variants": {
+        "frontale": {
+          "label": "Planche frontale (sur les coudes)",
+          "description": "Appui sur les coudes et les orteils — gainage isométrique",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 24,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 20,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 32,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 28,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 20,
+              "heads": {
+                "GLUTE_MAX_SUP": 18,
+                "GLUTE_MAX_INF": 22
+              },
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 18,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "laterale": {
+          "label": "Planche latérale",
+          "description": "Appui sur un coude et un pied — gainage latéral",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 46,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 42,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 30,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 38,
+              "heads": {
+                "GLUTE_MED_ANT": 35,
+                "GLUTE_MED_POST": 41
+              },
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "dynamique": {
+          "label": "Planche dynamique (body saw)",
+          "description": "En position de planche, glisser le corps vers l'avant puis vers l'arrière — transverse en tension continue + instabilité",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 38,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ],
+              "note": "Body saw = transverse ~60% plus actif que planche statique — déplacement du centre de gravité augmente la demande de stabilisation"
+            },
+            "CORE_RECT_INF": {
+              "percent": 32,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 42,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 30,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "crunch": {
+      "label": "Crunch abdominal",
+      "category": "isolation",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "flexion_tronc",
+      "variants": {
+        "classique": {
+          "label": "Crunch classique",
+          "description": "Allongé, mains derrière la tête, montée du haut du dos",
+          "activation": {
+            "CORE_RECT_SUP": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "inverse": {
+          "label": "Crunch inversé",
+          "description": "Jambes en l'air, monter le bassin — cible la portion inférieure",
+          "activation": {
+            "CORE_RECT_INF": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ],
+              "note": "Crunch inversé = activation maximale portion inférieure du rectus"
+            },
+            "CORE_TRANS": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "russian_twist": {
+      "label": "Russian twist",
+      "category": "gainage",
+      "equipment": [
+        "aucun",
+        "haltères",
+        "medicine_ball"
+      ],
+      "movement_pattern": "rotation_tronc",
+      "variants": {
+        "standard": {
+          "label": "Russian twist standard",
+          "description": "Assis, jambes levées, rotation du buste de gauche à droite",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 58,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "releve_jambes_suspendu": {
+      "label": "Relevé de jambes suspendu",
+      "category": "isolation",
+      "equipment": [
+        "barre_fixe"
+      ],
+      "movement_pattern": "flexion_hanche",
+      "variants": {
+        "jambes_tendues": {
+          "label": "Relevé de jambes suspendu (jambes tendues)",
+          "description": "Suspendu à une barre, monter les jambes tendues à l'horizontale ou au-dessus",
+          "activation": {
+            "CORE_RECT_INF": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ],
+              "note": "Un des meilleurs activateurs du rectus abdominis inférieur"
+            },
+            "HIP_FLEX": {
+              "percent": 85,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "jambes_flechies": {
+          "label": "Relevé de genoux suspendu",
+          "description": "Genoux fléchis à 90° — version plus accessible",
+          "activation": {
+            "CORE_RECT_INF": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 32,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "dead_bug": {
+      "label": "Dead bug",
+      "category": "gainage",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "anti_extension",
+      "variants": {
+        "standard": {
+          "label": "Dead bug standard (bras et jambe opposés)",
+          "description": "Allongé, bras et jambe opposés s'abaissent en gardant le bas du dos plaqué au sol",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 35,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ],
+              "note": "Transverse très sollicité pour maintenir la pression lombaire"
+            },
+            "CORE_RECT_INF": {
+              "percent": 42,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 32,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ekstrom_2007_core"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "MULTIFIDUS": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "bird_dog": {
+      "label": "Bird dog",
+      "category": "gainage",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "stabilisation_lombaire",
+      "variants": {
+        "standard": {
+          "label": "Bird dog standard (quadrupédie)",
+          "description": "À 4 pattes, étendre bras et jambe opposés — stabilisation lombaire profonde",
+          "activation": {
+            "MULTIFIDUS": {
+              "percent": 35,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ],
+              "note": "Bird dog = référence activation multifides selon McGill"
+            },
+            "LUMBAR": {
+              "percent": 28,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 40,
+              "heads": {
+                "GLUTE_MAX_SUP": 38,
+                "GLUTE_MAX_INF": 42
+              },
+              "role": "primary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 35,
+              "heads": {
+                "GLUTE_MED_ANT": 32,
+                "GLUTE_MED_POST": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 30,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 22,
+              "heads": {
+                "DELT_ANT_MAIN": 22
+              },
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "cable_woodchop": {
+      "label": "Cable woodchop (bûcheron au câble)",
+      "category": "gainage",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "rotation_tronc",
+      "variants": {
+        "haut_vers_bas": {
+          "label": "Woodchop haut vers bas",
+          "description": "Câble en position haute, tirer en diagonale vers le bas",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 58,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 30,
+              "heads": {
+                "GLUTE_MED_ANT": 28,
+                "GLUTE_MED_POST": 32
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "bas_vers_haut": {
+          "label": "Woodchop bas vers haut",
+          "description": "Câble en position basse, tirer en diagonale vers le haut",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 35,
+              "heads": {
+                "GLUTE_MAX_SUP": 32,
+                "GLUTE_MAX_INF": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "ab_wheel": {
+      "label": "Roue abdominale (ab wheel)",
+      "category": "compound",
+      "equipment": [
+        "roue"
+      ],
+      "movement_pattern": "anti_extension",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard — genoux au sol",
+          "description": "Genoux au sol, rouler vers l'avant en maintenant gainage — anti-extension avec charge longue",
+          "activation": {
+            "CORE_RECT_INF": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ],
+              "note": "Un des exercices les plus efficaces pour le rectus abdominis inférieur"
+            },
+            "CORE_TRANS": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ],
+              "note": "Érecteurs résistent à l'extension lombaire — charge importante"
+            },
+            "DELT_ANT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "LAT": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "debout": {
+          "label": "Debout — progression avancée",
+          "description": "Debout, rouler au sol et revenir — version maximale, force anti-extension extrême",
+          "activation": {
+            "CORE_RECT_INF": {
+              "percent": 105,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ],
+              "note": "Dépasse 100% MVIC — exercice avancé uniquement"
+            },
+            "CORE_TRANS": {
+              "percent": 90,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "LAT": {
+              "percent": 45,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "knee_raise": {
+      "label": "Relevé de genoux suspendu",
+      "category": "compound",
+      "equipment": [
+        "barre_fixe"
+      ],
+      "movement_pattern": "flexion_hanche",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Genoux vers poitrine — suspendu",
+          "description": "Suspendu à la barre, ramener les genoux vers la poitrine — plus accessible que jambes tendues",
+          "activation": {
+            "HIP_FLEX": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 32,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 28,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "LAT": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Grip isométrique — grand dorsal en tension statique"
+            },
+            "FOREARM_FLEX_SUP": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "pallof_press": {
+      "label": "Pallof press",
+      "category": "compound",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "anti_rotation",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "debout": {
+          "label": "Debout — anti-rotation",
+          "description": "Câble latéral, pousser et ramener les mains devant la poitrine — résister à la rotation",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 58,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ],
+              "note": "Anti-rotation = pattern unique non couvert par les exercices de rotation"
+            },
+            "CORE_OBL_EXT": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 38,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Stabilisation pelvi-tronc en appui bipodal"
+            },
+            "LUMBAR": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "agenouille": {
+          "label": "À genoux — anti-rotation",
+          "description": "Même pattern debout mais à genoux — élimine la stabilisation des jambes, core davantage isolé",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 60,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique": {
+          "label": "Pallof press élastique",
+          "description": "Élastique ancré latéralement — même pattern anti-rotation que câble, option home",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ],
+              "note": "Anti-rotation = obliques en contraction isométrique intense — côté opposé à l'ancrage"
+            },
+            "CORE_OBL_INT": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 25,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "gainage_lateral_dynamique": {
+      "label": "Gainage latéral dynamique (star plank)",
+      "category": "isolation",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "anti_flexion_laterale",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Star plank — abduction dynamique",
+          "description": "Planche latérale avec élévation du bras et de la jambe supérieurs — moyen fessier + obliques en dynamique",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ],
+              "note": "Obliques plus actifs que planche statique — composante dynamique"
+            },
+            "CORE_OBL_INT": {
+              "percent": 60,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Abduction dynamique de la jambe = moyen fessier très actif"
+            },
+            "CORE_TRANS": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Élévation du bras supérieur"
+            },
+            "LUMBAR": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "mountain_climber": {
+      "label": "Mountain climber",
+      "category": "compound",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "anti_extension_dynamique",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Alterné — rythme modéré",
+          "description": "Position planche, ramener les genoux vers la poitrine en alternant — core + hip flexors en condition dynamique",
+          "activation": {
+            "HIP_FLEX": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "crosse": {
+          "label": "Croisé (coude opposé → genou)",
+          "description": "Genou ramené vers le coude opposé — composante de rotation, obliques plus actifs",
+          "activation": {
+            "CORE_OBL_EXT": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 50,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "hollow_body": {
+      "label": "Hollow body (position creuse)",
+      "category": "isolation",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "anti_extension",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Hollow body — tension maximale",
+          "description": "Allongé, lombes plaquées au sol, bras et jambes tendus légèrement décollés — tension abdominale isométrique maximale",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ],
+              "note": "Tension transverse maximale — pattern calisthenics de base"
+            },
+            "CORE_RECT_INF": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_OBL_INT": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "rock": {
+          "label": "Hollow rock — dynamique",
+          "description": "Même position, se balancer d'avant en arrière — version dynamique, tension constante",
+          "activation": {
+            "CORE_TRANS": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "CORE_RECT_INF": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_RECT_SUP": {
+              "percent": 75,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 65,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2009_bird_dog"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    }
+  }
+}

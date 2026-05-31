@@ -1,0 +1,1837 @@
+{
+  "_meta": {
+    "category": "back",
+    "label": "Dos",
+    "description": "Exercices — Dos"
+  },
+  "exercises": {
+    "tractions": {
+      "label": "Tractions",
+      "category": "compound",
+      "equipment": [
+        "barre_fixe",
+        "anneaux",
+        "barre_parallèle"
+      ],
+      "movement_pattern": "traction_verticale",
+      "variants": {
+        "pronation_large": {
+          "label": "Tractions pronation large (pull-up classique)",
+          "description": "Prise overhand, mains plus larges que les épaules, paumes vers l'avant",
+          "activation": {
+            "LAT": {
+              "percent": 125,
+              "heads": {
+                "LAT_SUP": 110,
+                "LAT_INF": 140
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Les % EMG peuvent dépasser 100% — le muscle travaille au-delà de sa contraction maximale isolée grâce aux synergies"
+            },
+            "BICEP_LONG": {
+              "percent": 80,
+              "heads": {
+                "BICEP_LONG_SUP": 75,
+                "BICEP_LONG_DEEP": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 75,
+              "heads": {
+                "BICEP_COURT_SUP": 70,
+                "BICEP_COURT_DEEP": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 60,
+              "heads": {
+                "BRACHIAL_MED": 65,
+                "BRACHIAL_LAT": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "INFRA": {
+              "percent": 75,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 55,
+              "heads": {
+                "TRAP_INF_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Significativement plus actif en pull-up (pronation) qu'en chin-up (supination)"
+            },
+            "TRAP_MED": {
+              "percent": 48,
+              "heads": {
+                "TRAP_MED_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ],
+              "note": "Significativement plus actif en pronation qu'en prise neutre"
+            },
+            "PECT_MAJ_STER": {
+              "percent": 44,
+              "heads": {
+                "PECT_STER_SUP": 40,
+                "PECT_STER_INF": 48
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 33,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "supination": {
+          "label": "Chin-up (prise supination)",
+          "description": "Prise underhand, paumes vers soi, largeur d'épaules",
+          "activation": {
+            "LAT": {
+              "percent": 117,
+              "heads": {
+                "LAT_SUP": 105,
+                "LAT_INF": 130
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 96,
+              "heads": {
+                "BICEP_LONG_SUP": 105,
+                "BICEP_LONG_DEEP": 88
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Significativement plus actif en chin-up qu'en pull-up — la supination met le biceps en position optimale"
+            },
+            "BICEP_COURT": {
+              "percent": 88,
+              "heads": {
+                "BICEP_COURT_SUP": 80,
+                "BICEP_COURT_DEEP": 95
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 55,
+              "heads": {
+                "BRACHIAL_MED": 60,
+                "BRACHIAL_LAT": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "INFRA": {
+              "percent": 71,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 45,
+              "heads": {
+                "TRAP_INF_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Moins sollicité qu'en pronation"
+            },
+            "TRAP_MED": {
+              "percent": 32,
+              "heads": {
+                "TRAP_MED_MAIN": 32
+              },
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 52,
+              "heads": {
+                "PECT_CLAV_MED": 55,
+                "PECT_CLAV_LAT": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Significativement plus actif en chin-up qu'en pull-up"
+            },
+            "PECT_MAJ_STER": {
+              "percent": 57,
+              "heads": {
+                "PECT_STER_SUP": 52,
+                "PECT_STER_INF": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 31,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 39,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "neutre": {
+          "label": "Tractions prise neutre (parallèles)",
+          "description": "Pouce vers soi, avant-bras en position neutre — nécessite des poignées parallèles",
+          "activation": {
+            "LAT": {
+              "percent": 120,
+              "heads": {
+                "LAT_SUP": 108,
+                "LAT_INF": 132
+              },
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 82,
+              "heads": {
+                "BICEP_LONG_SUP": 72,
+                "BICEP_LONG_DEEP": 92
+              },
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 78,
+              "heads": {
+                "BICEP_COURT_SUP": 70,
+                "BICEP_COURT_DEEP": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 70,
+              "heads": {
+                "BRACHIAL_MED": 75,
+                "BRACHIAL_LAT": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 65,
+              "heads": {
+                "BRACHIORAD_MAIN": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ],
+              "note": "Plus actif en prise neutre qu'en pronation ou supination — similaire au curl marteau"
+            },
+            "TRAP_MED": {
+              "percent": 27,
+              "heads": {
+                "TRAP_MED_MAIN": 27
+              },
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ],
+              "note": "Significativement moins actif qu'en pronation"
+            },
+            "TRAP_INF": {
+              "percent": 48,
+              "heads": {
+                "TRAP_INF_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "INFRA": {
+              "percent": 68,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 40,
+              "heads": {
+                "PECT_STER_SUP": 38,
+                "PECT_STER_INF": 42
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 38,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "tirage_vertical": {
+      "label": "Tirage vertical (lat pulldown)",
+      "category": "compound",
+      "equipment": [
+        "câbles",
+        "machine"
+      ],
+      "movement_pattern": "traction_verticale",
+      "variants": {
+        "pronation_large": {
+          "label": "Tirage large pronation",
+          "description": "Prise large overhand — similaire aux tractions",
+          "activation": {
+            "LAT": {
+              "percent": 80,
+              "heads": {
+                "LAT_SUP": 75,
+                "LAT_INF": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 48,
+              "heads": {
+                "TRAP_INF_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 65,
+              "heads": {
+                "BICEP_LONG_SUP": 60,
+                "BICEP_LONG_DEEP": 70
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 52,
+              "heads": {
+                "BRACHIAL_MED": 55,
+                "BRACHIAL_LAT": 49
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 42,
+              "heads": {
+                "DELT_POST_MAIN": 42
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "supination": {
+          "label": "Tirage supination",
+          "description": "Prise underhand — plus de biceps",
+          "activation": {
+            "LAT": {
+              "percent": 78,
+              "heads": {
+                "LAT_SUP": 72,
+                "LAT_INF": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 78,
+              "heads": {
+                "BICEP_LONG_SUP": 82,
+                "BICEP_LONG_DEEP": 74
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 70,
+              "heads": {
+                "BICEP_COURT_SUP": 65,
+                "BICEP_COURT_DEEP": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 42,
+              "heads": {
+                "PECT_CLAV_MED": 44,
+                "PECT_CLAV_LAT": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 38,
+              "heads": {
+                "TRAP_INF_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "rowing_barre": {
+      "label": "Rowing barre (bent-over row)",
+      "category": "compound",
+      "equipment": [
+        "barre"
+      ],
+      "movement_pattern": "tirage_horizontal",
+      "variants": {
+        "pronation": {
+          "label": "Rowing barre pronation (overhand)",
+          "description": "Tronc incliné ~45°, prise overhand, tirer vers l'abdomen",
+          "activation": {
+            "LAT": {
+              "percent": 80,
+              "heads": {
+                "LAT_SUP": 75,
+                "LAT_INF": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 70,
+              "heads": {
+                "TRAP_MED_MAIN": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 55,
+              "heads": {
+                "TRAP_INF_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 65,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 55,
+              "heads": {
+                "DELT_POST_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 65,
+              "heads": {
+                "BICEP_LONG_SUP": 60,
+                "BICEP_LONG_DEEP": 70
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 55,
+              "heads": {
+                "BRACHIAL_MED": 58,
+                "BRACHIAL_LAT": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 80,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ],
+              "note": "Érecteurs très actifs pour maintenir l'inclinaison du tronc"
+            }
+          },
+          "load_variation": null
+        },
+        "supination": {
+          "label": "Rowing barre supination (underhand)",
+          "description": "Prise supinée — plus de biceps, légèrement plus de grand dorsal",
+          "activation": {
+            "LAT": {
+              "percent": 82,
+              "heads": {
+                "LAT_SUP": 78,
+                "LAT_INF": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 80,
+              "heads": {
+                "BICEP_LONG_SUP": 85,
+                "BICEP_LONG_DEEP": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ],
+              "note": "Supination optimise la position du biceps"
+            },
+            "BICEP_COURT": {
+              "percent": 72,
+              "heads": {
+                "BICEP_COURT_SUP": 68,
+                "BICEP_COURT_DEEP": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 62,
+              "heads": {
+                "TRAP_MED_MAIN": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 45,
+              "heads": {
+                "DELT_POST_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 78,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "rowing_halteres": {
+      "label": "Rowing haltères unilatéral",
+      "category": "compound",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "tirage_horizontal_unilateral",
+      "variants": {
+        "standard": {
+          "label": "Rowing haltère une main (genou sur banc)",
+          "description": "Un genou et une main sur le banc, tirer l'haltère vers la hanche",
+          "activation": {
+            "LAT": {
+              "percent": 85,
+              "heads": {
+                "LAT_SUP": 80,
+                "LAT_INF": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 65,
+              "heads": {
+                "TRAP_MED_MAIN": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 58,
+              "heads": {
+                "DELT_POST_MAIN": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 68,
+              "heads": {
+                "BICEP_LONG_SUP": 65,
+                "BICEP_LONG_DEEP": 71
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 55,
+              "heads": {
+                "BRACHIAL_MED": 58,
+                "BRACHIAL_LAT": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "rowing_cable": {
+      "label": "Rowing câble assis (seated cable row)",
+      "category": "compound",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "tirage_horizontal",
+      "variants": {
+        "prise_serree_neutre": {
+          "label": "Rowing câble prise serrée neutre (triangle)",
+          "description": "Câble bas, prise neutre serrée — bon équilibre grand dorsal / trapèze moyen",
+          "activation": {
+            "LAT": {
+              "percent": 70,
+              "heads": {
+                "LAT_SUP": 65,
+                "LAT_INF": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 72,
+              "heads": {
+                "TRAP_MED_MAIN": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 55,
+              "heads": {
+                "DELT_POST_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 60,
+              "heads": {
+                "BICEP_LONG_SUP": 58,
+                "BICEP_LONG_DEEP": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 50,
+              "heads": {
+                "BRACHIAL_MED": 53,
+                "BRACHIAL_LAT": 47
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "prise_large_pronation": {
+          "label": "Rowing câble prise large pronation",
+          "description": "Câble bas, prise large overhand — plus de trapèze et deltoïde postérieur",
+          "activation": {
+            "TRAP_MED": {
+              "percent": 80,
+              "heads": {
+                "TRAP_MED_MAIN": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 60,
+              "heads": {
+                "TRAP_INF_MAIN": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "LAT": {
+              "percent": 62,
+              "heads": {
+                "LAT_SUP": 58,
+                "LAT_INF": 66
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 65,
+              "heads": {
+                "DELT_POST_MAIN": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 68,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 45,
+              "heads": {
+                "BICEP_LONG_SUP": 42,
+                "BICEP_LONG_DEEP": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "rowing_machine": {
+      "label": "Rowing machine (chest-supported)",
+      "category": "compound",
+      "equipment": [
+        "machine"
+      ],
+      "movement_pattern": "tirage_horizontal",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard — poitrine appuyée",
+          "description": "Poitrine en appui sur le dossier incliné — érecteurs lombaires déchargés, isolation dos maximale",
+          "activation": {
+            "LAT": {
+              "percent": 78,
+              "heads": {
+                "LAT_SUP": 72,
+                "LAT_INF": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ],
+              "note": "Légèrement moins de LAT qu'au rowing barre car momentum réduit"
+            },
+            "TRAP_MED": {
+              "percent": 82,
+              "heads": {
+                "TRAP_MED_MAIN": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing",
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Appui poitrine supprime le recrutement compensatoire des érecteurs — rhomboïdes et trapèze plus isolés"
+            },
+            "TRAP_INF": {
+              "percent": 58,
+              "heads": {
+                "TRAP_INF_MAIN": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 60,
+              "heads": {
+                "DELT_POST_MAIN": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 58,
+              "heads": {
+                "BICEP_LONG_SUP": 55,
+                "BICEP_LONG_DEEP": 61
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 48,
+              "heads": {
+                "BRACHIAL_MED": 50,
+                "BRACHIAL_LAT": 46
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 15,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ],
+              "note": "Quasi nul — c'est l'intérêt principal de cet exercice vs rowing debout"
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "tirage_poulie_basse": {
+      "label": "Tirage poulie basse (straight arm pulldown)",
+      "category": "isolation",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "adduction_verticale",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "standard": {
+          "label": "Bras tendus — grand dorsal isolé",
+          "description": "Debout face à la poulie haute, tirer la corde/barre vers les cuisses bras tendus — coudes légèrement fléchis fixes",
+          "activation": {
+            "LAT": {
+              "percent": 92,
+              "heads": {
+                "LAT_SUP": 85,
+                "LAT_INF": 98
+              },
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Un des rares exercices où le LAT travaille sans contribution significative du biceps — isolation presque pure"
+            },
+            "TERES_MAJ": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 45,
+              "heads": {
+                "PECT_STER_SUP": 40,
+                "PECT_STER_INF": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Contribution modérée — le grand pectoral aide à l'adduction"
+            },
+            "DELT_POST": {
+              "percent": 38,
+              "heads": {
+                "DELT_POST_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 35,
+              "heads": {
+                "TRAP_INF_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 28,
+              "heads": {
+                "TRICEP_LONG_PROX": 25,
+                "TRICEP_LONG_DIST": 30
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Coudes fixes — triceps en stabilisation isométrique"
+            },
+            "CORE_TRANS": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "shrug": {
+      "label": "Shrug (haussement d'épaules)",
+      "category": "isolation",
+      "equipment": [
+        "barre",
+        "haltères"
+      ],
+      "movement_pattern": "elevation_scapulaire",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "barre": {
+          "label": "Shrug barre",
+          "description": "Barre en prise pronée ou neutre, élévation pure des épaules — menton dégagé",
+          "activation": {
+            "TRAP_SUP": {
+              "percent": 95,
+              "heads": {
+                "TRAP_SUP_MED": 90,
+                "TRAP_SUP_LAT": 100
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ],
+              "note": "Exercice de référence pour le trapèze supérieur — activation quasi maximale"
+            },
+            "TRAP_MED": {
+              "percent": 35,
+              "heads": {
+                "TRAP_MED_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "LEVATOR_SCAP": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ],
+              "note": "Élévateur de la scapula — synergiste principal du shrug"
+            },
+            "RHOMBOID": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "FOREARM_FLEX_SUP": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ],
+              "note": "Grip isométrique sous charge lourde"
+            }
+          },
+          "load_variation": null
+        },
+        "halteres": {
+          "label": "Shrug haltères",
+          "description": "Haltères de chaque côté — ROM légèrement augmenté, moins de contrainte sur les avant-bras",
+          "activation": {
+            "TRAP_SUP": {
+              "percent": 90,
+              "heads": {
+                "TRAP_SUP_MED": 85,
+                "TRAP_SUP_LAT": 95
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ],
+              "note": "Légèrement moins que barre — charge maximale souvent inférieure"
+            },
+            "TRAP_MED": {
+              "percent": 38,
+              "heads": {
+                "TRAP_MED_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "LEVATOR_SCAP": {
+              "percent": 60,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "FOREARM_FLEX_SUP": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "good_morning": {
+      "label": "Good morning",
+      "category": "compound",
+      "equipment": [
+        "barre"
+      ],
+      "movement_pattern": "hip_hinge_posterieur",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard — ischio + lombaires",
+          "description": "Barre sur les trapèzes, flexion de hanche, dos droit — étirement ischio-jambiers et tension élevée érecteurs",
+          "activation": {
+            "LUMBAR": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Charge dorsale = bras de levier plus long qu'au deadlift — stress lombaire très élevé, charge légère recommandée"
+            },
+            "MULTIFIDUS": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 75,
+              "heads": {
+                "HAMSTRING_BF_LONG_PROX": 80,
+                "HAMSTRING_BF_LONG_DIST": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "HAMSTRING_SM": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 30,
+              "heads": {
+                "TRAP_MED_MAIN": 30
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ],
+              "note": "Maintien de la position de la barre sur les trapèzes"
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "tirage_horizontal_elastique": {
+      "label": "Tirage horizontal élastique",
+      "category": "compound",
+      "equipment": [
+        "élastique"
+      ],
+      "movement_pattern": "tirage_horizontal",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "bras_tendus": {
+          "label": "Bras tendus (straight arm) — élastique",
+          "description": "Élastique fixé à hauteur de poitrine ou ancré sous les pieds assis — tirer vers le nombril bras tendus",
+          "activation": {
+            "LAT": {
+              "percent": 68,
+              "heads": {
+                "LAT_SUP": 62,
+                "LAT_INF": 74
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ],
+              "note": "Légèrement inférieur au câble — résistance croissante de l'élastique compense la réduction de charge pic"
+            },
+            "TERES_MAJ": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 60,
+              "heads": {
+                "TRAP_MED_MAIN": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 50,
+              "heads": {
+                "DELT_POST_MAIN": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 45,
+              "heads": {
+                "BICEP_LONG_SUP": 42,
+                "BICEP_LONG_DEEP": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ],
+              "note": "Gainage nécessaire si ancrage au sol en position assise"
+            }
+          },
+          "load_variation": null
+        },
+        "prise_serree": {
+          "label": "Rowing élastique prise serrée neutre",
+          "description": "Élastique ancré devant, tirage vers l'abdomen en prise neutre serrée — équivalent rowing câble triangle",
+          "activation": {
+            "LAT": {
+              "percent": 72,
+              "heads": {
+                "LAT_SUP": 68,
+                "LAT_INF": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2010_elastic_rowing",
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 68,
+              "heads": {
+                "TRAP_MED_MAIN": 68
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 52,
+              "heads": {
+                "DELT_POST_MAIN": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 55,
+              "heads": {
+                "BICEP_LONG_SUP": 52,
+                "BICEP_LONG_DEEP": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 42,
+              "heads": {
+                "BRACHIAL_MED": 44,
+                "BRACHIAL_LAT": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2010_elastic_rowing"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "traction_elastique": {
+      "label": "Traction assistée élastique",
+      "category": "compound",
+      "equipment": [
+        "barre_fixe",
+        "élastique"
+      ],
+      "movement_pattern": "traction_verticale",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "pronation_large": {
+          "label": "Traction assistée pronation large",
+          "description": "Élastique passé sous les genoux ou les pieds — réduit la charge effective, même pattern que pull-up",
+          "activation": {
+            "LAT": {
+              "percent": 105,
+              "heads": {
+                "LAT_SUP": 92,
+                "LAT_INF": 118
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "~85% de l'activation traction non assistée — charge absolue moindre mais recrutement neuromusculaire préservé"
+            },
+            "BICEP_LONG": {
+              "percent": 68,
+              "heads": {
+                "BICEP_LONG_SUP": 64,
+                "BICEP_LONG_DEEP": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 64,
+              "heads": {
+                "BICEP_COURT_SUP": 60,
+                "BICEP_COURT_DEEP": 68
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 50,
+              "heads": {
+                "BRACHIAL_MED": 54,
+                "BRACHIAL_LAT": 46
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "INFRA": {
+              "percent": 64,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 47,
+              "heads": {
+                "TRAP_INF_MAIN": 47
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 41,
+              "heads": {
+                "TRAP_MED_MAIN": 41
+              },
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 34,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "supination": {
+          "label": "Chin-up assisté élastique (supination)",
+          "description": "Élastique sous les genoux, prise supination — même avantages que chin-up avec charge allégée",
+          "activation": {
+            "LAT": {
+              "percent": 99,
+              "heads": {
+                "LAT_SUP": 88,
+                "LAT_INF": 110
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 82,
+              "heads": {
+                "BICEP_LONG_SUP": 90,
+                "BICEP_LONG_DEEP": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ],
+              "note": "Supination conserve l'avantage mécanique du biceps"
+            },
+            "BICEP_COURT": {
+              "percent": 75,
+              "heads": {
+                "BICEP_COURT_SUP": 68,
+                "BICEP_COURT_DEEP": 81
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 47,
+              "heads": {
+                "BRACHIAL_MED": 51,
+                "BRACHIAL_LAT": 43
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "INFRA": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 38,
+              "heads": {
+                "TRAP_INF_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 44,
+              "heads": {
+                "PECT_CLAV_MED": 47,
+                "PECT_CLAV_LAT": 41
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "seal_row": {
+      "label": "Seal row (rowing poitrine appuyée banc)",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères",
+        "banc"
+      ],
+      "movement_pattern": "tirage_horizontal",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "barre": {
+          "label": "Seal row barre (banc surélevé)",
+          "description": "Allongé à plat ventre sur banc surélevé, tirer la barre vers la poitrine — érecteurs entièrement déchargés",
+          "activation": {
+            "LAT": {
+              "percent": 82,
+              "heads": {
+                "LAT_SUP": 76,
+                "LAT_INF": 88
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing",
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 85,
+              "heads": {
+                "TRAP_MED_MAIN": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ],
+              "note": "Trapèze moyen en isolation maximale — pattern similaire au rowing machine chest-supported"
+            },
+            "RHOMBOID": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Plus élevé que rowing barre debout — absence de compensation lombaire force le recrutement des rhomboïdes"
+            },
+            "TRAP_INF": {
+              "percent": 62,
+              "heads": {
+                "TRAP_INF_MAIN": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 65,
+              "heads": {
+                "DELT_POST_MAIN": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TERES_MAJ": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 62,
+              "heads": {
+                "BICEP_LONG_SUP": 58,
+                "BICEP_LONG_DEEP": 66
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 52,
+              "heads": {
+                "BRACHIAL_MED": 55,
+                "BRACHIAL_LAT": 49
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 8,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ],
+              "note": "Quasi nul — identique au rowing machine chest-supported"
+            }
+          },
+          "load_variation": null
+        },
+        "halteres": {
+          "label": "Seal row haltères (bilatéral ou unilatéral)",
+          "description": "Même position que seal row barre mais avec haltères — ROM légèrement augmenté",
+          "activation": {
+            "LAT": {
+              "percent": 80,
+              "heads": {
+                "LAT_SUP": 74,
+                "LAT_INF": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 82,
+              "heads": {
+                "TRAP_MED_MAIN": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 75,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 60,
+              "heads": {
+                "TRAP_INF_MAIN": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 62,
+              "heads": {
+                "DELT_POST_MAIN": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 60,
+              "heads": {
+                "BICEP_LONG_SUP": 56,
+                "BICEP_LONG_DEEP": 64
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 50,
+              "heads": {
+                "BRACHIAL_MED": 53,
+                "BRACHIAL_LAT": 47
+              },
+              "role": "secondary",
+              "sources": [
+                "Fenwick_2009_rowing"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    }
+  }
+}

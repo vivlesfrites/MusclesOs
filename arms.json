@@ -1,0 +1,1085 @@
+{
+  "_meta": {
+    "category": "arms",
+    "label": "Bras",
+    "description": "Exercices — Bras"
+  },
+  "exercises": {
+    "curl_biceps": {
+      "label": "Curl biceps",
+      "category": "isolation",
+      "equipment": [
+        "haltères",
+        "barre",
+        "câbles"
+      ],
+      "movement_pattern": "flexion_coude",
+      "variants": {
+        "supination": {
+          "label": "Curl supination (prise classique)",
+          "description": "Paume vers le haut sur tout le mouvement",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 70,
+              "heads": {
+                "BICEP_LONG_SUP": 80,
+                "BICEP_LONG_DEEP": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors",
+                "Stauber_1989_biceps_supination"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 60,
+              "heads": {
+                "BICEP_COURT_SUP": 55,
+                "BICEP_COURT_DEEP": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 45,
+              "heads": {
+                "BRACHIAL_MED": 50,
+                "BRACHIAL_LAT": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Stauber_1989_biceps_supination"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 20,
+              "heads": {
+                "BRACHIORAD_MAIN": 20
+              },
+              "role": "secondary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "marteau": {
+          "label": "Curl marteau (prise neutre)",
+          "description": "Pouce vers le haut, avant-bras en position neutre",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 45,
+              "heads": {
+                "BICEP_LONG_SUP": 35,
+                "BICEP_LONG_DEEP": 55
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors",
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 50,
+              "heads": {
+                "BICEP_COURT_SUP": 45,
+                "BICEP_COURT_DEEP": 55
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 65,
+              "heads": {
+                "BRACHIAL_MED": 70,
+                "BRACHIAL_LAT": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 80,
+              "heads": {
+                "BRACHIORAD_MAIN": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors",
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "pronation": {
+          "label": "Curl pronation (prise inversée)",
+          "description": "Paume vers le bas sur tout le mouvement",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 20,
+              "heads": {
+                "BICEP_LONG_SUP": 10,
+                "BICEP_LONG_DEEP": 30
+              },
+              "role": "secondary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 30,
+              "heads": {
+                "BICEP_COURT_SUP": 25,
+                "BICEP_COURT_DEEP": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 75,
+              "heads": {
+                "BRACHIAL_MED": 80,
+                "BRACHIAL_LAT": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 90,
+              "heads": {
+                "BRACHIORAD_MAIN": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors",
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "FOREARM_EXT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique": {
+          "label": "Curl élastique debout",
+          "description": "Élastique sous les pieds, curl en supination — résistance croissante vers le pic de flexion",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 72,
+              "heads": {
+                "BICEP_LONG_SUP": 78,
+                "BICEP_LONG_DEEP": 66
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ],
+              "note": "Résistance élastique maximale en fin de ROM = tension biceps maintenue en position raccourcie"
+            },
+            "BICEP_COURT": {
+              "percent": 68,
+              "heads": {
+                "BICEP_COURT_SUP": 65,
+                "BICEP_COURT_DEEP": 71
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 52,
+              "heads": {
+                "BRACHIAL_MED": 55,
+                "BRACHIAL_LAT": 49
+              },
+              "role": "secondary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 35,
+              "heads": {
+                "BRACHIORAD_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "extension_triceps": {
+      "label": "Extension triceps au câble",
+      "category": "isolation",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "extension_coude",
+      "variants": {
+        "poulie_haute": {
+          "label": "Pushdown câble haut (corde ou barre)",
+          "description": "Câble en position haute, pousser vers le bas",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 85,
+              "heads": {
+                "TRICEP_LAT_MAIN": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 80,
+              "heads": {
+                "TRICEP_MED_MAIN": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 55,
+              "heads": {
+                "TRICEP_LONG_PROX": 50,
+                "TRICEP_LONG_DIST": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "La longue portion est moins active car le coude est abaissé"
+            }
+          },
+          "load_variation": null
+        },
+        "overhead": {
+          "label": "Extension triceps au-dessus de la tête",
+          "description": "Bras levés, extension vers l'arrière — étire la longue portion",
+          "activation": {
+            "TRICEP_LONG": {
+              "percent": 88,
+              "heads": {
+                "TRICEP_LONG_PROX": 92,
+                "TRICEP_LONG_DIST": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "Position overhead = longue portion en étirement = activation maximale"
+            },
+            "TRICEP_LAT": {
+              "percent": 65,
+              "heads": {
+                "TRICEP_LAT_MAIN": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 60,
+              "heads": {
+                "TRICEP_MED_MAIN": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique_pushdown": {
+          "label": "Pushdown élastique",
+          "description": "Élastique ancré en hauteur — extension triceps vers le bas, equivalent pushdown câble",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 48,
+              "heads": {
+                "TRICEP_LONG_PROX": 44,
+                "TRICEP_LONG_DIST": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Longue portion moins activée qu'en overhead — hanche non fléchie"
+            },
+            "ANCONEUS": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "curl_barre_ez": {
+      "label": "Curl barre EZ",
+      "category": "isolation",
+      "equipment": [
+        "barre_ez"
+      ],
+      "movement_pattern": "flexion_coude",
+      "variants": {
+        "prise_semi_supination": {
+          "label": "Curl barre EZ (prise semi-supinée)",
+          "description": "Prise intermédiaire entre supination et neutre — confort des poignets",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 55,
+              "heads": {
+                "BICEP_LONG_SUP": 60,
+                "BICEP_LONG_DEEP": 50
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ],
+              "note": "Activation intermédiaire entre curl supination et marteau"
+            },
+            "BICEP_COURT": {
+              "percent": 58,
+              "heads": {
+                "BICEP_COURT_SUP": 52,
+                "BICEP_COURT_DEEP": 64
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 55,
+              "heads": {
+                "BRACHIAL_MED": 60,
+                "BRACHIAL_LAT": 50
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 50,
+              "heads": {
+                "BRACHIORAD_MAIN": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "curl_concentre": {
+      "label": "Curl concentré",
+      "category": "isolation",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "flexion_coude",
+      "variants": {
+        "standard": {
+          "label": "Curl concentré assis (coude contre la cuisse)",
+          "description": "Assis, coude appuyé contre la cuisse intérieure — isolation maximale du biceps",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 80,
+              "heads": {
+                "BICEP_LONG_SUP": 88,
+                "BICEP_LONG_DEEP": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ],
+              "note": "Isolation maximale — supprime les compensations du deltoïde et du tronc"
+            },
+            "BICEP_COURT": {
+              "percent": 65,
+              "heads": {
+                "BICEP_COURT_SUP": 60,
+                "BICEP_COURT_DEEP": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 48,
+              "heads": {
+                "BRACHIAL_MED": 52,
+                "BRACHIAL_LAT": 44
+              },
+              "role": "secondary",
+              "sources": [
+                "Stauber_1989_biceps_supination"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "skull_crusher": {
+      "label": "Skull crusher (extension triceps couché)",
+      "category": "isolation",
+      "equipment": [
+        "barre",
+        "barre_ez",
+        "haltères"
+      ],
+      "movement_pattern": "extension_coude",
+      "variants": {
+        "barre_ez": {
+          "label": "Skull crusher barre EZ (couché)",
+          "description": "Allongé, descendre la barre vers le front — longue portion en étirement maximal",
+          "activation": {
+            "TRICEP_LONG": {
+              "percent": 88,
+              "heads": {
+                "TRICEP_LONG_PROX": 92,
+                "TRICEP_LONG_DIST": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Coudes relevés = longue portion en étirement maximal"
+            },
+            "TRICEP_LAT": {
+              "percent": 72,
+              "heads": {
+                "TRICEP_LAT_MAIN": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 65,
+              "heads": {
+                "TRICEP_MED_MAIN": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "dips_chaise": {
+      "label": "Dips chaise (triceps dips)",
+      "category": "isolation",
+      "equipment": [
+        "chaise",
+        "banc"
+      ],
+      "movement_pattern": "extension_coude",
+      "variants": {
+        "jambes_tendues": {
+          "label": "Dips chaise jambes tendues",
+          "description": "Mains sur la chaise derrière soi, jambes tendues — charge maximale sur les triceps",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 78,
+              "heads": {
+                "TRICEP_LAT_MAIN": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 72,
+              "heads": {
+                "TRICEP_MED_MAIN": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 60,
+              "heads": {
+                "TRICEP_LONG_PROX": 55,
+                "TRICEP_LONG_DIST": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 35,
+              "heads": {
+                "DELT_ANT_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 25,
+              "heads": {
+                "PECT_STER_SUP": 22,
+                "PECT_STER_INF": 28
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "extension_triceps_cable": {
+      "label": "Extension triceps câble",
+      "category": "isolation",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "extension_coude",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "poulie_haute": {
+          "label": "Poulie haute — pushdown (corde ou barre)",
+          "description": "Câble haut, tirer vers le bas en extension — chef latéral et médial dominants",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 85,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Pushdown = chef latéral maximal"
+            },
+            "TRICEP_MED": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Chef long moins actif car pas d'étirement (hanche non impliquée)"
+            },
+            "FOREARM_EXT": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "overhead": {
+          "label": "Overhead poulie basse — chef long dominant",
+          "description": "Câble bas derrière la tête, extension vers le haut — chef long en étirement maximal",
+          "activation": {
+            "TRICEP_LONG": {
+              "percent": 92,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Chef long en étirement maximal (épaule fléchie) — activation la plus élevée possible"
+            },
+            "TRICEP_LAT": {
+              "percent": 68,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 62,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "curl_incline": {
+      "label": "Curl incliné haltères",
+      "category": "isolation",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "flexion_coude",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Allongé incliné 45° — étirement maximal biceps",
+          "description": "Banc incliné 45°, bras pendants derrière — longue portion en étirement complet en position de départ",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 95,
+              "heads": {
+                "BICEP_LONG_SUP": 105,
+                "BICEP_LONG_DEEP": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors",
+                "Kleiber_2015_grip_EMG"
+              ],
+              "note": "Activation maximale de la longue portion — étirement complet en position initiale"
+            },
+            "BICEP_COURT": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "preacher_curl": {
+      "label": "Preacher curl (pupitre)",
+      "category": "isolation",
+      "equipment": [
+        "barre_ez",
+        "haltères"
+      ],
+      "movement_pattern": "flexion_coude",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "barre_ez": {
+          "label": "Barre EZ — pupitre",
+          "description": "Appui du triceps sur le pupitre incliné — biceps en position raccourcie à la contraction",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors",
+                "Stauber_1989_biceps_supination"
+              ],
+              "note": "Pupitre = position raccourcie en haut — pas d'étirement initial contrairement au curl incliné"
+            },
+            "BICEP_COURT": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ],
+              "note": "Brachial très sollicité — angle de coude favorise sa contribution"
+            },
+            "BRACHIORAD": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "haltere": {
+          "label": "Haltère unilatéral — pupitre",
+          "description": "Même position que barre EZ, un bras à la fois — supination complète possible",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 92,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG",
+                "Stauber_1989_biceps_supination"
+              ],
+              "note": "Supination complète = activation longue portion légèrement supérieure à la barre EZ"
+            },
+            "BICEP_COURT": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 32,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "overhead_ext_haltere": {
+      "label": "Extension overhead haltère",
+      "category": "isolation",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "extension_coude",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "bimanuel": {
+          "label": "Bimanuel — longue portion en étirement",
+          "description": "Assis ou debout, haltère tenu à deux mains au-dessus de la tête, descente derrière la nuque",
+          "activation": {
+            "TRICEP_LONG": {
+              "percent": 95,
+              "heads": {
+                "TRICEP_LONG_PROX": 105,
+                "TRICEP_LONG_DIST": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Chef long en étirement maximal — épaule fléchie + coude fléchi = double étirement"
+            },
+            "TRICEP_LAT": {
+              "percent": 65,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "unilateral": {
+          "label": "Unilatéral — un bras",
+          "description": "Même pattern qu'en bimanuel, un bras à la fois — amplitude légèrement plus grande",
+          "activation": {
+            "TRICEP_LONG": {
+              "percent": 92,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 62,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ],
+              "note": "Stabilisation anti-rotation légère en unilatéral"
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "kickback": {
+      "label": "Kickback triceps",
+      "category": "isolation",
+      "equipment": [
+        "haltères",
+        "câbles"
+      ],
+      "movement_pattern": "extension_coude",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "haltere": {
+          "label": "Haltère — appui banc",
+          "description": "Tronc horizontal, coude à 90°, extension complète — isolation chef latéral et médial en position raccourcie",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Chef latéral maximal en fin d'extension — meilleur exercice pour le chef latéral selon Boeckh"
+            },
+            "TRICEP_MED": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Chef long moins actif — bras de levier défavorable en position de départ"
+            },
+            "DELT_POST": {
+              "percent": 18,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "zottman_curl": {
+      "label": "Zottman curl",
+      "category": "isolation",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "flexion_coude_rotation",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Zottman curl standard",
+          "description": "Montée en supination (biceps) + rotation pronation en haut + descente en pronation (brachioradial excentrique) — seul exercice combinant les deux fléchisseurs majeurs",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 80,
+              "heads": {
+                "BICEP_LONG_SUP": 88,
+                "BICEP_LONG_DEEP": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ],
+              "note": "Phase concentrique supination = biceps en position optimale — même que curl supination"
+            },
+            "BICEP_COURT": {
+              "percent": 75,
+              "heads": {
+                "BICEP_COURT_SUP": 72,
+                "BICEP_COURT_DEEP": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "BRACHIORAD": {
+              "percent": 78,
+              "heads": {
+                "BRACHIORAD_MAIN": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ],
+              "note": "Phase excentrique pronation = brachioradial sous charge — unique vs curl standard"
+            },
+            "BRACHIAL": {
+              "percent": 60,
+              "heads": {
+                "BRACHIAL_MED": 63,
+                "BRACHIAL_LAT": 57
+              },
+              "role": "secondary",
+              "sources": [
+                "Naito_2000_EMG_elbow_flexors"
+              ]
+            },
+            "FOREARM_FLEX_SUP": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ],
+              "note": "Fléchisseurs avant-bras sollicités pendant la rotation pronation"
+            },
+            "FOREARM_EXT": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    }
+  }
+}

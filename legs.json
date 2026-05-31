@@ -1,0 +1,2146 @@
+{
+  "_meta": {
+    "category": "legs",
+    "label": "Jambes",
+    "description": "Exercices — Jambes"
+  },
+  "exercises": {
+    "squat_barre": {
+      "label": "Squat barre",
+      "category": "compound",
+      "equipment": [
+        "barre"
+      ],
+      "movement_pattern": "squat_bilateral",
+      "variants": {
+        "high_bar": {
+          "label": "Squat high bar (barre haute, dos droit)",
+          "description": "Barre sur les trapèzes supérieurs, tronc plus vertical, plus de quadriceps",
+          "activation": {
+            "QUAD_VAST_LAT": {
+              "percent": 85,
+              "heads": {
+                "VAST_LAT_SUP": 82,
+                "VAST_LAT_INF": 88
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 82,
+              "heads": {
+                "VAST_MED_LONG": 78,
+                "VAST_MED_OBL": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 60,
+              "heads": {
+                "QUAD_RECT_PROX": 55,
+                "QUAD_RECT_DIST": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 65,
+              "heads": {
+                "GLUTE_MAX_SUP": 58,
+                "GLUTE_MAX_INF": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 35,
+              "heads": {
+                "BF_LONG_PROX": 30,
+                "BF_LONG_DIST": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Camara_2016_squat_hamstrings"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 30,
+              "heads": {
+                "ST_MAIN": 30
+              },
+              "role": "secondary",
+              "sources": [
+                "Camara_2016_squat_hamstrings"
+              ]
+            },
+            "SOLEUS": {
+              "percent": 40,
+              "heads": {
+                "SOLEUS_MED": 42,
+                "SOLEUS_LAT": 38
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 55,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "low_bar": {
+          "label": "Squat low bar (barre basse, powerlifting)",
+          "description": "Barre sur les deltoïdes postérieurs, tronc plus incliné, plus de fessiers et IJ",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 80,
+              "heads": {
+                "GLUTE_MAX_SUP": 72,
+                "GLUTE_MAX_INF": 88
+              },
+              "role": "primary",
+              "sources": [
+                "Martínez_Cava_2020_squat_depth"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 75,
+              "heads": {
+                "VAST_LAT_SUP": 72,
+                "VAST_LAT_INF": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 72,
+              "heads": {
+                "VAST_MED_LONG": 68,
+                "VAST_MED_OBL": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 50,
+              "heads": {
+                "BF_LONG_PROX": 45,
+                "BF_LONG_DIST": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Martínez_Cava_2020_squat_depth"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 45,
+              "heads": {
+                "ST_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Martínez_Cava_2020_squat_depth"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 70,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "sumo": {
+          "label": "Squat sumo (écartement large)",
+          "description": "Pieds très écartés, pointes en dehors — plus d'adducteurs et fessiers",
+          "activation": {
+            "ADDUCTOR": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 78,
+              "heads": {
+                "GLUTE_MAX_SUP": 72,
+                "GLUTE_MAX_INF": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 65,
+              "heads": {
+                "GLUTE_MED_ANT": 62,
+                "GLUTE_MED_POST": 68
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 72,
+              "heads": {
+                "VAST_MED_LONG": 68,
+                "VAST_MED_OBL": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 68,
+              "heads": {
+                "VAST_LAT_SUP": 65,
+                "VAST_LAT_INF": 71
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "squat_bulgare": {
+      "label": "Squat bulgare (split squat bulgare)",
+      "category": "compound",
+      "equipment": [
+        "haltères",
+        "barre",
+        "aucun"
+      ],
+      "movement_pattern": "squat_unilateral",
+      "variants": {
+        "standard": {
+          "label": "Squat bulgare standard",
+          "description": "Pied arrière surélevé sur un banc, descente unilatérale",
+          "activation": {
+            "QUAD_VAST_MED": {
+              "percent": 85,
+              "heads": {
+                "VAST_MED_LONG": 80,
+                "VAST_MED_OBL": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ],
+              "note": "VMO le plus actif de tous les squats selon Andersen 2014"
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 68,
+              "heads": {
+                "VAST_LAT_SUP": 65,
+                "VAST_LAT_INF": 71
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 55,
+              "heads": {
+                "QUAD_RECT_PROX": 52,
+                "QUAD_RECT_DIST": 58
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 78,
+              "heads": {
+                "GLUTE_MAX_SUP": 70,
+                "GLUTE_MAX_INF": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 55,
+              "heads": {
+                "GLUTE_MED_ANT": 52,
+                "GLUTE_MED_POST": 58
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "souleve_de_terre": {
+      "label": "Soulevé de terre (deadlift)",
+      "category": "compound",
+      "equipment": [
+        "barre"
+      ],
+      "movement_pattern": "charniere_hanche",
+      "variants": {
+        "conventionnel": {
+          "label": "Deadlift conventionnel",
+          "description": "Pieds à largeur des hanches, mains en dehors des jambes",
+          "activation": {
+            "LUMBAR": {
+              "percent": 90,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Érecteurs parmi les plus sollicités de tous les exercices"
+            },
+            "GLUTE_MAX": {
+              "percent": 70,
+              "heads": {
+                "GLUTE_MAX_SUP": 62,
+                "GLUTE_MAX_INF": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 80,
+              "heads": {
+                "BF_LONG_PROX": 75,
+                "BF_LONG_DIST": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Phase concentrique: ~129% MVIC biceps fémoral"
+            },
+            "HAMSTRING_ST": {
+              "percent": 75,
+              "heads": {
+                "ST_MAIN": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Semi-tendineux légèrement plus actif que biceps fémoral"
+            },
+            "HAMSTRING_SM": {
+              "percent": 70,
+              "heads": {
+                "SM_MAIN": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 65,
+              "heads": {
+                "VAST_LAT_SUP": 62,
+                "VAST_LAT_INF": 68
+              },
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 60,
+              "heads": {
+                "VAST_MED_LONG": 58,
+                "VAST_MED_OBL": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 55,
+              "heads": {
+                "TRAP_SUP_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "FOREARM_FLEX_SUP": {
+              "percent": 50,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 45,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "roumain": {
+          "label": "Soulevé de terre roumain (RDL)",
+          "description": "Jambes quasi-tendues, descente contrôlée le long des tibias",
+          "activation": {
+            "HAMSTRING_BF_LONG": {
+              "percent": 90,
+              "heads": {
+                "BF_LONG_PROX": 88,
+                "BF_LONG_DIST": 92
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ],
+              "note": "Excursion maximale des IJ — très haute activation en étirement"
+            },
+            "HAMSTRING_SM": {
+              "percent": 82,
+              "heads": {
+                "SM_MAIN": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 78,
+              "heads": {
+                "ST_MAIN": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 75,
+              "heads": {
+                "GLUTE_MAX_SUP": 68,
+                "GLUTE_MAX_INF": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 72,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 35,
+              "heads": {
+                "GASTRO_MED_MAIN": 35
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "SOLEUS": {
+              "percent": 30,
+              "heads": {
+                "SOLEUS_MED": 32,
+                "SOLEUS_LAT": 28
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "hip_thrust": {
+      "label": "Hip thrust",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères"
+      ],
+      "movement_pattern": "extension_hanche",
+      "variants": {
+        "barre": {
+          "label": "Hip thrust barre",
+          "description": "Épaules sur banc, barre sur les hanches — extension de hanche maximale",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 150,
+              "heads": {
+                "GLUTE_MAX_SUP": 138,
+                "GLUTE_MAX_INF": 162
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2018_hip_thrust"
+              ],
+              "note": "Meilleur exercice pour le grand fessier — dépasse 150% MVIC"
+            },
+            "GLUTE_MED": {
+              "percent": 80,
+              "heads": {
+                "GLUTE_MED_ANT": 75,
+                "GLUTE_MED_POST": 85
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2018_hip_thrust"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 55,
+              "heads": {
+                "BF_LONG_PROX": 50,
+                "BF_LONG_DIST": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2018_hip_thrust"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 48,
+              "heads": {
+                "ST_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2018_hip_thrust"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 30,
+              "heads": {
+                "QUAD_RECT_PROX": 28,
+                "QUAD_RECT_DIST": 32
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2018_hip_thrust"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "leg_press": {
+      "label": "Leg press",
+      "category": "compound",
+      "equipment": [
+        "machine"
+      ],
+      "movement_pattern": "poussée_jambes",
+      "variants": {
+        "pieds_bas": {
+          "label": "Leg press pieds bas sur la plateforme",
+          "description": "Pieds en bas de la plateforme — plus de quadriceps",
+          "activation": {
+            "QUAD_VAST_LAT": {
+              "percent": 80,
+              "heads": {
+                "VAST_LAT_SUP": 78,
+                "VAST_LAT_INF": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 78,
+              "heads": {
+                "VAST_MED_LONG": 75,
+                "VAST_MED_OBL": 81
+              },
+              "role": "primary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 55,
+              "heads": {
+                "QUAD_RECT_PROX": 52,
+                "QUAD_RECT_DIST": 58
+              },
+              "role": "primary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 45,
+              "heads": {
+                "GLUTE_MAX_SUP": 40,
+                "GLUTE_MAX_INF": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 28,
+              "heads": {
+                "BF_LONG_PROX": 25,
+                "BF_LONG_DIST": 31
+              },
+              "role": "secondary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "pieds_hauts": {
+          "label": "Leg press pieds hauts sur la plateforme",
+          "description": "Pieds en haut de la plateforme — plus de fessiers et IJ",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 70,
+              "heads": {
+                "GLUTE_MAX_SUP": 65,
+                "GLUTE_MAX_INF": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 55,
+              "heads": {
+                "BF_LONG_PROX": 50,
+                "BF_LONG_DIST": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 65,
+              "heads": {
+                "VAST_LAT_SUP": 62,
+                "VAST_LAT_INF": 68
+              },
+              "role": "secondary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 62,
+              "heads": {
+                "VAST_MED_LONG": 60,
+                "VAST_MED_OBL": 64
+              },
+              "role": "secondary",
+              "sources": [
+                "Escamilla_2001_leg_press"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "elevation_mollets": {
+      "label": "Élévation des mollets (calf raise)",
+      "category": "isolation",
+      "equipment": [
+        "aucun",
+        "machine",
+        "haltères"
+      ],
+      "movement_pattern": "flexion_plantaire",
+      "variants": {
+        "debout": {
+          "label": "Élévation mollets debout (jambes tendues)",
+          "description": "Debout, montée sur la pointe des pieds — gastrocnémiens dominants",
+          "activation": {
+            "GASTRO_MED": {
+              "percent": 85,
+              "heads": {
+                "GASTRO_MED_MAIN": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GASTRO_LAT": {
+              "percent": 80,
+              "heads": {
+                "GASTRO_LAT_MAIN": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "SOLEUS": {
+              "percent": 60,
+              "heads": {
+                "SOLEUS_MED": 62,
+                "SOLEUS_LAT": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "PERONEAL": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "assis": {
+          "label": "Élévation mollets assis (genou fléchi 90°)",
+          "description": "Assis, genou fléchi — isole le soléaire (gastros mis hors tension)",
+          "activation": {
+            "SOLEUS": {
+              "percent": 88,
+              "heads": {
+                "SOLEUS_MED": 90,
+                "SOLEUS_LAT": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ],
+              "note": "Genou fléchi = gastrocnémiens en position courte = soléaire dominant"
+            },
+            "GASTRO_MED": {
+              "percent": 30,
+              "heads": {
+                "GASTRO_MED_MAIN": 30
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GASTRO_LAT": {
+              "percent": 28,
+              "heads": {
+                "GASTRO_LAT_MAIN": 28
+              },
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": true
+    },
+    "leg_curl": {
+      "label": "Leg curl (flexion genou)",
+      "category": "isolation",
+      "equipment": [
+        "machine"
+      ],
+      "movement_pattern": "flexion_genou",
+      "variants": {
+        "couche": {
+          "label": "Leg curl couché (prone leg curl)",
+          "description": "Allongé sur le ventre — isole les ischio-jambiers",
+          "activation": {
+            "HAMSTRING_BF_LONG": {
+              "percent": 82,
+              "heads": {
+                "BF_LONG_PROX": 78,
+                "BF_LONG_DIST": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 78,
+              "heads": {
+                "ST_MAIN": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "HAMSTRING_SM": {
+              "percent": 75,
+              "heads": {
+                "SM_MAIN": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 45,
+              "heads": {
+                "GASTRO_MED_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ],
+              "note": "Gastrocnémiens actifs car ils contribuent aussi à la flexion du genou"
+            }
+          },
+          "load_variation": null
+        },
+        "assis": {
+          "label": "Leg curl assis (seated leg curl)",
+          "description": "Assis, hanche fléchie — active davantage les IJ en position allongée",
+          "activation": {
+            "HAMSTRING_BF_LONG": {
+              "percent": 88,
+              "heads": {
+                "BF_LONG_PROX": 85,
+                "BF_LONG_DIST": 91
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ],
+              "note": "Hanche fléchie = IJ en position allongée maximale = plus d'activation"
+            },
+            "HAMSTRING_ST": {
+              "percent": 85,
+              "heads": {
+                "ST_MAIN": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "HAMSTRING_SM": {
+              "percent": 80,
+              "heads": {
+                "SM_MAIN": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 35,
+              "heads": {
+                "GASTRO_MED_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Comfort_2011_RDL"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "fente": {
+      "label": "Fente",
+      "category": "compound",
+      "equipment": [
+        "aucun",
+        "haltères",
+        "barre"
+      ],
+      "movement_pattern": "squat_unilateral",
+      "variants": {
+        "avant": {
+          "label": "Fente avant",
+          "description": "Pas en avant, descente du genou arrière vers le sol",
+          "activation": {
+            "QUAD_VAST_MED": {
+              "percent": 72,
+              "heads": {
+                "VAST_MED_LONG": 68,
+                "VAST_MED_OBL": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ],
+              "note": "VM très actif — bon exercice de rééducation rotule"
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 68,
+              "heads": {
+                "VAST_LAT_SUP": 65,
+                "VAST_LAT_INF": 71
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 42,
+              "heads": {
+                "QUAD_RECT_PROX": 38,
+                "QUAD_RECT_DIST": 46
+              },
+              "role": "primary",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 55,
+              "heads": {
+                "GLUTE_MAX_SUP": 48,
+                "GLUTE_MAX_INF": 62
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 35,
+              "heads": {
+                "BF_LONG_PROX": 30,
+                "BF_LONG_DIST": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 40,
+              "heads": {
+                "GLUTE_MED_ANT": 38,
+                "GLUTE_MED_POST": 42
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 28,
+              "heads": {
+                "GASTRO_MED_MAIN": 28
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "arriere": {
+          "label": "Fente arrière",
+          "description": "Pas en arrière — plus de grand fessier, moins de stress rotulien",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 68,
+              "heads": {
+                "GLUTE_MAX_SUP": 60,
+                "GLUTE_MAX_INF": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ],
+              "note": "Fente arrière = plus de fessiers que fente avant"
+            },
+            "QUAD_VAST_MED": {
+              "percent": 62,
+              "heads": {
+                "VAST_MED_LONG": 58,
+                "VAST_MED_OBL": 66
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 58,
+              "heads": {
+                "VAST_LAT_SUP": 55,
+                "VAST_LAT_INF": 61
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 45,
+              "heads": {
+                "BF_LONG_PROX": 40,
+                "BF_LONG_DIST": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 38,
+              "heads": {
+                "ST_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 45,
+              "heads": {
+                "GLUTE_MED_ANT": 42,
+                "GLUTE_MED_POST": 48
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "laterale": {
+          "label": "Fente latérale",
+          "description": "Pas de côté — cible adducteurs et moyen fessier",
+          "activation": {
+            "ADDUCTOR": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 65,
+              "heads": {
+                "GLUTE_MED_ANT": 62,
+                "GLUTE_MED_POST": 68
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 60,
+              "heads": {
+                "VAST_MED_LONG": 55,
+                "VAST_MED_OBL": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 50,
+              "heads": {
+                "GLUTE_MAX_SUP": 48,
+                "GLUTE_MAX_INF": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 45,
+              "heads": {
+                "VAST_LAT_SUP": 42,
+                "VAST_LAT_INF": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": true
+    },
+    "leg_extension": {
+      "label": "Leg extension (extension genou)",
+      "category": "isolation",
+      "equipment": [
+        "machine"
+      ],
+      "movement_pattern": "extension_genou",
+      "variants": {
+        "standard": {
+          "label": "Leg extension machine",
+          "description": "Assis, extension complète du genou — isolation des quadriceps",
+          "activation": {
+            "QUAD_VAST_LAT": {
+              "percent": 88,
+              "heads": {
+                "VAST_LAT_SUP": 85,
+                "VAST_LAT_INF": 91
+              },
+              "role": "primary",
+              "sources": [
+                "Schoenfeld_2014_leg_extension"
+              ]
+            },
+            "QUAD_VAST_MED": {
+              "percent": 85,
+              "heads": {
+                "VAST_MED_LONG": 80,
+                "VAST_MED_OBL": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Schoenfeld_2014_leg_extension"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 78,
+              "heads": {
+                "QUAD_RECT_PROX": 72,
+                "QUAD_RECT_DIST": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Schoenfeld_2014_leg_extension"
+              ],
+              "note": "Rectus femoris plus actif qu'au squat — hanche fléchie"
+            },
+            "QUAD_VAST_INT": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Schoenfeld_2014_leg_extension"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "goblet_squat": {
+      "label": "Goblet squat",
+      "category": "compound",
+      "equipment": [
+        "haltères",
+        "kettlebell"
+      ],
+      "movement_pattern": "squat_bilateral",
+      "variants": {
+        "standard": {
+          "label": "Goblet squat (haltère ou kettlebell contre la poitrine)",
+          "description": "Poids tenu contre la poitrine, descente profonde — excellent pour la mobilité",
+          "activation": {
+            "QUAD_VAST_MED": {
+              "percent": 80,
+              "heads": {
+                "VAST_MED_LONG": 75,
+                "VAST_MED_OBL": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 78,
+              "heads": {
+                "VAST_LAT_SUP": 75,
+                "VAST_LAT_INF": 81
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 68,
+              "heads": {
+                "GLUTE_MAX_SUP": 62,
+                "GLUTE_MAX_INF": 74
+              },
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "McGill_2010_plank"
+              ],
+              "note": "Poids en avant oblige le core à travailler plus qu'au squat barre"
+            },
+            "ADDUCTOR": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "sumo_sdt": {
+      "label": "Soulevé de terre sumo",
+      "category": "compound",
+      "equipment": [
+        "barre"
+      ],
+      "movement_pattern": "charniere_hanche",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Sumo — adducteurs et fessiers accentués",
+          "description": "Écartement large ~150% biacromial, pieds en rotation externe — adducteurs et fessiers plus sollicités qu'en conventionnel",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Plus élevé qu'en conventionnel grâce à l'angle de hanche"
+            },
+            "ADDUCTOR": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Adducteurs fortement sollicités — différence principale vs conventionnel"
+            },
+            "QUAD_VAST_MED": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Camara_2016_squat_hamstrings"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Camara_2016_squat_hamstrings"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 72,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Légèrement moins que conventionnel — torse plus vertical"
+            },
+            "GLUTE_MED": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "hip_abduction": {
+      "label": "Abduction hanche",
+      "category": "isolation",
+      "equipment": [
+        "machine",
+        "câbles"
+      ],
+      "movement_pattern": "abduction_hanche",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "machine": {
+          "label": "Machine abducteurs assis",
+          "description": "Machine adducteur/abducteur — isolation moyen fessier en position assise",
+          "activation": {
+            "GLUTE_MED": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Isolation maximale du moyen fessier"
+            },
+            "GLUTE_MIN": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "TFL": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "cable": {
+          "label": "Câble debout — moyen fessier",
+          "description": "Câble à la cheville, abduction debout — moyen fessier + stabilisation unilatérale",
+          "activation": {
+            "GLUTE_MED": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GLUTE_MIN": {
+              "percent": 60,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "TFL": {
+              "percent": 50,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 28,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ],
+              "note": "Stabilisation unilatérale en appui monopodal"
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "adduction_hanche": {
+      "label": "Adduction hanche",
+      "category": "isolation",
+      "equipment": [
+        "machine",
+        "câbles"
+      ],
+      "movement_pattern": "adduction_hanche",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "machine": {
+          "label": "Machine adducteurs assis",
+          "description": "Machine adducteur — isolation groupe adducteur en position assise",
+          "activation": {
+            "ADDUCTOR": {
+              "percent": 85,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ],
+              "note": "Isolation maximale des adducteurs — seul exercice dédié"
+            },
+            "GRACILIS": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "PECTINEUS": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "HIP_FLEX": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2017_hanging_leg_raise"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "cable": {
+          "label": "Câble debout — adducteur",
+          "description": "Câble à la cheville, adduction debout en appui unipodal",
+          "activation": {
+            "ADDUCTOR": {
+              "percent": 80,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "GRACILIS": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Stabilisation hanche d'appui"
+            },
+            "CORE_OBL_EXT": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "nordic_curl": {
+      "label": "Nordic curl",
+      "category": "compound",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "flexion_genou_excentrique",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard — ischio en excentrique pur",
+          "description": "Genoux fixés, descente lente vers le sol — ischio-jambiers en contraction excentrique maximale",
+          "activation": {
+            "HAMSTRING_BF_LONG": {
+              "percent": 118,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Mendiguchia_2013_nordic"
+              ],
+              "note": "Exercice le plus efficace pour les ischio-jambiers en EMG — valeurs dépassent 100% en excentrique"
+            },
+            "HAMSTRING_ST": {
+              "percent": 108,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Mendiguchia_2013_nordic"
+              ]
+            },
+            "HAMSTRING_SM": {
+              "percent": 102,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Mendiguchia_2013_nordic"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Mendiguchia_2013_nordic"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "step_up": {
+      "label": "Step up",
+      "category": "compound",
+      "equipment": [
+        "haltères",
+        "aucun"
+      ],
+      "movement_pattern": "squat_unilateral",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Montée sur banc unilatérale",
+          "description": "Un pied sur le banc, pousser vers le haut — fessier et quadriceps en travail unilatéral",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 75,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ],
+              "note": "Plus élevé que squat bilatéral — effort concentré sur la jambe d'appui"
+            },
+            "QUAD_VAST_MED": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Stabilisation frontale importante en unilatéral"
+            },
+            "GASTRO_MED": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "pont_fessier": {
+      "label": "Pont fessier (glute bridge)",
+      "category": "compound",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "extension_hanche",
+      "bodyweight_possible": true,
+      "elastic_variant": true,
+      "variants": {
+        "bilateral": {
+          "label": "Bilatéral — bodyweight",
+          "description": "Allongé au sol, pieds posés, extension des hanches — version accessible du hip thrust sans matériel",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "~80% du hip thrust barre — range of motion réduit mais activation élevée"
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "unilateral": {
+          "label": "Unilatéral — single leg glute bridge",
+          "description": "Une seule jambe en appui — activation fessier supérieure, stabilisation accrue",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 98,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Proche du hip thrust barre — effort concentré sur un seul fessier"
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "fente_marchee": {
+      "label": "Fentes marchées",
+      "category": "compound",
+      "equipment": [
+        "aucun",
+        "haltères"
+      ],
+      "movement_pattern": "squat_unilateral_dynamique",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Fentes marchées — pas alternatifs",
+          "description": "Fentes en déplacement, jambes alternées — pattern fonctionnel, stabilisation dynamique",
+          "activation": {
+            "QUAD_VAST_MED": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Ebben_2009_lunge_glutes"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Stabilisation frontale en phase d'atterrissage"
+            },
+            "GASTRO_MED": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "hip_thrust_unilateral": {
+      "label": "Hip thrust unilatéral",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères",
+        "machine"
+      ],
+      "movement_pattern": "extension_hanche",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "standard": {
+          "label": "Une jambe — fessier maximal",
+          "description": "Hip thrust une seule jambe — activation fessier la plus élevée documentée (Contreras 2015)",
+          "activation": {
+            "GLUTE_MAX": {
+              "percent": 150,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ],
+              "note": "Valeur EMG la plus haute documentée pour le grand fessier — 150% MVIC en excentrique-concentrique"
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "HAMSTRING_ST": {
+              "percent": 72,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 65,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 38,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Sundstrup_2012_cable_woodchop"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Martin_Fuentes_2020_deadlift"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "squat_bodyweight": {
+      "label": "Squat bodyweight",
+      "category": "compound",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "squat_bilateral",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Squat poids du corps — standard",
+          "description": "Squat sans charge, pieds à largeur d'épaules — base du pattern squat, accessible partout",
+          "activation": {
+            "QUAD_VAST_MED": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 58,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "GLUTE_MAX": {
+              "percent": 52,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "QUAD_RECT": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 32,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Camara_2016_squat_hamstrings"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 22,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "McGill_2010_plank"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "profond": {
+          "label": "Squat profond (ATG — ass to grass)",
+          "description": "Profondeur maximale, talons au sol — amplitude complète, plus de fessiers et ischio",
+          "activation": {
+            "QUAD_VAST_MED": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ],
+              "note": "VMO plus actif en profondeur — angle de genou >120°"
+            },
+            "GLUTE_MAX": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "QUAD_VAST_LAT": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Andersen_2014_squat_muscles"
+              ]
+            },
+            "HAMSTRING_BF_LONG": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Camara_2016_squat_hamstrings"
+              ]
+            },
+            "GLUTE_MED": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Contreras_2015_hip_thrust"
+              ]
+            },
+            "GASTRO_MED": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lum_2020_lunge"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    }
+  }
+}

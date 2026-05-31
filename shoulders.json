@@ -1,0 +1,1391 @@
+{
+  "_meta": {
+    "category": "shoulders",
+    "label": "Épaules",
+    "description": "Exercices — Épaules"
+  },
+  "exercises": {
+    "developpe_militaire": {
+      "label": "Développé militaire (OHP)",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères"
+      ],
+      "movement_pattern": "poussée_verticale_haute",
+      "variants": {
+        "barre_devant": {
+          "label": "OHP barre devant (military press)",
+          "description": "Barre descendue devant la tête, prise overhand, debout ou assis",
+          "activation": {
+            "DELT_ANT": {
+              "percent": 65,
+              "heads": {
+                "DELT_ANT_MAIN": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 45,
+              "heads": {
+                "DELT_MED_ANT": 40,
+                "DELT_MED_POST": 50
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 62,
+              "heads": {
+                "TRICEP_LAT_MAIN": 62
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 58,
+              "heads": {
+                "TRICEP_MED_MAIN": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 50,
+              "heads": {
+                "TRICEP_LONG_PROX": 55,
+                "TRICEP_LONG_DIST": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 40,
+              "heads": {
+                "TRAP_SUP_MAIN": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 35,
+              "heads": {
+                "PECT_CLAV_MED": 38,
+                "PECT_CLAV_LAT": 32
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "halteres": {
+          "label": "OHP haltères (prise neutre ou pronée)",
+          "description": "Haltères — plus grande amplitude, rotation possible",
+          "activation": {
+            "DELT_ANT": {
+              "percent": 70,
+              "heads": {
+                "DELT_ANT_MAIN": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 48,
+              "heads": {
+                "DELT_MED_ANT": 45,
+                "DELT_MED_POST": 52
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 60,
+              "heads": {
+                "TRICEP_LAT_MAIN": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 55,
+              "heads": {
+                "TRICEP_MED_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 42,
+              "heads": {
+                "TRAP_SUP_MAIN": 42
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 38,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "elevation_laterale": {
+      "label": "Élévation latérale",
+      "category": "isolation",
+      "equipment": [
+        "haltères",
+        "câbles"
+      ],
+      "movement_pattern": "abduction_epaule",
+      "variants": {
+        "neutre": {
+          "label": "Élévation latérale prise neutre (pouce vers l'avant)",
+          "description": "Position neutre du poignet — maximise le deltoïde médial",
+          "activation": {
+            "DELT_MED": {
+              "percent": 72,
+              "heads": {
+                "DELT_MED_ANT": 68,
+                "DELT_MED_POST": 76
+              },
+              "role": "primary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Prise neutre = activation maximale deltoïde médial"
+            },
+            "TRAP_SUP": {
+              "percent": 45,
+              "heads": {
+                "TRAP_SUP_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 30,
+              "heads": {
+                "DELT_ANT_MAIN": 30
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 28,
+              "heads": {
+                "DELT_POST_MAIN": 28
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "INFRA": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "rotation_interne": {
+          "label": "Élévation latérale rotation interne (pouce vers le bas)",
+          "description": "Rotation interne du bras — active davantage le trapèze sup",
+          "activation": {
+            "TRAP_SUP": {
+              "percent": 68,
+              "heads": {
+                "TRAP_SUP_MAIN": 68
+              },
+              "role": "primary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Rotation interne = max trapèze sup et triceps"
+            },
+            "DELT_MED": {
+              "percent": 55,
+              "heads": {
+                "DELT_MED_ANT": 50,
+                "DELT_MED_POST": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 60,
+              "heads": {
+                "DELT_POST_MAIN": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 35,
+              "heads": {
+                "TRICEP_LONG_PROX": 38,
+                "TRICEP_LONG_DIST": 32
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique": {
+          "label": "Élévation latérale élastique",
+          "description": "Élastique sous le pied ou ancré latéralement — résistance croissante en abduction",
+          "activation": {
+            "DELT_MED": {
+              "percent": 62,
+              "heads": {
+                "DELT_MED_ANT": 58,
+                "DELT_MED_POST": 66
+              },
+              "role": "primary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Élastique = résistance maximale en fin de ROM contrairement aux haltères (résistance max à 90°)"
+            },
+            "TRAP_SUP": {
+              "percent": 42,
+              "heads": {
+                "TRAP_SUP_MED": 38,
+                "TRAP_SUP_LAT": 46
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 30,
+              "heads": {
+                "DELT_ANT_MAIN": 30
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "INFRA": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "elevation_frontale": {
+      "label": "Élévation frontale",
+      "category": "isolation",
+      "equipment": [
+        "haltères",
+        "barre",
+        "câbles"
+      ],
+      "movement_pattern": "flexion_epaule",
+      "variants": {
+        "halteres": {
+          "label": "Élévation frontale haltères",
+          "description": "Monter le bras droit devant soi jusqu'à hauteur d'épaule",
+          "activation": {
+            "DELT_ANT": {
+              "percent": 75,
+              "heads": {
+                "DELT_ANT_MAIN": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Élévation frontale = meilleur activateur deltoïde ant"
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 50,
+              "heads": {
+                "PECT_CLAV_MED": 52,
+                "PECT_CLAV_LAT": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Pectoral claviculaire significativement plus actif qu'en élévation latérale"
+            },
+            "DELT_MED": {
+              "percent": 30,
+              "heads": {
+                "DELT_MED_ANT": 35,
+                "DELT_MED_POST": 25
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 28,
+              "heads": {
+                "TRAP_SUP_MAIN": 28
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "face_pull": {
+      "label": "Face pull",
+      "category": "isolation",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "tirage_horizontal_externe",
+      "variants": {
+        "corde": {
+          "label": "Face pull à la corde (hauteur yeux)",
+          "description": "Câble à hauteur des yeux, tirer vers le visage avec rotation externe",
+          "activation": {
+            "DELT_POST": {
+              "percent": 65,
+              "heads": {
+                "DELT_POST_MAIN": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "INFRA": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "TERES_MIN": {
+              "percent": 50,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 45,
+              "heads": {
+                "TRAP_MED_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 40,
+              "heads": {
+                "TRAP_INF_MAIN": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 30,
+              "heads": {
+                "BICEP_LONG_SUP": 28,
+                "BICEP_LONG_DEEP": 32
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique": {
+          "label": "Face pull élastique",
+          "description": "Élastique ancré à hauteur de visage — même pattern que câble, option home",
+          "activation": {
+            "DELT_POST": {
+              "percent": 60,
+              "heads": {
+                "DELT_POST_MAIN": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "INFRA": {
+              "percent": 50,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "TERES_MIN": {
+              "percent": 45,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 40,
+              "heads": {
+                "TRAP_MED_MAIN": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 35,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "upright_row": {
+      "label": "Rowing debout (upright row)",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères",
+        "câbles"
+      ],
+      "movement_pattern": "tirage_vertical_haut",
+      "variants": {
+        "prise_large": {
+          "label": "Upright row prise large",
+          "description": "Mains écartées (~150% biacromial) — maximise deltoïde médial et trapèze",
+          "activation": {
+            "DELT_MED": {
+              "percent": 75,
+              "heads": {
+                "DELT_MED_ANT": 70,
+                "DELT_MED_POST": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ],
+              "note": "Grip large = activation maximale deltoïde médial"
+            },
+            "TRAP_SUP": {
+              "percent": 70,
+              "heads": {
+                "TRAP_SUP_MAIN": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 45,
+              "heads": {
+                "DELT_ANT_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 40,
+              "heads": {
+                "DELT_POST_MAIN": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 35,
+              "heads": {
+                "BICEP_LONG_SUP": 30,
+                "BICEP_LONG_DEEP": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "INFRA": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "prise_serree": {
+          "label": "Upright row prise serrée",
+          "description": "Mains rapprochées (~50% biacromial) — plus de biceps, moins de deltoïde",
+          "activation": {
+            "BICEP_LONG": {
+              "percent": 65,
+              "heads": {
+                "BICEP_LONG_SUP": 70,
+                "BICEP_LONG_DEEP": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 58,
+              "heads": {
+                "BICEP_COURT_SUP": 55,
+                "BICEP_COURT_DEEP": 61
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 55,
+              "heads": {
+                "DELT_MED_ANT": 52,
+                "DELT_MED_POST": 58
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 55,
+              "heads": {
+                "TRAP_SUP_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 38,
+              "heads": {
+                "DELT_ANT_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "reverse_flyes": {
+      "label": "Reverse flyes (oiseau)",
+      "category": "isolation",
+      "equipment": [
+        "haltères",
+        "câbles",
+        "machine"
+      ],
+      "movement_pattern": "abduction_horizontale",
+      "variants": {
+        "incline_neutre": {
+          "label": "Reverse fly incliné prise neutre",
+          "description": "Tronc incliné ~45°, prise neutre — maximise deltoïde post et infra-épineux",
+          "activation": {
+            "DELT_POST": {
+              "percent": 75,
+              "heads": {
+                "DELT_POST_MAIN": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Prise neutre > prise pronée pour deltoïde post et infra-épineux"
+            },
+            "INFRA": {
+              "percent": 60,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TERES_MIN": {
+              "percent": 52,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 48,
+              "heads": {
+                "TRAP_MED_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 30,
+              "heads": {
+                "DELT_MED_ANT": 25,
+                "DELT_MED_POST": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "machine": {
+          "label": "Reverse fly machine (peck deck inversé)",
+          "description": "Machine butterfly inversée — mouvement guidé, isolation du deltoïde postérieur",
+          "activation": {
+            "DELT_POST": {
+              "percent": 82,
+              "heads": {
+                "DELT_POST_MAIN": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "INFRA": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 52,
+              "heads": {
+                "TRAP_MED_MAIN": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 38,
+              "heads": {
+                "DELT_MED_ANT": 32,
+                "DELT_MED_POST": 44
+              },
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "arnold_press": {
+      "label": "Arnold press",
+      "category": "compound",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "poussée_verticale_rotation",
+      "variants": {
+        "standard": {
+          "label": "Arnold press standard",
+          "description": "Paume vers soi en bas, rotation en poussant — active les 3 chefs du deltoïde",
+          "activation": {
+            "DELT_ANT": {
+              "percent": 72,
+              "heads": {
+                "DELT_ANT_MAIN": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 52,
+              "heads": {
+                "DELT_MED_ANT": 50,
+                "DELT_MED_POST": 54
+              },
+              "role": "primary",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ],
+              "note": "Plus de deltoïde médial que l'OHP classique grâce à la rotation"
+            },
+            "DELT_POST": {
+              "percent": 35,
+              "heads": {
+                "DELT_POST_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 58,
+              "heads": {
+                "TRICEP_LAT_MAIN": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 52,
+              "heads": {
+                "TRICEP_MED_MAIN": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 38,
+              "heads": {
+                "TRAP_SUP_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 42,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2011_arnold_press"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "rowing_debout": {
+      "label": "Rowing debout (upright row)",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "câbles"
+      ],
+      "movement_pattern": "tirage_vertical_haut",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "prise_large": {
+          "label": "Prise large — deltoïde médial dominant",
+          "description": "Mains >150% biacromial — deltoïde médial maximal, moins de trapèze",
+          "activation": {
+            "DELT_MED": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row",
+                "Campillo_2020_lateral_raise"
+              ],
+              "note": "Prise large = abduction > élévation scapulaire"
+            },
+            "DELT_ANT": {
+              "percent": 55,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "SUPRASPINATUS": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ],
+              "note": "⚠ Risque d'impingement si coude dépasse l'épaule"
+            },
+            "BICEP_LONG": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "BRACHIAL": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "prise_serree": {
+          "label": "Prise serrée — trapèze dominant",
+          "description": "Mains <100% biacromial — élévation scapulaire plus marquée, plus de trapèze supérieur",
+          "activation": {
+            "TRAP_SUP": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 58,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 50,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_upright_row"
+              ],
+              "note": "Plus de biceps en prise serrée — supination accrue"
+            },
+            "BRACHIORAD": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Kleiber_2015_grip_EMG"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Botton_2013_upright_row"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "tirage_nuque": {
+      "label": "Tirage nuque (derrière la tête)",
+      "category": "compound",
+      "equipment": [
+        "câbles",
+        "barre_fixe"
+      ],
+      "movement_pattern": "traction_verticale",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "cable": {
+          "label": "Câble — lat pulldown derrière",
+          "description": "Poulie haute, barre tirée derrière la tête — trapèze moyen et inférieur très sollicités",
+          "activation": {
+            "LAT": {
+              "percent": 112,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lusk_2010_lat_exercises"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lusk_2010_lat_exercises"
+              ],
+              "note": "Plus élevé que tirage devant — position de départ force la rétraction scapulaire"
+            },
+            "TRAP_INF": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lusk_2010_lat_exercises"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 62,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 75,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "BICEP_COURT": {
+              "percent": 70,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "INFRA": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 45,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "traction": {
+          "label": "Traction derrière tête (⚠ mobilité requise)",
+          "description": "Pull-up derrière la nuque — même pattern que câble, charge = poids du corps",
+          "activation": {
+            "LAT": {
+              "percent": 118,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 78,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "RHOMBOID": {
+              "percent": 65,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 78,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "INFRA": {
+              "percent": 62,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 48,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "rotation_externe": {
+      "label": "Rotation externe coiffe",
+      "category": "isolation",
+      "equipment": [
+        "haltères",
+        "câbles"
+      ],
+      "movement_pattern": "rotation_externe_epaule",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "couche": {
+          "label": "Couché sur le côté — haltère",
+          "description": "Allongé sur le côté, coude fléchi à 90°, rotation externe de l'avant-bras — position d'isolement coiffe optimale",
+          "activation": {
+            "INFRA": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ],
+              "note": "Activation maximale infra-épineux — exercice de référence coiffe"
+            },
+            "TERES_MIN": {
+              "percent": 75,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 42,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "SUPRASPIN": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "cable_bas": {
+          "label": "Câble bas debout — rotation externe",
+          "description": "Câble à hauteur de hanche, coude fléchi à 90° collé au corps — rotation externe debout",
+          "activation": {
+            "INFRA": {
+              "percent": 82,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "TERES_MIN": {
+              "percent": 70,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "DELT_POST": {
+              "percent": 48,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "SUPRASPIN": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ]
+            },
+            "SUBSCAP": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Tsaklis_2015_face_pull"
+              ],
+              "note": "Stabilise l'articulation en position debout"
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "cuban_press": {
+      "label": "Cuban press",
+      "category": "compound",
+      "equipment": [
+        "haltères",
+        "barre"
+      ],
+      "movement_pattern": "rotation_externe_sous_charge",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "halteres": {
+          "label": "Cuban press haltères",
+          "description": "Upright row + rotation externe + press vertical — exercice de préhab coiffe des rotateurs unique",
+          "activation": {
+            "INFRA": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Reinold_2004_rotator_cuff"
+              ],
+              "note": "Infraépineux = rotateur externe principal, pic d'activation en phase de rotation"
+            },
+            "TERES_MIN": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Reinold_2004_rotator_cuff"
+              ]
+            },
+            "DELT_MED": {
+              "percent": 68,
+              "heads": {
+                "DELT_MED_ANT": 62,
+                "DELT_MED_POST": 74
+              },
+              "role": "primary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 55,
+              "heads": {
+                "DELT_ANT_MAIN": 55
+              },
+              "role": "primary",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            },
+            "TRAP_SUP": {
+              "percent": 50,
+              "heads": {
+                "TRAP_SUP_MED": 46,
+                "TRAP_SUP_LAT": 54
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 40,
+              "heads": {
+                "TRAP_MED_MAIN": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 35,
+              "heads": {
+                "BICEP_LONG_SUP": 32,
+                "BICEP_LONG_DEEP": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Botton_2013_shoulder_exercises"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 30,
+              "heads": {
+                "TRICEP_LONG_PROX": 28,
+                "TRICEP_LONG_DIST": 32
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Saeterbakken_2013_OHP"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    }
+  }
+}

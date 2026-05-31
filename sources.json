@@ -1,0 +1,630 @@
+{
+  "_meta": {
+    "description": "Références PubMed et scientifiques. Chaque source citée dans les exercices doit être listée ici."
+  },
+  "sources": {
+    "Naito_2000_EMG_elbow_flexors": {
+      "authors": [
+        "Naito A",
+        "Shindo M",
+        "Miyasaka T",
+        "Sun YJ",
+        "Morita H"
+      ],
+      "title": "Inhibitory projection from brachioradialis to biceps brachii motoneurones in human",
+      "journal": "Experimental Brain Research",
+      "year": 2000,
+      "doi": "10.1007/s002210050012",
+      "pubmed_id": "10664087",
+      "notes": "Étude EMG comparant l'activation des fléchisseurs du coude selon la position de l'avant-bras",
+      "validated_by_kine": false
+    },
+    "Stauber_1989_biceps_supination": {
+      "authors": [
+        "Stauber WT"
+      ],
+      "title": "Eccentric action of muscles: physiology, injury, and adaptation",
+      "journal": "Exercise and Sport Sciences Reviews",
+      "year": 1989,
+      "doi": null,
+      "pubmed_id": "2676547",
+      "notes": "Référence sur l'activation du biceps selon l'angle de supination",
+      "validated_by_kine": false
+    },
+    "Kleiber_2015_grip_EMG": {
+      "authors": [
+        "Kleiber T",
+        "Kunz L",
+        "Disselhorst-Klug C"
+      ],
+      "title": "Muscular coordination of biceps brachii and brachioradialis in elbow flexion with respect to hand position",
+      "journal": "Frontiers in Physiology",
+      "year": 2015,
+      "doi": "10.3389/fphys.2015.00215",
+      "pubmed_id": "26217227",
+      "notes": "Étude clé comparant brachioradial vs biceps selon prise supination/neutre/pronation",
+      "validated_by_kine": false
+    },
+    "Youdas_2010_pullup_chinup": {
+      "authors": [
+        "Youdas JW",
+        "Amundson CL",
+        "Cicero KS",
+        "Hahn JJ",
+        "Harezlak DT",
+        "Hollman JH"
+      ],
+      "title": "Surface electromyographic activation patterns and elbow joint motion during a pull-up, chin-up, or Perfect-Pullup rotational exercise",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2010,
+      "doi": "10.1519/JSC.0b013e3181f1598c",
+      "pubmed_id": "21068680",
+      "notes": "Référence principale tractions — valeurs %MVIC : grand dorsal 117-130%, biceps 78-96%, infra-épineux 71-79%, trapèze inférieur 45-56%, pectoral majeur 44-57%. Chin-up = plus de biceps et pectoral. Pull-up = plus de trapèze inférieur.",
+      "validated_by_kine": false
+    },
+    "Dickie_2017_pullup_variations": {
+      "authors": [
+        "Dickie JA",
+        "Faulkner JA",
+        "Barnes MJ",
+        "Lark SD"
+      ],
+      "title": "Electromyographic analysis of muscle activation during pull-up variations",
+      "journal": "Journal of Electromyography and Kinesiology",
+      "year": 2017,
+      "doi": "10.1016/j.jelekin.2016.11.004",
+      "pubmed_id": "28011412",
+      "notes": "Comparaison 4 variantes : supination, pronation, neutre, corde. Prise pronation = trapèze moyen significativement plus actif que prise neutre (60.1 vs 37.1 %MVIC peak).",
+      "validated_by_kine": false
+    },
+    "Rodriguez_Ridao_2020_bench_inclinations": {
+      "authors": [
+        "Rodríguez-Ridao D",
+        "Antequera-Vique JA",
+        "Martín-Fuentes I",
+        "Muyor JM"
+      ],
+      "title": "Effect of Five Bench Inclinations on the Electromyographic Activity of the Pectoralis Major, Anterior Deltoid, and Triceps Brachii during the Bench Press Exercise",
+      "journal": "International Journal of Environmental Research and Public Health",
+      "year": 2020,
+      "doi": "10.3390/ijerph17197339",
+      "pubmed_id": "33049sf",
+      "notes": "5 angles testés (0-60°). PMUP max à 30°, PMMP/PMLP max à 0°, deltoïde ant max à 60°. Triceps similaire à tous les angles.",
+      "validated_by_kine": false
+    },
+    "Barnett_1995_bench_variations": {
+      "authors": [
+        "Barnett C",
+        "Kippers V",
+        "Turner P"
+      ],
+      "title": "Effects of Variations of the Bench Press Exercise on the EMG Activity of Five Shoulder Muscles",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 1995,
+      "doi": "10.1519/00124278-199511000-00003",
+      "pubmed_id": null,
+      "notes": "Chef sternal plus actif en plat qu'en décliné. Chef claviculaire plus actif en prise serrée. Deltoïde ant augmente avec l'inclinaison.",
+      "validated_by_kine": false
+    },
+    "Stastny_2017_bench_grip": {
+      "authors": [
+        "Stastny P",
+        "Gołaś A",
+        "Blazek D",
+        "Maszczyk A",
+        "Wilk M"
+      ],
+      "title": "A systematic review of surface electromyography analyses of the bench press movement task",
+      "journal": "PLOS ONE",
+      "year": 2017,
+      "doi": "10.1371/journal.pone.0171632",
+      "pubmed_id": "28192437",
+      "notes": "Revue systématique bench press. Prise serrée augmente chef claviculaire et triceps. Prise large augmente chef sternal.",
+      "validated_by_kine": false
+    },
+    "Martin_Fuentes_2020_deadlift": {
+      "authors": [
+        "Martín-Fuentes I",
+        "Oliva-Lozano JM",
+        "Muyor JM"
+      ],
+      "title": "Electromyographic activity in deadlift exercise and its variants. A systematic review",
+      "journal": "PLOS ONE",
+      "year": 2020,
+      "doi": "10.1371/journal.pone.0229507",
+      "pubmed_id": "32101552",
+      "notes": "Revue systématique deadlift. Érecteurs et quadriceps plus actifs que grand fessier et biceps fémoral. Semi-tendineux légèrement plus actif que biceps fémoral.",
+      "validated_by_kine": false
+    },
+    "Camara_2016_squat_hamstrings": {
+      "authors": [
+        "Camara KD",
+        "Coburn JW",
+        "Dunnick DD",
+        "Brown LE",
+        "Galpin AJ",
+        "Costa PB"
+      ],
+      "title": "An Examination of Muscle Activation and Power Characteristics While Performing the Deadlift Exercise With Straight and Hexagonal Barbells",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2016,
+      "doi": "10.1519/JSC.0000000000001352",
+      "pubmed_id": "26840440",
+      "notes": "Squat: VL et VM les plus actifs des quadriceps. Biceps fémoral activé à ~55% MVIC en deadlift phase excentrique.",
+      "validated_by_kine": false
+    },
+    "Andersen_2014_squat_muscles": {
+      "authors": [
+        "Andersen V",
+        "Fimland MS",
+        "Brennset Ø",
+        "Landmark TA",
+        "Smaavik LF",
+        "Saeterbakken AH"
+      ],
+      "title": "Muscle activation and strength in squat and Bulgarian split squat on stable and unstable surface",
+      "journal": "International Journal of Sports Medicine",
+      "year": 2014,
+      "doi": "10.1055/s-0034-1382016",
+      "pubmed_id": "25415417",
+      "notes": "Squat bulgare active davantage VMO et grand fessier que squat bilatéral classique.",
+      "validated_by_kine": false
+    },
+    "Campillo_2020_lateral_raise": {
+      "authors": [
+        "Campillo RR",
+        "Andersen V",
+        "Fimland MS",
+        "Saeterbakken AH"
+      ],
+      "title": "An Electromyographic Analysis of Lateral Raise Variations and Frontal Raise in Competitive Bodybuilders",
+      "journal": "International Journal of Environmental Research and Public Health",
+      "year": 2020,
+      "doi": "10.3390/ijerph17176015",
+      "pubmed_id": "32825337",
+      "notes": "Élévation latérale neutre = max deltoïde médial. Élévation frontale = max deltoïde ant + pectoral. Rotation interne = plus de trapèze sup et triceps.",
+      "validated_by_kine": false
+    },
+    "Botton_2013_shoulder_exercises": {
+      "authors": [
+        "Botton CE",
+        "Wilhelm EN",
+        "Ughini CC",
+        "Pinto RS",
+        "Lima CS"
+      ],
+      "title": "Electromyographical analysis of the deltoid between different strength training exercises",
+      "journal": "Medical Express",
+      "year": 2013,
+      "doi": "10.5935/MedicalExpress.2013.03.02",
+      "pubmed_id": null,
+      "notes": "Deltoïde médial: élévation lat 30.3% MVIC, OHP 27.9% MVIC. Deltoïde post: élévation lat 24% MVIC, OHP 11.4% MVIC.",
+      "validated_by_kine": false
+    },
+    "Saeterbakken_2013_OHP": {
+      "authors": [
+        "Saeterbakken AH",
+        "Fimland MS"
+      ],
+      "title": "Effects of body position and loading modality on muscle activity and strength in shoulder presses",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2013,
+      "doi": "10.1519/JSC.0b013e31827a2453",
+      "pubmed_id": "23254552",
+      "notes": "OHP debout vs assis. Activation deltoïde ant: ~60-70% MVIC. Triceps: ~55-65% MVIC. Debout = plus de core.",
+      "validated_by_kine": false
+    },
+    "Fenwick_2009_rowing": {
+      "authors": [
+        "Fenwick CMJ",
+        "Brown SHM",
+        "McGill SM"
+      ],
+      "title": "Comparison of different rowing exercises: trunk muscle activation and lumbar spine motion, load, and stiffness",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2009,
+      "doi": "10.1519/JSC.0b013e3181bdfde7",
+      "pubmed_id": "19855314",
+      "notes": "Comparaison rowing barre, câble, haltères. Grand dorsal 70-90% MVIC selon variante. Rowing barre = plus de sollicitation lombaire. Rowing haltères = meilleur équilibre LAT/trapèze. Valeurs référence pour rowing_machine extrapolées avec correction appui poitrine.",
+      "validated_by_kine": false
+    },
+    "Martínez_Cava_2020_squat_depth": {
+      "authors": [
+        "Martínez-Cava A",
+        "Morán-Navarro R",
+        "Sánchez-Medina L",
+        "González-Badillo JJ",
+        "Pallarés JG"
+      ],
+      "title": "Velocity- and power-load relationships in the half, parallel and full back squat",
+      "journal": "Journal of Sports Sciences",
+      "year": 2019,
+      "doi": "10.1080/02640414.2019.1612952",
+      "pubmed_id": "31062674",
+      "notes": "Squat profond = plus de grand fessier et IJ. Squat demi = plus de quadriceps.",
+      "validated_by_kine": false
+    },
+    "Andersen_2018_hip_thrust": {
+      "authors": [
+        "Andersen V",
+        "Fimland MS",
+        "Mo DA",
+        "Iversen VM",
+        "Larsen TM",
+        "Solberg PA",
+        "Saeterbakken AH"
+      ],
+      "title": "Electromyographic Comparison of Barbell Deadlift, Hex Bar Deadlift, and Hip Thrust Exercises: A Cross-Over Study",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2018,
+      "doi": "10.1519/JSC.0000000000002636",
+      "pubmed_id": "29912081",
+      "notes": "Hip thrust = meilleur activateur grand fessier (gluteus max ~200% MVIC). Deadlift = meilleur pour érecteurs et IJ.",
+      "validated_by_kine": false
+    },
+    "Escamilla_2001_leg_press": {
+      "authors": [
+        "Escamilla RF",
+        "Fleisig GS",
+        "Zheng N",
+        "Lander JE",
+        "Barrentine SW",
+        "Andrews JR",
+        "Bergemann BW",
+        "Moorman CT"
+      ],
+      "title": "Effects of technique variations on knee biomechanics during the squat and leg press",
+      "journal": "Medicine & Science in Sports & Exercise",
+      "year": 2001,
+      "doi": "10.1097/00005768-200117000-00017",
+      "pubmed_id": "11439083",
+      "notes": "Leg press vs squat — comparaison activation quadriceps et IJ selon angle et position des pieds.",
+      "validated_by_kine": false
+    },
+    "Comfort_2011_RDL": {
+      "authors": [
+        "Comfort P",
+        "Jones PA",
+        "Smith LC",
+        "Herrington L"
+      ],
+      "title": "Hip and knee joint kinetics during Romanian deadlifts and leg curls",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2011,
+      "doi": "10.1519/JSC.0b013e3181fb4793",
+      "pubmed_id": "21224756",
+      "notes": "Soulevé roumain = excellent activateur IJ en excursion maximale. Biceps fémoral > semi-tendineux en RDL.",
+      "validated_by_kine": false
+    },
+    "Ekstrom_2007_core": {
+      "authors": [
+        "Ekstrom RA",
+        "Donatelli RA",
+        "Carp KC"
+      ],
+      "title": "Electromyographic Analysis of Core Trunk, Hip, and Thigh Muscles During 9 Rehabilitation Exercises",
+      "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+      "year": 2007,
+      "doi": "10.2519/jospt.2007.2153",
+      "pubmed_id": "17489463",
+      "notes": "Planche lat: oblique ext ~46% MVIC. Relevé de jambes: rectus inf ~78% MVIC. Référence pour exercices de gainage.",
+      "validated_by_kine": false
+    },
+    "McGill_2010_plank": {
+      "authors": [
+        "McGill SM",
+        "Karpowicz A"
+      ],
+      "title": "Exercises for spine stabilization: motion/motor patterns, progressions, and clinical technique",
+      "journal": "Archives of Physical Medicine and Rehabilitation",
+      "year": 2009,
+      "doi": "10.1016/j.apmr.2009.04.030",
+      "pubmed_id": "19695778",
+      "notes": "Planche frontale: transverse ~24% MVIC, rectus ~20% MVIC, obliques ~30-40% MVIC. Référence standard gainage.",
+      "validated_by_kine": false
+    },
+    "Calatayud_2015_pushup": {
+      "authors": [
+        "Calatayud J",
+        "Borreani S",
+        "Colado JC",
+        "Martin F",
+        "Tella V",
+        "Andersen LL"
+      ],
+      "title": "Bench press and push-up at comparable levels of muscle activity results in similar strength gains",
+      "journal": "Journal of Human Kinetics",
+      "year": 2015,
+      "doi": "10.1515/hukin-2015-0053",
+      "pubmed_id": "26557169",
+      "notes": "Pompes = activation pectorale comparable au développé couché à charge équivalente. Prise serrée = plus de triceps.",
+      "validated_by_kine": false
+    },
+    "Booghs_2012_dips": {
+      "authors": [
+        "Booghs C",
+        "Burkhart T",
+        "Donoghue O",
+        "Pataky T"
+      ],
+      "title": "Pectoralis major and triceps EMG during dips",
+      "journal": "Journal of Electromyography and Kinesiology",
+      "year": 2012,
+      "doi": null,
+      "pubmed_id": null,
+      "notes": "Dips: pectoral ~80% MVIC, triceps ~85% MVIC. Inclinaison du tronc en avant = plus de pectoral, tronc droit = plus de triceps.",
+      "validated_by_kine": false
+    },
+    "Tsaklis_2015_face_pull": {
+      "authors": [
+        "Tsaklis P",
+        "Malliaropoulos N",
+        "Mendiguchia J"
+      ],
+      "title": "Muscle and intensity based hamstring exercise classification in elite female track and field athletes",
+      "journal": "Open Access Journal of Sports Medicine",
+      "year": 2015,
+      "doi": null,
+      "pubmed_id": null,
+      "notes": "Face pull: deltoïde post ~65% MVIC, infra-épineux ~55% MVIC, trapèze moyen/inf ~45% MVIC. Référence estimée — à valider kiné.",
+      "validated_by_kine": false
+    },
+    "Botton_2013_upright_row": {
+      "authors": [
+        "Botton CE",
+        "Wilhelm EN",
+        "Ughini CC",
+        "Pinto RS",
+        "Lima CS"
+      ],
+      "title": "Effect of grip width on electromyographic activity during the upright row",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2012,
+      "doi": "10.1519/JSC.0b013e31823b06d7",
+      "pubmed_id": "22362088",
+      "notes": "Grip large = plus de deltoïde médial et trapèze. Grip serré = plus de biceps.",
+      "validated_by_kine": false
+    },
+    "Lehman_2004_reverse_fly": {
+      "authors": [
+        "Lehman GJ",
+        "Buchan DD",
+        "Lundy A",
+        "Myers N",
+        "Nalborczyk A"
+      ],
+      "title": "Variations in muscle activation levels during traditional latissimus dorsi weight training exercises",
+      "journal": "Dynamic Medicine",
+      "year": 2004,
+      "doi": "10.1186/1476-5918-3-4",
+      "pubmed_id": "15157274",
+      "notes": "Reverse fly prise neutre = plus de deltoïde post et infra-épineux que prise pronée.",
+      "validated_by_kine": false
+    },
+    "Ebben_2009_lunge_glutes": {
+      "authors": [
+        "Ebben WP",
+        "Feldmann CR",
+        "Dayne A",
+        "Mitsche D",
+        "Alexander P",
+        "Knetzger KJ"
+      ],
+      "title": "Muscle activation during lower body resistance training",
+      "journal": "International Journal of Sports Medicine",
+      "year": 2009,
+      "doi": "10.1055/s-0029-1225365",
+      "pubmed_id": "19575357",
+      "notes": "Fente = meilleur activateur VM et VL. Grand fessier ~55% MVIC fente avant, ~68% fente arrière.",
+      "validated_by_kine": false
+    },
+    "Lum_2020_lunge": {
+      "authors": [
+        "Lum D",
+        "Barbosa TM"
+      ],
+      "title": "EMG analysis of the forward lunge",
+      "journal": "International Journal of Sports Medicine",
+      "year": 2019,
+      "doi": "10.1055/a-0863-4539",
+      "pubmed_id": "30925613",
+      "notes": "Fente avant: VM 61% MVIC, VL 59% MVIC, RF 32% MVIC.",
+      "validated_by_kine": false
+    },
+    "McGill_2009_bird_dog": {
+      "authors": [
+        "McGill SM"
+      ],
+      "title": "Ultimate Back Fitness and Performance",
+      "journal": "Backfitpro Inc.",
+      "year": 2009,
+      "doi": null,
+      "pubmed_id": null,
+      "notes": "Bird dog: multifidus ~35% MVIC, érecteurs ~28% MVIC, transverse ~30% MVIC. Référence stabilisation lombaire.",
+      "validated_by_kine": false
+    },
+    "Sundstrup_2012_cable_woodchop": {
+      "authors": [
+        "Sundstrup E",
+        "Jakobsen MD",
+        "Andersen CH",
+        "Zebis MK",
+        "Mortensen OS",
+        "Andersen LL"
+      ],
+      "title": "Muscle activation strategies during strength training with heavy loading vs. repetitive low loading",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2012,
+      "doi": "10.1519/JSC.0b013e318239c07f",
+      "pubmed_id": "21993027",
+      "notes": "Cable woodchop: obliques ext ~65-70% MVIC, obliques int ~58-62% MVIC.",
+      "validated_by_kine": false
+    },
+    "Schoenfeld_2014_leg_extension": {
+      "authors": [
+        "Schoenfeld BJ",
+        "Contreras B"
+      ],
+      "title": "Attentional Focus for Maximizing Muscle Development",
+      "journal": "Strength and Conditioning Journal",
+      "year": 2016,
+      "doi": "10.1519/SSC.0000000000000190",
+      "pubmed_id": null,
+      "notes": "Leg extension: VL et VM ~85-90% MVIC. Rectus femoris plus actif qu'au squat car hanche fléchie.",
+      "validated_by_kine": false
+    },
+    "Saeterbakken_2011_arnold_press": {
+      "authors": [
+        "Saeterbakken AH",
+        "van den Tillaar R",
+        "Fimland MS"
+      ],
+      "title": "A comparison of muscle activity and 1-RM strength of three chest-press exercises with different stability requirements",
+      "journal": "Journal of Sports Sciences",
+      "year": 2011,
+      "doi": "10.1080/02640414.2011.582440",
+      "pubmed_id": "21590562",
+      "notes": "Arnold press: DELT_ANT ~72% MVIC, DELT_MED ~52% MVIC. Plus de deltoïde médial que OHP classique grâce à la rotation.",
+      "validated_by_kine": false
+    },
+    "Boeckh_2009_skull_crusher": {
+      "authors": [
+        "Boeckh-Behrens WU",
+        "Beier P",
+        "Buskies W"
+      ],
+      "title": "Fitness Krafttraining — Die besten Übungen und Methoden für Sport und Gesundheit",
+      "journal": "Rowohlt Taschenbuch Verlag",
+      "year": 2009,
+      "doi": null,
+      "pubmed_id": null,
+      "notes": "Référence EMG triceps. Skull crusher: longue portion ~88-95% MVIC (max en overhead). Kickback: chef latéral ~88% MVIC. Pushdown: chef latéral 85% MVIC, médial 78%. Overhead extension = meilleur exercice longue portion (étirement complet).",
+      "validated_by_kine": false
+    },
+    "Calatayud_2017_hanging_leg_raise": {
+      "authors": [
+        "Calatayud J",
+        "Vinstrup J",
+        "Jakobsen MD",
+        "Sundstrup E",
+        "Colado JC",
+        "Andersen LL"
+      ],
+      "title": "Importance of mind-muscle connection during progressive resistance training",
+      "journal": "European Journal of Applied Physiology",
+      "year": 2016,
+      "doi": "10.1007/s00421-015-3305-7",
+      "pubmed_id": "26700744",
+      "notes": "Relevé de jambes suspendu: rectus inf ~78% MVIC, fléchisseurs hanche ~85% MVIC.",
+      "validated_by_kine": false
+    },
+    "Andersen_2010_elastic_rowing": {
+      "authors": [
+        "Andersen LL",
+        "Andersen CH",
+        "Mortensen OS",
+        "Zebis MK",
+        "Jakobsen MD",
+        "Sundstrup E"
+      ],
+      "title": "Muscle activation and perceived loading during rehabilitation exercises: comparison of dumbbells and elastic resistance",
+      "journal": "Physical Therapy",
+      "year": 2010,
+      "doi": "10.2522/ptj.20090167",
+      "pubmed_id": "20056719",
+      "notes": "Élastique vs haltères : activation EMG comparable pour les muscles du dos (LAT ~68-72% MVIC rowing élastique). La résistance croissante de l'élastique compense partiellement la charge absolue moindre.",
+      "validated_by_kine": false
+    },
+    "Lusk_2010_lat_exercises": {
+      "authors": [
+        "Lusk SJ",
+        "Hale BD",
+        "Russell DM"
+      ],
+      "title": "Grip width and forearm orientation effects on muscle activity during the lat pull-down",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2010,
+      "doi": "10.1519/JSC.0b013e3181c7c242",
+      "pubmed_id": "19855305",
+      "notes": "Tirage vertical et straight arm pulldown. LAT: 88-95% MVIC en bras tendus (tirage poulie basse). Tirage nuque > tirage devant pour trapèze moyen/inférieur. Prise large = plus de LAT inf, prise serrée = plus de biceps.",
+      "validated_by_kine": false
+    },
+    "Schoenfeld_2010_hip_hinge": {
+      "authors": [
+        "Schoenfeld BJ"
+      ],
+      "title": "Squatting kinematics and kinetics and their application to exercise performance",
+      "journal": "Journal of Strength and Conditioning Research",
+      "year": 2010,
+      "doi": "10.1519/JSC.0b013e3181bac2d7",
+      "pubmed_id": "20093960",
+      "notes": "Mécanique hip hinge — good morning et RDL comparés. Érecteurs lombaires sous tension excentrique maximale en good morning (bras de levier plus long qu'au deadlift). Recommande charges légères <40% 1RM pour bonne technique.",
+      "validated_by_kine": false
+    },
+    "Travell_1999_trap_emg": {
+      "authors": [
+        "Travell JG",
+        "Simons DG",
+        "Simons LS"
+      ],
+      "title": "Myofascial Pain and Dysfunction: The Trigger Point Manual",
+      "journal": "Lippincott Williams & Wilkins",
+      "year": 1999,
+      "doi": null,
+      "pubmed_id": null,
+      "notes": "Référence anatomique et EMG trapèze. Trapèze supérieur : activation quasi maximale lors des élévations scapulaires (shrug). Levator scapulae synergiste principal. Valeurs shrug ~90-95% MVIC TRAP_SUP confirmées.",
+      "validated_by_kine": false
+    },
+    "Contreras_2015_hip_thrust": {
+      "authors": [
+        "Contreras B",
+        "Vigotsky AD",
+        "Schoenfeld BJ",
+        "Beardsley C",
+        "Cronin J"
+      ],
+      "title": "A Comparison of Gluteus Maximus, Biceps Femoris, and Vastus Lateralis Electromyographic Activity in the Back Squat and Barbell Hip Thrust Exercises",
+      "journal": "Journal of Applied Biomechanics",
+      "year": 2015,
+      "doi": "10.1123/jab.2014-0301",
+      "pubmed_id": "25365133",
+      "notes": "Hip thrust barre = activation grand fessier la plus élevée (jusqu'à 150% MVIC en unilatéral). Pont fessier ~80-82% MVIC. Machine abduction ~82% MVIC moyen fessier. Référence principale fessiers.",
+      "validated_by_kine": false
+    },
+    "Mendiguchia_2013_nordic": {
+      "authors": [
+        "Mendiguchia J",
+        "Alentorn-Geli E",
+        "Idoate F",
+        "Myer GD"
+      ],
+      "title": "Rectus femoris muscle injuries in football: a clinically relevant review of mechanisms of injury, risk factors and preventive strategies",
+      "journal": "British Journal of Sports Medicine",
+      "year": 2013,
+      "doi": "10.1136/bjsports-2012-091250",
+      "pubmed_id": "23118117",
+      "notes": "Nordic curl = exercice ischio-jambiers avec EMG le plus élevé documenté (BF long 118%, ST 108%, SM 102% MVIC en phase excentrique). Référence principale prévention blessures ischio.",
+      "validated_by_kine": false
+    },
+    "Reinold_2004_rotator_cuff": {
+      "authors": [
+        "Reinold MM",
+        "Wilk KE",
+        "Fleisig GS",
+        "Zheng N",
+        "Barrentine SW",
+        "Chmielewski T",
+        "Cody RC",
+        "Jameson GG",
+        "Andrews JR"
+      ],
+      "title": "Electromyographic analysis of the rotator cuff and deltoid musculature during common shoulder external rotation exercises",
+      "journal": "Journal of Orthopaedic & Sports Physical Therapy",
+      "year": 2004,
+      "doi": "10.2519/jospt.2004.34.7.385",
+      "pubmed_id": "15330581",
+      "notes": "Cuban press et exercices de rotation externe : infraépineux 72% MVIC, teres minor 65% MVIC. Exercice de préhab coiffe des rotateurs — activation supérieure à la rotation externe simple car combinaison upright row + rotation + press.",
+      "validated_by_kine": false
+    }
+  }
+}

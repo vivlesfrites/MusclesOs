@@ -1,0 +1,1455 @@
+{
+  "_meta": {
+    "category": "chest",
+    "label": "Poitrine",
+    "description": "Exercices — Poitrine"
+  },
+  "exercises": {
+    "developpe_couche_plat": {
+      "label": "Développé couché plat",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères",
+        "machine"
+      ],
+      "movement_pattern": "poussée_horizontale",
+      "variants": {
+        "prise_large": {
+          "label": "Prise large (>150% biacromial)",
+          "description": "Prise overhand, mains plus larges que les épaules",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 85,
+              "heads": {
+                "PECT_STER_SUP": 80,
+                "PECT_STER_INF": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations",
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 60,
+              "heads": {
+                "PECT_CLAV_MED": 55,
+                "PECT_CLAV_LAT": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 55,
+              "heads": {
+                "DELT_ANT_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 60,
+              "heads": {
+                "TRICEP_LAT_MAIN": 60
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 55,
+              "heads": {
+                "TRICEP_MED_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 45,
+              "heads": {
+                "TRICEP_LONG_PROX": 40,
+                "TRICEP_LONG_DIST": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "prise_serree": {
+          "label": "Prise serrée (<100% biacromial)",
+          "description": "Mains rapprochées, moins larges que les épaules",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 75,
+              "heads": {
+                "PECT_CLAV_MED": 80,
+                "PECT_CLAV_LAT": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Barnett_1995_bench_variations",
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 65,
+              "heads": {
+                "PECT_STER_SUP": 70,
+                "PECT_STER_INF": 60
+              },
+              "role": "primary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 80,
+              "heads": {
+                "TRICEP_LAT_MAIN": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 75,
+              "heads": {
+                "TRICEP_MED_MAIN": 75
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 65,
+              "heads": {
+                "TRICEP_LONG_PROX": 60,
+                "TRICEP_LONG_DIST": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 50,
+              "heads": {
+                "DELT_ANT_MAIN": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "developpe_couche_incline": {
+      "label": "Développé couché incliné (30°)",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères",
+        "machine"
+      ],
+      "movement_pattern": "poussée_haute",
+      "variants": {
+        "standard_30": {
+          "label": "Incliné 30° (optimal chef claviculaire)",
+          "description": "Banc incliné à 30° — maximise le chef claviculaire du pectoral",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 90,
+              "heads": {
+                "PECT_CLAV_MED": 95,
+                "PECT_CLAV_LAT": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ],
+              "note": "Activation maximale du chef claviculaire à 30°"
+            },
+            "PECT_MAJ_STER": {
+              "percent": 55,
+              "heads": {
+                "PECT_STER_SUP": 60,
+                "PECT_STER_INF": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 70,
+              "heads": {
+                "DELT_ANT_MAIN": 70
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 58,
+              "heads": {
+                "TRICEP_LAT_MAIN": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 55,
+              "heads": {
+                "TRICEP_MED_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "developpe_couche_decline": {
+      "label": "Développé couché décliné",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères"
+      ],
+      "movement_pattern": "poussée_basse",
+      "variants": {
+        "decline_15": {
+          "label": "Décliné -15°",
+          "description": "Banc légèrement décliné — cible le chef sternal inférieur",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 92,
+              "heads": {
+                "PECT_STER_SUP": 85,
+                "PECT_STER_INF": 98
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ],
+              "note": "Chef sternal inférieur maximal en décliné"
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 40,
+              "heads": {
+                "PECT_CLAV_MED": 35,
+                "PECT_CLAV_LAT": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 70,
+              "heads": {
+                "TRICEP_LONG_PROX": 65,
+                "TRICEP_LONG_DIST": 75
+              },
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ],
+              "note": "La longue portion est plus active en décliné"
+            },
+            "TRICEP_LAT": {
+              "percent": 58,
+              "heads": {
+                "TRICEP_LAT_MAIN": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 35,
+              "heads": {
+                "DELT_ANT_MAIN": 35
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": false
+    },
+    "ecarte_halteres": {
+      "label": "Écarté haltères",
+      "category": "isolation",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "adduction_horizontale",
+      "variants": {
+        "plat": {
+          "label": "Écarté plat",
+          "description": "Allongé à plat, écarté en arc horizontal",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 75,
+              "heads": {
+                "PECT_STER_SUP": 72,
+                "PECT_STER_INF": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 50,
+              "heads": {
+                "PECT_CLAV_MED": 45,
+                "PECT_CLAV_LAT": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 40,
+              "heads": {
+                "DELT_ANT_MAIN": 40
+              },
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 20,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "incline": {
+          "label": "Écarté incliné",
+          "description": "Banc incliné 30-45°",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 80,
+              "heads": {
+                "PECT_CLAV_MED": 82,
+                "PECT_CLAV_LAT": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 50,
+              "heads": {
+                "PECT_STER_SUP": 55,
+                "PECT_STER_INF": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 55,
+              "heads": {
+                "DELT_ANT_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique": {
+          "label": "Écarté élastique",
+          "description": "Élastique ancré derrière le dos ou à un poteau — même arc de mouvement que l'écarté haltères",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 68,
+              "heads": {
+                "PECT_STER_SUP": 62,
+                "PECT_STER_INF": 74
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ],
+              "note": "Résistance croissante de l'élastique = pic de tension en adduction complète, contrairement aux haltères"
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 52,
+              "heads": {
+                "PECT_CLAV_MED": 55,
+                "PECT_CLAV_LAT": 49
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 38,
+              "heads": {
+                "DELT_ANT_MAIN": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 22,
+              "heads": {
+                "BICEP_LONG_SUP": 20,
+                "BICEP_LONG_DEEP": 24
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 28,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "croise_poulie": {
+      "label": "Croisé poulie (câble crossover)",
+      "category": "isolation",
+      "equipment": [
+        "câbles"
+      ],
+      "movement_pattern": "adduction_horizontale",
+      "variants": {
+        "haut_vers_bas": {
+          "label": "Câble haut vers bas (cible sternal inférieur)",
+          "description": "Câbles en position haute, tirage vers le bas et l'intérieur",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 80,
+              "heads": {
+                "PECT_STER_SUP": 72,
+                "PECT_STER_INF": 88
+              },
+              "role": "primary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 45,
+              "heads": {
+                "PECT_CLAV_MED": 40,
+                "PECT_CLAV_LAT": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 35,
+              "heads": {
+                "DELT_ANT_MAIN": 35
+              },
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "bas_vers_haut": {
+          "label": "Câble bas vers haut (cible claviculaire)",
+          "description": "Câbles en position basse, tirage vers le haut et l'intérieur",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 82,
+              "heads": {
+                "PECT_CLAV_MED": 85,
+                "PECT_CLAV_LAT": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 55,
+              "heads": {
+                "PECT_STER_SUP": 62,
+                "PECT_STER_INF": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 50,
+              "heads": {
+                "DELT_ANT_MAIN": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "elastique_haut_vers_bas": {
+          "label": "Croisé élastique haut → bas",
+          "description": "Élastique ancré en hauteur — même pattern que câble crossover",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 72,
+              "heads": {
+                "PECT_STER_SUP": 65,
+                "PECT_STER_INF": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 48,
+              "heads": {
+                "PECT_CLAV_MED": 50,
+                "PECT_CLAV_LAT": 46
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 42,
+              "heads": {
+                "DELT_ANT_MAIN": 42
+              },
+              "role": "secondary",
+              "sources": [
+                "Campillo_2020_lateral_raise"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": false,
+      "elastic_variant": true
+    },
+    "pompes": {
+      "label": "Pompes",
+      "category": "compound",
+      "equipment": [
+        "aucun"
+      ],
+      "movement_pattern": "poussée_horizontale",
+      "variants": {
+        "classiques": {
+          "label": "Pompes classiques (mains larges)",
+          "description": "Mains légèrement plus larges que les épaules, corps aligné",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 80,
+              "heads": {
+                "PECT_STER_SUP": 75,
+                "PECT_STER_INF": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 60,
+              "heads": {
+                "PECT_CLAV_MED": 58,
+                "PECT_CLAV_LAT": 62
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 55,
+              "heads": {
+                "DELT_ANT_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 55,
+              "heads": {
+                "TRICEP_LAT_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 50,
+              "heads": {
+                "TRICEP_MED_MAIN": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "CORE_TRANS": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "serrees": {
+          "label": "Pompes prise serrée (diamant)",
+          "description": "Mains rapprochées formant un diamant — cible les triceps",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 78,
+              "heads": {
+                "TRICEP_LAT_MAIN": 78
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup",
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 72,
+              "heads": {
+                "TRICEP_MED_MAIN": 72
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 60,
+              "heads": {
+                "TRICEP_LONG_PROX": 55,
+                "TRICEP_LONG_DIST": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 70,
+              "heads": {
+                "PECT_CLAV_MED": 72,
+                "PECT_CLAV_LAT": 68
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 55,
+              "heads": {
+                "PECT_STER_SUP": 58,
+                "PECT_STER_INF": 52
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 48,
+              "heads": {
+                "DELT_ANT_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "piquees": {
+          "label": "Pompes piquées (pieds surélevés)",
+          "description": "Pieds posés sur un support, corps incliné — cible le chef claviculaire",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 85,
+              "heads": {
+                "PECT_CLAV_MED": 88,
+                "PECT_CLAV_LAT": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup",
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 55,
+              "heads": {
+                "PECT_STER_SUP": 60,
+                "PECT_STER_INF": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 68,
+              "heads": {
+                "DELT_ANT_MAIN": 68
+              },
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 55,
+              "heads": {
+                "TRICEP_LAT_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 45,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "dips": {
+      "label": "Dips (bras)",
+      "category": "compound",
+      "equipment": [
+        "barres_parallèles"
+      ],
+      "movement_pattern": "poussée_verticale_basse",
+      "variants": {
+        "tronc_vertical": {
+          "label": "Dips tronc droit (triceps dominant)",
+          "description": "Corps le plus vertical possible — maximise les triceps",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 88,
+              "heads": {
+                "TRICEP_LAT_MAIN": 88
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 82,
+              "heads": {
+                "TRICEP_MED_MAIN": 82
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 75,
+              "heads": {
+                "TRICEP_LONG_PROX": 70,
+                "TRICEP_LONG_DIST": 80
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 60,
+              "heads": {
+                "PECT_STER_SUP": 55,
+                "PECT_STER_INF": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 45,
+              "heads": {
+                "DELT_ANT_MAIN": 45
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "tronc_incline": {
+          "label": "Dips tronc incliné en avant (pectoral dominant)",
+          "description": "Tronc penché vers l'avant — déplace la tension vers le pectoral",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 82,
+              "heads": {
+                "PECT_STER_SUP": 78,
+                "PECT_STER_INF": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 55,
+              "heads": {
+                "PECT_CLAV_MED": 52,
+                "PECT_CLAV_LAT": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 70,
+              "heads": {
+                "TRICEP_LAT_MAIN": 70
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 65,
+              "heads": {
+                "TRICEP_MED_MAIN": 65
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 50,
+              "heads": {
+                "DELT_ANT_MAIN": 50
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      },
+      "bodyweight_possible": true,
+      "elastic_variant": false
+    },
+    "developpe_couche": {
+      "label": "Développé couché",
+      "category": "compound",
+      "equipment": [
+        "barre",
+        "haltères",
+        "machine"
+      ],
+      "movement_pattern": "poussée_horizontale",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "prise_large": {
+          "label": "Prise large (>150% biacromial)",
+          "description": "Prise overhand mains larges — chef sternal dominant",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 85,
+              "heads": {
+                "PECT_STER_SUP": 80,
+                "PECT_STER_INF": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations",
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 60,
+              "heads": {
+                "PECT_CLAV_MED": 55,
+                "PECT_CLAV_LAT": 65
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 60,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "prise_serree": {
+          "label": "Prise serrée (<100% biacromial)",
+          "description": "Mains rapprochées — triceps et chef claviculaire dominants",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 75,
+              "heads": {
+                "PECT_CLAV_MED": 80,
+                "PECT_CLAV_LAT": 70
+              },
+              "role": "primary",
+              "sources": [
+                "Barnett_1995_bench_variations",
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 80,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 75,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 50,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "halteres": {
+          "label": "Haltères (ROM élargi)",
+          "description": "Haltères — amplitude maximale en étirement, stabilisation accrue",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 88,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ],
+              "note": "ROM plus large qu'à la barre — étirement pectoral maximal"
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 62,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 52,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 50,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "incline_30": {
+          "label": "Incliné 30° — chef claviculaire",
+          "description": "Banc incliné 30° — activation maximale du chef claviculaire",
+          "activation": {
+            "PECT_MAJ_CLAV": {
+              "percent": 90,
+              "heads": {
+                "PECT_CLAV_MED": 95,
+                "PECT_CLAV_LAT": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ],
+              "note": "30° = angle optimal chef claviculaire"
+            },
+            "PECT_MAJ_STER": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 70,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "TRICEP_MED": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "decline_15": {
+          "label": "Décliné -15° — chef sternal inférieur",
+          "description": "Banc légèrement décliné — chef sternal inférieur maximal",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 92,
+              "heads": {
+                "PECT_STER_INF": 98,
+                "PECT_STER_SUP": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations",
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Barnett_1995_bench_variations"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 70,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "TRICEP_LAT": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "machine_pec_deck": {
+      "label": "Machine pec deck (butterfly)",
+      "category": "isolation",
+      "equipment": [
+        "machine"
+      ],
+      "movement_pattern": "adduction_horizontale",
+      "bodyweight_possible": false,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard — coudes fléchis sur coussins",
+          "description": "Machine butterfly — adduction horizontale en isolation, coudes fléchis à 90°",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 85,
+              "heads": {
+                "PECT_STER_SUP": 80,
+                "PECT_STER_INF": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Calatayud_2015_pushup",
+                "Barnett_1995_bench_variations"
+              ],
+              "note": "Isolation pectorale quasi totale — deltoïde ant minimal car pas de poussée"
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "PECT_MIN": {
+              "percent": 40,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            },
+            "DELT_ANT": {
+              "percent": 25,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Rodriguez_Ridao_2020_bench_inclinations"
+              ]
+            },
+            "BICEP_LONG": {
+              "percent": 18,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    },
+    "pullover_haltere": {
+      "label": "Pullover haltère",
+      "category": "compound",
+      "equipment": [
+        "haltères"
+      ],
+      "movement_pattern": "adduction_sagittale",
+      "bodyweight_possible": false,
+      "elastic_variant": true,
+      "variants": {
+        "coudes_flechis": {
+          "label": "Coudes fléchis — pectoral dominant",
+          "description": "Coudes fléchis à ~30° — réduit le bras de levier, pectoral davantage sollicité",
+          "activation": {
+            "PECT_MAJ_STER": {
+              "percent": 72,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Pullover = seul exercice où pectoral et grand dorsal cocontractent"
+            },
+            "LAT": {
+              "percent": 68,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TERES_MAJ": {
+              "percent": 55,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "PECT_MIN": {
+              "percent": 45,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 38,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 35,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
+        "coudes_tendus": {
+          "label": "Coudes tendus — grand dorsal dominant",
+          "description": "Bras presque tendus — grand dorsal en étirement complet, bras de levier maximal",
+          "activation": {
+            "LAT": {
+              "percent": 82,
+              "heads": {
+                "LAT_SUP": 75,
+                "LAT_INF": 90
+              },
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ],
+              "note": "Un des rares exercices où le LAT est en position d'étirement complet"
+            },
+            "TERES_MAJ": {
+              "percent": 65,
+              "heads": {},
+              "role": "primary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 58,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "TRICEP_LONG": {
+              "percent": 50,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Boeckh_2009_skull_crusher"
+              ],
+              "note": "Chef long sous tension en étirement — contribution plus élevée qu'en coudes fléchis"
+            },
+            "DELT_POST": {
+              "percent": 32,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Lehman_2004_reverse_fly"
+              ]
+            },
+            "SERR_ANT": {
+              "percent": 30,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Calatayud_2015_pushup"
+              ]
+            }
+          },
+          "load_variation": null
+        }
+      }
+    }
+  }
+}
