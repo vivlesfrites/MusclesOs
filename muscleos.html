@@ -274,6 +274,84 @@
     }
     .pr-badge.pr-1rm { background: rgba(61,255,160,.04); }
 
+    /* ── WARMUP TAG ── */
+    .warmup-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 9px; font-weight: 600;
+      letter-spacing: .04em;
+      background: rgba(255,170,61,.08); color: var(--orange);
+      border: 1px solid rgba(255,170,61,.3); border-radius: 4px;
+      padding: 1px 5px; line-height: 1.4; white-space: nowrap;
+    }
+    .set-row.is-warmup .sv { color: var(--t3); }
+    .set-row.is-warmup .set-n { color: var(--orange); }
+
+    /* Toggle échauffement dans le formulaire */
+    .warmup-toggle {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 8px; cursor: pointer; user-select: none;
+    }
+    .warmup-toggle-box {
+      width: 14px; height: 14px; border-radius: 3px;
+      border: 1px solid var(--b2); background: var(--s2);
+      display: flex; align-items: center; justify-content: center;
+      transition: all .12s; flex-shrink: 0;
+    }
+    .warmup-toggle.active .warmup-toggle-box {
+      background: rgba(255,170,61,.15); border-color: var(--orange);
+    }
+    .warmup-toggle-label {
+      font-family: var(--mono); font-size: 10px; color: var(--t3);
+      letter-spacing: .04em;
+    }
+    .warmup-toggle.active .warmup-toggle-label { color: var(--orange); }
+
+    /* ── BASELINE 1RM ── */
+    .baseline-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 0; border-top: 1px solid var(--b1); margin-top: 8px;
+    }
+    .baseline-label {
+      font-family: var(--mono); font-size: 10px; color: var(--t3);
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .baseline-value {
+      font-family: var(--mono); font-size: 12px; color: var(--t2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .baseline-value.has-ref { color: var(--accent); }
+    .btn-baseline-edit {
+      background: none; border: 1px solid var(--b2);
+      border-radius: 4px; padding: 2px 8px;
+      font-family: var(--mono); font-size: 9px; color: var(--t3);
+      cursor: pointer; transition: all .12s; letter-spacing: .04em;
+    }
+    .btn-baseline-edit:hover { border-color: var(--accent); color: var(--accent); }
+    .baseline-input-row {
+      display: flex; align-items: center; gap: 6px; margin-top: 6px;
+    }
+    .fi-baseline {
+      background: var(--s2); border: 1px solid var(--accent);
+      border-radius: var(--r); padding: 5px 8px;
+      font-family: var(--mono); font-size: 13px; color: var(--t1);
+      width: 80px; outline: none;
+      -moz-appearance: textfield;
+    }
+    .fi-baseline::-webkit-outer-spin-button,
+    .fi-baseline::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .btn-baseline-save {
+      background: var(--amid); border: 1px solid var(--accent);
+      border-radius: 4px; padding: 5px 10px;
+      font-family: var(--mono); font-size: 10px; color: var(--accent);
+      cursor: pointer; white-space: nowrap; transition: background .12s;
+    }
+    .btn-baseline-save:hover { background: rgba(61,255,160,.2); }
+    .btn-baseline-cancel {
+      background: none; border: none;
+      font-family: var(--mono); font-size: 10px; color: var(--t3);
+      cursor: pointer;
+    }
+
     /* ── ACTIVITÉS ── */
     .act-section-lbl {
       font-family: var(--mono); font-size: 10px; font-weight: 600;
@@ -531,8 +609,7 @@
       color: var(--accent); text-transform: uppercase; letter-spacing: .04em;
     }
     .h-exs { font-size: 12px; color: var(--t2); margin-top: 3px; }
-    .h-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-    .h-right-info { text-align: right; }
+    .h-right { text-align: right; flex-shrink: 0; }
     .h-vol { font-family: var(--mono); font-size: 12px; color: var(--t1); }
     .h-sets { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 2px; }
 
@@ -814,44 +891,6 @@
       background: var(--accent);
     }
 
-        /* ── DATE NAV (onglet Séance) ── */
-    .date-nav {
-      display: flex; align-items: center; gap: 10px;
-      margin-bottom: 16px; padding: 10px 14px;
-      background: var(--s1); border: 1px solid var(--b1);
-      border-radius: var(--rl);
-    }
-    .date-nav .lbl { flex-shrink: 0; }
-    #session-date {
-      background: var(--s2); border: 1px solid var(--b1);
-      border-radius: var(--r); padding: 6px 10px;
-      font-family: var(--mono); font-size: 14px; color: var(--t1);
-      flex: 1; outline: none; transition: border-color .15s;
-      color-scheme: dark;
-    }
-    #session-date:focus { border-color: var(--accent); }
-    .btn-today {
-      background: none; border: 1px solid var(--b2);
-      border-radius: var(--r); padding: 6px 12px;
-      font-family: var(--mono); font-size: 10px; font-weight: 600;
-      letter-spacing: .08em; text-transform: uppercase;
-      color: var(--t3); cursor: pointer; white-space: nowrap;
-      transition: all .12s;
-    }
-    .btn-today:hover { border-color: var(--accent); color: var(--accent); }
-    .btn-today.is-today { color: var(--accent); border-color: rgba(61,255,160,.3); background: var(--abg); }
-
-    /* ── BOUTON MODIFIER (historique) ── */
-    .btn-edit-session {
-      background: none; border: 1px solid var(--b2);
-      border-radius: var(--r); padding: 4px 10px;
-      font-family: var(--mono); font-size: 10px; font-weight: 600;
-      letter-spacing: .06em; text-transform: uppercase;
-      color: var(--t3); cursor: pointer; white-space: nowrap;
-      transition: all .12s; flex-shrink: 0;
-    }
-    .btn-edit-session:hover { border-color: var(--accent); color: var(--accent); }
-
     /* ════════════════════════════════════════════════════
        MODULE IA — Bouton header + Panel modal
        ════════════════════════════════════════════════════ */
@@ -1036,7 +1075,7 @@
 </header>
 
 <nav>
-  <button class="tab-btn active" data-tab="today">Séance</button>
+  <button class="tab-btn active" data-tab="today">Aujourd'hui</button>
   <button class="tab-btn" data-tab="history">Historique</button>
   <button class="tab-btn" data-tab="fatigue">Fatigue</button>
   <button class="tab-btn" data-tab="progress">Progression</button>
@@ -1762,11 +1801,8 @@ const DB = {
   },
 
   getToday() {
-    return this.getSession(this.todayId());
-  },
-
-  getSession(id) {
     const all = this.load();
+    const id = this.todayId();
     let s = all.find(x => x.id === id);
     if (!s) {
       s = { id, metrics: { energy: null, sleep: null, bodyweight: null, notes: '' }, entries: [] };
@@ -1891,8 +1927,55 @@ const PR_ENGINE = {
 
 
 
+// ════════════════════════════════════════════════════
+// BASELINE 1RM
+// Références manuelles par exercice/variante.
+// Utilisées quand PR_ENGINE n'a pas encore de données
+// (premier enregistrement, exercice inconnu).
+// Clé localStorage : 'muscleos_v2_baselines'
+// Structure : { 'cat::exId::varId': kg }
+// ════════════════════════════════════════════════════
+const BASELINE_1RM = {
+  KEY: 'muscleos_v2_baselines',
+
+  load() {
+    try { return JSON.parse(localStorage.getItem(this.KEY) || '{}'); }
+    catch { return {}; }
+  },
+
+  save(data) { localStorage.setItem(this.KEY, JSON.stringify(data)); },
+
+  _key(cat, exId, varId) { return `${cat}::${exId}::${varId}`; },
+
+  get(cat, exId, varId) {
+    const data = this.load();
+    return data[this._key(cat, exId, varId)] ?? null;
+  },
+
+  set(cat, exId, varId, kg) {
+    const data = this.load();
+    data[this._key(cat, exId, varId)] = kg;
+    this.save(data);
+  },
+
+  remove(cat, exId, varId) {
+    const data = this.load();
+    delete data[this._key(cat, exId, varId)];
+    this.save(data);
+  }
+};
+
 /**
- * Recalcule entièrement l'état de fatigue depuis l'historique DB.
+ * Retourne le meilleur 1RM connu pour un exercice/variante.
+ * Priorité : PR enregistrés > baseline manuelle > null
+ * @returns {number|null}
+ */
+function getBest1RM(cat, exId, varId) {
+  const prs = PR_ENGINE.load();
+  const pr = prs[`${cat}::${exId}::${varId}`];
+  if (pr?.max1RM > 0) return pr.max1RM;
+  return BASELINE_1RM.get(cat, exId, varId);
+}
  * Appelé après chaque modification de séance (ajout/suppression de série).
  * Chaque série est appliquée à son propre timestamp (set.ts).
  */
@@ -1913,7 +1996,11 @@ function rebuildFatigue() {
         if (!activation) continue;
         for (const set of entry.sets) {
           if (!set.ts) continue;
-          const doses = FATIGUE_ENGINE.calcDoses(activation, [set]);
+          const best1RM = getBest1RM(entry.category, entry.exerciseId, entry.variantId);
+          const intensityFactor = set.warmup
+            ? 0.25
+            : FATIGUE_ENGINE.calcIntensityFactor(set.weight, best1RM);
+          const doses = FATIGUE_ENGINE.calcDoses(activation, [set], intensityFactor);
           FATIGUE_ENGINE.applyDoses(doses, set.ts);
         }
       }
@@ -1926,7 +2013,6 @@ function rebuildFatigue() {
 // ════════════════════════════════════════════════════
 const S = {
   tab: 'today',
-  date: null,         // date sélectionnée dans l'onglet Séance (YYYY-MM-DD)
   expandedEntry: null,
   expandedHist: null,
   drawer: { open: false, step: 1, cat: null, ex: null },
@@ -2111,12 +2197,6 @@ function renderToday() {
     : s.entries.map(e => renderEntry(e)).join('');
 
   document.getElementById('tab-today').innerHTML = `
-    <div class="date-nav">
-      <span class="lbl">Séance du</span>
-      <input type="date" id="session-date" value="${s.id}">
-      <button class="btn-today${s.id === DB.todayId() ? ' is-today' : ''}" id="btn-goto-today">Aujourd'hui</button>
-    </div>
-
     <div class="metrics-row">
       <div class="metric-card">
         <div class="lbl metric-lbl">Énergie du jour</div>
@@ -2171,20 +2251,6 @@ function renderToday() {
     </div>
     <button class="btn-add-ex" id="btn-add-ex">＋ &nbsp;Ajouter un exercice</button>
   `;
-
-  // Bind date picker
-  document.getElementById('session-date').addEventListener('change', e => {
-    S.date = e.target.value;
-    S.today = DB.getSession(S.date);
-    S.expandedEntry = null;
-    renderToday();
-  });
-  document.getElementById('btn-goto-today').addEventListener('click', () => {
-    S.date = DB.todayId();
-    S.today = DB.getSession(S.date);
-    S.expandedEntry = null;
-    renderToday();
-  });
 
   // Bind metric events
   document.querySelectorAll('.edot').forEach(btn => {
@@ -2288,7 +2354,9 @@ function renderEntry(entry) {
   const setsRows = entry.sets.length > 0
     ? entry.sets.map((s, i) => {
         const badge = PR_ENGINE.getBadge(entry.category, entry.exerciseId, entry.variantId, s.weight, s.reps);
-        const badgeHtml = badge === '1rm'
+        const badgeHtml = s.warmup
+          ? `<span class="warmup-badge">CHAUF</span>`
+          : badge === '1rm'
           ? `<span class="pr-badge pr-1rm" title="Record 1RM estimé">PR</span>`
           : badge === 'weight'
           ? `<span class="pr-badge" title="Charge maximale">PR</span>`
@@ -2296,7 +2364,7 @@ function renderEntry(entry) {
           ? `<span class="pr-badge" title="Record de reps">PR</span>`
           : `<span></span>`;
         return `
-        <div class="set-row">
+        <div class="set-row${s.warmup ? ' is-warmup' : ''}">
           <span class="set-n">S${i+1}</span>
           <div><div class="sv">${s.weight > 0 ? s.weight+' kg' : 'BW'}</div><div class="su">poids</div></div>
           <div><div class="sv">${s.reps}</div><div class="su">reps</div></div>
@@ -2337,6 +2405,30 @@ function renderEntry(entry) {
         </div>
         ${angleField}
         <button class="btn-log" data-eid="${entry.id}">＋ Série</button>
+      </div>
+      <label class="warmup-toggle" id="wt-${entry.id}">
+        <span class="warmup-toggle-box" id="wtbox-${entry.id}"></span>
+        <span class="warmup-toggle-label">Échauffement (fatigue ×0.25)</span>
+      </label>
+      <div class="baseline-row">
+        <span class="baseline-label">1RM de référence</span>
+        <div class="baseline-value${getBest1RM(entry.category, entry.exerciseId, entry.variantId) ? ' has-ref' : ''}" id="bv-${entry.id}">
+          ${(() => {
+            const pr = PR_ENGINE.load()[`${entry.category}::${entry.exerciseId}::${entry.variantId}`];
+            const baseline = BASELINE_1RM.get(entry.category, entry.exerciseId, entry.variantId);
+            if (pr?.max1RM > 0) return `<span title="1RM estimé depuis vos séries">${Math.round(pr.max1RM)} kg</span><span style="font-size:9px;color:var(--t3);margin-left:2px">AUTO</span>`;
+            if (baseline) return `<span>${baseline} kg</span><button class="btn-baseline-edit" data-eid="${entry.id}" data-cat="${entry.category}" data-ex="${entry.exerciseId}" data-var="${entry.variantId}">✎</button>`;
+            return `<button class="btn-baseline-edit" data-eid="${entry.id}" data-cat="${entry.category}" data-ex="${entry.exerciseId}" data-var="${entry.variantId}">Définir</button>`;
+          })()}
+        </div>
+      </div>
+      <div id="baseline-form-${entry.id}" style="display:none">
+        <div class="baseline-input-row">
+          <input class="fi-baseline" id="bfi-${entry.id}" type="number" placeholder="ex: 100" min="1" step="0.5">
+          <span style="font-family:var(--mono);font-size:10px;color:var(--t3)">kg</span>
+          <button class="btn-baseline-save" data-eid="${entry.id}" data-cat="${entry.category}" data-ex="${entry.exerciseId}" data-var="${entry.variantId}">Enregistrer</button>
+          <button class="btn-baseline-cancel" data-eid="${entry.id}">✕</button>
+        </div>
       </div>
     </div>
     <div class="entry-foot">
@@ -2418,6 +2510,41 @@ function bindEntry(entryId) {
     });
   });
 
+  // Warmup toggle
+  const wtToggle = document.getElementById(`wt-${entryId}`);
+  if (wtToggle) {
+    wtToggle.addEventListener('click', () => {
+      wtToggle.classList.toggle('active');
+    });
+  }
+
+  // Baseline 1RM — bouton Définir / ✎
+  document.querySelectorAll(`.btn-baseline-edit[data-eid="${entryId}"]`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const form = document.getElementById(`baseline-form-${entryId}`);
+      if (form) { form.style.display = 'block'; document.getElementById(`bfi-${entryId}`)?.focus(); }
+    });
+  });
+
+  // Baseline — enregistrer
+  document.querySelectorAll(`.btn-baseline-save[data-eid="${entryId}"]`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const val = parseFloat(document.getElementById(`bfi-${entryId}`)?.value);
+      if (!val || val <= 0) return;
+      BASELINE_1RM.set(btn.dataset.cat, btn.dataset.ex, btn.dataset.var, val);
+      rebuildFatigue();
+      refreshEntries();
+    });
+  });
+
+  // Baseline — annuler
+  document.querySelectorAll(`.btn-baseline-cancel[data-eid="${entryId}"]`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const form = document.getElementById(`baseline-form-${entryId}`);
+      if (form) form.style.display = 'none';
+    });
+  });
+
   // Delete whole entry — géré dans le bloc commun ci-dessus
 
 }
@@ -2444,7 +2571,8 @@ function addSet(entryId) {
   const setObj = {
     id: uid(), weight: w, reps: r,
     rir: (rir !== '' && rir != null) ? parseInt(rir) : null,
-    ts: Date.now()
+    ts: Date.now(),
+    warmup: document.getElementById(`wt-${entryId}`)?.classList.contains('active') ?? false
   };
   if (angle !== null) setObj.angle = angle;
   entry.sets.push(setObj);
@@ -2563,11 +2691,8 @@ function renderHistory() {
           <div class="h-exs">${names}</div>
         </div>
         <div class="h-right">
-          <div class="h-right-info">
-            <div class="h-vol">${vol > 0 ? vol.toLocaleString('fr-FR')+' kg' : '—'}</div>
-            <div class="h-sets">${setsLabel}</div>
-          </div>
-          <button class="btn-edit-session" data-edit="${s.id}">✎ Modifier</button>
+          <div class="h-vol">${vol > 0 ? vol.toLocaleString('fr-FR')+' kg' : '—'}</div>
+          <div class="h-sets">${setsLabel}</div>
         </div>
       </div>
       ${detail}
@@ -2579,16 +2704,6 @@ function renderHistory() {
       const id = btn.dataset.hid;
       S.expandedHist = S.expandedHist === id ? null : id;
       renderHistory();
-    });
-  });
-
-  document.querySelectorAll('.btn-edit-session').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      S.date = btn.dataset.edit;
-      S.today = DB.getSession(S.date);
-      S.expandedEntry = null;
-      switchTab('today');
     });
   });
 }
@@ -3772,8 +3887,7 @@ Propose la séance la plus intelligente à faire aujourd'hui.`;
 // ════════════════════════════════════════════════════
 function init() {
   document.getElementById('hdr-date').textContent = fmtDateLong(DB.todayId());
-  S.date = DB.todayId();
-  S.today = DB.getSession(S.date);
+  S.today = DB.getToday();
   rebuildFatigue();
   PR_ENGINE.rebuild();
   renderToday();
