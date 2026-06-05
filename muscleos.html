@@ -851,6 +851,10 @@
     }
 
 
+    .sel-item-group { background: var(--s2); }
+    .sel-item-group:hover { background: var(--s3); }
+    .si-sub { font-size: 11px; color: var(--t3); margin-top: 3px; font-family: var(--mono); }
+
     /* ── PACE DISPLAY ── */
     .pace-display { display:flex; align-items:baseline; gap:5px; }
     .pace-val { font-family:var(--mono); font-size:20px; font-weight:600; color:var(--accent); }
@@ -1498,7 +1502,7 @@ const MUSCLE_GROUPS = {
 // ════════════════════════════════════════════════════
 const ACTIVITY_CATALOG = {
   // ── Course à pied ──
-  running:           { label: 'Course générale',    icon: '↗', color: '#5ba3ff', group: 'running' },
+  running:           { label: 'Sortie libre',        icon: '↗', color: '#5ba3ff', group: 'running' },
   running_recovery:  { label: 'Récupération active',icon: '↺', color: '#8892a4', group: 'running' },
   running_easy:      { label: 'Course facile',      icon: '↗', color: '#7bc5ff', group: 'running' },
   running_long:      { label: 'Sortie longue',      icon: '↗', color: '#3dffa0', group: 'running' },
@@ -1523,9 +1527,10 @@ const ACTIVITY_GROUPS = [
 // Dose réelle = base_dose × (activation/100) × role_factor × (duration/60) × (intensity/5)
 // role_factors : p=1.0, s=0.45, t=0.18
 const ACTIVITY_FATIGUE = {
-  // ── Course générale (profil modéré, fallback) ──
+  // ── Sortie libre (profil modéré, fallback) ──
   running: {
     base_dose: 35,
+    recovery_scale: 0.40,   // Zone 2-3 mixte — fibres I dominantes
     muscles: {
       GASTRO_MED:        { p: 55, r: 'p' },
       GASTRO_LAT:        { p: 50, r: 'p' },
@@ -1546,6 +1551,7 @@ const ACTIVITY_FATIGUE = {
   // Quasi nul, fibres lentes uniquement, flux sanguin
   running_recovery: {
     base_dose: 12,
+    recovery_scale: 0.22,   // Zone 1 — fibres lentes uniquement, récup très rapide
     muscles: {
       SOLEUS:            { p: 40, r: 'p' },
       GASTRO_MED:        { p: 28, r: 'p' },
@@ -1560,6 +1566,7 @@ const ACTIVITY_FATIGUE = {
   // Slow-twitch dominant, base aérobie
   running_easy: {
     base_dose: 22,
+    recovery_scale: 0.32,   // Zone 2 — slow-twitch dominant, récup ~12-14h
     muscles: {
       SOLEUS:            { p: 55, r: 'p' },
       GASTRO_MED:        { p: 45, r: 'p' },
@@ -1579,6 +1586,7 @@ const ACTIVITY_FATIGUE = {
   // Soleus+++ / Glute Med+++ (milliers de foulées) / Hip Flex cumulatif (psoas)
   running_long: {
     base_dose: 28,
+    recovery_scale: 0.42,   // Zone 2 prolongé — stress mécanique cumulatif (tendons)
     muscles: {
       SOLEUS:            { p: 62, r: 'p' },
       GASTRO_MED:        { p: 50, r: 'p' },
@@ -1599,6 +1607,7 @@ const ACTIVITY_FATIGUE = {
   // Quad + Hip Flex élevés, effort soutenu au seuil lactique
   running_tempo: {
     base_dose: 45,
+    recovery_scale: 0.55,   // Zone 3-4 — fibres IIa impliquées, récup ~24-30h
     muscles: {
       SOLEUS:            { p: 58, r: 'p' },
       GASTRO_MED:        { p: 55, r: 'p' },
@@ -1620,6 +1629,7 @@ const ACTIVITY_FATIGUE = {
   // Hamstring BF excentrique+++ (freinage à haute vitesse — clé biomécanique)
   running_intervals: {
     base_dose: 60,
+    recovery_scale: 0.68,   // Zone 5 — fibres IIx + stress excentrique (hamstrings)
     muscles: {
       GASTRO_MED:        { p: 65, r: 'p' },
       GASTRO_LAT:        { p: 60, r: 'p' },
@@ -1640,6 +1650,7 @@ const ACTIVITY_FATIGUE = {
   // ── Compétition / Race — effort maximal soutenu ──
   running_race: {
     base_dose: 65,
+    recovery_scale: 0.72,   // Race — effort maximal, plus proche du stress muscu excentrique
     muscles: {
       GASTRO_MED:        { p: 65, r: 'p' },
       GASTRO_LAT:        { p: 60, r: 'p' },
@@ -1659,6 +1670,7 @@ const ACTIVITY_FATIGUE = {
   },
   velo: {
     base_dose: 40,
+    recovery_scale: 0.35,   // Concentrique pur, pas d'excentrique → récup rapide
     muscles: {
       QUAD_VAST_LAT:     { p: 65, r: 'p' },
       QUAD_VAST_MED:     { p: 65, r: 'p' },
@@ -1676,6 +1688,7 @@ const ACTIVITY_FATIGUE = {
   },
   sport_collectif: {
     base_dose: 45,
+    recovery_scale: 0.55,   // Mix sprints anaérobies + changements direction + contacts
     muscles: {
       GLUTE_MAX:         { p: 55, r: 'p' },
       GLUTE_MED:         { p: 50, r: 'p' },
@@ -1696,6 +1709,7 @@ const ACTIVITY_FATIGUE = {
   },
   yoga: {
     base_dose: 20,
+    recovery_scale: 0.30,   // Isométrique + étirements, récup très rapide
     muscles: {
       CORE_TRANS:        { p: 35, r: 'p' },
       CORE_OBL_INT:      { p: 30, r: 'p' },
@@ -1710,6 +1724,7 @@ const ACTIVITY_FATIGUE = {
   },
   autre: {
     base_dose: 30,
+    recovery_scale: 0.50,   // Générique — profil modéré
     muscles: {
       GLUTE_MAX:         { p: 30, r: 's' },
       GLUTE_MED:         { p: 30, r: 's' },
@@ -1890,14 +1905,65 @@ const PR_ENGINE = {
 function rebuildFatigue() {
   if (typeof FATIGUE_ENGINE === 'undefined' || typeof FATIGUE_DATA === 'undefined') return;
   FATIGUE_ENGINE.reset();
+  FATIGUE_ENGINE.resetCTL();
+
   const sessions = DB.load();
+
+  // ── Seed CTL depuis le profil utilisateur ─────────────────────
+  // Injecte un historique virtuel 42j avant la 1re séance connue
+  // (ou avant aujourd'hui si aucune session).
+  // Permet à un utilisateur "Avancé" de démarrer à mult ×1.0
+  // sans avoir 6 semaines de données réelles.
+  if (typeof USER_PROFILE !== 'undefined') {
+    const seedFactor = USER_PROFILE.getSeedFactor();
+    if (seedFactor > 0) {
+      const oldest = sessions.length ? new Date(sessions[0].id).getTime() : Date.now();
+      const seedTime = oldest - 42 * 24 * 3600_000;
+      for (const muscleId of Object.keys(FATIGUE_ENGINE.HALF_LIVES)) {
+        FATIGUE_ENGINE.seedCTL(muscleId, seedFactor, seedTime);
+      }
+    }
+  }
+
+  // ── Seed CTL depuis la familiarité par exercice ────────────────
+  // Boost one-shot sur les muscles primaires d'un exercice connu/maîtrisé.
+  // Appliqué avant le replay des sessions réelles.
+  const FAM_SEED = { new: 0, known: 0.4, mastered: 1.2 };
+  try {
+    const familiarity = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
+    for (const [exId, level] of Object.entries(familiarity)) {
+      const seedF = FAM_SEED[level] ?? 0;
+      if (seedF <= 0) continue;
+      // Trouver les muscles primaires depuis FATIGUE_DATA (toutes catégories)
+      for (const catData of Object.values(FATIGUE_DATA)) {
+        const exData = catData[exId];
+        if (!exData) continue;
+        // Prendre la première variante disponible pour identifier les primaires
+        const firstVariant = Object.values(exData)[0];
+        if (!firstVariant) continue;
+        const oldest = sessions.length ? new Date(sessions[0].id).getTime() : Date.now();
+        const seedTime = oldest - 42 * 24 * 3600_000;
+        for (const [muscleId, mData] of Object.entries(firstVariant)) {
+          if ((mData.r ?? 't') === 'p') {
+            FATIGUE_ENGINE.seedCTL(muscleId, seedF, seedTime);
+          }
+        }
+        break; // exercice trouvé dans cette catégorie, on arrête
+      }
+    }
+  } catch(e) { /* ignore — familiarité corrompue */ }
+
+  // ── Replay de toutes les sessions ─────────────────────────────
   for (const session of sessions) {
     for (const entry of session.entries) {
       if (entry.type === 'activity') {
         // Activité cardio/sport — doses calculées depuis le profil ACTIVITY_FATIGUE
         if (!entry.activityType || !entry.duration || !entry.intensity) continue;
         const doses = calcActivityDoses(entry.activityType, entry.duration, entry.intensity, entry.boosts || {});
-        if (Object.keys(doses).length) FATIGUE_ENGINE.applyDoses(doses, entry.ts);
+        if (Object.keys(doses).length) {
+          const profile = ACTIVITY_FATIGUE[entry.activityType];
+          FATIGUE_ENGINE.applyDoses(doses, entry.ts, profile?.recovery_scale ?? 1.0);
+        }
       } else {
         // Exercice de musculation — doses calculées depuis FATIGUE_DATA
         const activation = FATIGUE_DATA[entry.category]?.[entry.exerciseId]?.[entry.variantId];
@@ -2518,6 +2584,13 @@ function renderHistory() {
         ${s.entries.map(e => {
           if (e.type === 'activity') {
             const act = ACTIVITY_CATALOG[e.activityType] || ACTIVITY_CATALOG.autre;
+            // Détails fractionné
+            let intervalsStr = '';
+            if (e.intervals && e.intervals.reps && e.intervals.effort_m) {
+              const iv = e.intervals;
+              intervalsStr = `${iv.reps}×${iv.effort_m}m`;
+              if (iv.recov_m) intervalsStr += `/${iv.recov_m}m`;
+            }
             // Calcul pace si distance + durée
             let paceStr = '';
             if (e.distance && e.duration) {
@@ -2533,6 +2606,7 @@ function renderHistory() {
             const actDetails = [
               e.duration ? e.duration + ' min' : '',
               e.distance ? e.distance + ' km' : '',
+              intervalsStr,
               e.intensity ? '· ' + e.intensity + '/10' : '',
               e.bpm ? '· ' + e.bpm + ' bpm' : '',
               paceStr,
@@ -2721,7 +2795,7 @@ function openDrawer(editData) {
   } else {
     S.drawer = { open: true, step: 1, cat: null, ex: null, actType: null, actBoosts: {},
                  editMode: false, editSessionId: null, editEntryId: null,
-                 _distance: null, _bpm: null, _paceUnit: 'min_km',
+                 actGroup: null, _distance: null, _bpm: null, _paceUnit: 'min_km',
                  _actDate: DB.todayId(), _exDate: DB.todayId() };
   }
   document.getElementById('overlay').classList.add('on');
@@ -2821,20 +2895,65 @@ function renderDrawer() {
     if (!catData || !exData) { console.error('[renderDrawer] step3 — ex invalide:', cat, ex); S.drawer.step = cat ? 2 : 1; renderDrawer(); return; }
     title.textContent = exData.label;
     crumb.innerHTML = `<span>${catData.label}</span> <span style="color:var(--t3)">›</span> <span>${exData.label}</span>`;
-    const todayId = DB.todayId();
-    const defaultDate = S.drawer._exDate || todayId;
     const items = Object.entries(exData.variants).map(([k, v]) => `
       <div class="sel-item" data-var="${k}">
         <div class="si-name">${v}</div>
         <span class="si-arr">›</span>
       </div>`).join('');
+
+    // Prompt familiarité — seulement si cet exercice n'a pas encore été qualifié
+    let famHtml = '';
+    try {
+      const fam = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
+      if (fam[ex] === undefined) {
+        famHtml = `
+          <div style="margin:12px 0 8px;padding:10px 12px;background:var(--s2);border-radius:var(--r);border:1px solid var(--b1)">
+            <div class="lbl" style="font-size:10px;margin-bottom:8px;color:var(--t3)">Tu pratiques déjà cet exercice ?</div>
+            <div style="display:flex;gap:6px">
+              <button class="fam-btn" data-fam="new"     style="flex:1;padding:6px 4px;border-radius:var(--r);background:var(--s3);border:1px solid var(--b2);color:var(--t2);font-size:11px;font-family:var(--mono);cursor:pointer">Nouveau</button>
+              <button class="fam-btn" data-fam="known"   style="flex:1;padding:6px 4px;border-radius:var(--r);background:var(--s3);border:1px solid var(--b2);color:var(--t1);font-size:11px;font-family:var(--mono);cursor:pointer">Je connais</button>
+              <button class="fam-btn" data-fam="mastered" style="flex:1;padding:6px 4px;border-radius:var(--r);background:var(--s3);border:1px solid var(--b2);color:var(--accent);font-size:11px;font-family:var(--mono);cursor:pointer">Maîtrisé</button>
+            </div>
+          </div>`;
+      }
+    } catch(e) { /* ignore */ }
+
     body.innerHTML = `
       <button class="btn-back" id="bb2">‹ ${catData.label}</button>
       <div class="lbl" style="margin:10px 0 6px">Variante</div>
+      ${famHtml}
       <div class="sel-list">${items}</div>`;
+
     body.querySelector('#bb2').addEventListener('click', () => { S.drawer.step=2; renderDrawer(); });
+
+    // Familiarité — sauvegarder au clic + mettre à jour le style du bouton actif
+    body.querySelectorAll('.fam-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        body.querySelectorAll('.fam-btn').forEach(b => {
+          b.style.background = 'var(--s3)';
+          b.style.borderColor = 'var(--b2)';
+        });
+        btn.style.background  = 'var(--abg)';
+        btn.style.borderColor = 'var(--accent)';
+        try {
+          const fam = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
+          fam[ex] = btn.dataset.fam;
+          localStorage.setItem('muscleos_familiarity', JSON.stringify(fam));
+          rebuildFatigue(); // recalcul avec le nouveau seed
+        } catch(e) { /* ignore */ }
+      });
+    });
+
     body.querySelectorAll('.sel-item').forEach(i =>
       i.addEventListener('click', () => {
+        // Si familiarité jamais définie, on default "known"
+        try {
+          const fam = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
+          if (fam[ex] === undefined) {
+            fam[ex] = 'known';
+            localStorage.setItem('muscleos_familiarity', JSON.stringify(fam));
+          }
+        } catch(e) { /* ignore */ }
         const dateVal = S.drawer._exDate || S.drawer._date || DB.todayId();
         addEntry(cat, ex, i.dataset.var, dateVal);
         closeDrawer();
@@ -2844,49 +2963,92 @@ function renderDrawer() {
   // ── STEP 4 : Choix du type d'activité ─────────────
   else if (step === 4) {
     title.textContent = 'Type d\'activité';
-    crumb.innerHTML = '<span>Activité</span>';
 
-    const groupsHtml = ACTIVITY_GROUPS.map(g => {
-      const items = g.keys.map(k => {
+    // ── Vue A : groupes (course vs autres) ──
+    if (!S.drawer.actGroup) {
+      crumb.innerHTML = '<span>Activité</span>';
+      const runningItems = ACTIVITY_GROUPS[0].keys.map(k => ACTIVITY_CATALOG[k]?.label).filter(Boolean);
+      const otherItems = ACTIVITY_GROUPS[1].keys.map(k => {
         const v = ACTIVITY_CATALOG[k];
-        if (!v) return '';
-        return `<div class="sel-item" data-act="${k}">
+        return v ? `<div class="sel-item" data-act="${k}">
+          <div><div class="si-name" style="color:${v.color}">${v.icon}&nbsp; ${v.label}</div></div>
+          <span class="si-arr">›</span>
+        </div>` : '';
+      }).join('');
+
+      body.innerHTML = `
+        <button class="btn-back" id="bb-act">‹ Retour</button>
+        <div class="lbl" style="margin:12px 0 6px;color:var(--t3)">Course à pied</div>
+        <div class="sel-item sel-item-group" id="btn-running-group">
           <div>
-            <div class="si-name" style="color:${v.color}">${v.icon}&nbsp; ${v.label}</div>
+            <div class="si-name" style="color:#5ba3ff">↗&nbsp; Course à pied</div>
+            <div class="si-sub">${runningItems.join(' · ')}</div>
           </div>
           <span class="si-arr">›</span>
-        </div>`;
-      }).join('');
-      return `<div class="lbl" style="margin:12px 0 6px;color:var(--t3)">${g.label}</div>
-              <div class="sel-list">${items}</div>`;
-    }).join('');
+        </div>
+        <div class="lbl" style="margin:16px 0 6px;color:var(--t3)">Autres activités</div>
+        <div class="sel-list">${otherItems}</div>`;
 
-    body.innerHTML = `
-      <button class="btn-back" id="bb-act">‹ Retour</button>
-      ${groupsHtml}`;
-    body.querySelector('#bb-act').addEventListener('click', () => { S.drawer.step=1; renderDrawer(); });
-    body.querySelectorAll('.sel-item').forEach(i =>
-      i.addEventListener('click', () => {
-        S.drawer.actType = i.dataset.act;
-        S.drawer.actBoosts = {};
-        S.drawer._distance = null;
-        S.drawer._bpm = null;
-        S.drawer.step = 5;
+      body.querySelector('#bb-act').addEventListener('click', () => { S.drawer.step=1; renderDrawer(); });
+      body.querySelector('#btn-running-group').addEventListener('click', () => {
+        S.drawer.actGroup = 'running';
         renderDrawer();
-      }));
+      });
+      body.querySelectorAll('.sel-item[data-act]').forEach(i =>
+        i.addEventListener('click', () => {
+          S.drawer.actType = i.dataset.act;
+          S.drawer.actBoosts = {};
+          S.drawer._distance = null;
+          S.drawer._bpm = null;
+          S.drawer.step = 5;
+          renderDrawer();
+        }));
+    }
+
+    // ── Vue B : sous-types course ──
+    else {
+      crumb.innerHTML = '<span>Activité</span> <span style="color:var(--t3)">›</span> <span>Course à pied</span>';
+      const items = ACTIVITY_GROUPS[0].keys.map(k => {
+        const v = ACTIVITY_CATALOG[k];
+        return v ? `<div class="sel-item" data-act="${k}">
+          <div><div class="si-name" style="color:${v.color}">${v.icon}&nbsp; ${v.label}</div></div>
+          <span class="si-arr">›</span>
+        </div>` : '';
+      }).join('');
+
+      body.innerHTML = `
+        <button class="btn-back" id="bb-running">‹ Activité</button>
+        <div class="sel-list">${items}</div>`;
+
+      body.querySelector('#bb-running').addEventListener('click', () => {
+        S.drawer.actGroup = null;
+        renderDrawer();
+      });
+      body.querySelectorAll('.sel-item').forEach(i =>
+        i.addEventListener('click', () => {
+          S.drawer.actType = i.dataset.act;
+          S.drawer.actBoosts = {};
+          S.drawer._distance = null;
+          S.drawer._bpm = null;
+          S.drawer._intervals = null;
+          S.drawer.step = 5;
+          renderDrawer();
+        }));
+    }
   }
 
   // ── STEP 5 : Formulaire activité ──────────────────
   else if (step === 5) {
     const actType = S.drawer.actType;
     const act = ACTIVITY_CATALOG[actType];
-    if (!act) { console.error('[renderDrawer] step5 — actType invalide:', actType); S.drawer.step=4; renderDrawer(); return; }
+    if (!act) { console.error('[renderDrawer] step5 — actType invalide:', actType); S.drawer.step=4; S.drawer.actGroup=null; renderDrawer(); return; }
     const boosts = S.drawer.actBoosts || {};
     const boostMuscles = ACTIVITY_BOOST_MUSCLES[actType] || [];
     const isRunning = act.group === 'running';
+    const isIntervals = actType === 'running_intervals';
 
     title.textContent = act.label;
-    crumb.innerHTML = `<span>Activité</span> <span style="color:var(--t3)">›</span> <span style="color:${act.color}">${act.label}</span>`;
+    crumb.innerHTML = `<span>Activité</span> <span style="color:var(--t3)">›</span> <span style="color:var(--t3)">Course</span> <span style="color:var(--t3)">›</span> <span style="color:${act.color}">${act.label}</span>`;
 
     const intensityDots = Array.from({length:10}, (_,i) => {
       const v = i + 1;
@@ -2903,8 +3065,221 @@ function renderDrawer() {
     const todayId = DB.todayId();
     const defaultDate = S.drawer._actDate || todayId;
     const paceUnit = S.drawer._paceUnit || 'min_km';
+    const iv = S.drawer._intervals || {};
 
-    // Calcul pace si distance + durée disponibles
+    // ── Calcul automatique distance + durée fractionné ──
+    function _calcIntervals(warmKm, reps, effortM, recovM, coolKm, warmMin, effortMin, coolMin) {
+      const dist = warmKm && reps && effortM && recovM
+        ? Math.round(((warmKm || 0) + reps * (effortM + recovM) / 1000 + (coolKm || 0)) * 100) / 100
+        : null;
+      const dur = (warmMin > 0 && effortMin > 0 && coolMin > 0)
+        ? warmMin + effortMin + coolMin
+        : null;
+      return { dist, dur };
+    }
+
+    // ── Formulaire fractionné ──
+    if (isIntervals) {
+      const calc = _calcIntervals(iv.warmup_km, iv.reps, iv.effort_m, iv.recov_m, iv.cooldown_km, iv.warmup_min, iv.effort_min, iv.cooldown_min);
+      const autoKm   = calc.dist;
+      const autoMin  = calc.dur;
+      const durDisplay = autoMin || S.drawer._duration || '';
+
+      const fragSep = `<div style="border-top:1px solid var(--b1);margin:4px 0;padding-top:8px">`;
+
+      body.innerHTML = `
+        <button class="btn-back" id="bb-act-form">‹ Course</button>
+        <div class="act-form">
+          <div class="act-form-row">
+            <div class="fg">
+              <label class="fl">Date</label>
+              <input class="fi" id="act-date" type="date" value="${defaultDate}" max="${todayId}">
+            </div>
+          </div>
+
+          ${fragSep}
+          <div class="lbl" style="margin-bottom:8px">Échauffement</div>
+          <div class="act-form-row">
+            <div class="fg">
+              <label class="fl">Distance</label>
+              <input class="fi" id="iv-warmup-km" type="number" placeholder="2.0" min="0" step="0.1" value="${iv.warmup_km||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">km</span>
+            </div>
+            <div class="fg">
+              <label class="fl">Durée <span style="color:var(--t3);font-weight:400">opt</span></label>
+              <input class="fi" id="iv-warmup-min" type="number" placeholder="15" min="0" max="120" value="${iv.warmup_min||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">min</span>
+            </div>
+          </div>
+
+          ${fragSep}
+          <div class="lbl" style="margin-bottom:8px">Répétitions</div>
+          <div class="act-form-row" style="grid-template-columns:1fr 1fr 1fr">
+            <div class="fg">
+              <label class="fl">Nombre</label>
+              <input class="fi" id="iv-reps" type="number" placeholder="8" min="1" max="100" value="${iv.reps||''}">
+            </div>
+            <div class="fg">
+              <label class="fl">Effort</label>
+              <input class="fi" id="iv-effort-m" type="number" placeholder="400" min="10" step="10" value="${iv.effort_m||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">m</span>
+            </div>
+            <div class="fg">
+              <label class="fl">Récup</label>
+              <input class="fi" id="iv-recov-m" type="number" placeholder="200" min="10" step="10" value="${iv.recov_m||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">m</span>
+            </div>
+          </div>
+          <div class="act-form-row">
+            <div class="fg">
+              <label class="fl">Durée effort+récup <span style="color:var(--t3);font-weight:400">opt</span></label>
+              <input class="fi" id="iv-effort-min" type="number" placeholder="25" min="0" max="300" value="${iv.effort_min||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">min total</span>
+            </div>
+          </div>
+
+          ${fragSep}
+          <div class="lbl" style="margin-bottom:8px">Retour au calme</div>
+          <div class="act-form-row">
+            <div class="fg">
+              <label class="fl">Distance</label>
+              <input class="fi" id="iv-cooldown-km" type="number" placeholder="1.0" min="0" step="0.1" value="${iv.cooldown_km||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">km</span>
+            </div>
+            <div class="fg">
+              <label class="fl">Durée <span style="color:var(--t3);font-weight:400">opt</span></label>
+              <input class="fi" id="iv-cooldown-min" type="number" placeholder="10" min="0" max="120" value="${iv.cooldown_min||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">min</span>
+            </div>
+          </div>
+
+          ${autoKm || autoMin ? `${fragSep}
+          <div style="display:flex;gap:20px;align-items:center;padding:4px 0">
+            ${autoKm ? `<div><span class="pace-val">${autoKm}</span> <span class="pace-unit-label">km total</span></div>` : ''}
+            ${autoMin ? `<div><span class="pace-val">${autoMin}</span> <span class="pace-unit-label">min calculées</span></div>` : ''}
+          </div>` : ''}
+
+          ${fragSep}
+          <div class="act-form-row">
+            <div class="fg">
+              <label class="fl">Durée totale${autoMin ? ' <span style="color:var(--accent);font-weight:400">auto</span>' : ''}</label>
+              <input class="fi" id="act-dur" type="number" placeholder="45" min="1" max="600"
+                value="${durDisplay}" ${autoMin ? 'style="opacity:.5"' : ''}>
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">min</span>
+            </div>
+            <div class="fg">
+              <label class="fl">BPM moyen <span style="color:var(--t3);font-weight:400">opt</span></label>
+              <input class="fi" id="act-bpm" type="number" placeholder="165" min="50" max="220" value="${S.drawer._bpm||''}">
+              <span style="font-size:11px;color:var(--t3);margin-top:2px;display:block">bpm</span>
+            </div>
+          </div>
+          <div class="fg" style="margin-top:4px">
+            <label class="fl">Intensité ressentie</label>
+            <div class="act-intensity-dots">${intensityDots}</div>
+          </div>
+
+          <div style="margin-top:8px">
+            <div class="lbl" style="margin-bottom:6px">Muscles extra sollicités <span style="font-weight:400;color:var(--t3)">(optionnel)</span></div>
+            <div class="boost-grid">${boostChips}</div>
+          </div>
+          <button class="btn-act-save" id="btn-act-save">${isEdit ? '✓ Enregistrer' : '＋ Enregistrer la séance'}</button>
+          ${isEdit ? `<button class="btn-de" id="btn-act-del" style="margin-top:6px;width:100%">Supprimer l'activité</button>` : ''}
+        </div>`;
+
+      body.querySelector('#bb-act-form').addEventListener('click', () => { S.drawer.actGroup='running'; S.drawer.step=4; renderDrawer(); });
+
+      // Snapshot + recalcul live
+      const ivIds = ['iv-warmup-km','iv-warmup-min','iv-reps','iv-effort-m','iv-recov-m','iv-effort-min','iv-cooldown-km','iv-cooldown-min'];
+      ivIds.forEach(id => {
+        document.getElementById(id)?.addEventListener('input', () => {
+          S.drawer._actDate = document.getElementById('act-date')?.value || DB.todayId();
+          S.drawer._bpm = parseInt(document.getElementById('act-bpm')?.value) || null;
+          S.drawer._intervals = {
+            warmup_km:   parseFloat(document.getElementById('iv-warmup-km')?.value) || null,
+            warmup_min:  parseInt(document.getElementById('iv-warmup-min')?.value) || null,
+            reps:        parseInt(document.getElementById('iv-reps')?.value) || null,
+            effort_m:    parseInt(document.getElementById('iv-effort-m')?.value) || null,
+            recov_m:     parseInt(document.getElementById('iv-recov-m')?.value) || null,
+            effort_min:  parseInt(document.getElementById('iv-effort-min')?.value) || null,
+            cooldown_km: parseFloat(document.getElementById('iv-cooldown-km')?.value) || null,
+            cooldown_min:parseInt(document.getElementById('iv-cooldown-min')?.value) || null,
+          };
+          renderDrawer();
+        });
+      });
+
+      // Dots intensité
+      body.querySelectorAll('.idot').forEach(btn =>
+        btn.addEventListener('click', () => {
+          S.drawer._actDate = document.getElementById('act-date')?.value || DB.todayId();
+          S.drawer._bpm = parseInt(document.getElementById('act-bpm')?.value) || null;
+          S.drawer._intervals = {
+            warmup_km:   parseFloat(document.getElementById('iv-warmup-km')?.value) || null,
+            warmup_min:  parseInt(document.getElementById('iv-warmup-min')?.value) || null,
+            reps:        parseInt(document.getElementById('iv-reps')?.value) || null,
+            effort_m:    parseInt(document.getElementById('iv-effort-m')?.value) || null,
+            recov_m:     parseInt(document.getElementById('iv-recov-m')?.value) || null,
+            effort_min:  parseInt(document.getElementById('iv-effort-min')?.value) || null,
+            cooldown_km: parseFloat(document.getElementById('iv-cooldown-km')?.value) || null,
+            cooldown_min:parseInt(document.getElementById('iv-cooldown-min')?.value) || null,
+          };
+          S.drawer._intensity = parseInt(btn.dataset.iv);
+          renderDrawer();
+        }));
+
+      body.querySelectorAll('.boost-chip').forEach(btn =>
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.bid;
+          const cur = boosts[id] || '';
+          if (!cur) boosts[id] = 'moderate';
+          else if (cur === 'moderate') boosts[id] = 'high';
+          else delete boosts[id];
+          renderDrawer();
+        }));
+
+      // Enregistrer
+      body.querySelector('#btn-act-save').addEventListener('click', () => {
+        const ivData = {
+          warmup_km:   parseFloat(document.getElementById('iv-warmup-km')?.value) || null,
+          warmup_min:  parseInt(document.getElementById('iv-warmup-min')?.value) || null,
+          reps:        parseInt(document.getElementById('iv-reps')?.value) || null,
+          effort_m:    parseInt(document.getElementById('iv-effort-m')?.value) || null,
+          recov_m:     parseInt(document.getElementById('iv-recov-m')?.value) || null,
+          effort_min:  parseInt(document.getElementById('iv-effort-min')?.value) || null,
+          cooldown_km: parseFloat(document.getElementById('iv-cooldown-km')?.value) || null,
+          cooldown_min:parseInt(document.getElementById('iv-cooldown-min')?.value) || null,
+        };
+        const calcResult = _calcIntervals(ivData.warmup_km, ivData.reps, ivData.effort_m, ivData.recov_m, ivData.cooldown_km, ivData.warmup_min, ivData.effort_min, ivData.cooldown_min);
+        const dur = calcResult.dur || parseInt(document.getElementById('act-dur')?.value) || null;
+        const dist = calcResult.dist;
+        const bpmVal = parseInt(document.getElementById('act-bpm')?.value) || null;
+        const intensity = S.drawer._intensity || 0;
+        const dateVal = document.getElementById('act-date')?.value || DB.todayId();
+        // Stocker les détails intervals dans l'entrée
+        const extraBoosts = { ...boosts };
+        if (!dur || dur <= 0) {
+          const inp = document.getElementById('act-dur');
+          if (inp) { inp.classList.add('err'); setTimeout(() => inp.classList.remove('err'), 400); inp.focus(); }
+          return;
+        }
+        if (!intensity) { showPrToast('⚠ Renseigne l\'intensité ressentie'); return; }
+        if (S.drawer.editMode) {
+          updateActivity(S.drawer.editSessionId, S.drawer.editEntryId, dur, intensity, extraBoosts, dateVal, dist, bpmVal, 'min_km', ivData);
+        } else {
+          addActivity(actType, dur, intensity, extraBoosts, dateVal, dist, bpmVal, 'min_km', ivData);
+        }
+        closeDrawer();
+      });
+
+      body.querySelector('#btn-act-del')?.addEventListener('click', () => {
+        if (!confirm('Supprimer cette activité ?')) return;
+        deleteActivity(S.drawer.editSessionId, S.drawer.editEntryId);
+        closeDrawer();
+      });
+      return;
+    }
+
+    // ── Formulaire standard (running non-fractionné + autres activités) ──
     const distVal = S.drawer._distance;
     const durVal = S.drawer._duration;
     let paceHtml = '';
@@ -2942,7 +3317,7 @@ function renderDrawer() {
       </div>` : ''}` : '';
 
     body.innerHTML = `
-      <button class="btn-back" id="bb-act-form">‹ ${act.icon} Type</button>
+      <button class="btn-back" id="bb-act-form">‹ ${isRunning ? 'Course' : act.icon + ' Type'}</button>
       <div class="act-form">
         <div class="act-form-row">
           <div class="fg">
@@ -2970,7 +3345,11 @@ function renderDrawer() {
         ${isEdit ? `<button class="btn-de" id="btn-act-del" style="margin-top:6px;width:100%">Supprimer l'activité</button>` : ''}
       </div>`;
 
-    body.querySelector('#bb-act-form').addEventListener('click', () => { S.drawer.step=4; renderDrawer(); });
+    body.querySelector('#bb-act-form').addEventListener('click', () => {
+      if (isRunning) { S.drawer.actGroup = 'running'; }
+      S.drawer.step = 4;
+      renderDrawer();
+    });
 
     // Helper : snapshot des champs courants dans S.drawer
     function _snapshotFields() {
@@ -2984,15 +3363,11 @@ function renderDrawer() {
       }
     }
 
-    // Recalcul pace en live (distance ou durée change)
+    // Recalcul pace en live
     if (isRunning) {
       ['act-dur','act-dist'].forEach(id => {
-        document.getElementById(id)?.addEventListener('input', () => {
-          _snapshotFields();
-          renderDrawer();
-        });
+        document.getElementById(id)?.addEventListener('input', () => { _snapshotFields(); renderDrawer(); });
       });
-      // Toggle unité pace
       document.getElementById('btn-pace-toggle')?.addEventListener('click', () => {
         _snapshotFields();
         S.drawer._paceUnit = paceUnit === 'min_km' ? 'km_h' : 'min_km';
@@ -3008,7 +3383,7 @@ function renderDrawer() {
         renderDrawer();
       }));
 
-    // Chips boosts (cycle : off → moderate → high → off)
+    // Chips boosts
     body.querySelectorAll('.boost-chip').forEach(btn =>
       btn.addEventListener('click', () => {
         _snapshotFields();
@@ -3081,7 +3456,7 @@ function addEntry(category, exerciseId, variantId, targetDateId) {
   }
 }
 
-function addActivity(activityType, duration, intensity, boosts, targetDateId, distance, bpm, paceUnit) {
+function addActivity(activityType, duration, intensity, boosts, targetDateId, distance, bpm, paceUnit, intervals) {
   const entry = {
     id: uid(), type: 'activity', activityType, duration, intensity,
     boosts: boosts || {}, ts: Date.now()
@@ -3089,6 +3464,7 @@ function addActivity(activityType, duration, intensity, boosts, targetDateId, di
   if (distance) entry.distance = distance;
   if (bpm) entry.bpm = bpm;
   if (paceUnit) entry.paceUnit = paceUnit;
+  if (intervals) entry.intervals = intervals;
   const dateId = targetDateId || DB.todayId();
   const todayId = DB.todayId();
 
@@ -3111,7 +3487,7 @@ function addActivity(activityType, duration, intensity, boosts, targetDateId, di
   if (dateId === todayId) renderToday();
 }
 
-function updateActivity(sessionId, entryId, duration, intensity, boosts, newDateId, distance, bpm, paceUnit) {
+function updateActivity(sessionId, entryId, duration, intensity, boosts, newDateId, distance, bpm, paceUnit, intervals) {
   const all = DB.load();
   const todayId = DB.todayId();
   const targetDate = newDateId || sessionId;
@@ -3121,6 +3497,7 @@ function updateActivity(sessionId, entryId, duration, intensity, boosts, newDate
     if (distance) e.distance = distance; else delete e.distance;
     if (bpm) e.bpm = bpm; else delete e.bpm;
     if (paceUnit) e.paceUnit = paceUnit; else delete e.paceUnit;
+    if (intervals) e.intervals = intervals; else delete e.intervals;
   };
 
   if (targetDate === sessionId) {
@@ -3568,9 +3945,21 @@ function renderFatigue() {
       const recupStr = recup != null
         ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`)
         : '';
+
+      // ── Indicateur habitude (CTL) ──
+      const ctl    = FATIGUE_ENGINE.getCTL(id);
+      const ctlRef = FATIGUE_ENGINE.CTL_REF[id] ?? 450;
+      const ratio  = ctl / ctlRef;
+      let habitDot, habitTitle;
+      if (ratio < 0.2)      { habitDot = '○'; habitTitle = 'Peu entraîné récemment'; }
+      else if (ratio < 0.7) { habitDot = '◐'; habitTitle = 'Entraîné occasionnellement'; }
+      else if (ratio < 1.5) { habitDot = '●'; habitTitle = 'Entraîné régulièrement'; }
+      else                  { habitDot = '●'; habitTitle = 'Très consistant'; }
+      const habitColor = ratio < 0.2 ? 'var(--t3)' : ratio < 0.7 ? 'var(--orange)' : ratio < 1.5 ? 'var(--accent)' : '#3dffa0';
+
       return `
         <div class="fat-row">
-          <div class="fat-name">${MUSCLE_LABELS[id] || id}</div>
+          <div class="fat-name">${MUSCLE_LABELS[id] || id}&thinsp;<span title="${habitTitle}" style="color:${habitColor};font-size:9px;cursor:default">${habitDot}</span></div>
           <div class="fat-bar"><div class="fat-bar-fill" style="width:${barW.toFixed(1)}%;background:${color}"></div></div>
           <div class="fat-val" style="color:${color}">${Math.round(val)}</div>
           <div class="fat-lbl" style="color:${color}">${label}</div>

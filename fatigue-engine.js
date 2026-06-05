@@ -1,7 +1,7 @@
 'use strict';
 
 // ════════════════════════════════════════════════════
-// MUSCLEOS — FATIGUE ENGINE v2.1
+// MUSCLEOS — FATIGUE ENGINE v2.2
 // Algo : fatigue pondérée + récupération exponentielle
 // Pas de plafond interne — la fatigue peut dépasser 100
 // (overreaching réel). L'affichage plafonne à "Saturé".
@@ -12,12 +12,26 @@
 //   • Si USER_PROFILE absent (script non chargé), comportement
 //     identique à v1.1 (multiplicateurs = 1.0).
 //
-// v2.1 : facteur d'intensité relative (%1RM).
-//   • calcIntensityFactor(weight, best1RM) → multiplicateur
-//     basé sur la charge relative (Schoenfeld et al., 2017).
-//   • calcDoses() accepte un 3e paramètre optionnel intensityFactor.
-//   • Séries d'échauffement : intensityFactor = 0.25 (appelé depuis HTML).
-//   • Sans données 1RM → intensityFactor = 1.0 (rétrocompatibilité).
+// v2.1 : paramètre hlScale dans applyDoses.
+//   • Permet aux activités cardio/endurance de déclarer leurs
+//     propres vitesses de récupération (fibres type I >> muscu).
+//   • ACTIVITY_FATIGUE profiles ajoutent recovery_scale (0.0–1.0).
+//   • hlScale = 1.0 par défaut → rétrocompatibilité totale.
+//
+// v2.2 : adaptation progressive (CTL — Chronic Training Load).
+//   • CTL par muscle : accumulation pondérée sur 42j (demi-vie 42j).
+//   • Multiplicateur d'adaptation [0.6–1.4] appliqué aux doses :
+//       - Débutant / longue pause → ×1.4 (plus de fatigue)
+//       - Entraîné régulier      → ×1.0 (référence)
+//       - Athlète consistant     → ×0.6 (adaptation structurelle)
+//   • CTL_REF par muscle : calibré sur dose 2×/semaine en régime
+//     permanent (facteur géométrique 12.5 × dose_référence).
+//   • seedCTL() : injection d'un historique virtuel depuis
+//     USER_PROFILE.training_level + familiarité par exercice.
+//   • Stockage séparé localStorage 'muscleos_ctl'.
+//
+//   ⚠️ Calibration à revoir après 6-8 semaines de données
+//      réelles (voir SKILL.md §14 TODOs).
 //
 // Dépendance : user-profile.js doit être chargé AVANT
 // fatigue-engine.js dans le HTML.
@@ -129,6 +143,173 @@ const FATIGUE_ENGINE = (() => {
   const DEFAULT_HALF_LIFE = 54;
 
   // ════════════════════════════════════════════════════
+  // CTL — CHRONIC TRAINING LOAD
+  //
+  // Modèle inspiré de Banister (1975) et du PMC cyclisme.
+  //
+  // Principe :
+  //   Le même volume génère moins de fatigue quand le muscle
+  //   est entraîné régulièrement (adaptation structurelle,
+  //   résilience des fibres, efficacité neuromusculaire).
+  //
+  // Implémentation :
+  //   CTL = charge chronique par muscle, demi-vie 42 jours.
+  //   Multiplicateur d'adaptation = f(CTL / CTL_ref) ∈ [0.6, 1.4].
+  //
+  //   Formule : adaptation = max(0.6, 0.6 + 0.8 × e^(−ln2 × CTL/CTL_ref))
+  //     CTL = 0        → ×1.4 (débutant / pause longue)
+  //     CTL = CTL_ref  → ×1.0 (entraîné 2×/sem, régime permanent)
+  //     CTL = 2×CTLref → ×0.8
+  //     CTL → ∞        → ×0.6 (plancher)
+  //
+  // CTL_ref par muscle :
+  //   Valeur de référence = CTL en régime permanent à 2 séances/semaine.
+  //   Calculé sur la taille du muscle (proxy = demi-vie) :
+  //     hl ≥ 70h  → grands muscles composés → ref 700
+  //     hl 50-69h → muscles larges           → ref 600
+  //     hl 40-49h → muscles moyens           → ref 450
+  //     hl < 40h  → petits / isolation       → ref 300
+  //
+  //   ⚠️ À recalibrer après 6-8 semaines de données réelles.
+  // ════════════════════════════════════════════════════
+  const CTL_KEY           = 'muscleos_ctl';
+  const CTL_HALF_LIFE_H   = 1008; // 42 jours × 24h
+
+  const CTL_REF = {
+    // ── Grands muscles composés (hl ≥ 70h) → ref 700
+    LUMBAR:             700,
+    MULTIFIDUS:         700,
+    GLUTE_MAX:          700,
+    QUAD_RECT:          700,
+    QUAD_VAST_MED:      700,
+    QUAD_VAST_LAT:      700,
+    HAMSTRING_BF_LONG:  700,
+    HAMSTRING_ST:       700,
+    HAMSTRING_SM:       700,
+
+    // ── Muscles larges (hl 50-69h) → ref 600
+    LAT:                600,
+    PECT_MAJ_STER:      600,
+    PECT_MAJ_CLAV:      600,
+    GLUTE_MED:          600,
+    HAMSTRING_BF_COURT: 600,
+    ADDUCTOR:           600,
+    QUAD_VAST_INT:      600,
+
+    // ── Muscles moyens (hl 40-54h) → ref 450
+    TERES_MAJ:          450,
+    GLUTE_MIN:          450,
+    CORE_RECT_SUP:      450,
+    CORE_RECT_INF:      450,
+    CORE_OBL_EXT:       450,
+    CORE_OBL_INT:       450,
+    HIP_FLEX:           450,
+    TRAP_MED:           450,
+    TRAP_INF:           450,
+    RHOMBOID:           450,
+    PECT_MIN:           450,
+    DELT_ANT:           450,
+    DELT_MED:           450,
+    DELT_POST:          450,
+    INFRA:              450,
+    SUPRASPIN:          450,
+    SUBSCAP:            450,
+    TERES_MIN:          450,
+    TRAP_SUP:           450,
+    SERR_ANT:           450,
+    BICEP_LONG:         450,
+    BICEP_COURT:        450,
+    TRICEP_LONG:        450,
+    TRICEP_LAT:         450,
+    TRICEP_MED:         450,
+    GASTRO_MED:         450,
+    GASTRO_LAT:         450,
+    PERONEAL:           450,
+    CORE_TRANS:         450,
+
+    // ── Petits muscles / isolation (hl ≤ 40h) → ref 300
+    BRACHIAL:           300,
+    BRACHIORAD:         300,
+    SOLEUS:             300,
+    FOREARM_EXT:        300,
+    FOREARM_FLEX_SUP:   300,
+    TIB_ANT:            300,
+  };
+  const DEFAULT_CTL_REF = 450;
+
+  // ─── STOCKAGE CTL ─────────────────────────────────
+  function _loadCTL() {
+    try { return JSON.parse(localStorage.getItem(CTL_KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function _saveCTL(state) { localStorage.setItem(CTL_KEY, JSON.stringify(state)); }
+
+  function resetCTL() { localStorage.removeItem(CTL_KEY); }
+
+  // ─── LECTURE CTL ──────────────────────────────────
+
+  /**
+   * CTL actuel d'un muscle (avec décroissance depuis dernier update).
+   */
+  function getCTL(muscleId) {
+    const rec = _loadCTL()[muscleId];
+    if (!rec || rec.ctl <= 0) return 0;
+    return Math.round(decay(rec.ctl, Date.now() - rec.ts, CTL_HALF_LIFE_H) * 10) / 10;
+  }
+
+  /**
+   * Tous les CTL actuels { MUSCLE_ID: valeur }.
+   */
+  function getAllCTL() {
+    const state = _loadCTL();
+    const now   = Date.now();
+    const out   = {};
+    for (const [id, rec] of Object.entries(state)) {
+      out[id] = rec?.ctl > 0
+        ? Math.round(decay(rec.ctl, now - rec.ts, CTL_HALF_LIFE_H) * 10) / 10
+        : 0;
+    }
+    return out;
+  }
+
+  /**
+   * Multiplicateur d'adaptation pour un muscle [0.6 – 1.4].
+   * 1.4 = aucun historique / longue pause
+   * 1.0 = CTL = CTL_ref (entraîné 2×/semaine en régime permanent)
+   * 0.6 = très entraîné (plancher)
+   */
+  function getAdaptationMultiplier(muscleId) {
+    const ctl = getCTL(muscleId);
+    const ref = CTL_REF[muscleId] ?? DEFAULT_CTL_REF;
+    return Math.max(0.6, 0.6 + 0.8 * Math.exp(-Math.LN2 * ctl / ref));
+  }
+
+  /**
+   * Injecte un CTL virtuel pour amorcer l'historique d'un muscle.
+   * Utilisé par rebuildFatigue() pour le profil + la familiarité.
+   *
+   * @param {string}  muscleId
+   * @param {number}  seedFactor — multiple de CTL_ref :
+   *    0.0 = débutant (pas de boost)
+   *    0.5 = intermédiaire
+   *    1.0 = avancé (CTL = CTL_ref → mult 1.0)
+   *    2.0 = élite    (mult ≈ 0.8)
+   * @param {number}  atTime — timestamp (injection dans le passé)
+   */
+  function seedCTL(muscleId, seedFactor, atTime) {
+    if (!seedFactor || seedFactor <= 0) return;
+    const ts  = atTime ?? Date.now();
+    const ref = CTL_REF[muscleId] ?? DEFAULT_CTL_REF;
+    const state = _loadCTL();
+    const existing = state[muscleId]
+      ? decay(state[muscleId].ctl, ts - state[muscleId].ts, CTL_HALF_LIFE_H)
+      : 0;
+    const seeded = Math.max(existing, ref * seedFactor);
+    state[muscleId] = { ctl: Math.round(seeded * 10) / 10, ts };
+    _saveCTL(state);
+  }
+
+  // ════════════════════════════════════════════════════
   // FACTEURS PAR RÔLE
   //
   // Clés courtes dans FATIGUE_DATA : 'p' | 's' | 't'
@@ -231,86 +412,80 @@ const FATIGUE_ENGINE = (() => {
   }
 
   // ════════════════════════════════════════════════════
-  // FACTEUR D'INTENSITÉ RELATIVE (%1RM)
-  //
-  // Modèle : factor = clamp(0.3, (rel / 0.75)^1.2, 1.8)
-  //   rel = weight / best1RM
-  //   Référence calibrée à 75% du 1RM → factor = 1.0
-  //
-  // Exemples :
-  //   40% 1RM → ~0.47  (échauffement léger)
-  //   60% 1RM → ~0.76  (endurance / volume)
-  //   75% 1RM → 1.00   (référence)
-  //   85% 1RM → ~1.16  (hypertrophie lourde)
-  //   90% 1RM → ~1.24  (force)
-  //  100% 1RM → ~1.41  (charge maximale)
-  //
-  // Cas dégénérés :
-  //   weight = 0 (poids du corps) → 1.0 (pas de référence charge)
-  //   best1RM manquant ou nul     → 1.0 (rétrocompatibilité)
-  //
-  // Référence :
-  //   Schoenfeld, B.J. et al. (2017). Dose-response relationship
-  //   between weekly resistance training volume and increases in
-  //   muscle mass. J Strength Cond Res, 31(12), 3508–3523.
-  // ════════════════════════════════════════════════════
-  function calcIntensityFactor(weight, best1RM) {
-    if (!best1RM || best1RM <= 0 || !weight || weight <= 0) return 1.0;
-    const rel = weight / best1RM;
-    return Math.min(1.8, Math.max(0.3, Math.pow(rel / 0.75, 1.2)));
-  }
-
-  // ════════════════════════════════════════════════════
   // CALCUL DES DOSES
   //
-  //   dose = (percent / 100) × role_factor × vol_factor
-  //          × intensity_factor × BASE_DOSE × goal_factor
-  //
-  // intensityFactor (optionnel, défaut 1.0) :
-  //   → calculé via calcIntensityFactor() depuis muscleos.html
-  //   → 0.25 pour les séries d'échauffement (warmup=true)
+  //   dose = (percent / 100) × role_factor × vol_factor × BASE_DOSE
   //
   // Note : percent peut être > 100 (ex. LAT tractions = 125%)
   // C'est normal en EMG dynamique — le muscle peut dépasser
   // sa contraction isométrique maximale via les synergies.
   // On conserve la valeur réelle sans clamper.
   // ════════════════════════════════════════════════════
-  function calcDoses(activation, sets, intensityFactor = 1.0) {
+  function calcDoses(activation, sets) {
     const vf = calcVolumeFactor(sets);
     const gf = _goalFactor();
     const doses = {};
     for (const [id, data] of Object.entries(activation)) {
       const rf = ROLE_FACTORS[data.r ?? data.role] ?? ROLE_FACTORS.t;
-      const dose = (data.p ?? data.percent) / 100 * rf * vf * intensityFactor * BASE_DOSE * gf;
+      const dose = (data.p ?? data.percent) / 100 * rf * vf * BASE_DOSE * gf;
       doses[id] = Math.round(dose * 10) / 10;
     }
     return doses;
   }
 
   // ════════════════════════════════════════════════════
+  // ════════════════════════════════════════════════════
   // APPLICATION DES DOSES (accumulation sans plafond)
   //
   // Pour chaque muscle :
-  //   1. Lire base + ts → calculer fatigue courante via decay()
-  //   2. Additionner la dose
-  //   3. Stocker { base: current + dose, ts }
+  //   1. Décroissance CTL depuis dernier update → mult adaptation
+  //   2. Décroissance fatigue depuis dernier update
+  //   3. dose_effective = dose_brute × adaptation_mult
+  //   4. Stocker fatigue += dose_effective
+  //   5. Stocker CTL    += dose_brute  (le travail effectué, pas la fatigue)
   //
-  // Pas de min(100, ...) — 4 exos de poitrine → ~180–220 pts
-  // pour PECT_MAJ_STER. La récup sera proportionnellement
-  // plus longue, ce qui est physiologiquement correct.
+  // hlScale (optionnel, défaut 1.0) :
+  //   Réduit les demi-vies pour les activités aérobies.
+  //   Voir ACTIVITY_FATIGUE[actType].recovery_scale.
+  //
+  // applyAdaptation (optionnel, défaut true) :
+  //   false → dose appliquée sans réduction (calibration, debug).
   // ════════════════════════════════════════════════════
-  function applyDoses(doses, atTime) {
-    const ts = atTime ?? Date.now();
-    const state = _load();
-    const pm = _profileMultiplier();
-    for (const [id, dose] of Object.entries(doses)) {
-      if (dose <= 0) continue;
-      const hl = (HALF_LIVES[id] ?? DEFAULT_HALF_LIFE) * pm;
+  function applyDoses(doses, atTime, hlScale = 1.0, applyAdaptation = true) {
+    const ts     = atTime ?? Date.now();
+    const state  = _load();
+    const ctlSt  = _loadCTL();
+    const pm     = _profileMultiplier();
+    const scale  = (typeof hlScale === 'number' && hlScale > 0) ? hlScale : 1.0;
+
+    for (const [id, rawDose] of Object.entries(doses)) {
+      if (rawDose <= 0) continue;
+
+      // ── CTL : décroissance + multiplicateur d'adaptation ──
+      const ref     = CTL_REF[id] ?? DEFAULT_CTL_REF;
+      const ctlRec  = ctlSt[id];
+      const prevCtl = ctlRec
+        ? decay(ctlRec.ctl, ts - ctlRec.ts, CTL_HALF_LIFE_H)
+        : 0;
+      const adaptMult = applyAdaptation
+        ? Math.max(0.6, 0.6 + 0.8 * Math.exp(-Math.LN2 * prevCtl / ref))
+        : 1.0;
+
+      // ── Dose effective (fatigue perçue, modulée par adaptation) ──
+      const dose = rawDose * adaptMult;
+
+      // ── Mise à jour CTL (dose BRUTE — mesure le travail, pas la fatigue) ──
+      ctlSt[id] = { ctl: Math.round((prevCtl + rawDose) * 10) / 10, ts };
+
+      // ── Mise à jour fatigue ──
+      const hl = (HALF_LIVES[id] ?? DEFAULT_HALF_LIFE) * pm * scale;
       let current = 0;
       if (state[id]) current = decay(state[id].base, ts - state[id].ts, hl);
       state[id] = { base: Math.round((current + dose) * 10) / 10, ts };
     }
+
     _save(state);
+    _saveCTL(ctlSt);
   }
 
   // ─── LECTURE ──────────────────────────────────────
@@ -384,9 +559,13 @@ const FATIGUE_ENGINE = (() => {
   // ─── API PUBLIQUE ──────────────────────────────────
   return {
     HALF_LIVES, ROLE_FACTORS, BASE_DOSE, THRESHOLDS,
-    decay, calcVolumeFactor, calcIntensityFactor, calcDoses,
+    CTL_REF, CTL_HALF_LIFE_H,
+    decay, calcVolumeFactor, calcDoses,
     get, getAll, getFutureAt, getHoursToRecover, classify,
     applyDoses, reset, debugDump,
+    // CTL — adaptation progressive
+    getCTL, getAllCTL, getAdaptationMultiplier, seedCTL,
+    resetCTL,
   };
 
 })();

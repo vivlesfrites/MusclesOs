@@ -1,7 +1,7 @@
 'use strict';
 
 // ════════════════════════════════════════════════════
-// MUSCLEOS — USER_PROFILE v1.1
+// MUSCLEOS — USER_PROFILE v1.2
 //
 // Stocke le profil de l'utilisateur et calcule un
 // recovery_multiplier global utilisé par FATIGUE_ENGINE
@@ -275,6 +275,26 @@ const USER_PROFILE = (() => {
   }
 
   /**
+   * Retourne le facteur de seed CTL selon le niveau d'entraînement déclaré.
+   * Utilisé par rebuildFatigue() pour amorcer le CTL de tous les muscles
+   * avant de rejouer l'historique réel.
+   *
+   *   beginner     → 0.0  (CTL = 0 → mult 1.40 — le muscle "découvre" l'effort)
+   *   intermediate → 0.5  (CTL = 0.5 × CTL_ref → mult ≈ 1.15)
+   *   advanced     → 1.0  (CTL = CTL_ref → mult 1.00 — référence)
+   *   elite        → 2.0  (CTL = 2 × CTL_ref → mult ≈ 0.80)
+   *
+   * Ce seed est injecté 42 jours avant la première session enregistrée,
+   * ou 42 jours avant aujourd'hui si aucune session n'existe.
+   * Il décroit naturellement sur 42j ; l'historique réel le remplace
+   * au fil des semaines.
+   */
+  function getSeedFactor() {
+    const level = load().training_level;
+    return { beginner: 0.0, intermediate: 0.5, advanced: 1.0, elite: 2.0 }[level] ?? 0.5;
+  }
+
+  /**
    * Vrai si l'onboarding n'a pas encore été complété.
    */
   function needsOnboarding() {
@@ -329,7 +349,7 @@ const USER_PROFILE = (() => {
     completeOnboarding,
     calcMultiplier, calcGoalFactor,
     getMultiplier, getGoalFactor,
-    getGroupMultiplier,
+    getGroupMultiplier, getSeedFactor,
     needsOnboarding,
     debugDump,
   };
