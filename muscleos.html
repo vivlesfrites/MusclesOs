@@ -274,84 +274,6 @@
     }
     .pr-badge.pr-1rm { background: rgba(61,255,160,.04); }
 
-    /* ── WARMUP TAG ── */
-    .warmup-badge {
-      display: inline-flex; align-items: center; justify-content: center;
-      font-family: var(--mono); font-size: 9px; font-weight: 600;
-      letter-spacing: .04em;
-      background: rgba(255,170,61,.08); color: var(--orange);
-      border: 1px solid rgba(255,170,61,.3); border-radius: 4px;
-      padding: 1px 5px; line-height: 1.4; white-space: nowrap;
-    }
-    .set-row.is-warmup .sv { color: var(--t3); }
-    .set-row.is-warmup .set-n { color: var(--orange); }
-
-    /* Toggle échauffement dans le formulaire */
-    .warmup-toggle {
-      display: flex; align-items: center; gap: 6px;
-      margin-top: 8px; cursor: pointer; user-select: none;
-    }
-    .warmup-toggle-box {
-      width: 14px; height: 14px; border-radius: 3px;
-      border: 1px solid var(--b2); background: var(--s2);
-      display: flex; align-items: center; justify-content: center;
-      transition: all .12s; flex-shrink: 0;
-    }
-    .warmup-toggle.active .warmup-toggle-box {
-      background: rgba(255,170,61,.15); border-color: var(--orange);
-    }
-    .warmup-toggle-label {
-      font-family: var(--mono); font-size: 10px; color: var(--t3);
-      letter-spacing: .04em;
-    }
-    .warmup-toggle.active .warmup-toggle-label { color: var(--orange); }
-
-    /* ── BASELINE 1RM ── */
-    .baseline-row {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 8px 0; border-top: 1px solid var(--b1); margin-top: 8px;
-    }
-    .baseline-label {
-      font-family: var(--mono); font-size: 10px; color: var(--t3);
-      letter-spacing: .06em; text-transform: uppercase;
-    }
-    .baseline-value {
-      font-family: var(--mono); font-size: 12px; color: var(--t2);
-      display: flex; align-items: center; gap: 8px;
-    }
-    .baseline-value.has-ref { color: var(--accent); }
-    .btn-baseline-edit {
-      background: none; border: 1px solid var(--b2);
-      border-radius: 4px; padding: 2px 8px;
-      font-family: var(--mono); font-size: 9px; color: var(--t3);
-      cursor: pointer; transition: all .12s; letter-spacing: .04em;
-    }
-    .btn-baseline-edit:hover { border-color: var(--accent); color: var(--accent); }
-    .baseline-input-row {
-      display: flex; align-items: center; gap: 6px; margin-top: 6px;
-    }
-    .fi-baseline {
-      background: var(--s2); border: 1px solid var(--accent);
-      border-radius: var(--r); padding: 5px 8px;
-      font-family: var(--mono); font-size: 13px; color: var(--t1);
-      width: 80px; outline: none;
-      -moz-appearance: textfield;
-    }
-    .fi-baseline::-webkit-outer-spin-button,
-    .fi-baseline::-webkit-inner-spin-button { -webkit-appearance: none; }
-    .btn-baseline-save {
-      background: var(--amid); border: 1px solid var(--accent);
-      border-radius: 4px; padding: 5px 10px;
-      font-family: var(--mono); font-size: 10px; color: var(--accent);
-      cursor: pointer; white-space: nowrap; transition: background .12s;
-    }
-    .btn-baseline-save:hover { background: rgba(61,255,160,.2); }
-    .btn-baseline-cancel {
-      background: none; border: none;
-      font-family: var(--mono); font-size: 10px; color: var(--t3);
-      cursor: pointer;
-    }
-
     /* ── ACTIVITÉS ── */
     .act-section-lbl {
       font-family: var(--mono); font-size: 10px; font-weight: 600;
@@ -627,6 +549,43 @@
     .he-var { font-size: 10px; color: var(--t3); }
     .he-sets { font-family: var(--mono); font-size: 11px; color: var(--t2); }
 
+
+    /* ── DRAWER DATE ROW (step 1) ── */
+    .drawer-date-row {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 14px;
+    }
+    .drawer-date-row .fl { white-space: nowrap; flex-shrink: 0; }
+    .drawer-date-row .fi { flex: 1; }
+
+    .btn-del-session {
+      background: none; border: 1px solid var(--b2); border-radius: var(--r);
+      color: var(--t3); font-family: var(--mono); font-size: 11px;
+      padding: 5px 12px; cursor: pointer; transition: all .15s; width: 100%;
+    }
+    .btn-del-session:hover { border-color: var(--red); color: var(--red); background: rgba(239,68,68,.06); }
+
+    /* ── HISTORY EXERCISE ENTRY ÉTENDUE ── */
+    .hist-entry-full {
+      border-bottom: 1px solid var(--b1); padding: 6px 0;
+    }
+    .hist-entry-full:last-child { border-bottom: none; }
+    .hist-entry-hdr {
+      display: flex; align-items: center; justify-content: space-between; font-size: 12px;
+      margin-bottom: 4px;
+    }
+    .hist-sets-list { margin: 4px 0 6px; }
+    .hist-add-set {
+      display: flex; gap: 6px; align-items: center; flex-wrap: wrap; padding: 4px 0 2px;
+    }
+    .btn-log-set {
+      background: var(--s2); border: 1px solid var(--b2); border-radius: var(--r);
+      color: var(--accent); font-family: var(--mono); font-size: 11px; font-weight: 600;
+      padding: 6px 10px; cursor: pointer; white-space: nowrap;
+      transition: background .15s;
+    }
+    .btn-log-set:hover { background: var(--s3); }
+
     /* ── FATIGUE TAB ── */
     .fat-topbar {
       display: flex; align-items: center; justify-content: space-between;
@@ -891,169 +850,49 @@
       background: var(--accent);
     }
 
-    /* ════════════════════════════════════════════════════
-       MODULE IA — Bouton header + Panel modal
-       ════════════════════════════════════════════════════ */
 
-    .ai-btn {
-      display: flex; align-items: center; gap: 7px;
+    /* ── BACKUP BUTTONS ── */
+    .backup-btn {
+      display: flex; align-items: center; gap: 6px;
       padding: 7px 11px;
-      border: 1px solid rgba(61,255,160,.25);
-      border-radius: var(--r);
-      background: rgba(61,255,160,.06);
-      color: var(--accent); font-size: 12px; font-weight: 500;
-      cursor: pointer; font-family: var(--sans);
-      transition: background .15s, border-color .15s;
-      letter-spacing: .01em;
-    }
-    .ai-btn:hover { background: rgba(61,255,160,.12); border-color: rgba(61,255,160,.45); }
-    .ai-btn-icon { font-size: 14px; line-height: 1; }
-
-    .ai-overlay {
-      position: fixed; inset: 0; z-index: 300;
-      background: rgba(4,6,10,.75);
-      backdrop-filter: blur(6px);
-      display: flex; align-items: flex-end; justify-content: center;
-      opacity: 0; pointer-events: none;
-      transition: opacity .2s;
-    }
-    .ai-overlay.visible { opacity: 1; pointer-events: all; }
-
-    .ai-panel {
-      width: 100%; max-width: 640px;
-      background: var(--s1);
-      border: 1px solid var(--b2);
-      border-radius: 18px 18px 0 0;
-      padding: 20px 18px 32px;
-      display: flex; flex-direction: column; gap: 16px;
-      max-height: 88dvh; overflow-y: auto;
-      transform: translateY(24px);
-      transition: transform .25s cubic-bezier(.22,1,.36,1);
-    }
-    .ai-overlay.visible .ai-panel { transform: translateY(0); }
-
-    .ai-panel-hdr {
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .ai-panel-title {
-      font-family: var(--mono); font-size: 13px; font-weight: 600;
-      color: var(--accent); letter-spacing: .04em;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .ai-panel-title::before {
-      content: ''; display: inline-block;
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px rgba(61,255,160,.6);
-    }
-    .ai-close-btn {
-      background: none; border: none;
-      color: var(--t3); font-size: 18px; cursor: pointer; line-height: 1;
-      padding: 4px 6px; border-radius: 6px;
-      transition: color .15s, background .15s;
-    }
-    .ai-close-btn:hover { color: var(--t1); background: var(--s3); }
-
-    .ai-equip-section { display: flex; flex-direction: column; gap: 10px; }
-    .ai-equip-label {
-      font-family: var(--mono); font-size: 10px; font-weight: 600;
-      letter-spacing: .12em; text-transform: uppercase; color: var(--t3);
-    }
-    .ai-equip-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-    .ai-equip-chip {
-      padding: 6px 12px;
-      border: 1px solid var(--b2);
-      border-radius: 20px;
-      background: var(--s2);
-      color: var(--t2); font-size: 13px;
-      cursor: pointer;
-      transition: all .12s;
-      user-select: none;
-    }
-    .ai-equip-chip.on {
-      border-color: var(--accent);
-      background: rgba(61,255,160,.1);
-      color: var(--accent);
-    }
-
-    .ai-generate-btn {
-      width: 100%; padding: 13px;
-      background: var(--accent); color: #060c09;
-      border: none; border-radius: var(--r);
-      font-family: var(--sans); font-size: 14px; font-weight: 600;
-      cursor: pointer;
-      transition: opacity .15s, transform .1s;
-    }
-    .ai-generate-btn:hover { opacity: .9; }
-    .ai-generate-btn:active { transform: scale(.98); }
-    .ai-generate-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; }
-
-    .ai-response { display: flex; flex-direction: column; gap: 14px; }
-
-    .ai-loader {
-      display: flex; align-items: center; gap: 10px;
-      color: var(--t3); font-size: 13px;
-    }
-    .ai-loader-dots { display: flex; gap: 5px; }
-    .ai-loader-dots span {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent); opacity: .3;
-      animation: ai-pulse 1.2s ease-in-out infinite;
-    }
-    .ai-loader-dots span:nth-child(2) { animation-delay: .2s; }
-    .ai-loader-dots span:nth-child(3) { animation-delay: .4s; }
-    @keyframes ai-pulse {
-      0%, 80%, 100% { opacity: .3; transform: scale(.8); }
-      40% { opacity: 1; transform: scale(1); }
-    }
-
-    .ai-text {
-      font-size: 14px; line-height: 1.65;
-      color: var(--t1);
-      background: var(--s2); border: 1px solid var(--b1);
-      border-radius: var(--r); padding: 14px 16px;
-      white-space: pre-wrap;
-    }
-
-    .ai-chips-section { display: flex; flex-direction: column; gap: 10px; }
-    .ai-chips-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .ai-ex-chip {
-      display: flex; align-items: center; gap: 8px;
-      padding: 8px 13px;
-      border: 1px solid var(--b2);
+      border: 1px solid var(--b1);
       border-radius: var(--r);
       background: var(--s2);
+      color: var(--t2); font-size: 12px;
       cursor: pointer;
-      transition: all .15s;
-      color: var(--t1); font-size: 13px;
-      max-width: 100%;
+      font-family: var(--sans);
+      transition: border-color .15s, color .15s;
     }
-    .ai-ex-chip:hover { border-color: var(--b3); background: var(--s3); }
-    .ai-ex-chip-cat {
-      width: 8px; height: 8px; border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .ai-ex-chip-label { font-weight: 500; }
-    .ai-ex-chip-var { color: var(--t3); font-size: 11px; font-family: var(--mono); }
-    .ai-ex-chip-added {
-      border-color: var(--accent) !important;
-      background: rgba(61,255,160,.08) !important;
-    }
-    .ai-ex-chip-added .ai-ex-chip-label { color: var(--accent); }
+    .backup-btn:hover { border-color: var(--b3); color: var(--t1); }
+    .backup-btn.import-btn:hover { border-color: var(--blue); color: var(--blue); }
 
-    .ai-error {
-      color: var(--red); font-size: 13px;
-      background: rgba(255,82,82,.08);
-      border: 1px solid rgba(255,82,82,.2);
-      border-radius: var(--r); padding: 12px 14px;
+    /* ── BODY MAP ── */
+    .bm-wrap {
+      margin-bottom: 14px;
+      background: var(--s1); border: 1px solid var(--b1);
+      border-radius: var(--rl); overflow: hidden;
     }
+    .bm-svg {
+      display: block; width: 100%; max-width: 480px;
+      margin: 0 auto; padding: 6px 0 2px;
+    }
+    .bm-det {
+      border-top: 1px solid var(--b1); padding: 10px 14px;
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      min-height: 40px;
+    }
+    .bm-det-name  { font-size: 13px; font-weight: 500; color: var(--t1); }
+    .bm-det-state { font-family: var(--mono); font-size: 11px; font-weight: 600; }
+    .bm-det-recup { font-family: var(--mono); font-size: 10px; color: var(--t2); }
+    .bm-det-hint  { font-family: var(--mono); font-size: 10px; color: var(--t3); }
 
-    .ai-context-pill {
-      display: flex; align-items: center; gap: 7px;
-      font-size: 11px; color: var(--t3);
-      font-family: var(--mono);
+    /* Bouton édition activité dans historique */
+    .btn-act-edit {
+      background: none; border: 1px solid var(--b2); border-radius: var(--r);
+      color: var(--t2); font-size: 13px; padding: 2px 8px; cursor: pointer;
+      transition: border-color .15s, color .15s; flex-shrink: 0;
     }
-    .ai-context-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--b3); }
+    .btn-act-edit:hover { border-color: var(--accent); color: var(--accent); }
   </style>
 </head>
 <body>
@@ -1065,13 +904,13 @@
   </div>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="hdr-date"></div>
-    <button class="ai-btn" id="btn-ai" title="Conseil IA — quelle séance faire aujourd'hui ?">
-      <span class="ai-btn-icon">✦</span>IA
-    </button>
+    <button class="backup-btn import-btn" id="btn-import" title="Importer une sauvegarde">⬆ Import</button>
+    <button class="backup-btn" id="btn-export" title="Exporter toutes mes données">⬇ Export</button>
     <button class="profile-btn" id="btn-profile" title="Mon profil de récupération">
       <span class="pb-dot"></span>Profil
     </button>
   </div>
+  <input type="file" id="import-file-input" accept=".json" style="display:none">
 </header>
 
 <nav>
@@ -1104,36 +943,6 @@
 
 <div id="pr-toast"></div>
 
-<!-- ════ PANEL IA ════ -->
-<div id="ai-overlay" class="ai-overlay">
-  <div class="ai-panel" id="ai-panel">
-
-    <div class="ai-panel-hdr">
-      <div class="ai-panel-title">Conseil IA</div>
-      <button class="ai-close-btn" id="ai-close">✕</button>
-    </div>
-
-    <div class="ai-equip-section" id="ai-equip-section">
-      <div class="ai-equip-label">Équipement disponible aujourd'hui</div>
-      <div class="ai-equip-chips" id="ai-equip-chips">
-        <button class="ai-equip-chip on" data-equip="barre">Barre</button>
-        <button class="ai-equip-chip on" data-equip="haltères">Haltères</button>
-        <button class="ai-equip-chip on" data-equip="machine">Machine</button>
-        <button class="ai-equip-chip on" data-equip="câble">Câble</button>
-        <button class="ai-equip-chip on" data-equip="poulie">Poulie</button>
-        <button class="ai-equip-chip" data-equip="bande élastique">Élastique</button>
-        <button class="ai-equip-chip" data-equip="aucun">Poids du corps</button>
-      </div>
-    </div>
-
-    <button class="ai-generate-btn" id="ai-generate-btn">
-      Analyser ma fatigue et suggérer une séance →
-    </button>
-
-    <div class="ai-response" id="ai-response" style="display:none"></div>
-
-  </div>
-</div>
 
 <!-- ── ONBOARDING / PROFIL ── -->
 <div id="onboarding-overlay">
@@ -1143,6 +952,7 @@
 <script src="fatigue-data.js"></script>
 <script src="user-profile.js"></script>
 <script src="fatigue-engine.js"></script>
+<script src="body-map.js"></script>
 
 <script>
 // ── FATIGUE_DATA et FATIGUE_ENGINE chargés depuis les fichiers externes.
@@ -1927,55 +1737,8 @@ const PR_ENGINE = {
 
 
 
-// ════════════════════════════════════════════════════
-// BASELINE 1RM
-// Références manuelles par exercice/variante.
-// Utilisées quand PR_ENGINE n'a pas encore de données
-// (premier enregistrement, exercice inconnu).
-// Clé localStorage : 'muscleos_v2_baselines'
-// Structure : { 'cat::exId::varId': kg }
-// ════════════════════════════════════════════════════
-const BASELINE_1RM = {
-  KEY: 'muscleos_v2_baselines',
-
-  load() {
-    try { return JSON.parse(localStorage.getItem(this.KEY) || '{}'); }
-    catch { return {}; }
-  },
-
-  save(data) { localStorage.setItem(this.KEY, JSON.stringify(data)); },
-
-  _key(cat, exId, varId) { return `${cat}::${exId}::${varId}`; },
-
-  get(cat, exId, varId) {
-    const data = this.load();
-    return data[this._key(cat, exId, varId)] ?? null;
-  },
-
-  set(cat, exId, varId, kg) {
-    const data = this.load();
-    data[this._key(cat, exId, varId)] = kg;
-    this.save(data);
-  },
-
-  remove(cat, exId, varId) {
-    const data = this.load();
-    delete data[this._key(cat, exId, varId)];
-    this.save(data);
-  }
-};
-
 /**
- * Retourne le meilleur 1RM connu pour un exercice/variante.
- * Priorité : PR enregistrés > baseline manuelle > null
- * @returns {number|null}
- */
-function getBest1RM(cat, exId, varId) {
-  const prs = PR_ENGINE.load();
-  const pr = prs[`${cat}::${exId}::${varId}`];
-  if (pr?.max1RM > 0) return pr.max1RM;
-  return BASELINE_1RM.get(cat, exId, varId);
-}
+ * Recalcule entièrement l'état de fatigue depuis l'historique DB.
  * Appelé après chaque modification de séance (ajout/suppression de série).
  * Chaque série est appliquée à son propre timestamp (set.ts).
  */
@@ -1994,14 +1757,11 @@ function rebuildFatigue() {
         // Exercice de musculation — doses calculées depuis FATIGUE_DATA
         const activation = FATIGUE_DATA[entry.category]?.[entry.exerciseId]?.[entry.variantId];
         if (!activation) continue;
+        const sessionTs = session.id ? new Date(session.id).getTime() : Date.now();
         for (const set of entry.sets) {
-          if (!set.ts) continue;
-          const best1RM = getBest1RM(entry.category, entry.exerciseId, entry.variantId);
-          const intensityFactor = set.warmup
-            ? 0.25
-            : FATIGUE_ENGINE.calcIntensityFactor(set.weight, best1RM);
-          const doses = FATIGUE_ENGINE.calcDoses(activation, [set], intensityFactor);
-          FATIGUE_ENGINE.applyDoses(doses, set.ts);
+          const ts = set.ts || entry.ts || sessionTs;
+          const doses = FATIGUE_ENGINE.calcDoses(activation, [set]);
+          FATIGUE_ENGINE.applyDoses(doses, ts);
         }
       }
     }
@@ -2292,7 +2052,7 @@ function renderToday() {
     }, 500);
   });
 
-  document.getElementById('btn-add-ex').addEventListener('click', openDrawer);
+  document.getElementById('btn-add-ex').addEventListener('click', () => openDrawer());
 
   // Bind all entry events
   S.today.entries.forEach(e => bindEntry(e.id));
@@ -2354,9 +2114,7 @@ function renderEntry(entry) {
   const setsRows = entry.sets.length > 0
     ? entry.sets.map((s, i) => {
         const badge = PR_ENGINE.getBadge(entry.category, entry.exerciseId, entry.variantId, s.weight, s.reps);
-        const badgeHtml = s.warmup
-          ? `<span class="warmup-badge">CHAUF</span>`
-          : badge === '1rm'
+        const badgeHtml = badge === '1rm'
           ? `<span class="pr-badge pr-1rm" title="Record 1RM estimé">PR</span>`
           : badge === 'weight'
           ? `<span class="pr-badge" title="Charge maximale">PR</span>`
@@ -2364,7 +2122,7 @@ function renderEntry(entry) {
           ? `<span class="pr-badge" title="Record de reps">PR</span>`
           : `<span></span>`;
         return `
-        <div class="set-row${s.warmup ? ' is-warmup' : ''}">
+        <div class="set-row">
           <span class="set-n">S${i+1}</span>
           <div><div class="sv">${s.weight > 0 ? s.weight+' kg' : 'BW'}</div><div class="su">poids</div></div>
           <div><div class="sv">${s.reps}</div><div class="su">reps</div></div>
@@ -2405,30 +2163,6 @@ function renderEntry(entry) {
         </div>
         ${angleField}
         <button class="btn-log" data-eid="${entry.id}">＋ Série</button>
-      </div>
-      <label class="warmup-toggle" id="wt-${entry.id}">
-        <span class="warmup-toggle-box" id="wtbox-${entry.id}"></span>
-        <span class="warmup-toggle-label">Échauffement (fatigue ×0.25)</span>
-      </label>
-      <div class="baseline-row">
-        <span class="baseline-label">1RM de référence</span>
-        <div class="baseline-value${getBest1RM(entry.category, entry.exerciseId, entry.variantId) ? ' has-ref' : ''}" id="bv-${entry.id}">
-          ${(() => {
-            const pr = PR_ENGINE.load()[`${entry.category}::${entry.exerciseId}::${entry.variantId}`];
-            const baseline = BASELINE_1RM.get(entry.category, entry.exerciseId, entry.variantId);
-            if (pr?.max1RM > 0) return `<span title="1RM estimé depuis vos séries">${Math.round(pr.max1RM)} kg</span><span style="font-size:9px;color:var(--t3);margin-left:2px">AUTO</span>`;
-            if (baseline) return `<span>${baseline} kg</span><button class="btn-baseline-edit" data-eid="${entry.id}" data-cat="${entry.category}" data-ex="${entry.exerciseId}" data-var="${entry.variantId}">✎</button>`;
-            return `<button class="btn-baseline-edit" data-eid="${entry.id}" data-cat="${entry.category}" data-ex="${entry.exerciseId}" data-var="${entry.variantId}">Définir</button>`;
-          })()}
-        </div>
-      </div>
-      <div id="baseline-form-${entry.id}" style="display:none">
-        <div class="baseline-input-row">
-          <input class="fi-baseline" id="bfi-${entry.id}" type="number" placeholder="ex: 100" min="1" step="0.5">
-          <span style="font-family:var(--mono);font-size:10px;color:var(--t3)">kg</span>
-          <button class="btn-baseline-save" data-eid="${entry.id}" data-cat="${entry.category}" data-ex="${entry.exerciseId}" data-var="${entry.variantId}">Enregistrer</button>
-          <button class="btn-baseline-cancel" data-eid="${entry.id}">✕</button>
-        </div>
       </div>
     </div>
     <div class="entry-foot">
@@ -2510,41 +2244,6 @@ function bindEntry(entryId) {
     });
   });
 
-  // Warmup toggle
-  const wtToggle = document.getElementById(`wt-${entryId}`);
-  if (wtToggle) {
-    wtToggle.addEventListener('click', () => {
-      wtToggle.classList.toggle('active');
-    });
-  }
-
-  // Baseline 1RM — bouton Définir / ✎
-  document.querySelectorAll(`.btn-baseline-edit[data-eid="${entryId}"]`).forEach(btn => {
-    btn.addEventListener('click', () => {
-      const form = document.getElementById(`baseline-form-${entryId}`);
-      if (form) { form.style.display = 'block'; document.getElementById(`bfi-${entryId}`)?.focus(); }
-    });
-  });
-
-  // Baseline — enregistrer
-  document.querySelectorAll(`.btn-baseline-save[data-eid="${entryId}"]`).forEach(btn => {
-    btn.addEventListener('click', () => {
-      const val = parseFloat(document.getElementById(`bfi-${entryId}`)?.value);
-      if (!val || val <= 0) return;
-      BASELINE_1RM.set(btn.dataset.cat, btn.dataset.ex, btn.dataset.var, val);
-      rebuildFatigue();
-      refreshEntries();
-    });
-  });
-
-  // Baseline — annuler
-  document.querySelectorAll(`.btn-baseline-cancel[data-eid="${entryId}"]`).forEach(btn => {
-    btn.addEventListener('click', () => {
-      const form = document.getElementById(`baseline-form-${entryId}`);
-      if (form) form.style.display = 'none';
-    });
-  });
-
   // Delete whole entry — géré dans le bloc commun ci-dessus
 
 }
@@ -2562,7 +2261,17 @@ function addSet(entryId) {
     return;
   }
 
-  const entry = S.today.entries.find(e => e.id === entryId);
+  // Cherche dans S.today d'abord, puis dans les sessions passées
+  let entry = S.today.entries.find(e => e.id === entryId);
+  let isHistoryEntry = false;
+  let historySessionId = null;
+  if (!entry) {
+    const all = DB.load();
+    for (const sess of all) {
+      const found = sess.entries.find(e => e.id === entryId);
+      if (found) { entry = found; isHistoryEntry = true; historySessionId = sess.id; break; }
+    }
+  }
   if (!entry) return;
 
   // Vérifier si le set bat un PR avant de l'ajouter
@@ -2571,15 +2280,26 @@ function addSet(entryId) {
   const setObj = {
     id: uid(), weight: w, reps: r,
     rir: (rir !== '' && rir != null) ? parseInt(rir) : null,
-    ts: Date.now(),
-    warmup: document.getElementById(`wt-${entryId}`)?.classList.contains('active') ?? false
+    ts: Date.now()
   };
   if (angle !== null) setObj.angle = angle;
   entry.sets.push(setObj);
-  DB.saveToday(S.today);
+
+  if (isHistoryEntry) {
+    const all = DB.load();
+    const sess = all.find(s => s.id === historySessionId);
+    if (sess) {
+      const e2 = sess.entries.find(e => e.id === entryId);
+      if (e2) e2.sets = entry.sets;
+    }
+    DB.save(all);
+    renderHistory();
+  } else {
+    DB.saveToday(S.today);
+    refreshEntries();
+  }
   rebuildFatigue();
   PR_ENGINE.rebuild();
-  refreshEntries();
 
   // Flash notification PR
   if (prHit.weight || prHit.e1rm || prHit.reps) {
@@ -2658,24 +2378,49 @@ function renderHistory() {
                 <div class="he-name" style="color:${act.color}">${act.icon} ${act.label}</div>
                 <div class="he-var">${e.duration ? e.duration+' min' : ''} ${e.intensity ? '· '+e.intensity+'/10' : ''}</div>
               </div>
-              <div class="he-sets" style="color:var(--t3)">activité</div>
+              <button class="btn-act-edit" data-sid="${s.id}" data-eid="${e.id}"
+                data-atype="${e.activityType}" data-dur="${e.duration||''}"
+                data-int="${e.intensity||0}" data-boosts='${JSON.stringify(e.boosts||{})}'>✎</button>
             </div>`;
           }
           const color = getCatColor(e.category);
           const n = e.sets.length;
           const maxW = n > 0 ? Math.max(...e.sets.map(x => x.weight || 0)) : 0;
           const reps0 = n > 0 ? e.sets[0].reps : 0;
-          return `<div class="hist-entry">
-            <div>
-              <div class="he-name">
-                <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${color}"></span>
-                ${exLabel(e.category, e.exerciseId)}
+          const setsRows = e.sets.map((set, i) =>
+            `<div class="set-row">
+              <span class="set-n">S${i+1}</span>
+              <div><div class="sv">${set.weight > 0 ? set.weight+' kg' : 'BW'}</div><div class="su">poids</div></div>
+              <div><div class="sv">${set.reps}</div><div class="su">reps</div></div>
+              ${set.rir != null ? `<div><div class="sv" style="color:var(--t3)">RIR ${set.rir}</div><div class="su">rir</div></div>` : ''}
+              <button class="btn-ds" data-eid="${e.id}" data-sid="${set.id}" data-sessid="${s.id}" title="Supprimer">✕</button>
+            </div>`).join('');
+          return `<div class="hist-entry-full" id="hef-${e.id}">
+            <div class="hist-entry-hdr">
+              <div>
+                <div class="he-name">
+                  <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:${color}"></span>
+                  ${exLabel(e.category, e.exerciseId)}
+                </div>
+                <div class="he-var">${varLabel(e.category, e.exerciseId, e.variantId)}</div>
               </div>
-              <div class="he-var">${varLabel(e.category, e.exerciseId, e.variantId)}</div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div class="he-sets">${n > 0 ? n+'×'+reps0+(maxW > 0 ? ' · '+maxW+' kg' : '') : 'Aucune série'}</div>
+                <button class="btn-act-edit btn-he-del" data-sessid="${s.id}" data-eid="${e.id}" title="Supprimer l'exercice">✕</button>
+              </div>
             </div>
-            <div class="he-sets">${n}×${reps0}${maxW > 0 ? ' · '+maxW+' kg' : ''}</div>
+            ${n > 0 ? `<div class="hist-sets-list">${setsRows}</div>` : ''}
+            <div class="hist-add-set">
+              <input class="fi" id="iw-${e.id}" type="number" placeholder="kg" min="0" step="0.5" style="width:72px">
+              <input class="fi" id="ir-${e.id}" type="number" placeholder="reps" min="1" style="width:64px">
+              <input class="fi" id="irir-${e.id}" type="number" placeholder="RIR" min="0" max="10" style="width:56px">
+              <button class="btn-log-set" data-logeid="${e.id}">+ Série</button>
+            </div>
           </div>`;
         }).join('')}
+        <div style="padding-top:10px;border-top:1px solid var(--b1);margin-top:8px">
+          <button class="btn-del-session" data-sessid="${s.id}">🗑 Supprimer cette séance</button>
+        </div>
       </div>` : '';
 
     const setsLabel = sets > 0 && actCount > 0
@@ -2706,13 +2451,106 @@ function renderHistory() {
       renderHistory();
     });
   });
+
+  document.querySelectorAll('.btn-del-session').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const sessId = btn.dataset.sessid;
+      const dateLabel = sessId; // fmtDateShort pas encore dispo ici, on utilise l'id
+      if (!confirm('Supprimer toute la séance du ' + sessId + ' ?')) return;
+      let all = DB.load();
+      all = all.filter(s => s.id !== sessId);
+      DB.save(all);
+      if (S.expandedHist === sessId) S.expandedHist = null;
+      rebuildFatigue();
+      PR_ENGINE.rebuild();
+      renderHistory();
+    });
+  });
+
+  document.querySelectorAll('.btn-act-edit').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      openDrawer({
+        sessionId: btn.dataset.sid,
+        entryId:   btn.dataset.eid,
+        actType:   btn.dataset.atype,
+        duration:  parseInt(btn.dataset.dur) || null,
+        intensity: parseInt(btn.dataset.int) || 0,
+        boosts:    JSON.parse(btn.dataset.boosts || '{}'),
+        date:      btn.dataset.sid,
+      });
+    });
+  });
+
+  // Boutons "+ Série" dans l'historique
+  document.querySelectorAll('.btn-log-set').forEach(btn => {
+    btn.addEventListener('click', () => addSet(btn.dataset.logeid));
+  });
+
+  // Bouton supprimer EXERCICE dans l'historique
+  document.querySelectorAll('.btn-he-del').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (!confirm('Supprimer cet exercice et toutes ses séries ?')) return;
+      const all = DB.load();
+      const sess = all.find(s => s.id === btn.dataset.sessid);
+      if (!sess) return;
+      sess.entries = sess.entries.filter(e => e.id !== btn.dataset.eid);
+      DB.save(all);
+      const todayId = DB.todayId();
+      if (btn.dataset.sessid === todayId) {
+        S.today = all.find(s => s.id === todayId) || S.today;
+      }
+      rebuildFatigue();
+      PR_ENGINE.rebuild();
+      renderHistory();
+    });
+  });
+
+  // Boutons supprimer série dans l'historique
+  document.querySelectorAll('.hist-sets-list .btn-ds').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sessId = btn.dataset.sessid;
+      const entryId = btn.dataset.eid;
+      const setId = btn.dataset.sid;
+      const all = DB.load();
+      const sess = all.find(s => s.id === sessId);
+      if (!sess) return;
+      const entry = sess.entries.find(e => e.id === entryId);
+      if (!entry) return;
+      entry.sets = entry.sets.filter(s => s.id !== setId);
+      DB.save(all);
+      rebuildFatigue();
+      PR_ENGINE.rebuild();
+      renderHistory();
+    });
+  });
 }
 
 // ════════════════════════════════════════════════════
 // DRAWER — Sélection exercice en 3 étapes
 // ════════════════════════════════════════════════════
-function openDrawer() {
-  S.drawer = { open: true, step: 1, cat: null, ex: null, actType: null, actBoosts: {} };
+function openDrawer(editData) {
+  // editData optionnel : { sessionId, entryId, actType, duration, intensity, boosts, date }
+  if (editData) {
+    S.drawer = {
+      open: true, step: 5,
+      cat: null, ex: null,
+      actType: editData.actType,
+      actBoosts: { ...editData.boosts },
+      _intensity: editData.intensity,
+      _duration: editData.duration,
+      _actDate: editData.date,
+      editMode: true,
+      editSessionId: editData.sessionId,
+      editEntryId: editData.entryId,
+    };
+  } else {
+    S.drawer = { open: true, step: 1, cat: null, ex: null, actType: null, actBoosts: {},
+                 editMode: false, editSessionId: null, editEntryId: null,
+                 _actDate: DB.todayId(), _exDate: DB.todayId() };
+  }
   document.getElementById('overlay').classList.add('on');
   document.getElementById('drawer').classList.add('on');
   renderDrawer();
@@ -2742,7 +2580,13 @@ function renderDrawer() {
         <div class="cc-count">${n} ex.</div>
       </div>`;
     }).join('');
+    const todayId = DB.todayId();
+    const curDate = S.drawer._date || todayId;
     body.innerHTML = `
+      <div class="drawer-date-row">
+        <label class="fl">Date de la séance</label>
+        <input class="fi" id="drawer-date" type="date" value="${curDate}" max="${todayId}">
+      </div>
       <div class="cat-grid">${chips}</div>
       <span class="act-section-lbl">Activité cardio / sport</span>
       <div class="act-type-chip" id="chip-act">
@@ -2750,13 +2594,24 @@ function renderDrawer() {
         <div class="cc-label">Activité</div>
         <span style="font-family:var(--mono);font-size:10px;color:var(--t3);margin-left:auto">running · vélo · sport ···</span>
       </div>`;
+    body.querySelector('#drawer-date').addEventListener('change', e => {
+      S.drawer._date = e.target.value;
+      S.drawer._actDate = e.target.value;
+      S.drawer._exDate  = e.target.value;
+    });
     body.querySelectorAll('.cat-chip').forEach(c =>
       c.addEventListener('click', () => {
+        S.drawer._date = document.getElementById('drawer-date')?.value || todayId;
+        S.drawer._actDate = S.drawer._date;
+        S.drawer._exDate  = S.drawer._date;
         S.drawer.cat = c.dataset.cat;
         S.drawer.step = 2;
         renderDrawer();
       }));
     body.querySelector('#chip-act').addEventListener('click', () => {
+      S.drawer._date = document.getElementById('drawer-date')?.value || todayId;
+      S.drawer._actDate = S.drawer._date;
+      S.drawer._exDate  = S.drawer._date;
       S.drawer.step = 4;
       renderDrawer();
     });
@@ -2764,6 +2619,7 @@ function renderDrawer() {
 
   else if (step === 2) {
     const catData = CATALOG[cat];
+    if (!catData) { console.error('[renderDrawer] step2 — cat invalide:', cat); S.drawer.step=1; renderDrawer(); return; }
     title.textContent = catData.label;
     crumb.innerHTML = `<span>${catData.label}</span>`;
     const items = Object.entries(catData.exercises).map(([k, v]) => `
@@ -2788,9 +2644,12 @@ function renderDrawer() {
 
   else if (step === 3) {
     const catData = CATALOG[cat];
-    const exData = catData.exercises[ex];
+    const exData = catData?.exercises[ex];
+    if (!catData || !exData) { console.error('[renderDrawer] step3 — ex invalide:', cat, ex); S.drawer.step = cat ? 2 : 1; renderDrawer(); return; }
     title.textContent = exData.label;
     crumb.innerHTML = `<span>${catData.label}</span> <span style="color:var(--t3)">›</span> <span>${exData.label}</span>`;
+    const todayId = DB.todayId();
+    const defaultDate = S.drawer._exDate || todayId;
     const items = Object.entries(exData.variants).map(([k, v]) => `
       <div class="sel-item" data-var="${k}">
         <div class="si-name">${v}</div>
@@ -2798,11 +2657,13 @@ function renderDrawer() {
       </div>`).join('');
     body.innerHTML = `
       <button class="btn-back" id="bb2">‹ ${catData.label}</button>
+      <div class="lbl" style="margin:10px 0 6px">Variante</div>
       <div class="sel-list">${items}</div>`;
     body.querySelector('#bb2').addEventListener('click', () => { S.drawer.step=2; renderDrawer(); });
     body.querySelectorAll('.sel-item').forEach(i =>
       i.addEventListener('click', () => {
-        addEntry(cat, ex, i.dataset.var);
+        const dateVal = S.drawer._exDate || S.drawer._date || DB.todayId();
+        addEntry(cat, ex, i.dataset.var, dateVal);
         closeDrawer();
       }));
   }
@@ -2835,7 +2696,8 @@ function renderDrawer() {
   else if (step === 5) {
     const actType = S.drawer.actType;
     const act = ACTIVITY_CATALOG[actType];
-    const boosts = S.drawer.actBoosts;
+    if (!act) { console.error('[renderDrawer] step5 — actType invalide:', actType); S.drawer.step=4; renderDrawer(); return; }
+    const boosts = S.drawer.actBoosts || {};
     const boostMuscles = ACTIVITY_BOOST_MUSCLES[actType] || [];
 
     title.textContent = act.label;
@@ -2852,9 +2714,19 @@ function renderDrawer() {
       return `<button class="boost-chip${level?' '+level:''}" data-bid="${id}">${MUSCLE_LABELS[id]||id}</button>`;
     }).join('');
 
+    const isEdit = S.drawer.editMode;
+    const todayId = DB.todayId();
+    const defaultDate = S.drawer._actDate || todayId;
+
     body.innerHTML = `
       <button class="btn-back" id="bb-act-form">‹ ${act.icon} Type</button>
       <div class="act-form">
+        <div class="act-form-row">
+          <div class="fg">
+            <label class="fl">Date</label>
+            <input class="fi" id="act-date" type="date" value="${defaultDate}" max="${todayId}">
+          </div>
+        </div>
         <div class="act-form-row">
           <div class="fg">
             <label class="fl">Durée (min)</label>
@@ -2870,7 +2742,8 @@ function renderDrawer() {
           <div class="lbl" style="margin-bottom:6px">Muscles extra sollicités <span style="font-weight:400;color:var(--t3)">(optionnel · tap = modéré · 2× = intense)</span></div>
           <div class="boost-grid">${boostChips}</div>
         </div>
-        <button class="btn-act-save" id="btn-act-save">＋ Enregistrer l'activité</button>
+        <button class="btn-act-save" id="btn-act-save">${isEdit ? '✓ Enregistrer la modification' : '＋ Enregistrer l\'activité'}</button>
+        ${isEdit ? `<button class="btn-de" id="btn-act-del" style="margin-top:6px;width:100%">Supprimer l'activité</button>` : ''}
       </div>`;
 
     body.querySelector('#bb-act-form').addEventListener('click', () => { S.drawer.step=4; renderDrawer(); });
@@ -2879,6 +2752,7 @@ function renderDrawer() {
     body.querySelectorAll('.idot').forEach(btn =>
       btn.addEventListener('click', () => {
         S.drawer._duration = parseInt(document.getElementById('act-dur')?.value) || null;
+        S.drawer._actDate = document.getElementById('act-date')?.value || DB.todayId();
         S.drawer._intensity = parseInt(btn.dataset.iv);
         renderDrawer();
       }));
@@ -2887,6 +2761,7 @@ function renderDrawer() {
     body.querySelectorAll('.boost-chip').forEach(btn =>
       btn.addEventListener('click', () => {
         S.drawer._duration = parseInt(document.getElementById('act-dur')?.value) || null;
+        S.drawer._actDate = document.getElementById('act-date')?.value || DB.todayId();
         const id = btn.dataset.bid;
         const cur = boosts[id] || '';
         if (!cur) boosts[id] = 'moderate';
@@ -2895,49 +2770,145 @@ function renderDrawer() {
         renderDrawer();
       }));
 
-    // Enregistrer
+    // Enregistrer / Modifier
     body.querySelector('#btn-act-save').addEventListener('click', () => {
       const dur = parseInt(document.getElementById('act-dur')?.value);
       const intensity = S.drawer._intensity || 0;
+      const dateVal = document.getElementById('act-date')?.value || DB.todayId();
       if (!dur || dur <= 0) {
         const inp = document.getElementById('act-dur');
         if (inp) { inp.classList.add('err'); setTimeout(() => inp.classList.remove('err'), 400); inp.focus(); }
         return;
       }
-      if (!intensity) {
-        showPrToast('⚠ Renseigne l\'intensité ressentie');
-        return;
+      if (!intensity) { showPrToast('⚠ Renseigne l\'intensité ressentie'); return; }
+      if (S.drawer.editMode) {
+        updateActivity(S.drawer.editSessionId, S.drawer.editEntryId, dur, intensity, { ...boosts }, dateVal);
+      } else {
+        addActivity(actType, dur, intensity, { ...boosts }, dateVal);
       }
-      addActivity(actType, dur, intensity, { ...boosts });
+      closeDrawer();
+    });
+
+    // Supprimer (mode edit uniquement)
+    body.querySelector('#btn-act-del')?.addEventListener('click', () => {
+      if (!confirm('Supprimer cette activité ?')) return;
+      deleteActivity(S.drawer.editSessionId, S.drawer.editEntryId);
       closeDrawer();
     });
   }
 }
 
-function addEntry(category, exerciseId, variantId) {
+function addEntry(category, exerciseId, variantId, targetDateId) {
   const entry = { id: uid(), category, exerciseId, variantId, sets: [], ts: Date.now() };
-  S.today.entries.push(entry);
-  S.expandedEntry = entry.id;
-  DB.saveToday(S.today);
-  renderToday();
+  const dateId = targetDateId || DB.todayId();
+  const todayId = DB.todayId();
+
+  if (dateId === todayId) {
+    S.today.entries.push(entry);
+    S.expandedEntry = entry.id;
+    DB.saveToday(S.today);
+    rebuildFatigue();
+    PR_ENGINE.rebuild();
+    renderToday();
+  } else {
+    const all = DB.load();
+    let s = all.find(x => x.id === dateId);
+    if (!s) {
+      s = { id: dateId, metrics: { energy: null, sleep: null, bodyweight: null, notes: '' }, entries: [] };
+      all.push(s);
+      all.sort((a, b) => b.id.localeCompare(a.id));
+    }
+    s.entries.push(entry);
+    DB.save(all);
+    rebuildFatigue();
+    PR_ENGINE.rebuild();
+    // Naviguer vers l'historique et ouvrir la bonne session
+    S.expandedHist = dateId;
+    switchTab('history');
+    showPrToast('✓ Exercice ajouté à ' + fmtDateShort(dateId));
+  }
 }
 
-function addActivity(activityType, duration, intensity, boosts) {
+function addActivity(activityType, duration, intensity, boosts, targetDateId) {
   const entry = {
-    id: uid(),
-    type: 'activity',
-    activityType,
-    duration,
-    intensity,
-    boosts,       // { MUSCLE_ID: 'moderate' | 'high' }
-    ts: Date.now()
+    id: uid(), type: 'activity', activityType, duration, intensity,
+    boosts: boosts || {}, ts: Date.now()
   };
-  S.today.entries.push(entry);
-  S.expandedEntry = null;
-  DB.saveToday(S.today);
+  const dateId = targetDateId || DB.todayId();
+  const todayId = DB.todayId();
+
+  if (dateId === todayId) {
+    S.today.entries.push(entry);
+    DB.saveToday(S.today);
+  } else {
+    const all = DB.load();
+    let s = all.find(x => x.id === dateId);
+    if (!s) {
+      s = { id: dateId, metrics: { energy: null, sleep: null, bodyweight: null, notes: '' }, entries: [] };
+      all.push(s);
+      all.sort((a, b) => b.id.localeCompare(a.id));
+    }
+    s.entries.push(entry);
+    DB.save(all);
+  }
   rebuildFatigue();
   PR_ENGINE.rebuild();
-  renderToday();
+  if (dateId === todayId) renderToday();
+}
+
+function updateActivity(sessionId, entryId, duration, intensity, boosts, newDateId) {
+  const all = DB.load();
+  const todayId = DB.todayId();
+  const targetDate = newDateId || sessionId;
+
+  if (targetDate === sessionId) {
+    // Modification sur place
+    const s = all.find(x => x.id === sessionId);
+    if (!s) return;
+    const e = s.entries.find(x => x.id === entryId);
+    if (!e) return;
+    e.duration = duration; e.intensity = intensity; e.boosts = boosts;
+  } else {
+    // Déplacement vers une autre date
+    const s = all.find(x => x.id === sessionId);
+    if (!s) return;
+    const eIdx = s.entries.findIndex(x => x.id === entryId);
+    if (eIdx < 0) return;
+    const [e] = s.entries.splice(eIdx, 1);
+    e.duration = duration; e.intensity = intensity; e.boosts = boosts; e.ts = Date.now();
+    let newS = all.find(x => x.id === targetDate);
+    if (!newS) {
+      newS = { id: targetDate, metrics: { energy: null, sleep: null, bodyweight: null, notes: '' }, entries: [] };
+      all.push(newS);
+      all.sort((a, b) => b.id.localeCompare(a.id));
+    }
+    newS.entries.push(e);
+  }
+
+  DB.save(all);
+  // Synchronise S.today si elle est affectée
+  const freshToday = all.find(x => x.id === todayId);
+  if (freshToday) S.today = freshToday;
+  rebuildFatigue();
+  PR_ENGINE.rebuild();
+  if (S.expandedHist && S.expandedHist !== targetDate) S.expandedHist = targetDate;
+  if (S.tab === 'history') renderHistory();
+  if (S.tab === 'today') renderToday();
+}
+
+function deleteActivity(sessionId, entryId) {
+  const all = DB.load();
+  const todayId = DB.todayId();
+  const s = all.find(x => x.id === sessionId);
+  if (!s) return;
+  s.entries = s.entries.filter(x => x.id !== entryId);
+  DB.save(all);
+  const freshToday = all.find(x => x.id === todayId);
+  if (freshToday) S.today = freshToday;
+  rebuildFatigue();
+  PR_ENGINE.rebuild();
+  if (S.tab === 'history') renderHistory();
+  if (S.tab === 'today') renderToday();
 }
 
 // ════════════════════════════════════════════════════
@@ -2949,7 +2920,8 @@ const PROG = {
   cat: null,      // catégorie sélectionnée
   exId: null,     // exercice sélectionné
   varId: null,    // variante sélectionnée
-  openSel: null   // quel sélecteur est ouvert : 'cat' | 'ex' | 'var' | null
+  openSel: null,  // quel sélecteur est ouvert : 'cat' | 'ex' | 'var' | null
+  muscle: null,   // muscle sélectionné sur la carte anatomique
 };
 
 function renderProgress() {
@@ -3132,6 +3104,9 @@ function renderProgress() {
   }
 
   el.innerHTML = `
+    <div class="bm-wrap">
+      <div id="bm-prog-svg"></div>
+    </div>
     <div class="prog-selector">${selRows}</div>
     ${bodyHtml}`;
 
@@ -3166,6 +3141,22 @@ function renderProgress() {
       });
     }
   });
+
+  // ── Carte anatomique (navigation par muscle) ──────
+  if (typeof BODY_MAP !== 'undefined') {
+    const exercisedCats = new Set(
+      DB.load().flatMap(s => s.entries.map(e => e.category).filter(Boolean))
+    );
+    BODY_MAP.render('bm-prog-svg', (muscleId, category) => {
+      PROG.muscle = muscleId;
+      if (category && PROG.cat !== category) {
+        PROG.cat = category; PROG.exId = null; PROG.varId = null; PROG.openSel = null;
+      }
+      renderProgress();
+    });
+    BODY_MAP.updateProgression('bm-prog-svg', exercisedCats);
+    if (PROG.muscle) BODY_MAP.highlight('bm-prog-svg', PROG.muscle);
+  }
 
   // ── Canvas graphe ─────────────────────────────────
   if (!cat || !exId || !varId) return;
@@ -3286,7 +3277,7 @@ function renderFatigue() {
   }
 
   const all = FATIGUE_ENGINE.getAll();
-  const THRESHOLD = 5; // Ignorer les muscles en dessous de ce seuil
+  const THRESHOLD = 5;
   const now = new Date();
   const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
 
@@ -3342,6 +3333,12 @@ function renderFatigue() {
         <button class="btn-fat-reset" id="btn-fat-reset">Réinitialiser</button>
       </div>
     </div>
+    <div class="bm-wrap">
+      <div id="bm-fat-svg"></div>
+      <div id="bm-fat-det" class="bm-det">
+        <span class="bm-det-hint">Clique sur un muscle pour voir son état</span>
+      </div>
+    </div>
     <div style="font-family:var(--mono);font-size:10px;color:var(--t3);margin-bottom:14px;display:grid;grid-template-columns:1fr 90px 36px 58px 36px;gap:8px;padding:0 14px">
       <span>Muscle</span><span></span><span style="text-align:right">Pts</span><span>État</span><span style="text-align:right">Récup</span>
     </div>
@@ -3353,6 +3350,29 @@ function renderFatigue() {
       renderFatigue();
     }
   });
+
+  // ── Carte anatomique (fatigue) ────────────────────
+  if (typeof BODY_MAP !== 'undefined') {
+    BODY_MAP.render('bm-fat-svg', (muscleId) => {
+      const val   = FATIGUE_ENGINE.getAll()[muscleId] || 0;
+      const label = MUSCLE_LABELS[muscleId] || muscleId;
+      const det   = document.getElementById('bm-fat-det');
+      if (!det) return;
+      if (val < 5) {
+        det.innerHTML = `<span class="bm-det-name">${label}</span><span class="bm-det-hint" style="margin-left:8px">Frais ✓</span>`;
+      } else {
+        const { label: stateLabel, color } = FATIGUE_ENGINE.classify(val);
+        const recup = FATIGUE_ENGINE.getHoursToRecover(muscleId, 20);
+        const recupStr = recup != null
+          ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`) : '';
+        det.innerHTML = `
+          <span class="bm-det-name">${label}</span>
+          <span class="bm-det-state" style="color:${color}">${Math.round(val)} pts — ${stateLabel}</span>
+          ${recupStr ? `<span class="bm-det-recup">Récup : ${recupStr}</span>` : ''}`;
+      }
+    });
+    BODY_MAP.updateFatigue('bm-fat-svg', all);
+  }
 }
 
 // ════════════════════════════════════════════════════
@@ -3598,288 +3618,88 @@ const ONBOARDING = (() => {
 })();
 
 // ════════════════════════════════════════════════════
-// MODULE IA — Suggestions de séance via Claude API
+// NB — MODULE IA (à implémenter en v4+)
+// ════════════════════════════════════════════════════
+//
+// Option retenue : LLM local dans le navigateur via WebLLM
+// (https://github.com/mlc-ai/web-llm)
+//
+// Principe : le modèle (Phi-3 Mini ~2.4 GB ou Llama 3.2 3B ~2 GB)
+// est téléchargé une seule fois dans le cache du navigateur,
+// puis tourne entièrement en local via WebGPU — sans API externe,
+// sans clé, sans coût, offline après le premier chargement.
+//
+// Intégration prévue :
+//   1. Ajouter <script src="https://esm.run/@mlc-ai/web-llm"><\/script>
+//   2. Créer un onglet "IA" avec sélecteur de modèle + barre de téléchargement
+//   3. Construire le prompt avec FATIGUE_ENGINE.getAll() + historique 7j
+//   4. Streamer la réponse dans l'UI
+//
+// Prérequis utilisateur : Chrome 113+ ou Edge 113+ (WebGPU requis)
 // ════════════════════════════════════════════════════
 
-const AI_MODULE = (() => {
+// ════════════════════════════════════════════════════
+// DATA_BACKUP — Export / Import localStorage
+// ════════════════════════════════════════════════════
+const DATA_BACKUP = (() => {
+  'use strict';
 
-  // ── Helpers contexte ────────────────────────────────
+  const KEYS = [
+    'muscleos_v2_sessions',
+    'muscleos_v2_fatigue',
+    'muscleos_v2_profile',
+    'muscleos_prs'
+  ];
 
-  function _buildFatigueContext() {
-    if (typeof FATIGUE_ENGINE === 'undefined') return 'Données de fatigue non disponibles.';
-    const all = FATIGUE_ENGINE.getAll();
-    const lines = [];
-    for (const [id, val] of Object.entries(all)) {
-      if (val < 5) continue;
-      const label = (typeof MUSCLE_LABELS !== 'undefined' && MUSCLE_LABELS[id]) || id;
-      const { label: state } = FATIGUE_ENGINE.classify(val);
-      const recup = FATIGUE_ENGINE.getHoursToRecover(id, 20);
-      const recupStr = recup != null
-        ? (recup >= 48 ? `${(recup / 24).toFixed(1)}j` : `${Math.round(recup)}h`)
-        : '?';
-      lines.push(`  ${label} : ${Math.round(val)} pts (${state}, récup ~${recupStr})`);
-    }
-    return lines.length > 0
-      ? lines.join('\n')
-      : 'Tous les muscles sont frais (aucune fatigue enregistrée).';
+  function exportData() {
+    const snapshot = { version: '3.6', exportedAt: new Date().toISOString(), data: {} };
+    KEYS.forEach(k => {
+      const val = localStorage.getItem(k);
+      if (val !== null) snapshot.data[k] = JSON.parse(val);
+    });
+
+    const blob = new Blob([JSON.stringify(snapshot, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const date = new Date().toISOString().slice(0, 10);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = `muscleos-backup-${date}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    showToast('✅ Sauvegarde exportée');
   }
 
-  function _buildRecentSessions() {
-    const sessions = DB.load();
-    const cutoff = Date.now() - 7 * 24 * 3600 * 1000;
-    const recent = sessions
-      .filter(s => new Date(s.id).getTime() >= cutoff)
-      .sort((a, b) => b.id.localeCompare(a.id))
-      .slice(0, 7);
-    if (recent.length === 0) return 'Aucune séance ces 7 derniers jours.';
-    return recent.map(s => {
-      const entries = (s.entries || []).map(e => {
-        if (e.type === 'activity') return `    Activité : ${e.activityType || 'sport'}`;
-        const cat = (typeof CATALOG !== 'undefined' && CATALOG[e.category]?.label) || e.category;
-        const exLbl = (typeof exLabel === 'function') ? exLabel(e.category, e.exerciseId) : e.exerciseId;
-        const varLbl = (typeof varLabel === 'function') ? varLabel(e.category, e.exerciseId, e.variantId) : '';
-        const totalSets = (e.sets || []).length;
-        const maxW = Math.max(0, ...(e.sets || []).map(x => x.weight || 0));
-        return `    [${cat}] ${exLbl} — ${varLbl} · ${totalSets} séries${maxW > 0 ? ` · ${maxW}kg max` : ''}`;
-      }).join('\n');
-      return `${s.id}:\n${entries || '    (vide)'}`;
-    }).join('\n\n');
-  }
+  function importData(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      try {
+        const snapshot = JSON.parse(e.target.result);
+        if (!snapshot.data) throw new Error('Format invalide');
 
-  function _buildProfileContext() {
-    if (typeof USER_PROFILE === 'undefined') return 'Profil non configuré.';
-    const p = USER_PROFILE.load();
-    const m = USER_PROFILE.getMultiplier();
-    const parts = [];
-    if (p.age)            parts.push(`Âge : ${p.age}`);
-    if (p.training_level) parts.push(`Niveau : ${p.training_level}`);
-    if (p.sleep)          parts.push(`Sommeil : ${p.sleep}`);
-    if (p.protein)        parts.push(`Protéines : ${p.protein}`);
-    if (p.stress)         parts.push(`Stress : ${p.stress}`);
-    if (p.goal)           parts.push(`Objectif : ${p.goal}`);
-    parts.push(`Multiplicateur récupération : ×${m.toFixed(2)}`);
-    return parts.join(' | ');
-  }
+        const keysFound = Object.keys(snapshot.data).filter(k => KEYS.includes(k));
+        if (keysFound.length === 0) throw new Error('Aucune donnée reconnue');
 
-  function _getEquipment() {
-    return [...document.querySelectorAll('#ai-equip-chips .ai-equip-chip.on')]
-      .map(c => c.dataset.equip).filter(Boolean);
-  }
+        const ok = confirm(
+          `Importer cette sauvegarde du ${snapshot.exportedAt ? snapshot.exportedAt.slice(0,10) : '?'} ?\n\n` +
+          `Clés trouvées : ${keysFound.join(', ')}\n\n` +
+          `⚠ Tes données actuelles seront remplacées.`
+        );
+        if (!ok) return;
 
-  // ── Matching exercice → CATALOG ─────────────────────
+        keysFound.forEach(k => localStorage.setItem(k, JSON.stringify(snapshot.data[k])));
 
-  function _findExercise(name) {
-    if (typeof CATALOG === 'undefined') return null;
-    const n = name.toLowerCase().trim();
-    for (const [cat, catData] of Object.entries(CATALOG)) {
-      for (const [exId, exData] of Object.entries(catData.exercises || {})) {
-        const lbl = (exData.label || exId).toLowerCase();
-        if (lbl === n || lbl.includes(n) || n.includes(lbl.slice(0, 8))) {
-          const variants = Object.entries(exData.variants || {});
-          const [varId, varLbl] = variants.length > 0 ? variants[0] : [null, null];
-          return { cat, exId, label: exData.label || exId, varId, varLbl: varLbl || '' };
-        }
+        showToast('✅ Import réussi — rechargement…');
+        setTimeout(() => location.reload(), 1200);
+      } catch (err) {
+        showToast('❌ Erreur : ' + err.message);
       }
-    }
-    return null;
+    };
+    reader.readAsText(file);
   }
 
-  // ── Appel Claude API ────────────────────────────────
-
-  async function _callApi(equipment) {
-    const systemPrompt = `Tu es un coach sportif expert en musculation et biomécanique.
-Tu analyses les données de fatigue musculaire et l'historique d'entraînement pour proposer une séance optimale.
-
-Tu réponds TOUJOURS en deux parties :
-1. Un texte court (3-6 phrases) expliquant ton raisonnement : quels muscles sont frais, lesquels épargner, et pourquoi cette séance.
-2. Un bloc JSON structuré (entre balises \`\`\`json et \`\`\`) avec les exercices suggérés.
-
-Format JSON OBLIGATOIRE :
-\`\`\`json
-{
-  "exercises": [
-    { "name": "Nom de l'exercice en français", "sets": 3, "reps": "8-12", "note": "conseil court" }
-  ]
-}
-\`\`\`
-
-Règles :
-- 4 à 7 exercices maximum
-- Matériel disponible uniquement : ${equipment.join(', ') || 'poids du corps'}
-- Ne jamais cibler un muscle avec fatigue ≥ 60 pts
-- Prioriser les muscles frais ou partiellement récupérés
-- Noms d'exercices en français, cohérents avec la musculation classique
-- Sois direct et utile`;
-
-    const userPrompt = `Date : ${DB.todayId()}
-
-FATIGUE ACTUELLE PAR MUSCLE :
-${_buildFatigueContext()}
-
-PROFIL UTILISATEUR :
-${_buildProfileContext()}
-
-SÉANCES DES 7 DERNIERS JOURS :
-${_buildRecentSessions()}
-
-Propose la séance la plus intelligente à faire aujourd'hui.`;
-
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userPrompt }]
-      })
-    });
-
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({}));
-      throw new Error(err?.error?.message || `Erreur API (${res.status})`);
-    }
-    const data = await res.json();
-    return data.content?.map(b => b.text || '').join('') || '';
-  }
-
-  // ── Rendu chips exercices ───────────────────────────
-
-  function _renderChips(exercises) {
-    if (!exercises?.length) return '';
-    const chips = exercises.map(ex => {
-      const found = _findExercise(ex.name);
-      const color = found ? `var(--c-${found.cat})` : 'var(--b3)';
-      const chipId = 'ai-chip-' + Math.random().toString(36).slice(2, 7);
-      const dataAttrs = found
-        ? `data-cat="${found.cat}" data-exid="${found.exId}" data-varid="${found.varId || ''}"`
-        : '';
-      return `
-        <button class="ai-ex-chip" id="${chipId}" ${dataAttrs} data-exname="${ex.name}">
-          <span class="ai-ex-chip-cat" style="background:${color}"></span>
-          <span class="ai-ex-chip-label">${ex.name}</span>
-          ${ex.sets ? `<span class="ai-ex-chip-var">${ex.sets}×${ex.reps || '?'}</span>` : ''}
-          ${ex.note ? `<span class="ai-ex-chip-var"> · ${ex.note}</span>` : ''}
-        </button>`;
-    }).join('');
-    return `
-      <div class="ai-chips-section">
-        <div class="ai-equip-label">Exercices suggérés — cliquer pour ajouter</div>
-        <div class="ai-chips-grid">${chips}</div>
-      </div>`;
-  }
-
-  function _bindChips() {
-    document.querySelectorAll('.ai-ex-chip[data-cat]').forEach(chip => {
-      chip.addEventListener('click', () => {
-        if (chip.classList.contains('ai-ex-chip-added')) return;
-        const cat = chip.dataset.cat;
-        const exId = chip.dataset.exid;
-        const varId = chip.dataset.varid;
-        if (!cat || !exId) return;
-        _close();
-        setTimeout(() => {
-          if (typeof S !== 'undefined' && typeof renderDrawer === 'function') {
-            S.drawer = { open: true, step: varId ? 3 : 2, cat, ex: exId, actType: null, actBoosts: {} };
-            document.getElementById('overlay')?.classList.add('on');
-            document.getElementById('drawer')?.classList.add('on');
-            renderDrawer();
-          }
-        }, 250);
-        chip.classList.add('ai-ex-chip-added');
-        chip.querySelector('.ai-ex-chip-label').textContent += ' ✓';
-      });
-    });
-  }
-
-  // ── Génération ──────────────────────────────────────
-
-  async function _generate() {
-    const equipment = _getEquipment();
-    const responseZone = document.getElementById('ai-response');
-    const btn = document.getElementById('ai-generate-btn');
-    const equipSection = document.getElementById('ai-equip-section');
-    if (!responseZone || !btn) return;
-
-    btn.disabled = true;
-    btn.textContent = 'Analyse en cours…';
-    responseZone.style.display = 'flex';
-    equipSection.style.display = 'none';
-    responseZone.innerHTML = `
-      <div class="ai-loader">
-        <div class="ai-loader-dots"><span></span><span></span><span></span></div>
-        <span>Analyse de ta fatigue musculaire…</span>
-      </div>`;
-
-    try {
-      const raw = await _callApi(equipment);
-      const jsonMatch = raw.match(/```json[\s\S]*?```/);
-      const textPart = raw.replace(/```json[\s\S]*?```/, '').trim();
-      let chipsHtml = '';
-      if (jsonMatch) {
-        try {
-          const parsed = JSON.parse(jsonMatch[0].replace(/```json|```/g, '').trim());
-          if (parsed?.exercises) chipsHtml = _renderChips(parsed.exercises);
-        } catch (_) {}
-      }
-      responseZone.innerHTML = `
-        <div class="ai-context-pill">
-          <span class="ai-context-dot"></span>
-          <span>${DB.todayId()} · ${equipment.length} équipements</span>
-        </div>
-        ${textPart ? `<div class="ai-text">${textPart}</div>` : ''}
-        ${chipsHtml}`;
-      _bindChips();
-      btn.disabled = false;
-      btn.textContent = '↻ Nouvelle suggestion';
-      btn.style.cssText = 'background:var(--s2);color:var(--t2);border:1px solid var(--b2);width:100%;padding:13px;border-radius:var(--r);font-family:var(--sans);font-size:14px;font-weight:600;cursor:pointer;';
-    } catch (err) {
-      responseZone.innerHTML = `
-        <div class="ai-error">
-          Erreur : ${err.message}<br>
-          <span style="font-size:11px;color:var(--t3)">Vérifie ta connexion et réessaie.</span>
-        </div>`;
-      btn.disabled = false;
-      btn.textContent = '↻ Réessayer';
-    }
-  }
-
-  // ── Open / Close ────────────────────────────────────
-
-  function _open() {
-    // Réinitialise le panel à chaque ouverture
-    const responseZone = document.getElementById('ai-response');
-    const btn = document.getElementById('ai-generate-btn');
-    const equipSection = document.getElementById('ai-equip-section');
-    if (responseZone) responseZone.style.display = 'none';
-    if (equipSection) equipSection.style.display = 'flex';
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = 'Analyser ma fatigue et suggérer une séance →';
-      btn.style.cssText = '';
-    }
-    document.getElementById('ai-overlay')?.classList.add('visible');
-  }
-
-  function _close() {
-    document.getElementById('ai-overlay')?.classList.remove('visible');
-  }
-
-  // ── Init ────────────────────────────────────────────
-
-  function init() {
-    document.getElementById('btn-ai')?.addEventListener('click', _open);
-    document.getElementById('ai-close')?.addEventListener('click', _close);
-    document.getElementById('ai-overlay')?.addEventListener('click', e => {
-      if (e.target.id === 'ai-overlay') _close();
-    });
-    document.querySelectorAll('#ai-equip-chips .ai-equip-chip').forEach(chip => {
-      chip.addEventListener('click', () => chip.classList.toggle('on'));
-    });
-    document.getElementById('ai-generate-btn')?.addEventListener('click', _generate);
-  }
-
-  return { init };
+  return { exportData, importData };
 })();
 
 // ════════════════════════════════════════════════════
@@ -3901,11 +3721,16 @@ function init() {
   // Bouton profil → ouvre l'onboarding en mode édition
   document.getElementById('btn-profile')?.addEventListener('click', () => ONBOARDING.open(true));
 
+  // Export / Import sauvegarde
+  document.getElementById('btn-export').addEventListener('click', () => DATA_BACKUP.exportData());
+  document.getElementById('btn-import').addEventListener('click', () =>
+    document.getElementById('import-file-input').click());
+  document.getElementById('import-file-input').addEventListener('change', e =>
+    DATA_BACKUP.importData(e.target.files[0]));
+
   // Onboarding au premier lancement
   ONBOARDING.checkOnboarding();
 
-  // Module IA
-  AI_MODULE.init();
 }
 
 init();
