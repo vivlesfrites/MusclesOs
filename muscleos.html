@@ -851,6 +851,15 @@
     }
 
 
+    /* ── PACE DISPLAY ── */
+    .pace-display { display:flex; align-items:baseline; gap:5px; }
+    .pace-val { font-family:var(--mono); font-size:20px; font-weight:600; color:var(--accent); }
+    .pace-unit-label { font-size:11px; color:var(--t3); }
+    .pace-toggle { font-size:11px; color:var(--t3); background:none; border:1px solid var(--b1);
+      border-radius:4px; padding:3px 8px; cursor:pointer; font-family:var(--sans);
+      transition:border-color .15s, color .15s; }
+    .pace-toggle:hover { border-color:var(--b3); color:var(--t2); }
+
     /* ── BACKUP BUTTONS ── */
     .backup-btn {
       display: flex; align-items: center; gap: 6px;
@@ -1488,18 +1497,33 @@ const MUSCLE_GROUPS = {
 // performance of high-standard soccer players.
 // ════════════════════════════════════════════════════
 const ACTIVITY_CATALOG = {
-  running:         { label: 'Running',          icon: '↗', color: '#5ba3ff' },
-  velo:            { label: 'Vélo',             icon: '⊙', color: '#3dffa0' },
-  sport_collectif: { label: 'Sport collectif',  icon: '⬡', color: '#ffaa3d' },
-  yoga:            { label: 'Yoga / Mobilité',  icon: '◯', color: '#c084fc' },
-  autre:           { label: 'Autre activité',   icon: '◈', color: '#8892a4' },
+  // ── Course à pied ──
+  running:           { label: 'Course générale',    icon: '↗', color: '#5ba3ff', group: 'running' },
+  running_recovery:  { label: 'Récupération active',icon: '↺', color: '#8892a4', group: 'running' },
+  running_easy:      { label: 'Course facile',      icon: '↗', color: '#7bc5ff', group: 'running' },
+  running_long:      { label: 'Sortie longue',      icon: '↗', color: '#3dffa0', group: 'running' },
+  running_tempo:     { label: 'Tempo / Seuil',      icon: '↗', color: '#ffd166', group: 'running' },
+  running_intervals: { label: 'Fractionné',         icon: '↯', color: '#ffaa3d', group: 'running' },
+  running_race:      { label: 'Compétition',        icon: '★', color: '#ff5252', group: 'running' },
+  // ── Autres activités ──
+  velo:              { label: 'Vélo',               icon: '⊙', color: '#3dffa0', group: 'other' },
+  sport_collectif:   { label: 'Sport collectif',    icon: '⬡', color: '#ffaa3d', group: 'other' },
+  yoga:              { label: 'Yoga / Mobilité',    icon: '◯', color: '#c084fc', group: 'other' },
+  autre:             { label: 'Autre activité',     icon: '◈', color: '#8892a4', group: 'other' },
 };
+
+// Groupes d'affichage step 4
+const ACTIVITY_GROUPS = [
+  { label: 'Course à pied', keys: ['running','running_recovery','running_easy','running_long','running_tempo','running_intervals','running_race'] },
+  { label: 'Autres activités', keys: ['velo','sport_collectif','yoga','autre'] },
+];
 
 // Profils de fatigue musculaire par activité.
 // base_dose = points de référence à 60 min, intensité 5/10.
 // Dose réelle = base_dose × (activation/100) × role_factor × (duration/60) × (intensity/5)
 // role_factors : p=1.0, s=0.45, t=0.18
 const ACTIVITY_FATIGUE = {
+  // ── Course générale (profil modéré, fallback) ──
   running: {
     base_dose: 35,
     muscles: {
@@ -1516,6 +1540,121 @@ const ACTIVITY_FATIGUE = {
       HIP_FLEX:          { p: 30, r: 's' },
       PERONEAL:          { p: 35, r: 's' },
       CORE_TRANS:        { p: 20, r: 't' },
+    }
+  },
+  // ── Récupération active (Zone 1 — ~55-65% FCmax) ──
+  // Quasi nul, fibres lentes uniquement, flux sanguin
+  running_recovery: {
+    base_dose: 12,
+    muscles: {
+      SOLEUS:            { p: 40, r: 'p' },
+      GASTRO_MED:        { p: 28, r: 'p' },
+      GASTRO_LAT:        { p: 22, r: 'p' },
+      GLUTE_MED:         { p: 20, r: 's' },
+      HAMSTRING_BF_LONG: { p: 18, r: 's' },
+      HIP_FLEX:          { p: 15, r: 's' },
+      PERONEAL:          { p: 18, r: 's' },
+    }
+  },
+  // ── Course facile / Endurance fondamentale (Zone 2 — ~65-75% FCmax) ──
+  // Slow-twitch dominant, base aérobie
+  running_easy: {
+    base_dose: 22,
+    muscles: {
+      SOLEUS:            { p: 55, r: 'p' },
+      GASTRO_MED:        { p: 45, r: 'p' },
+      GASTRO_LAT:        { p: 40, r: 'p' },
+      GLUTE_MED:         { p: 35, r: 'p' },
+      HAMSTRING_BF_LONG: { p: 35, r: 's' },
+      HAMSTRING_ST:      { p: 28, r: 's' },
+      GLUTE_MAX:         { p: 22, r: 's' },
+      QUAD_VAST_LAT:     { p: 22, r: 's' },
+      QUAD_VAST_MED:     { p: 22, r: 's' },
+      HIP_FLEX:          { p: 25, r: 's' },
+      PERONEAL:          { p: 28, r: 's' },
+      CORE_TRANS:        { p: 15, r: 't' },
+    }
+  },
+  // ── Sortie longue (Zone 2 prolongé — stress cumulatif tendino-ligamentaire) ──
+  // Soleus+++ / Glute Med+++ (milliers de foulées) / Hip Flex cumulatif (psoas)
+  running_long: {
+    base_dose: 28,
+    muscles: {
+      SOLEUS:            { p: 62, r: 'p' },
+      GASTRO_MED:        { p: 50, r: 'p' },
+      GASTRO_LAT:        { p: 45, r: 'p' },
+      GLUTE_MED:         { p: 52, r: 'p' },
+      HIP_FLEX:          { p: 45, r: 'p' },
+      HAMSTRING_BF_LONG: { p: 45, r: 's' },
+      HAMSTRING_ST:      { p: 35, r: 's' },
+      GLUTE_MAX:         { p: 30, r: 's' },
+      QUAD_VAST_LAT:     { p: 28, r: 's' },
+      QUAD_VAST_MED:     { p: 28, r: 's' },
+      QUAD_RECT:         { p: 25, r: 's' },
+      PERONEAL:          { p: 35, r: 's' },
+      CORE_TRANS:        { p: 20, r: 't' },
+    }
+  },
+  // ── Tempo / Seuil (Zone 3-4 — ~75-88% FCmax) ──
+  // Quad + Hip Flex élevés, effort soutenu au seuil lactique
+  running_tempo: {
+    base_dose: 45,
+    muscles: {
+      SOLEUS:            { p: 58, r: 'p' },
+      GASTRO_MED:        { p: 55, r: 'p' },
+      GASTRO_LAT:        { p: 50, r: 'p' },
+      HAMSTRING_BF_LONG: { p: 50, r: 'p' },
+      QUAD_VAST_LAT:     { p: 45, r: 'p' },
+      QUAD_VAST_MED:     { p: 45, r: 'p' },
+      GLUTE_MAX:         { p: 42, r: 's' },
+      GLUTE_MED:         { p: 40, r: 's' },
+      HIP_FLEX:          { p: 42, r: 's' },
+      QUAD_RECT:         { p: 38, r: 's' },
+      HAMSTRING_ST:      { p: 35, r: 's' },
+      PERONEAL:          { p: 35, r: 's' },
+      CORE_TRANS:        { p: 22, r: 't' },
+    }
+  },
+  // ── Fractionné / Intervalles (Zone 5 — >90% FCmax) ──
+  // Fibres rapides IIa/IIx, stress neuromusculaire maximal
+  // Hamstring BF excentrique+++ (freinage à haute vitesse — clé biomécanique)
+  running_intervals: {
+    base_dose: 60,
+    muscles: {
+      GASTRO_MED:        { p: 65, r: 'p' },
+      GASTRO_LAT:        { p: 60, r: 'p' },
+      SOLEUS:            { p: 58, r: 'p' },
+      HAMSTRING_BF_LONG: { p: 62, r: 'p' },
+      GLUTE_MAX:         { p: 58, r: 'p' },
+      HIP_FLEX:          { p: 55, r: 'p' },
+      QUAD_VAST_LAT:     { p: 52, r: 'p' },
+      QUAD_VAST_MED:     { p: 52, r: 'p' },
+      QUAD_RECT:         { p: 48, r: 's' },
+      GLUTE_MED:         { p: 45, r: 's' },
+      HAMSTRING_ST:      { p: 42, r: 's' },
+      PERONEAL:          { p: 40, r: 's' },
+      CORE_TRANS:        { p: 32, r: 's' },
+      CORE_OBL_EXT:      { p: 22, r: 't' },
+    }
+  },
+  // ── Compétition / Race — effort maximal soutenu ──
+  running_race: {
+    base_dose: 65,
+    muscles: {
+      GASTRO_MED:        { p: 65, r: 'p' },
+      GASTRO_LAT:        { p: 60, r: 'p' },
+      SOLEUS:            { p: 62, r: 'p' },
+      HAMSTRING_BF_LONG: { p: 62, r: 'p' },
+      GLUTE_MAX:         { p: 58, r: 'p' },
+      HIP_FLEX:          { p: 58, r: 'p' },
+      QUAD_VAST_LAT:     { p: 55, r: 'p' },
+      QUAD_VAST_MED:     { p: 55, r: 'p' },
+      QUAD_RECT:         { p: 50, r: 's' },
+      GLUTE_MED:         { p: 48, r: 's' },
+      HAMSTRING_ST:      { p: 45, r: 's' },
+      PERONEAL:          { p: 42, r: 's' },
+      CORE_TRANS:        { p: 35, r: 's' },
+      CORE_OBL_EXT:      { p: 25, r: 't' },
     }
   },
   velo: {
@@ -1583,11 +1722,17 @@ const ACTIVITY_FATIGUE = {
 
 // Muscles suggérés pour les boosts par activité
 const ACTIVITY_BOOST_MUSCLES = {
-  running:         ['GLUTE_MAX','GLUTE_MED','HAMSTRING_BF_LONG','GASTRO_MED','SOLEUS','HIP_FLEX','QUAD_RECT','PERONEAL'],
-  velo:            ['QUAD_VAST_LAT','QUAD_VAST_MED','GLUTE_MAX','GASTRO_MED','HIP_FLEX','HAMSTRING_BF_LONG'],
-  sport_collectif: ['GLUTE_MAX','GLUTE_MED','QUAD_RECT','HAMSTRING_BF_LONG','GASTRO_MED','ADDUCTOR','CORE_OBL_EXT','HIP_FLEX'],
-  yoga:            ['CORE_TRANS','CORE_OBL_INT','GLUTE_MED','HIP_FLEX','HAMSTRING_BF_LONG','LUMBAR'],
-  autre:           ['GLUTE_MAX','QUAD_RECT','HAMSTRING_BF_LONG','GASTRO_MED','CORE_TRANS'],
+  running:           ['GLUTE_MAX','GLUTE_MED','HAMSTRING_BF_LONG','GASTRO_MED','SOLEUS','HIP_FLEX','QUAD_RECT','PERONEAL'],
+  running_recovery:  ['SOLEUS','GASTRO_MED','GLUTE_MED'],
+  running_easy:      ['SOLEUS','GASTRO_MED','GLUTE_MED','HIP_FLEX','HAMSTRING_BF_LONG'],
+  running_long:      ['SOLEUS','GLUTE_MED','HIP_FLEX','GASTRO_MED','HAMSTRING_BF_LONG','PERONEAL'],
+  running_tempo:     ['GASTRO_MED','SOLEUS','QUAD_VAST_LAT','HIP_FLEX','HAMSTRING_BF_LONG','GLUTE_MAX'],
+  running_intervals: ['GASTRO_MED','HAMSTRING_BF_LONG','GLUTE_MAX','HIP_FLEX','QUAD_VAST_LAT','CORE_TRANS'],
+  running_race:      ['GASTRO_MED','HAMSTRING_BF_LONG','GLUTE_MAX','HIP_FLEX','QUAD_VAST_LAT','SOLEUS','CORE_TRANS'],
+  velo:              ['QUAD_VAST_LAT','QUAD_VAST_MED','GLUTE_MAX','GASTRO_MED','HIP_FLEX','HAMSTRING_BF_LONG'],
+  sport_collectif:   ['GLUTE_MAX','GLUTE_MED','QUAD_RECT','HAMSTRING_BF_LONG','GASTRO_MED','ADDUCTOR','CORE_OBL_EXT','HIP_FLEX'],
+  yoga:              ['CORE_TRANS','CORE_OBL_INT','GLUTE_MED','HIP_FLEX','HAMSTRING_BF_LONG','LUMBAR'],
+  autre:             ['GLUTE_MAX','QUAD_RECT','HAMSTRING_BF_LONG','GASTRO_MED','CORE_TRANS'],
 };
 
 const BOOST_MULT = { moderate: 1.6, high: 2.2 };
@@ -2373,14 +2518,35 @@ function renderHistory() {
         ${s.entries.map(e => {
           if (e.type === 'activity') {
             const act = ACTIVITY_CATALOG[e.activityType] || ACTIVITY_CATALOG.autre;
+            // Calcul pace si distance + durée
+            let paceStr = '';
+            if (e.distance && e.duration) {
+              const unit = e.paceUnit || 'min_km';
+              if (unit === 'min_km') {
+                const t = e.duration / e.distance;
+                const m = Math.floor(t), s = Math.round((t - m) * 60);
+                paceStr = ` · ${m}:${s.toString().padStart(2,'0')}/km`;
+              } else {
+                paceStr = ` · ${((e.distance / e.duration) * 60).toFixed(1)} km/h`;
+              }
+            }
+            const actDetails = [
+              e.duration ? e.duration + ' min' : '',
+              e.distance ? e.distance + ' km' : '',
+              e.intensity ? '· ' + e.intensity + '/10' : '',
+              e.bpm ? '· ' + e.bpm + ' bpm' : '',
+              paceStr,
+            ].filter(Boolean).join(' ');
             return `<div class="hist-entry">
               <div>
                 <div class="he-name" style="color:${act.color}">${act.icon} ${act.label}</div>
-                <div class="he-var">${e.duration ? e.duration+' min' : ''} ${e.intensity ? '· '+e.intensity+'/10' : ''}</div>
+                <div class="he-var">${actDetails}</div>
               </div>
               <button class="btn-act-edit" data-sid="${s.id}" data-eid="${e.id}"
                 data-atype="${e.activityType}" data-dur="${e.duration||''}"
-                data-int="${e.intensity||0}" data-boosts='${JSON.stringify(e.boosts||{})}'>✎</button>
+                data-int="${e.intensity||0}" data-boosts='${JSON.stringify(e.boosts||{})}'
+                data-dist="${e.distance||''}" data-bpm="${e.bpm||''}"
+                data-pace-unit="${e.paceUnit||'min_km'}">✎</button>
             </div>`;
           }
           const color = getCatColor(e.category);
@@ -2478,6 +2644,9 @@ function renderHistory() {
         duration:  parseInt(btn.dataset.dur) || null,
         intensity: parseInt(btn.dataset.int) || 0,
         boosts:    JSON.parse(btn.dataset.boosts || '{}'),
+        distance:  parseFloat(btn.dataset.dist) || null,
+        bpm:       parseInt(btn.dataset.bpm) || null,
+        paceUnit:  btn.dataset.paceUnit || 'min_km',
         date:      btn.dataset.sid,
       });
     });
@@ -2541,6 +2710,9 @@ function openDrawer(editData) {
       actBoosts: { ...editData.boosts },
       _intensity: editData.intensity,
       _duration: editData.duration,
+      _distance: editData.distance || null,
+      _bpm: editData.bpm || null,
+      _paceUnit: editData.paceUnit || 'min_km',
       _actDate: editData.date,
       editMode: true,
       editSessionId: editData.sessionId,
@@ -2549,6 +2721,7 @@ function openDrawer(editData) {
   } else {
     S.drawer = { open: true, step: 1, cat: null, ex: null, actType: null, actBoosts: {},
                  editMode: false, editSessionId: null, editEntryId: null,
+                 _distance: null, _bpm: null, _paceUnit: 'min_km',
                  _actDate: DB.todayId(), _exDate: DB.todayId() };
   }
   document.getElementById('overlay').classList.add('on');
@@ -2672,21 +2845,32 @@ function renderDrawer() {
   else if (step === 4) {
     title.textContent = 'Type d\'activité';
     crumb.innerHTML = '<span>Activité</span>';
-    const items = Object.entries(ACTIVITY_CATALOG).map(([k, v]) => `
-      <div class="sel-item" data-act="${k}">
-        <div>
-          <div class="si-name" style="color:${v.color}">${v.icon}&nbsp; ${v.label}</div>
-        </div>
-        <span class="si-arr">›</span>
-      </div>`).join('');
+
+    const groupsHtml = ACTIVITY_GROUPS.map(g => {
+      const items = g.keys.map(k => {
+        const v = ACTIVITY_CATALOG[k];
+        if (!v) return '';
+        return `<div class="sel-item" data-act="${k}">
+          <div>
+            <div class="si-name" style="color:${v.color}">${v.icon}&nbsp; ${v.label}</div>
+          </div>
+          <span class="si-arr">›</span>
+        </div>`;
+      }).join('');
+      return `<div class="lbl" style="margin:12px 0 6px;color:var(--t3)">${g.label}</div>
+              <div class="sel-list">${items}</div>`;
+    }).join('');
+
     body.innerHTML = `
       <button class="btn-back" id="bb-act">‹ Retour</button>
-      <div class="sel-list">${items}</div>`;
+      ${groupsHtml}`;
     body.querySelector('#bb-act').addEventListener('click', () => { S.drawer.step=1; renderDrawer(); });
     body.querySelectorAll('.sel-item').forEach(i =>
       i.addEventListener('click', () => {
         S.drawer.actType = i.dataset.act;
         S.drawer.actBoosts = {};
+        S.drawer._distance = null;
+        S.drawer._bpm = null;
         S.drawer.step = 5;
         renderDrawer();
       }));
@@ -2699,6 +2883,7 @@ function renderDrawer() {
     if (!act) { console.error('[renderDrawer] step5 — actType invalide:', actType); S.drawer.step=4; renderDrawer(); return; }
     const boosts = S.drawer.actBoosts || {};
     const boostMuscles = ACTIVITY_BOOST_MUSCLES[actType] || [];
+    const isRunning = act.group === 'running';
 
     title.textContent = act.label;
     crumb.innerHTML = `<span>Activité</span> <span style="color:var(--t3)">›</span> <span style="color:${act.color}">${act.label}</span>`;
@@ -2717,6 +2902,44 @@ function renderDrawer() {
     const isEdit = S.drawer.editMode;
     const todayId = DB.todayId();
     const defaultDate = S.drawer._actDate || todayId;
+    const paceUnit = S.drawer._paceUnit || 'min_km';
+
+    // Calcul pace si distance + durée disponibles
+    const distVal = S.drawer._distance;
+    const durVal = S.drawer._duration;
+    let paceHtml = '';
+    if (distVal && durVal && distVal > 0 && durVal > 0) {
+      if (paceUnit === 'min_km') {
+        const totalMin = durVal / distVal;
+        const mins = Math.floor(totalMin);
+        const secs = Math.round((totalMin - mins) * 60);
+        paceHtml = `<div class="pace-display"><span class="pace-val">${mins}:${secs.toString().padStart(2,'0')}</span> <span class="pace-unit-label">min/km</span></div>`;
+      } else {
+        const kmh = (distVal / durVal) * 60;
+        paceHtml = `<div class="pace-display"><span class="pace-val">${kmh.toFixed(1)}</span> <span class="pace-unit-label">km/h</span></div>`;
+      }
+    }
+
+    const runningFields = isRunning ? `
+      <div class="act-form-row">
+        <div class="fg">
+          <label class="fl">Distance <span style="color:var(--t3);font-weight:400">optionnel</span></label>
+          <input class="fi" id="act-dist" type="number" placeholder="10.5" min="0" step="0.1"
+            value="${distVal || ''}">
+          <span style="font-size:11px;color:var(--t3);margin-top:3px;display:block">km</span>
+        </div>
+        <div class="fg">
+          <label class="fl">BPM moyen <span style="color:var(--t3);font-weight:400">optionnel</span></label>
+          <input class="fi" id="act-bpm" type="number" placeholder="155" min="50" max="220"
+            value="${S.drawer._bpm || ''}">
+          <span style="font-size:11px;color:var(--t3);margin-top:3px;display:block">bpm</span>
+        </div>
+      </div>
+      ${paceHtml ? `
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        ${paceHtml}
+        <button class="pace-toggle" id="btn-pace-toggle">${paceUnit === 'min_km' ? 'Afficher km/h' : 'Afficher min/km'}</button>
+      </div>` : ''}` : '';
 
     body.innerHTML = `
       <button class="btn-back" id="bb-act-form">‹ ${act.icon} Type</button>
@@ -2738,6 +2961,7 @@ function renderDrawer() {
             <div class="act-intensity-dots">${intensityDots}</div>
           </div>
         </div>
+        ${runningFields}
         <div>
           <div class="lbl" style="margin-bottom:6px">Muscles extra sollicités <span style="font-weight:400;color:var(--t3)">(optionnel · tap = modéré · 2× = intense)</span></div>
           <div class="boost-grid">${boostChips}</div>
@@ -2748,11 +2972,38 @@ function renderDrawer() {
 
     body.querySelector('#bb-act-form').addEventListener('click', () => { S.drawer.step=4; renderDrawer(); });
 
+    // Helper : snapshot des champs courants dans S.drawer
+    function _snapshotFields() {
+      S.drawer._duration = parseInt(document.getElementById('act-dur')?.value) || null;
+      S.drawer._actDate  = document.getElementById('act-date')?.value || DB.todayId();
+      if (isRunning) {
+        const d = parseFloat(document.getElementById('act-dist')?.value);
+        const b = parseInt(document.getElementById('act-bpm')?.value);
+        S.drawer._distance = d > 0 ? d : null;
+        S.drawer._bpm      = b > 0 ? b : null;
+      }
+    }
+
+    // Recalcul pace en live (distance ou durée change)
+    if (isRunning) {
+      ['act-dur','act-dist'].forEach(id => {
+        document.getElementById(id)?.addEventListener('input', () => {
+          _snapshotFields();
+          renderDrawer();
+        });
+      });
+      // Toggle unité pace
+      document.getElementById('btn-pace-toggle')?.addEventListener('click', () => {
+        _snapshotFields();
+        S.drawer._paceUnit = paceUnit === 'min_km' ? 'km_h' : 'min_km';
+        renderDrawer();
+      });
+    }
+
     // Dots intensité
     body.querySelectorAll('.idot').forEach(btn =>
       btn.addEventListener('click', () => {
-        S.drawer._duration = parseInt(document.getElementById('act-dur')?.value) || null;
-        S.drawer._actDate = document.getElementById('act-date')?.value || DB.todayId();
+        _snapshotFields();
         S.drawer._intensity = parseInt(btn.dataset.iv);
         renderDrawer();
       }));
@@ -2760,8 +3011,7 @@ function renderDrawer() {
     // Chips boosts (cycle : off → moderate → high → off)
     body.querySelectorAll('.boost-chip').forEach(btn =>
       btn.addEventListener('click', () => {
-        S.drawer._duration = parseInt(document.getElementById('act-dur')?.value) || null;
-        S.drawer._actDate = document.getElementById('act-date')?.value || DB.todayId();
+        _snapshotFields();
         const id = btn.dataset.bid;
         const cur = boosts[id] || '';
         if (!cur) boosts[id] = 'moderate';
@@ -2775,6 +3025,8 @@ function renderDrawer() {
       const dur = parseInt(document.getElementById('act-dur')?.value);
       const intensity = S.drawer._intensity || 0;
       const dateVal = document.getElementById('act-date')?.value || DB.todayId();
+      const dist = isRunning ? (parseFloat(document.getElementById('act-dist')?.value) || null) : null;
+      const bpm  = isRunning ? (parseInt(document.getElementById('act-bpm')?.value) || null) : null;
       if (!dur || dur <= 0) {
         const inp = document.getElementById('act-dur');
         if (inp) { inp.classList.add('err'); setTimeout(() => inp.classList.remove('err'), 400); inp.focus(); }
@@ -2782,9 +3034,9 @@ function renderDrawer() {
       }
       if (!intensity) { showPrToast('⚠ Renseigne l\'intensité ressentie'); return; }
       if (S.drawer.editMode) {
-        updateActivity(S.drawer.editSessionId, S.drawer.editEntryId, dur, intensity, { ...boosts }, dateVal);
+        updateActivity(S.drawer.editSessionId, S.drawer.editEntryId, dur, intensity, { ...boosts }, dateVal, dist, bpm, S.drawer._paceUnit);
       } else {
-        addActivity(actType, dur, intensity, { ...boosts }, dateVal);
+        addActivity(actType, dur, intensity, { ...boosts }, dateVal, dist, bpm, S.drawer._paceUnit);
       }
       closeDrawer();
     });
@@ -2829,11 +3081,14 @@ function addEntry(category, exerciseId, variantId, targetDateId) {
   }
 }
 
-function addActivity(activityType, duration, intensity, boosts, targetDateId) {
+function addActivity(activityType, duration, intensity, boosts, targetDateId, distance, bpm, paceUnit) {
   const entry = {
     id: uid(), type: 'activity', activityType, duration, intensity,
     boosts: boosts || {}, ts: Date.now()
   };
+  if (distance) entry.distance = distance;
+  if (bpm) entry.bpm = bpm;
+  if (paceUnit) entry.paceUnit = paceUnit;
   const dateId = targetDateId || DB.todayId();
   const todayId = DB.todayId();
 
@@ -2856,10 +3111,17 @@ function addActivity(activityType, duration, intensity, boosts, targetDateId) {
   if (dateId === todayId) renderToday();
 }
 
-function updateActivity(sessionId, entryId, duration, intensity, boosts, newDateId) {
+function updateActivity(sessionId, entryId, duration, intensity, boosts, newDateId, distance, bpm, paceUnit) {
   const all = DB.load();
   const todayId = DB.todayId();
   const targetDate = newDateId || sessionId;
+
+  const _applyFields = (e) => {
+    e.duration = duration; e.intensity = intensity; e.boosts = boosts;
+    if (distance) e.distance = distance; else delete e.distance;
+    if (bpm) e.bpm = bpm; else delete e.bpm;
+    if (paceUnit) e.paceUnit = paceUnit; else delete e.paceUnit;
+  };
 
   if (targetDate === sessionId) {
     // Modification sur place
@@ -2867,7 +3129,7 @@ function updateActivity(sessionId, entryId, duration, intensity, boosts, newDate
     if (!s) return;
     const e = s.entries.find(x => x.id === entryId);
     if (!e) return;
-    e.duration = duration; e.intensity = intensity; e.boosts = boosts;
+    _applyFields(e);
   } else {
     // Déplacement vers une autre date
     const s = all.find(x => x.id === sessionId);
@@ -2875,7 +3137,7 @@ function updateActivity(sessionId, entryId, duration, intensity, boosts, newDate
     const eIdx = s.entries.findIndex(x => x.id === entryId);
     if (eIdx < 0) return;
     const [e] = s.entries.splice(eIdx, 1);
-    e.duration = duration; e.intensity = intensity; e.boosts = boosts; e.ts = Date.now();
+    _applyFields(e); e.ts = Date.now();
     let newS = all.find(x => x.id === targetDate);
     if (!newS) {
       newS = { id: targetDate, metrics: { energy: null, sleep: null, bodyweight: null, notes: '' }, entries: [] };
@@ -3445,6 +3707,24 @@ const ONBOARDING = (() => {
         { value: 'endurance',   label: 'Endurance musc.  · > 15 reps' },
       ]
     },
+    {
+      key: 'fc_max',
+      type: 'input',
+      label: 'Ta fréquence cardiaque maximale ?',
+      hint: 'Mesurée lors d\'un effort maximal, ou estimée (220 − ton âge). Utilisée pour calibrer les zones de course.',
+      placeholder: '185',
+      unit: 'bpm',
+      optional: true,
+    },
+    {
+      key: 'fc_repos',
+      type: 'input',
+      label: 'Ta fréquence cardiaque au repos ?',
+      hint: 'Mesure le matin avant de te lever, au calme. Typiquement entre 45 et 75 bpm.',
+      placeholder: '55',
+      unit: 'bpm',
+      optional: true,
+    },
   ];
 
   let _step = 0;
@@ -3526,6 +3806,47 @@ const ONBOARDING = (() => {
     const step = STEPS[_step];
     const selected = _answers[step.key];
 
+    // ── Étape avec champ numérique (FC max / FC repos) ──
+    if (step.type === 'input') {
+      card.innerHTML = `
+        <div class="ob-header">
+          <span class="ob-logo">MuscleOS · Profil de récupération</span>
+          <div class="ob-title">${step.label}</div>
+          ${step.hint ? `<div class="ob-sub">${step.hint}</div>` : ''}
+          ${step.optional ? `<div class="ob-sub" style="color:var(--t3);font-size:11px;margin-top:4px">Optionnel — tu pourras modifier ça dans Profil à tout moment.</div>` : ''}
+        </div>
+        <div class="ob-step">
+          <div style="display:flex;align-items:center;gap:10px">
+            <input class="fi" id="ob-input-val" type="number"
+              placeholder="${step.placeholder || ''}"
+              value="${selected || ''}"
+              min="30" max="250"
+              style="width:120px;font-size:22px;font-family:var(--mono);text-align:center">
+            <span style="color:var(--t3);font-family:var(--mono)">${step.unit || ''}</span>
+          </div>
+        </div>
+        <div class="ob-nav">
+          <button class="ob-btn-prev" id="ob-prev">‹ Retour</button>
+          <div class="ob-progress">
+            <div class="ob-progress-fill" style="width:${progress}%"></div>
+          </div>
+          <button class="ob-btn-next" id="ob-next">
+            ${_step === STEPS.length - 1 ? 'Voir mon profil' : 'Suivant →'}
+          </button>
+        </div>`;
+
+      document.getElementById('ob-input-val')?.addEventListener('input', e => {
+        const v = parseInt(e.target.value);
+        if (v > 0) _answers[step.key] = v;
+        else delete _answers[step.key];
+      });
+      document.getElementById('ob-prev')?.addEventListener('click', () => { _step--; _render(); });
+      document.getElementById('ob-next')?.addEventListener('click', () => { _step++; _render(); });
+      return;
+    }
+
+    // ── Étape standard (choix multiple) ──
+
     card.innerHTML = `
       <div class="ob-header">
         <span class="ob-logo">MuscleOS · Profil de récupération</span>
@@ -3592,6 +3913,8 @@ const ONBOARDING = (() => {
         protein: p.protein,
         stress: p.stress,
         goal: p.goal,
+        fc_max: p.fc_max || null,
+        fc_repos: p.fc_repos || null,
       };
     } else {
       _answers = {};
