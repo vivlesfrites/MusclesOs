@@ -1906,54 +1906,7 @@ function rebuildFatigue() {
   if (typeof FATIGUE_ENGINE === 'undefined' || typeof FATIGUE_DATA === 'undefined') return;
   FATIGUE_ENGINE.reset();
   FATIGUE_ENGINE.resetCTL();
-
-  const sessions = DB.load();
-
-  // ── Seed CTL depuis le profil utilisateur ─────────────────────
-  // Injecte un historique virtuel 42j avant la 1re séance connue
-  // (ou avant aujourd'hui si aucune session).
-  // Permet à un utilisateur "Avancé" de démarrer à mult ×1.0
-  // sans avoir 6 semaines de données réelles.
-  if (typeof USER_PROFILE !== 'undefined') {
-    const seedFactor = USER_PROFILE.getSeedFactor();
-    if (seedFactor > 0) {
-      const oldest = sessions.length ? new Date(sessions[0].id).getTime() : Date.now();
-      const seedTime = oldest - 42 * 24 * 3600_000;
-      for (const muscleId of Object.keys(FATIGUE_ENGINE.HALF_LIVES)) {
-        FATIGUE_ENGINE.seedCTL(muscleId, seedFactor, seedTime);
-      }
-    }
-  }
-
-  // ── Seed CTL depuis la familiarité par exercice ────────────────
-  // Boost one-shot sur les muscles primaires d'un exercice connu/maîtrisé.
-  // Appliqué avant le replay des sessions réelles.
-  const FAM_SEED = { new: 0, known: 0.4, mastered: 1.2 };
-  try {
-    const familiarity = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
-    for (const [exId, level] of Object.entries(familiarity)) {
-      const seedF = FAM_SEED[level] ?? 0;
-      if (seedF <= 0) continue;
-      // Trouver les muscles primaires depuis FATIGUE_DATA (toutes catégories)
-      for (const catData of Object.values(FATIGUE_DATA)) {
-        const exData = catData[exId];
-        if (!exData) continue;
-        // Prendre la première variante disponible pour identifier les primaires
-        const firstVariant = Object.values(exData)[0];
-        if (!firstVariant) continue;
-        const oldest = sessions.length ? new Date(sessions[0].id).getTime() : Date.now();
-        const seedTime = oldest - 42 * 24 * 3600_000;
-        for (const [muscleId, mData] of Object.entries(firstVariant)) {
-          if ((mData.r ?? 't') === 'p') {
-            FATIGUE_ENGINE.seedCTL(muscleId, seedF, seedTime);
-          }
-        }
-        break; // exercice trouvé dans cette catégorie, on arrête
-      }
-    }
-  } catch(e) { /* ignore — familiarité corrompue */ }
-
-  // ── Replay de toutes les sessions ─────────────────────────────
+  const sessions = DB.load().sort((a, b) => a.id.localeCompare(b.id));
   for (const session of sessions) {
     for (const entry of session.entries) {
       if (entry.type === 'activity') {
@@ -2895,65 +2848,20 @@ function renderDrawer() {
     if (!catData || !exData) { console.error('[renderDrawer] step3 — ex invalide:', cat, ex); S.drawer.step = cat ? 2 : 1; renderDrawer(); return; }
     title.textContent = exData.label;
     crumb.innerHTML = `<span>${catData.label}</span> <span style="color:var(--t3)">›</span> <span>${exData.label}</span>`;
+    const todayId = DB.todayId();
+    const defaultDate = S.drawer._exDate || todayId;
     const items = Object.entries(exData.variants).map(([k, v]) => `
       <div class="sel-item" data-var="${k}">
         <div class="si-name">${v}</div>
         <span class="si-arr">›</span>
       </div>`).join('');
-
-    // Prompt familiarité — seulement si cet exercice n'a pas encore été qualifié
-    let famHtml = '';
-    try {
-      const fam = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
-      if (fam[ex] === undefined) {
-        famHtml = `
-          <div style="margin:12px 0 8px;padding:10px 12px;background:var(--s2);border-radius:var(--r);border:1px solid var(--b1)">
-            <div class="lbl" style="font-size:10px;margin-bottom:8px;color:var(--t3)">Tu pratiques déjà cet exercice ?</div>
-            <div style="display:flex;gap:6px">
-              <button class="fam-btn" data-fam="new"     style="flex:1;padding:6px 4px;border-radius:var(--r);background:var(--s3);border:1px solid var(--b2);color:var(--t2);font-size:11px;font-family:var(--mono);cursor:pointer">Nouveau</button>
-              <button class="fam-btn" data-fam="known"   style="flex:1;padding:6px 4px;border-radius:var(--r);background:var(--s3);border:1px solid var(--b2);color:var(--t1);font-size:11px;font-family:var(--mono);cursor:pointer">Je connais</button>
-              <button class="fam-btn" data-fam="mastered" style="flex:1;padding:6px 4px;border-radius:var(--r);background:var(--s3);border:1px solid var(--b2);color:var(--accent);font-size:11px;font-family:var(--mono);cursor:pointer">Maîtrisé</button>
-            </div>
-          </div>`;
-      }
-    } catch(e) { /* ignore */ }
-
     body.innerHTML = `
       <button class="btn-back" id="bb2">‹ ${catData.label}</button>
       <div class="lbl" style="margin:10px 0 6px">Variante</div>
-      ${famHtml}
       <div class="sel-list">${items}</div>`;
-
     body.querySelector('#bb2').addEventListener('click', () => { S.drawer.step=2; renderDrawer(); });
-
-    // Familiarité — sauvegarder au clic + mettre à jour le style du bouton actif
-    body.querySelectorAll('.fam-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        body.querySelectorAll('.fam-btn').forEach(b => {
-          b.style.background = 'var(--s3)';
-          b.style.borderColor = 'var(--b2)';
-        });
-        btn.style.background  = 'var(--abg)';
-        btn.style.borderColor = 'var(--accent)';
-        try {
-          const fam = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
-          fam[ex] = btn.dataset.fam;
-          localStorage.setItem('muscleos_familiarity', JSON.stringify(fam));
-          rebuildFatigue(); // recalcul avec le nouveau seed
-        } catch(e) { /* ignore */ }
-      });
-    });
-
     body.querySelectorAll('.sel-item').forEach(i =>
       i.addEventListener('click', () => {
-        // Si familiarité jamais définie, on default "known"
-        try {
-          const fam = JSON.parse(localStorage.getItem('muscleos_familiarity') || '{}');
-          if (fam[ex] === undefined) {
-            fam[ex] = 'known';
-            localStorage.setItem('muscleos_familiarity', JSON.stringify(fam));
-          }
-        } catch(e) { /* ignore */ }
         const dateVal = S.drawer._exDate || S.drawer._date || DB.todayId();
         addEntry(cat, ex, i.dataset.var, dateVal);
         closeDrawer();
@@ -3945,21 +3853,9 @@ function renderFatigue() {
       const recupStr = recup != null
         ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`)
         : '';
-
-      // ── Indicateur habitude (CTL) ──
-      const ctl    = FATIGUE_ENGINE.getCTL(id);
-      const ctlRef = FATIGUE_ENGINE.CTL_REF[id] ?? 450;
-      const ratio  = ctl / ctlRef;
-      let habitDot, habitTitle;
-      if (ratio < 0.2)      { habitDot = '○'; habitTitle = 'Peu entraîné récemment'; }
-      else if (ratio < 0.7) { habitDot = '◐'; habitTitle = 'Entraîné occasionnellement'; }
-      else if (ratio < 1.5) { habitDot = '●'; habitTitle = 'Entraîné régulièrement'; }
-      else                  { habitDot = '●'; habitTitle = 'Très consistant'; }
-      const habitColor = ratio < 0.2 ? 'var(--t3)' : ratio < 0.7 ? 'var(--orange)' : ratio < 1.5 ? 'var(--accent)' : '#3dffa0';
-
       return `
         <div class="fat-row">
-          <div class="fat-name">${MUSCLE_LABELS[id] || id}&thinsp;<span title="${habitTitle}" style="color:${habitColor};font-size:9px;cursor:default">${habitDot}</span></div>
+          <div class="fat-name">${MUSCLE_LABELS[id] || id}</div>
           <div class="fat-bar"><div class="fat-bar-fill" style="width:${barW.toFixed(1)}%;background:${color}"></div></div>
           <div class="fat-val" style="color:${color}">${Math.round(val)}</div>
           <div class="fat-lbl" style="color:${color}">${label}</div>
