@@ -1905,24 +1905,38 @@ const PR_ENGINE = {
 function rebuildFatigue() {
   if (typeof FATIGUE_ENGINE === 'undefined' || typeof FATIGUE_DATA === 'undefined') return;
   FATIGUE_ENGINE.reset();
-  FATIGUE_ENGINE.resetCTL();
-  const sessions = DB.load().sort((a, b) => a.id.localeCompare(b.id));
+  if (typeof FATIGUE_ENGINE.resetCTL === 'function') FATIGUE_ENGINE.resetCTL();
+  // ⚠ ORDRE CHRONOLOGIQUE OBLIGATOIRE. applyDoses fait décroître l'état
+  // existant entre deux applications ; si on rejoue dans le désordre (ts
+  // décroissants), le temps écoulé devient négatif → amplification
+  // exponentielle (bug QUAD_RECT 4.7e24). On trie sessions ET sets par ts
+  // croissant avant rejeu. DB.load() ne garantit pas l'ordre du tableau.
+  const sessions = DB.load()
+    .slice()
+    .sort((a, b) => (new Date(a.id).getTime() || 0) - (new Date(b.id).getTime() || 0));
   for (const session of sessions) {
-    for (const entry of session.entries) {
+    const sessionTs = session.id ? new Date(session.id).getTime() : Date.now();
+    const entries = (session.entries || [])
+      .slice()
+      .sort((a, b) => (a.ts || sessionTs) - (b.ts || sessionTs));
+    for (const entry of entries) {
       if (entry.type === 'activity') {
         // Activité cardio/sport — doses calculées depuis le profil ACTIVITY_FATIGUE
         if (!entry.activityType || !entry.duration || !entry.intensity) continue;
         const doses = calcActivityDoses(entry.activityType, entry.duration, entry.intensity, entry.boosts || {});
         if (Object.keys(doses).length) {
           const profile = ACTIVITY_FATIGUE[entry.activityType];
-          FATIGUE_ENGINE.applyDoses(doses, entry.ts, profile?.recovery_scale ?? 1.0);
+          FATIGUE_ENGINE.applyDoses(doses, entry.ts || sessionTs, profile?.recovery_scale ?? 1.0);
         }
       } else {
         // Exercice de musculation — doses calculées depuis FATIGUE_DATA
         const activation = FATIGUE_DATA[entry.category]?.[entry.exerciseId]?.[entry.variantId];
         if (!activation) continue;
-        const sessionTs = session.id ? new Date(session.id).getTime() : Date.now();
-        for (const set of entry.sets) {
+        // Sets triés par ts croissant pour le même motif anti-amplification
+        const sets = (entry.sets || [])
+          .slice()
+          .sort((a, b) => (a.ts || entry.ts || sessionTs) - (b.ts || entry.ts || sessionTs));
+        for (const set of sets) {
           const ts = set.ts || entry.ts || sessionTs;
           const doses = FATIGUE_ENGINE.calcDoses(activation, [set]);
           FATIGUE_ENGINE.applyDoses(doses, ts);

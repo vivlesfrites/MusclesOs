@@ -377,9 +377,14 @@ const FATIGUE_ENGINE = (() => {
   //   Fonctionne pour base > 100 (overreaching)
   // ════════════════════════════════════════════════════
   function decay(base, elapsedMs, halfLifeH) {
-    if (base <= 0) return 0;
-    const h = elapsedMs / 3_600_000;
-    return base * Math.exp(-(Math.LN2 / halfLifeH) * h);
+    if (!(base > 0)) return 0;                       // gère 0, négatif, NaN
+    // ⚠ Garde anti-amplification : un temps écoulé NÉGATIF (dose appliquée
+    // dans le désordre, ts antérieur à l'état stocké) produirait exp(+λh)
+    // → explosion exponentielle. On borne à 0 : la fatigue ne « remonte »
+    // jamais dans le temps. (Bug QUAD_RECT 4.7e24 — rejeu anti-chronologique.)
+    const h = Math.max(0, elapsedMs) / 3_600_000;
+    const v = base * Math.exp(-(Math.LN2 / halfLifeH) * h);
+    return Number.isFinite(v) ? v : 0;               // garde-fou Infinity/NaN
   }
 
   // ════════════════════════════════════════════════════
