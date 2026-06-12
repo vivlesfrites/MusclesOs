@@ -15,7 +15,7 @@
 //    C'est la SEULE chose à modifier dans ce fichier.
 // ════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'muscleos-v3.5';
+const CACHE_VERSION = 'muscleos-v3.6';
 
 // ════════════════════════════════════════════════════
 // FICHIERS À METTRE EN CACHE
@@ -27,12 +27,15 @@ const CACHE_VERSION = 'muscleos-v3.5';
 const STATIC_FILES = [
   './muscleos.html',
   './manifest.json',
+  './style.css',
+  './catalog.js',
+  './activity-data.js',
+  './fatigue-data.js',
   './fatigue-engine.js',
   './user-profile.js',
+  './body-map.js',
 
   // Base de données biomécaniques
-  './index.json',
-  './muscles.json',
   './sources.json',
   './chest.json',
   './back.json',
