@@ -181,6 +181,24 @@ const FATIGUE_DATA = {
           "p": 28,
           "r": "t"
         }
+      },
+      "standard": {
+        "PECT_MAJ_STER": {
+          "p": 75,
+          "r": "p"
+        },
+        "PECT_MAJ_CLAV": {
+          "p": 50,
+          "r": "s"
+        },
+        "DELT_ANT": {
+          "p": 40,
+          "r": "s"
+        },
+        "BICEP_LONG": {
+          "p": 20,
+          "r": "t"
+        }
       }
     },
     "croise_poulie": {
@@ -2015,6 +2033,24 @@ const FATIGUE_DATA = {
           "p": 20,
           "r": "t"
         }
+      },
+      "elastique": {
+        "TRICEP_LAT": {
+          "p": 65,
+          "r": "p"
+        },
+        "TRICEP_MED": {
+          "p": 60,
+          "r": "p"
+        },
+        "TRICEP_LONG": {
+          "p": 42,
+          "r": "s"
+        },
+        "FOREARM_EXT": {
+          "p": 18,
+          "r": "t"
+        }
       }
     },
     "curl_incline": {
@@ -3119,7 +3155,7 @@ const FATIGUE_DATA = {
         }
       }
     },
-    "releve_jambes_suspendu": {
+    "releve_jambes": {
       "jambes_tendues": {
         "CORE_RECT_INF": {
           "p": 78,
