@@ -2,6 +2,9 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#080a0f">
+  <link rel="apple-touch-icon" href="icons/icon-apple.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>MuscleOS</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2679,6 +2682,13 @@ function init() {
 }
 
 init();
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('[MuscleOS] Service Worker enregistré'))
+      .catch(err => console.warn('[MuscleOS] SW erreur :', err));
+  }
 </script>
 </body>
 </html>
