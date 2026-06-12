@@ -4289,7 +4289,7 @@ const DATA_BACKUP = (() => {
     a.click();
     URL.revokeObjectURL(url);
 
-    showToast('✅ Sauvegarde exportée');
+    showPrToast('✅ Sauvegarde exportée');
   }
 
   function importData(file) {
@@ -4312,10 +4312,10 @@ const DATA_BACKUP = (() => {
 
         keysFound.forEach(k => localStorage.setItem(k, JSON.stringify(snapshot.data[k])));
 
-        showToast('✅ Import réussi — rechargement…');
+        showPrToast('✅ Import réussi — rechargement…');
         setTimeout(() => location.reload(), 1200);
       } catch (err) {
-        showToast('❌ Erreur : ' + err.message);
+        showPrToast('❌ Erreur : ' + err.message);
       }
     };
     reader.readAsText(file);
