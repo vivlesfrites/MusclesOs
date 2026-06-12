@@ -1,8 +1,8 @@
-{
+﻿{
   "name": "MuscleOS",
   "short_name": "MuscleOS",
-  "description": "Suivi musculaire & sportif personnel — base biomécaniques EMG, moteur de fatigue, journal de séances",
-  "start_url": "./muscleos.html",
+  "description": "Suivi musculaire et fatigue basé sur les données EMG",
+  "start_url": "muscleos.html",
   "display": "standalone",
   "background_color": "#080a0f",
   "theme_color": "#080a0f",
@@ -20,16 +20,11 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
-    }
-  ],
-  "screenshots": [],
-  "categories": ["health", "fitness", "sports"],
-  "shortcuts": [
+    },
     {
-      "name": "Séance du jour",
-      "short_name": "Aujourd'hui",
-      "description": "Ouvrir directement le journal du jour",
-      "url": "./muscleos.html#today"
+      "src": "icons/icon-apple.png",
+      "sizes": "180x180",
+      "type": "image/png"
     }
   ]
 }
