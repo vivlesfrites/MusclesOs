@@ -2683,12 +2683,84 @@ function init() {
 
 init();
 </script>
+<div id="pwa-update-banner" style="
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #141a24;
+  border: 1px solid #3dffa0;
+  border-radius: 12px;
+  padding: .75rem 1.25rem;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #dce3ef;
+  box-shadow: 0 4px 32px rgba(0,0,0,.6);
+  z-index: 9999;
+  white-space: nowrap;
+">
+  <span>⚡ Nouvelle version disponible</span>
+  <button onclick="pwaUpdate()" style="
+    background: #3dffa0;
+    color: #080a0f;
+    border: none;
+    border-radius: 6px;
+    padding: .35rem .85rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: .05em;
+  ">METTRE À JOUR</button>
+  <button onclick="document.getElementById('pwa-update-banner').style.display='none'" style="
+    background: none;
+    border: none;
+    color: #48556a;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    padding: 0;
+  ">×</button>
+</div>
+
 <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('[MuscleOS] Service Worker enregistré'))
-      .catch(err => console.warn('[MuscleOS] SW erreur :', err));
-  }
+(function() {
+  if (!('serviceWorker' in navigator)) return;
+
+  let newWorker = null;
+
+  navigator.serviceWorker.register('./service-worker.js')
+    .then(reg => {
+      console.log('[MuscleOS] Service Worker enregistré ✓');
+
+      reg.addEventListener('updatefound', () => {
+        newWorker = reg.installing;
+        newWorker.addEventListener('statechange', () => {
+          if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+            console.log('[MuscleOS] Nouvelle version disponible');
+            const banner = document.getElementById('pwa-update-banner');
+            if (banner) banner.style.display = 'flex';
+          }
+        });
+      });
+    })
+    .catch(err => console.warn('[MuscleOS] SW erreur :', err));
+
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload();
+  });
+
+  window.pwaUpdate = function() {
+    if (newWorker) {
+      newWorker.postMessage({ type: 'SKIP_WAITING' });
+    } else {
+      window.location.reload();
+    }
+  };
+})();
 </script>
 </body>
 </html>
