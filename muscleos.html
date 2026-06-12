@@ -2174,37 +2174,34 @@ function renderFatigue() {
   const now = new Date();
   const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
 
+  let totalActive = 0;
+  const freshGroups = [];
   let groupsHtml = '';
+
   for (const [groupName, muscleIds] of Object.entries(MUSCLE_GROUPS)) {
     const active = muscleIds
       .map(id => ({ id, val: all[id] || 0 }))
       .filter(x => x.val >= THRESHOLD)
       .sort((a, b) => b.val - a.val);
 
-    if (active.length === 0) {
-      groupsHtml += `
-        <div class="fat-group fresh">
-          <div class="fat-group-hdr">
-            <span class="lbl">${groupName}</span>
-            <span class="fat-fresh-tag">FRAIS ✓</span>
-          </div>
-        </div>`;
-      continue;
-    }
+    if (active.length === 0) { freshGroups.push(groupName); continue; }
+
+    totalActive += active.length;
+    const catKey = Object.keys(CATALOG).find(k => CATALOG[k].label === groupName) || '';
+    const dotColor = catKey ? `var(--c-${catKey})` : 'var(--t3)';
 
     const rows = active.map(({ id, val }) => {
-      const { label, color } = FATIGUE_ENGINE.classify(val);
+      const { level, label } = FATIGUE_ENGINE.classify(val);
       const barW = Math.min(100, (val / 160) * 100);
       const recup = FATIGUE_ENGINE.getHoursToRecover(id, 20);
       const recupStr = recup != null
-        ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`)
-        : '';
+        ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`) : '—';
       return `
-        <div class="fat-row">
+        <div class="fat-row lv-${level}">
           <div class="fat-name">${MUSCLE_LABELS[id] || id}</div>
-          <div class="fat-bar"><div class="fat-bar-fill" style="width:${barW.toFixed(1)}%;background:${color}"></div></div>
-          <div class="fat-val" style="color:${color}">${Math.round(val)}</div>
-          <div class="fat-lbl" style="color:${color}">${label}</div>
+          <div class="fat-bar"><div class="fat-bar-fill" style="width:${barW.toFixed(1)}%"></div></div>
+          <div class="fat-val">${Math.round(val)}</div>
+          <div class="fat-chip">${label.toUpperCase()}</div>
           <div class="fat-recup">${recupStr}</div>
         </div>`;
     }).join('');
@@ -2212,30 +2209,38 @@ function renderFatigue() {
     groupsHtml += `
       <div class="fat-group">
         <div class="fat-group-hdr">
-          <span class="lbl">${groupName}</span>
+          <span class="fat-group-dot" style="background:${dotColor}"></span>
+          <span class="fat-group-name">${groupName}</span>
+          <span class="fat-group-count">${active.length} muscle${active.length > 1 ? 's' : ''}</span>
         </div>
         <div class="fat-rows">${rows}</div>
       </div>`;
   }
 
+  const freshHtml = freshGroups.length > 0 ? `
+    <div class="fat-fresh">
+      <span class="fat-fresh-label">✓ FRAIS</span>
+      <div class="fat-fresh-chips">${freshGroups.map(g => `<span class="fat-fresh-chip">${g}</span>`).join('')}</div>
+    </div>` : '';
+
+  const summaryHtml = totalActive > 0
+    ? `<span class="fat-status-n">${totalActive}</span> muscle${totalActive > 1 ? 's' : ''} actif${totalActive > 1 ? 's' : ''}`
+    : `<span class="fat-status-ok">✓</span> Tous les muscles sont frais`;
+
   el.innerHTML = `
-    <div class="fat-topbar">
-      <span class="lbl">État musculaire</span>
-      <div style="display:flex;align-items:center;gap:12px">
-        <span class="fat-updated">Mise à jour ${timeStr}</span>
+    <div class="fat-status">
+      <span class="fat-status-info">${summaryHtml}</span>
+      <div class="fat-status-right">
+        <span class="fat-updated">${timeStr}</span>
         <button class="btn-fat-reset" id="btn-fat-reset">Réinitialiser</button>
       </div>
     </div>
-    <div class="bm-wrap">
-      <div id="bm-fat-svg"></div>
-      <div id="bm-fat-det" class="bm-det">
-        <span class="bm-det-hint">Clique sur un muscle pour voir son état</span>
-      </div>
+    ${groupsHtml ? `
+    <div class="fat-col-hdr">
+      <span>Muscle</span><span></span><span>Pts</span><span>État</span><span>Récup</span>
     </div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--t3);margin-bottom:14px;display:grid;grid-template-columns:1fr 90px 36px 58px 36px;gap:8px;padding:0 14px">
-      <span>Muscle</span><span></span><span style="text-align:right">Pts</span><span>État</span><span style="text-align:right">Récup</span>
-    </div>
-    ${groupsHtml}`;
+    <div class="fat-groups">${groupsHtml}</div>` : ''}
+    ${freshHtml}`;
 
   document.getElementById('btn-fat-reset')?.addEventListener('click', () => {
     if (confirm('Réinitialiser toute la fatigue stockée ?')) {
@@ -2243,29 +2248,6 @@ function renderFatigue() {
       renderFatigue();
     }
   });
-
-  // ── Carte anatomique (fatigue) ────────────────────
-  if (typeof BODY_MAP !== 'undefined') {
-    BODY_MAP.render('bm-fat-svg', (muscleId) => {
-      const val   = FATIGUE_ENGINE.getAll()[muscleId] || 0;
-      const label = MUSCLE_LABELS[muscleId] || muscleId;
-      const det   = document.getElementById('bm-fat-det');
-      if (!det) return;
-      if (val < 5) {
-        det.innerHTML = `<span class="bm-det-name">${label}</span><span class="bm-det-hint" style="margin-left:8px">Frais ✓</span>`;
-      } else {
-        const { label: stateLabel, color } = FATIGUE_ENGINE.classify(val);
-        const recup = FATIGUE_ENGINE.getHoursToRecover(muscleId, 20);
-        const recupStr = recup != null
-          ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`) : '';
-        det.innerHTML = `
-          <span class="bm-det-name">${label}</span>
-          <span class="bm-det-state" style="color:${color}">${Math.round(val)} pts — ${stateLabel}</span>
-          ${recupStr ? `<span class="bm-det-recup">Récup : ${recupStr}</span>` : ''}`;
-      }
-    });
-    BODY_MAP.updateFatigue('bm-fat-svg', all);
-  }
 }
 
 // ════════════════════════════════════════════════════
