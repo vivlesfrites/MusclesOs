@@ -23,7 +23,7 @@
 <header>
   <div class="brand">
     <span class="brand-name">MuscleOS</span>
-    <span class="brand-v">v3.6</span>
+    <span class="brand-v">v3.7</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="hdr-date"></div>
@@ -41,6 +41,7 @@
   <button class="tab-btn" data-tab="history">Historique</button>
   <button class="tab-btn" data-tab="fatigue">Fatigue</button>
   <button class="tab-btn" data-tab="progress">Progression</button>
+  <button class="tab-btn" data-tab="trends">Tendances</button>
 </nav>
 
 <main>
@@ -48,6 +49,7 @@
   <section id="tab-history" class="tab"></section>
   <section id="tab-fatigue" class="tab"></section>
   <section id="tab-progress" class="tab"></section>
+  <section id="tab-trends" class="tab"></section>
 </main>
 
 <div id="overlay" class="overlay"></div>
@@ -229,6 +231,31 @@ const PR_ENGINE = {
 
 
 
+// ── Exercices isométriques (holds) ──────────────────────────────────────────
+// Convention TUT : 1 rep dynamique ≈ 2-4 s de time-under-tension.
+// SECONDS_PER_REP = 3 est un paramètre ajustable, PAS une donnée EMG validée.
+// Il sert uniquement à convertir des secondes de hold en reps-équivalentes
+// avant le calcul de dose ; ne pas le confondre avec des chiffres d'activation.
+const SECONDS_PER_REP = 3;
+
+/** Retourne true si la variante est isométrique (flag hold dans CATALOG). */
+function isHoldVariant(cat, exId, varId) {
+  const v = CATALOG[cat]?.exercises[exId]?.variants[varId];
+  return !!(v && typeof v === 'object' && v.hold);
+}
+
+/**
+ * Convertit les sets d'un hold : reps (= secondes saisies) → reps-équivalentes.
+ * Pour les exercices dynamiques, retourne les sets inchangés.
+ * La conversion est à la volée — localStorage reste inchangé.
+ */
+function toEffectiveSets(sets, isHold) {
+  if (!isHold) return sets;
+  return sets.map(s => Object.assign({}, s, {
+    reps: Math.max(1, Math.round((s.reps || 0) / SECONDS_PER_REP))
+  }));
+}
+
 /**
  * Recalcule entièrement l'état de fatigue depuis l'historique DB.
  * Appelé après chaque modification de séance (ajout/suppression de série).
@@ -268,9 +295,10 @@ function rebuildFatigue() {
         const sets = (entry.sets || [])
           .slice()
           .sort((a, b) => (a.ts || entry.ts || sessionTs) - (b.ts || entry.ts || sessionTs));
+        const isHold = isHoldVariant(entry.category, entry.exerciseId, entry.variantId);
         for (const set of sets) {
           const ts = set.ts || entry.ts || sessionTs;
-          const doses = FATIGUE_ENGINE.calcDoses(activation, [set]);
+          const doses = FATIGUE_ENGINE.calcDoses(activation, toEffectiveSets([set], isHold));
           FATIGUE_ENGINE.applyDoses(doses, ts);
         }
       }
@@ -355,9 +383,10 @@ function entryStats(entry) {
   const n = entry.sets.length;
   const maxW = Math.max(...entry.sets.map(s => s.weight || 0));
   const reps0 = entry.sets[0]?.reps || 0;
-  if (maxW > 0) return `${n}×${reps0} · ${maxW} kg`;
+  const holdStat = isHoldVariant(entry.category, entry.exerciseId, entry.variantId);
+  if (maxW > 0) return `${n}×${reps0}${holdStat ? 's' : ''} · ${maxW} kg`;
   const totalReps = entry.sets.reduce((s, x) => s + (x.reps || 0), 0);
-  return `${n} séries · ${totalReps} reps`;
+  return `${n} séries · ${totalReps} ${holdStat ? 'sec' : 'reps'}`;
 }
 
 function getCatColor(cat) { return CAT_COLORS[cat] || '#888'; }
@@ -366,7 +395,8 @@ function exLabel(cat, exId) {
   return CATALOG[cat]?.exercises[exId]?.label || exId;
 }
 function varLabel(cat, exId, varId) {
-  return CATALOG[cat]?.exercises[exId]?.variants[varId] || varId;
+  const v = CATALOG[cat]?.exercises[exId]?.variants[varId];
+  return (v && typeof v === 'object') ? v.label : (v || varId);
 }
 
 function showPrToast(msg) {
@@ -619,6 +649,7 @@ function renderEntry(entry) {
   const vl = varLabel(entry.category, entry.exerciseId, entry.variantId);
   const stats = entryStats(entry);
   const isOpen = S.expandedEntry === entry.id;
+  const isHold = isHoldVariant(entry.category, entry.exerciseId, entry.variantId);
 
   // Sets rows
   const setsRows = entry.sets.length > 0
@@ -635,7 +666,7 @@ function renderEntry(entry) {
         <div class="set-row">
           <span class="set-n">S${i+1}</span>
           <div><div class="sv">${s.weight > 0 ? s.weight+' kg' : 'BW'}</div><div class="su">poids</div></div>
-          <div><div class="sv">${s.reps}</div><div class="su">reps</div></div>
+          <div><div class="sv">${s.reps}${isHold ? 's' : ''}</div><div class="su">${isHold ? 'sec' : 'reps'}</div></div>
           <div><div class="sv" style="color:var(--t3)">${s.rir!=null ? 'RIR '+s.rir : '—'}</div><div class="su">rir</div></div>
           ${s.angle != null ? `<div><div class="sv" style="color:var(--t3)">${s.angle > 0 ? '+' : ''}${s.angle}°</div><div class="su">angle</div></div>` : '<span></span>'}
           ${badgeHtml}
@@ -664,8 +695,8 @@ function renderEntry(entry) {
           <input class="fi" id="iw-${entry.id}" type="number" placeholder="100" min="0" step="0.5">
         </div>
         <div class="fg">
-          <label class="fl">Reps</label>
-          <input class="fi" id="ir-${entry.id}" type="number" placeholder="5" min="1">
+          <label class="fl">${isHold ? 'Sec' : 'Reps'}</label>
+          <input class="fi" id="ir-${entry.id}" type="number" placeholder="${isHold ? '30' : '5'}" min="1">
         </div>
         <div class="fg">
           <label class="fl">RIR</label>
@@ -926,11 +957,12 @@ function renderHistory() {
           const n = e.sets.length;
           const maxW = n > 0 ? Math.max(...e.sets.map(x => x.weight || 0)) : 0;
           const reps0 = n > 0 ? e.sets[0].reps : 0;
+          const isHoldH = isHoldVariant(e.category, e.exerciseId, e.variantId);
           const setsRows = e.sets.map((set, i) =>
             `<div class="set-row">
               <span class="set-n">S${i+1}</span>
               <div><div class="sv">${set.weight > 0 ? set.weight+' kg' : 'BW'}</div><div class="su">poids</div></div>
-              <div><div class="sv">${set.reps}</div><div class="su">reps</div></div>
+              <div><div class="sv">${set.reps}${isHoldH ? 's' : ''}</div><div class="su">${isHoldH ? 'sec' : 'reps'}</div></div>
               ${set.rir != null ? `<div><div class="sv" style="color:var(--t3)">RIR ${set.rir}</div><div class="su">rir</div></div>` : ''}
               <button class="btn-ds" data-eid="${e.id}" data-sid="${set.id}" data-sessid="${s.id}" title="Supprimer">✕</button>
             </div>`).join('');
@@ -1198,7 +1230,7 @@ function renderDrawer() {
     const defaultDate = S.drawer._exDate || todayId;
     const items = Object.entries(exData.variants).map(([k, v]) => `
       <div class="sel-item" data-var="${k}">
-        <div class="si-name">${v}</div>
+        <div class="si-name">${typeof v === 'object' ? v.label : v}</div>
         <span class="si-arr">›</span>
       </div>`).join('');
     body.innerHTML = `
@@ -1299,6 +1331,8 @@ function renderDrawer() {
     const boosts = S.drawer.actBoosts || {};
     const boostMuscles = ACTIVITY_BOOST_MUSCLES[actType] || [];
     const isRunning = act.group === 'running';
+    const hasDistance = isRunning || !!act.hasDistance;
+    if (hasDistance && !isRunning) S.drawer._paceUnit = 'km_h';
     const isIntervals = actType === 'running_intervals';
 
     title.textContent = act.label;
@@ -1549,7 +1583,7 @@ function renderDrawer() {
       }
     }
 
-    const runningFields = isRunning ? `
+    const runningFields = hasDistance ? `
       <div class="act-form-row">
         <div class="fg">
           <label class="fl">Distance <span style="color:var(--t3);font-weight:400">optionnel</span></label>
@@ -1567,7 +1601,7 @@ function renderDrawer() {
       ${paceHtml ? `
       <div style="display:flex;align-items:center;justify-content:space-between">
         ${paceHtml}
-        <button class="pace-toggle" id="btn-pace-toggle">${paceUnit === 'min_km' ? 'Afficher km/h' : 'Afficher min/km'}</button>
+        ${isRunning ? `<button class="pace-toggle" id="btn-pace-toggle">${paceUnit === 'min_km' ? 'Afficher km/h' : 'Afficher min/km'}</button>` : ''}
       </div>` : ''}` : '';
 
     body.innerHTML = `
@@ -1609,7 +1643,7 @@ function renderDrawer() {
     function _snapshotFields() {
       S.drawer._duration = parseInt(document.getElementById('act-dur')?.value) || null;
       S.drawer._actDate  = document.getElementById('act-date')?.value || DB.todayId();
-      if (isRunning) {
+      if (hasDistance) {
         const d = parseFloat(document.getElementById('act-dist')?.value);
         const b = parseInt(document.getElementById('act-bpm')?.value);
         S.drawer._distance = d > 0 ? d : null;
@@ -1618,15 +1652,17 @@ function renderDrawer() {
     }
 
     // Recalcul pace en live
-    if (isRunning) {
+    if (hasDistance) {
       ['act-dur','act-dist'].forEach(id => {
         document.getElementById(id)?.addEventListener('input', () => { _snapshotFields(); renderDrawer(); });
       });
-      document.getElementById('btn-pace-toggle')?.addEventListener('click', () => {
-        _snapshotFields();
-        S.drawer._paceUnit = paceUnit === 'min_km' ? 'km_h' : 'min_km';
-        renderDrawer();
-      });
+      if (isRunning) {
+        document.getElementById('btn-pace-toggle')?.addEventListener('click', () => {
+          _snapshotFields();
+          S.drawer._paceUnit = paceUnit === 'min_km' ? 'km_h' : 'min_km';
+          renderDrawer();
+        });
+      }
     }
 
     // Dots intensité
@@ -1654,8 +1690,8 @@ function renderDrawer() {
       const dur = parseInt(document.getElementById('act-dur')?.value);
       const intensity = S.drawer._intensity || 0;
       const dateVal = document.getElementById('act-date')?.value || DB.todayId();
-      const dist = isRunning ? (parseFloat(document.getElementById('act-dist')?.value) || null) : null;
-      const bpm  = isRunning ? (parseInt(document.getElementById('act-bpm')?.value) || null) : null;
+      const dist = hasDistance ? (parseFloat(document.getElementById('act-dist')?.value) || null) : null;
+      const bpm  = hasDistance ? (parseInt(document.getElementById('act-bpm')?.value) || null) : null;
       if (!dur || dur <= 0) {
         const inp = document.getElementById('act-dur');
         if (inp) { inp.classList.add('err'); setTimeout(() => inp.classList.remove('err'), 400); inp.focus(); }
@@ -1879,7 +1915,7 @@ function renderProgress() {
   } else if (openSel === 'var' && cat && exId) {
     ddHtml = `<div class="prog-dropdown">` +
       Object.entries(CATALOG[cat].exercises[exId].variants).map(([k, v]) =>
-        `<div class="prog-dd-item${varId===k?' active':''}" data-dd-var="${k}">${v}</div>`
+        `<div class="prog-dd-item${varId===k?' active':''}" data-dd-var="${k}">${typeof v === 'object' ? v.label : v}</div>`
       ).join('') + `</div>`;
   }
 
@@ -2146,6 +2182,295 @@ function renderProgress() {
 }
 
 
+// ════════════════════════════════════════════════════
+// RENDER — TENDANCES TAB
+// ════════════════════════════════════════════════════
+
+// État local de l'onglet Tendances
+const TRENDS = {
+  period: 90,   // fenêtre en jours : 30 | 90 | 0 (= tout l'historique)
+};
+
+/**
+ * Série temporelle d'une métrique (energy | sleep | bodyweight),
+ * triée ASC par date, valeurs nulles/non finies écartées.
+ * @returns [{ date:'YYYY-MM-DD', t:Number(ms), v:Number }]
+ */
+function getMetricSeries(field) {
+  return DB.load()
+    .filter(s => s.metrics && s.metrics[field] != null)
+    .map(s => ({ date: s.id, t: new Date(s.id).getTime(), v: s.metrics[field] }))
+    .filter(p => Number.isFinite(p.v) && Number.isFinite(p.t))
+    .sort((a, b) => a.t - b.t);
+}
+
+/** Filtre une série sur les N derniers jours (0 = tout). */
+function filterPeriod(series, days) {
+  if (!days) return series;
+  const cutoff = Date.now() - days * 86400000;
+  return series.filter(p => p.t >= cutoff);
+}
+
+/** Moyenne mobile simple trailing sur `win` points. Série alignée sur l'entrée. */
+function sma(series, win) {
+  return series.map((p, i) => {
+    const slice = series.slice(Math.max(0, i - win + 1), i + 1);
+    return { date: p.date, t: p.t, v: slice.reduce((s, x) => s + x.v, 0) / slice.length };
+  });
+}
+
+/** Moyenne simple d'une série. */
+function seriesAvg(series) {
+  return series.length ? series.reduce((s, x) => s + x.v, 0) / series.length : null;
+}
+
+/**
+ * Variation hebdomadaire calculée sur la série LISSÉE (pas le bruit quotidien).
+ * Compare la moyenne mobile actuelle au point le plus proche de 7 jours avant,
+ * puis normalise sur 7 jours réels.
+ * @returns { abs:Number, pct:Number, dir:'up'|'down'|'flat' } | null
+ */
+function weeklyRate(smaSeries) {
+  if (smaSeries.length < 8) return null;
+  const last = smaSeries[smaSeries.length - 1];
+  const target = last.t - 7 * 86400000;
+  let ref = smaSeries[0];
+  for (const p of smaSeries) {
+    if (Math.abs(p.t - target) < Math.abs(ref.t - target)) ref = p;
+  }
+  if (ref === last || ref.v === 0) return null;
+  const daysElapsed = (last.t - ref.t) / 86400000;
+  if (daysElapsed < 3 || daysElapsed > 21) return null;   // données trop éparses → non fiable
+  const abs = (last.v - ref.v) / daysElapsed * 7;
+  const pct = (abs / ref.v) * 100;
+  const dir = abs > 0.05 ? 'up' : abs < -0.05 ? 'down' : 'flat';
+  return { abs, pct, dir };
+}
+
+/**
+ * Dessine un graphe linéaire d'une métrique dans un canvas.
+ * @param canvasId   id du <canvas>
+ * @param primary    série principale (ligne pleine) [{t,v}]
+ * @param secondary  série brute optionnelle (points pâles) ou null
+ * @param opt        { colorVar:'--accent', decimals:Number }
+ */
+function drawMetricChart(canvasId, primary, secondary, opt) {
+  opt = opt || {};
+  const canvas = document.getElementById(canvasId);
+  if (!canvas || primary.length === 0) return;
+
+  const cs = getComputedStyle(document.documentElement);
+  const C = n => (cs.getPropertyValue(n) || '').trim();
+  const LINE  = C(opt.colorVar || '--accent') || '#3dffa0';
+  const GRID  = C('--b1') || '#222a37';
+  const MUTED = C('--t3') || '#48556a';
+
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width  = rect.width  * dpr;
+  canvas.height = rect.height * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width, H = rect.height;
+  const PAD = { top: 10, right: 8, bottom: 22, left: 38 };
+  const gW = W - PAD.left - PAD.right;
+  const gH = H - PAD.top - PAD.bottom;
+
+  // Bornes Y sur l'union des deux séries
+  const all = secondary ? primary.concat(secondary) : primary;
+  let minV = Math.min(...all.map(p => p.v));
+  let maxV = Math.max(...all.map(p => p.v));
+  if (minV === maxV) { minV -= 1; maxV += 1; }
+  const padV = (maxV - minV) * 0.12;
+  minV -= padV; maxV += padV;
+  const range = maxV - minV || 1;
+
+  // Bornes X temporelles
+  const tMin = all.reduce((m, p) => Math.min(m, p.t), Infinity);
+  const tMax = all.reduce((m, p) => Math.max(m, p.t), -Infinity);
+  const tRange = (tMax - tMin) || 1;
+  const xPos = t => PAD.left + ((t - tMin) / tRange) * gW;
+  const yPos = v => PAD.top + gH - ((v - minV) / range) * gH;
+
+  // Grille + labels Y
+  ctx.strokeStyle = GRID; ctx.lineWidth = 1;
+  ctx.font = '9px IBM Plex Mono, monospace';
+  const steps = 3;
+  for (let i = 0; i <= steps; i++) {
+    const y = PAD.top + (i / steps) * gH;
+    ctx.beginPath(); ctx.moveTo(PAD.left, y); ctx.lineTo(PAD.left + gW, y); ctx.stroke();
+    const v = maxV - (i / steps) * range;
+    ctx.fillStyle = MUTED; ctx.textAlign = 'right';
+    ctx.fillText(opt.decimals != null ? v.toFixed(opt.decimals) : Math.round(v), PAD.left - 4, y + 3);
+  }
+
+  // Série brute (points pâles)
+  if (secondary) {
+    ctx.fillStyle = MUTED; ctx.globalAlpha = 0.5;
+    secondary.forEach(p => { ctx.beginPath(); ctx.arc(xPos(p.t), yPos(p.v), 1.6, 0, Math.PI*2); ctx.fill(); });
+    ctx.globalAlpha = 1;
+  }
+
+  // Aire sous la ligne principale
+  ctx.globalAlpha = 0.12; ctx.fillStyle = LINE;
+  ctx.beginPath();
+  ctx.moveTo(xPos(primary[0].t), PAD.top + gH);
+  primary.forEach(p => ctx.lineTo(xPos(p.t), yPos(p.v)));
+  ctx.lineTo(xPos(primary[primary.length-1].t), PAD.top + gH);
+  ctx.closePath(); ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Ligne principale
+  ctx.beginPath();
+  ctx.strokeStyle = LINE; ctx.lineWidth = 1.8; ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+  primary.forEach((p, i) => i === 0 ? ctx.moveTo(xPos(p.t), yPos(p.v)) : ctx.lineTo(xPos(p.t), yPos(p.v)));
+  ctx.stroke();
+
+  // Point final
+  const lp = primary[primary.length-1];
+  ctx.beginPath(); ctx.arc(xPos(lp.t), yPos(lp.v), 3.2, 0, Math.PI*2);
+  ctx.fillStyle = LINE; ctx.fill();
+
+  // Labels X (début, milieu, fin)
+  const fmt = t => { const d = new Date(t); return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`; };
+  ctx.fillStyle = MUTED; ctx.font = '8px IBM Plex Mono, monospace';
+  [tMin, tMin + tRange/2, tMax].forEach((t, i) => {
+    ctx.textAlign = i === 0 ? 'left' : i === 2 ? 'right' : 'center';
+    ctx.fillText(fmt(t), Math.min(Math.max(xPos(t), PAD.left), W - PAD.right), H - 6);
+  });
+}
+
+/** Enveloppe une carte de tendance : titre + pastille couleur. */
+function trendCardShell(title, colorVar, inner) {
+  return `<div class="trend-card">
+    <div class="trend-hdr">
+      <div class="trend-title"><span class="trend-dot" style="background:var(${colorVar})"></span>${title}</div>
+    </div>
+    ${inner}
+  </div>`;
+}
+
+function renderTrends() {
+  const el = document.getElementById('tab-trends');
+  if (!el) return;
+
+  const period = TRENDS.period;
+  const periodBtns = [
+    { d: 30, label: '30 j' },
+    { d: 90, label: '90 j' },
+    { d: 0,  label: 'Tout' },
+  ].map(p => `<button class="trend-period-btn${period===p.d?' on':''}" data-period="${p.d}">${p.label}</button>`).join('');
+
+  const bw = filterPeriod(getMetricSeries('bodyweight'), period);
+  const en = filterPeriod(getMetricSeries('energy'), period);
+  const sl = filterPeriod(getMetricSeries('sleep'), period);
+
+  // ── POIDS ──
+  let bwCard;
+  if (bw.length < 2) {
+    bwCard = trendCardShell('Poids du corps', '--accent',
+      `<div class="trend-empty">Pas assez de mesures sur cette période<br><span style="font-size:11px">Saisis ton poids dans l'onglet Aujourd'hui</span></div>`);
+  } else {
+    const bwSma = sma(bw, 7);
+    const last = bw[bw.length - 1];
+    const lastSma = bwSma[bwSma.length - 1].v;
+    const rate = weeklyRate(bwSma);
+    const rateHtml = rate
+      ? `<div class="trend-stat">
+           <span class="trend-stat-val ${rate.dir}">${rate.abs>0?'+':''}${rate.abs.toFixed(2)} kg</span>
+           <span class="trend-stat-lbl">/ sem · tendance</span>
+         </div>
+         <div class="trend-stat">
+           <span class="trend-stat-val ${rate.dir}">${rate.pct>0?'+':''}${rate.pct.toFixed(2)} %</span>
+           <span class="trend-stat-lbl">/ sem</span>
+         </div>`
+      : '';
+    bwCard = trendCardShell('Poids du corps', '--accent', `
+      <div class="trend-hero">
+        <span class="trend-hero-val">${lastSma.toFixed(1)}</span>
+        <span class="trend-hero-unit">kg · moyenne 7 j</span>
+      </div>
+      <div class="trend-stats">
+        <div class="trend-stat">
+          <span class="trend-stat-val">${last.v.toFixed(1)} kg</span>
+          <span class="trend-stat-lbl">dernière pesée</span>
+        </div>
+        ${rateHtml}
+      </div>
+      <canvas class="trend-canvas" id="trend-canvas-bw" height="150"></canvas>
+      <div class="trend-note">La ligne pleine est la moyenne mobile 7 jours — le vrai signal. Les points pâles sont les pesées brutes : leurs écarts quotidiens (±1–2 kg) viennent surtout de l'eau et du glycogène, pas de la masse réelle.</div>
+    `);
+  }
+
+  // ── ÉNERGIE ──
+  let enCard;
+  if (en.length < 2) {
+    enCard = trendCardShell('Énergie', '--orange',
+      `<div class="trend-empty">Pas assez de relevés sur cette période</div>`);
+  } else {
+    enCard = trendCardShell('Énergie', '--orange', `
+      <div class="trend-hero">
+        <span class="trend-hero-val">${seriesAvg(en).toFixed(1)}</span>
+        <span class="trend-hero-unit">/10 · moyenne</span>
+      </div>
+      <div class="trend-stats">
+        <div class="trend-stat">
+          <span class="trend-stat-val">${en[en.length-1].v}/10</span>
+          <span class="trend-stat-lbl">dernier relevé</span>
+        </div>
+        <div class="trend-stat">
+          <span class="trend-stat-val">${en.length}</span>
+          <span class="trend-stat-lbl">relevés</span>
+        </div>
+      </div>
+      <canvas class="trend-canvas" id="trend-canvas-en" height="150"></canvas>
+    `);
+  }
+
+  // ── SOMMEIL ──
+  let slCard;
+  if (sl.length < 2) {
+    slCard = trendCardShell('Sommeil', '--blue',
+      `<div class="trend-empty">Pas assez de nuits sur cette période</div>`);
+  } else {
+    slCard = trendCardShell('Sommeil', '--blue', `
+      <div class="trend-hero">
+        <span class="trend-hero-val">${seriesAvg(sl).toFixed(1)}</span>
+        <span class="trend-hero-unit">h · moyenne</span>
+      </div>
+      <div class="trend-stats">
+        <div class="trend-stat">
+          <span class="trend-stat-val">${sl[sl.length-1].v} h</span>
+          <span class="trend-stat-lbl">dernière nuit</span>
+        </div>
+        <div class="trend-stat">
+          <span class="trend-stat-val">${sl.length}</span>
+          <span class="trend-stat-lbl">nuits</span>
+        </div>
+      </div>
+      <canvas class="trend-canvas" id="trend-canvas-sl" height="150"></canvas>
+    `);
+  }
+
+  el.innerHTML = `
+    <div class="trend-hdr" style="margin-bottom:14px">
+      <span class="lbl">Tendances</span>
+      <div class="trend-period">${periodBtns}</div>
+    </div>
+    ${bwCard}${enCard}${slCard}
+  `;
+
+  el.querySelectorAll('.trend-period-btn').forEach(b =>
+    b.addEventListener('click', () => { TRENDS.period = parseInt(b.dataset.period); renderTrends(); }));
+
+  // Dessins canvas après insertion dans le DOM
+  if (bw.length >= 2) drawMetricChart('trend-canvas-bw', sma(bw, 7), bw, { colorVar: '--accent', decimals: 1 });
+  if (en.length >= 2) drawMetricChart('trend-canvas-en', en, null, { colorVar: '--orange', decimals: 0 });
+  if (sl.length >= 2) drawMetricChart('trend-canvas-sl', sl, null, { colorVar: '--blue', decimals: 1 });
+}
+
+
 function switchTab(tab) {
   S.tab = tab;
   document.querySelectorAll('.tab-btn').forEach(b =>
@@ -2156,6 +2481,7 @@ function switchTab(tab) {
   if (tab === 'history') renderHistory();
   if (tab === 'fatigue') renderFatigue();
   if (tab === 'progress') renderProgress();
+  if (tab === 'trends') renderTrends();
 }
 
 // ════════════════════════════════════════════════════
@@ -2588,7 +2914,7 @@ const DATA_BACKUP = (() => {
   ];
 
   function exportData() {
-    const snapshot = { version: '3.6', exportedAt: new Date().toISOString(), data: {} };
+    const snapshot = { version: '3.7', exportedAt: new Date().toISOString(), data: {} };
     KEYS.forEach(k => {
       const val = localStorage.getItem(k);
       if (val !== null) snapshot.data[k] = JSON.parse(val);

@@ -68,7 +68,9 @@
       background: var(--bg);
       border-bottom: 1px solid var(--b1);
       display: flex; padding: 0 18px;
+      overflow-x: auto; scrollbar-width: none;
     }
+    nav::-webkit-scrollbar { display: none; }
     .tab-btn {
       background: none; border: none;
       padding: 13px 14px 11px;
@@ -77,6 +79,7 @@
       border-bottom: 2px solid transparent;
       margin-bottom: -1px;
       letter-spacing: .02em;
+      white-space: nowrap; flex-shrink: 0;
       transition: color .15s, border-color .15s;
     }
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
@@ -86,6 +89,39 @@
     main { max-width: 640px; margin: 0 auto; padding: 18px 16px 100px; }
     .tab { display: none; }
     .tab.active { display: block; }
+
+    /* ── TENDANCES ── */
+    .trend-card {
+      background: var(--s1); border: 1px solid var(--b1);
+      border-radius: var(--rl); padding: 16px; margin-bottom: 14px;
+    }
+    .trend-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .trend-title { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--t1); }
+    .trend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .trend-hero { display: flex; align-items: baseline; gap: 7px; }
+    .trend-hero-val { font-family: var(--mono); font-size: 30px; font-weight: 600; color: var(--t1); line-height: 1; }
+    .trend-hero-unit { font-family: var(--mono); font-size: 12px; color: var(--t3); }
+    .trend-stats { display: flex; gap: 20px; margin-top: 12px; flex-wrap: wrap; }
+    .trend-stat { display: flex; flex-direction: column; gap: 3px; }
+    .trend-stat-val { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--t1); }
+    .trend-stat-val.up { color: var(--orange); }
+    .trend-stat-val.down { color: var(--accent); }
+    .trend-stat-val.flat { color: var(--t2); }
+    .trend-stat-lbl { font-family: var(--mono); font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; color: var(--t3); }
+    .trend-canvas { width: 100%; height: 150px; display: block; margin-top: 14px; }
+    .trend-note { font-size: 11px; line-height: 1.55; color: var(--t3); margin-top: 12px; font-style: italic; }
+    .trend-empty { padding: 28px 12px; text-align: center; color: var(--t3); font-size: 12px; line-height: 1.5; }
+    .trend-period { display: flex; gap: 4px; }
+    .trend-period-btn {
+      background: var(--s2); border: 1px solid var(--b1); border-radius: var(--r);
+      padding: 4px 9px; font-family: var(--mono); font-size: 10px; font-weight: 600;
+      color: var(--t3); cursor: pointer; transition: all .15s;
+    }
+    .trend-period-btn:hover:not(.on) { color: var(--t1); border-color: var(--b2); }
+    .trend-period-btn.on { background: var(--abg); border-color: var(--accent); color: var(--accent); }
 
     /* ── LABELS ── */
     .lbl {
