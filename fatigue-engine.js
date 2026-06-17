@@ -51,6 +51,25 @@ const FATIGUE_ENGINE = (() => {
     if (typeof USER_PROFILE !== 'undefined') return USER_PROFILE.getMultiplier();
     return 1.0;
   }
+
+  // ════════════════════════════════════════════════════
+  // FACTEUR DYNAMIQUE DE RÉCUPÉRATION (sommeil récent)
+  //
+  // Multiplie le multiplicateur de profil UNIQUEMENT à la lecture
+  // (get/getAll/getFutureAt/getHoursToRecover/debugDump).
+  // applyDoses() conserve le multiplicateur statique → l'historique
+  // n'est pas réécrit. Borné et > 0 → pas de risque d'overflow.
+  //   > 1.0 : récupération ralentie (sommeil récent < norme)
+  //   < 1.0 : récupération accélérée (sommeil récent > norme)
+  // Piloté par l'app via setSleepRecovery().
+  // ════════════════════════════════════════════════════
+  let _dynamicRecovery = 1.0;
+  function setSleepRecovery(factor) {
+    _dynamicRecovery = (typeof factor === 'number' && factor > 0 && Number.isFinite(factor))
+      ? factor : 1.0;
+  }
+  function _readMultiplier() { return _profileMultiplier() * _dynamicRecovery; }
+
   function _goalFactor() {
     if (typeof USER_PROFILE !== 'undefined') return USER_PROFILE.getGoalFactor();
     return 1.0;
@@ -499,14 +518,14 @@ const FATIGUE_ENGINE = (() => {
     const state = _load();
     const rec = state[muscleId];
     if (!rec || rec.base <= 0) return 0;
-    const hl = (HALF_LIVES[muscleId] ?? DEFAULT_HALF_LIFE) * _profileMultiplier();
+    const hl = (HALF_LIVES[muscleId] ?? DEFAULT_HALF_LIFE) * _readMultiplier();
     return Math.round(decay(rec.base, Date.now() - rec.ts, hl) * 10) / 10;
   }
 
   function getAll() {
     const state = _load();
     const now = Date.now();
-    const pm = _profileMultiplier();
+    const pm = _readMultiplier();
     const result = {};
     for (const [id, rec] of Object.entries(state)) {
       if (!rec || rec.base <= 0) { result[id] = 0; continue; }
@@ -522,7 +541,7 @@ const FATIGUE_ENGINE = (() => {
   function getFutureAt(muscleId, inHours) {
     const current = get(muscleId);
     if (current <= 0) return 0;
-    const hl = (HALF_LIVES[muscleId] ?? DEFAULT_HALF_LIFE) * _profileMultiplier();
+    const hl = (HALF_LIVES[muscleId] ?? DEFAULT_HALF_LIFE) * _readMultiplier();
     return Math.round(decay(current, inHours * 3_600_000, hl) * 10) / 10;
   }
 
@@ -534,7 +553,7 @@ const FATIGUE_ENGINE = (() => {
   function getHoursToRecover(muscleId, targetFatigue = 20) {
     const current = get(muscleId);
     if (current <= targetFatigue) return null;
-    const hl = (HALF_LIVES[muscleId] ?? DEFAULT_HALF_LIFE) * _profileMultiplier();
+    const hl = (HALF_LIVES[muscleId] ?? DEFAULT_HALF_LIFE) * _readMultiplier();
     return Math.round((-hl / Math.LN2) * Math.log(targetFatigue / current) * 10) / 10;
   }
 
@@ -551,7 +570,7 @@ const FATIGUE_ENGINE = (() => {
   function debugDump() {
     const state = _load();
     const now = Date.now();
-    const pm = _profileMultiplier();
+    const pm = _readMultiplier();
     return Object.entries(state).map(([id, rec]) => {
       const hl = (HALF_LIVES[id] ?? DEFAULT_HALF_LIFE) * pm;
       const current = rec ? Math.round(decay(rec.base, now - rec.ts, hl)) : 0;
@@ -567,7 +586,7 @@ const FATIGUE_ENGINE = (() => {
     CTL_REF, CTL_HALF_LIFE_H,
     decay, calcVolumeFactor, calcDoses,
     get, getAll, getFutureAt, getHoursToRecover, classify,
-    applyDoses, reset, debugDump,
+    applyDoses, reset, debugDump, setSleepRecovery,
     // CTL — adaptation progressive
     getCTL, getAllCTL, getAdaptationMultiplier, seedCTL,
     resetCTL,

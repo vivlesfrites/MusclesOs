@@ -15,7 +15,7 @@
 //    C'est la SEULE chose à modifier dans ce fichier.
 // ════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'muscleos-v3.7.1';
+const CACHE_VERSION = 'muscleos-v3.9';
 
 // ════════════════════════════════════════════════════
 // FICHIERS À METTRE EN CACHE

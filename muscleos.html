@@ -23,7 +23,7 @@
 <header>
   <div class="brand">
     <span class="brand-name">MuscleOS</span>
-    <span class="brand-v">v3.8</span>
+    <span class="brand-v">v3.9</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="hdr-date"></div>
@@ -571,6 +571,8 @@ function renderToday() {
     const v = parseFloat(sleepInp.value);
     S.today.metrics.sleep = isNaN(v) ? null : v;
     DB.saveToday(S.today);
+    refreshSleepRecovery();
+    if (S.tab === 'fatigue') renderFatigue();
   });
 
   const bwInp = document.getElementById('bw-inp');
@@ -2499,6 +2501,50 @@ function renderReadinessCard() {
   `);
 }
 
+// ════════════════════════════════════════════════════
+// SOMMEIL → RÉCUPÉRATION (Niveau 3)
+//
+// Facteur dynamique = écart du sommeil RÉCENT (3 dernières nuits)
+// à la NORME individuelle (28 j), centré sur 1.0 et borné.
+// Branché en lecture seule sur le moteur via setSleepRecovery().
+// Magnitude = heuristique calibrée (voir annexe du brief) :
+//   direction = CONSENSUS ; ampleur = MODÈLE, ajustable ici.
+// ════════════════════════════════════════════════════
+const SLEEP_RECOVERY = {
+  RECENT_NIGHTS: 3,    // "climat" récent
+  BASELINE_DAYS: 28,   // norme individuelle
+  MIN_SAMPLES: 7,      // sinon facteur neutre (1.0)
+  GAIN: 1.2,           // sensibilité : déviation relative → modulation de demi-vie
+  MIN: 0.90,           // borne basse : récup ~10% plus rapide (upside modeste, moins documenté)
+  MAX: 1.30,           // borne haute : récup ~30% plus lente (≈ ampleur des baisses MPS/métaboliques)
+};
+
+/**
+ * Facteur de récupération lié au sommeil récent.
+ * @returns Number dans [SLEEP_RECOVERY.MIN, SLEEP_RECOVERY.MAX] ; 1.0 si données insuffisantes.
+ */
+function sleepRecoveryFactor() {
+  const s = getMetricSeries('sleep');                 // [{date,t,v}] trié ASC (Niveau 1)
+  if (s.length < SLEEP_RECOVERY.MIN_SAMPLES) return 1.0;
+  const recentArr = s.slice(-SLEEP_RECOVERY.RECENT_NIGHTS);
+  const recent = recentArr.reduce((a, x) => a + x.v, 0) / recentArr.length;
+  const cutoff = Date.now() - SLEEP_RECOVERY.BASELINE_DAYS * 86400000;
+  const baseArr = s.slice(0, -SLEEP_RECOVERY.RECENT_NIGHTS).filter(p => p.t >= cutoff);
+  if (baseArr.length < SLEEP_RECOVERY.MIN_SAMPLES) return 1.0;
+  const base = baseArr.reduce((a, x) => a + x.v, 0) / baseArr.length;
+  if (base <= 0) return 1.0;
+  const rel = (base - recent) / base;                 // >0 = dette de sommeil récente
+  const factor = 1 + SLEEP_RECOVERY.GAIN * rel;
+  return Math.min(SLEEP_RECOVERY.MAX, Math.max(SLEEP_RECOVERY.MIN, factor));
+}
+
+/** Recalcule le facteur et le pousse dans le moteur (à appeler avant de lire/afficher la fatigue). */
+function refreshSleepRecovery() {
+  if (typeof FATIGUE_ENGINE !== 'undefined' && typeof FATIGUE_ENGINE.setSleepRecovery === 'function') {
+    FATIGUE_ENGINE.setSleepRecovery(sleepRecoveryFactor());
+  }
+}
+
 function renderTrends() {
   const el = document.getElementById('tab-trends');
   if (!el) return;
@@ -2645,6 +2691,12 @@ function renderFatigue() {
   }
 
   const all = FATIGUE_ENGINE.getAll();
+  const srf = sleepRecoveryFactor();
+  const srfLabel = srf >= 1.08
+    ? `Sommeil récent sous ta norme — récupération ralentie ×${srf.toFixed(2)}`
+    : srf <= 0.95
+    ? `Sommeil récent au-dessus de ta norme — récupération accélérée ×${srf.toFixed(2)}`
+    : null;
   const THRESHOLD = 5;
   const now = new Date();
   const timeStr = `${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
@@ -2710,6 +2762,8 @@ function renderFatigue() {
         <button class="btn-fat-reset" id="btn-fat-reset">Réinitialiser</button>
       </div>
     </div>
+    ${srfLabel ? `<div style="font-size:11px;color:${srf>=1.08?'var(--orange)':'var(--accent)'};
+      font-family:var(--mono);padding:6px 2px 0">${srfLabel}</div>` : ''}
     ${groupsHtml ? `
     <div class="fat-col-hdr">
       <span>Muscle</span><span></span><span>Pts</span><span>État</span><span>Récup</span>
@@ -3063,7 +3117,7 @@ const DATA_BACKUP = (() => {
   ];
 
   function exportData() {
-    const snapshot = { version: '3.8', exportedAt: new Date().toISOString(), data: {} };
+    const snapshot = { version: '3.9', exportedAt: new Date().toISOString(), data: {} };
     KEYS.forEach(k => {
       const val = localStorage.getItem(k);
       if (val !== null) snapshot.data[k] = JSON.parse(val);
@@ -3119,6 +3173,7 @@ const DATA_BACKUP = (() => {
 function init() {
   document.getElementById('hdr-date').textContent = fmtDateLong(DB.todayId());
   S.today = DB.getToday();
+  refreshSleepRecovery();
   rebuildFatigue();
   PR_ENGINE.rebuild();
   renderToday();
