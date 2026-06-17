@@ -23,7 +23,7 @@
 <header>
   <div class="brand">
     <span class="brand-name">MuscleOS</span>
-    <span class="brand-v">v3.7</span>
+    <span class="brand-v">v3.8</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="hdr-date"></div>
@@ -2351,6 +2351,154 @@ function trendCardShell(title, colorVar, inner) {
   </div>`;
 }
 
+// ════════════════════════════════════════════════════
+// FORME DU JOUR — SCORE DE READINESS
+//
+// Principe : comparer la journée à la propre ligne de base
+// de l'utilisateur (z-score vs moyenne glissante 28 j), pas à
+// un standard absolu. Les mesures subjectives (énergie, sommeil)
+// suivent la charge avec plus de sensibilité que l'objectif
+// (Saw, Main & Gastin 2016, BJSM, 10.1136/bjsports-2015-094758).
+//
+// Seuils sourcés :
+//   SWC_Z  = 0.3  → "changement significatif" ≈ 0.2–0.3 × SD
+//                   (Hopkins ; défaut Buchheit / AthleteMonitoring).
+//   FLAG_Z = 1.5  → signalement au-delà de ±1.5 SD vs base 28 j
+//                   (pratique standard du monitoring wellness).
+//   WINDOW = 28 j → fenêtre de référence individuelle standard.
+//   MIN    = 7    → minimum de relevés avant d'afficher un score.
+//
+// Pondération énergie/sommeil = égale par défaut (aucune hiérarchie
+// inventée). Énergie est, prise isolément, l'item subjectif le mieux
+// validé ; les poids restent ajustables ci-dessous.
+// ════════════════════════════════════════════════════
+const READINESS = {
+  WINDOW_DAYS: 28,
+  MIN_SAMPLES: 7,
+  SWC_Z: 0.3,
+  FLAG_Z: 1.5,
+  W_ENERGY: 1,
+  W_SLEEP: 1,
+};
+
+/**
+ * Ligne de base individuelle d'une métrique : moyenne + écart-type
+ * (échantillon, n−1) sur la fenêtre glissante, en EXCLUANT le jour courant.
+ * @returns { n, mean:Number|null, sd:Number|null }
+ */
+function metricBaseline(field) {
+  const today = DB.todayId();
+  let series = getMetricSeries(field).filter(p => p.date !== today);
+  series = filterPeriod(series, READINESS.WINDOW_DAYS);
+  const n = series.length;
+  if (n < READINESS.MIN_SAMPLES) return { n, mean: null, sd: null };
+  const mean = series.reduce((s, x) => s + x.v, 0) / n;
+  const variance = series.reduce((s, x) => s + (x.v - mean) ** 2, 0) / (n - 1);
+  return { n, mean, sd: Math.sqrt(variance) };
+}
+
+/** Classe un z-score (où "plus haut = mieux") en bande. */
+function bandFromZ(z) {
+  if (z >= READINESS.SWC_Z) return 'high';
+  if (z > -READINESS.SWC_Z)  return 'normal';
+  if (z >= -READINESS.FLAG_Z) return 'low';
+  return 'flag';
+}
+
+/**
+ * z-score du jour d'une métrique vs sa ligne de base + classification.
+ * @returns { status:'ok'|'building'|'nodata', z, band, n, mean, sd, val }
+ */
+function metricZ(field, todayVal) {
+  const { n, mean, sd } = metricBaseline(field);
+  if (mean == null) return { status: 'building', n };
+  if (todayVal == null) return { status: 'nodata', n, mean, sd };
+  if (!sd || sd < 1e-9) {
+    const band = todayVal > mean ? 'high' : todayVal < mean ? 'low' : 'normal';
+    return { status: 'ok', z: 0, band, n, mean, sd, val: todayVal };
+  }
+  const z = (todayVal - mean) / sd;
+  return { status: 'ok', z, band: bandFromZ(z), n, mean, sd, val: todayVal };
+}
+
+/**
+ * Score de forme composite du jour = moyenne pondérée des z-scores
+ * des composantes disponibles (énergie, sommeil).
+ * @returns { status:'ok'|'building'|'nodata', z, band, comps:[...] }
+ */
+function computeReadiness() {
+  const m = (DB.getToday().metrics) || {};
+  const defs = [
+    { key: 'energy', val: m.energy, w: READINESS.W_ENERGY },
+    { key: 'sleep',  val: m.sleep,  w: READINESS.W_SLEEP },
+  ];
+  const comps = [];
+  for (const d of defs) {
+    const r = metricZ(d.key, d.val != null ? d.val : null);
+    if (r.status === 'ok') comps.push({ key: d.key, w: d.w, ...r });
+  }
+  if (!comps.length) {
+    const building = metricZ('energy', null).status === 'building'
+                  || metricZ('sleep', null).status === 'building';
+    return { status: building ? 'building' : 'nodata', comps: [] };
+  }
+  const sw = comps.reduce((s, c) => s + c.w, 0);
+  const zMean = comps.reduce((s, c) => s + c.w * c.z, 0) / sw;
+  return { status: 'ok', z: zMean, band: bandFromZ(zMean), comps };
+}
+
+/** Carte « Forme du jour » (retourne du HTML, à insérer en tête de Tendances). */
+function renderReadinessCard() {
+  const r = computeReadiness();
+
+  if (r.status === 'building') {
+    const best = Math.max(metricBaseline('energy').n, metricBaseline('sleep').n);
+    return trendCardShell('Forme du jour', '--accent',
+      `<div class="rd-building">Construction de ta ligne de base personnelle…<br>
+        <span style="font-family:var(--mono);font-size:11px">${best}/${READINESS.MIN_SAMPLES} jours de relevés</span><br>
+        <span style="font-size:11px">Le score compare ta journée à ta propre norme sur ${READINESS.WINDOW_DAYS} jours. Il apparaît dès ${READINESS.MIN_SAMPLES} relevés d'énergie ou de sommeil.</span></div>`);
+  }
+  if (r.status === 'nodata') {
+    return trendCardShell('Forme du jour', '--accent',
+      `<div class="rd-building">Renseigne ton énergie et ton sommeil du jour dans l'onglet Aujourd'hui pour calculer ta forme.</div>`);
+  }
+
+  const BAND = {
+    high:   { cls: 'rd-high',   bg: 'rd-high-bg',   label: 'Au-dessus de ta norme',   msg: 'Tu es au-dessus de ta forme habituelle. Bon moment pour une séance exigeante.' },
+    normal: { cls: 'rd-normal', bg: 'rd-normal-bg', label: 'Dans ta norme',           msg: 'Journée dans ta zone habituelle. Rien à signaler.' },
+    low:    { cls: 'rd-low',    bg: 'rd-low-bg',    label: 'Sous ta norme',           msg: 'Tu es sous ta forme habituelle. Séance possible, mais surveille la récupération et l\'intensité.' },
+    flag:   { cls: 'rd-flag',   bg: 'rd-flag-bg',   label: 'Nettement sous ta norme', msg: 'Forme nettement en dessous de ta norme. Envisage d\'alléger le volume ou de privilégier la récupération aujourd\'hui.' },
+  };
+  const b = BAND[r.band];
+
+  const compRow = c => {
+    const cb = BAND[c.band];
+    const name = c.key === 'energy' ? 'Énergie' : 'Sommeil';
+    const unit = c.key === 'energy' ? '/10' : ' h';
+    const sign = c.z > 0 ? '+' : '';
+    return `<div class="rd-comp">
+      <div class="rd-comp-l">
+        <span class="rd-pill ${cb.bg}"></span>
+        <div>
+          <div class="rd-comp-name">${name}</div>
+          <div class="rd-comp-detail">${c.val}${unit} · ta norme ${c.mean.toFixed(1)}${unit}</div>
+        </div>
+      </div>
+      <span class="rd-comp-dev ${cb.cls}">${sign}${c.z.toFixed(1)} σ</span>
+    </div>`;
+  };
+
+  return trendCardShell('Forme du jour', '--accent', `
+    <div class="rd-state">
+      <span class="rd-band ${b.cls}">${b.label}</span>
+      <span class="rd-z">${r.z>0?'+':''}${r.z.toFixed(1)} σ vs ta norme</span>
+    </div>
+    <div class="rd-msg">${b.msg}</div>
+    <div class="rd-comps">${r.comps.map(compRow).join('')}</div>
+    <div class="trend-note">Ta forme est mesurée comme l'écart à ta propre moyenne sur ${READINESS.WINDOW_DAYS} jours (z-score), pas à un standard absolu — c'est la méthode de monitoring validée par la littérature (Saw et al. 2016 ; pratique standard du suivi athlète). σ = écarts-types. C'est un repère, pas une consigne ; énergie et sommeil pèsent à parts égales.</div>
+  `);
+}
+
 function renderTrends() {
   const el = document.getElementById('tab-trends');
   if (!el) return;
@@ -2365,6 +2513,7 @@ function renderTrends() {
   const bw = filterPeriod(getMetricSeries('bodyweight'), period);
   const en = filterPeriod(getMetricSeries('energy'), period);
   const sl = filterPeriod(getMetricSeries('sleep'), period);
+  const rdCard = renderReadinessCard();
 
   // ── POIDS ──
   let bwCard;
@@ -2458,7 +2607,7 @@ function renderTrends() {
       <span class="lbl">Tendances</span>
       <div class="trend-period">${periodBtns}</div>
     </div>
-    ${bwCard}${enCard}${slCard}
+    ${rdCard}${bwCard}${enCard}${slCard}
   `;
 
   el.querySelectorAll('.trend-period-btn').forEach(b =>
@@ -2914,7 +3063,7 @@ const DATA_BACKUP = (() => {
   ];
 
   function exportData() {
-    const snapshot = { version: '3.7', exportedAt: new Date().toISOString(), data: {} };
+    const snapshot = { version: '3.8', exportedAt: new Date().toISOString(), data: {} };
     KEYS.forEach(k => {
       const val = localStorage.getItem(k);
       if (val !== null) snapshot.data[k] = JSON.parse(val);

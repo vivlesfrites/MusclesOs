@@ -123,6 +123,32 @@
     .trend-period-btn:hover:not(.on) { color: var(--t1); border-color: var(--b2); }
     .trend-period-btn.on { background: var(--abg); border-color: var(--accent); color: var(--accent); }
 
+    /* ── FORME DU JOUR (readiness) ── */
+    .rd-state { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+    .rd-band { font-size: 18px; font-weight: 700; }
+    .rd-z { font-family: var(--mono); font-size: 11px; color: var(--t3); }
+    .rd-msg { font-size: 12px; color: var(--t2); margin-top: 7px; line-height: 1.5; }
+    .rd-comps { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+    .rd-comp {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 11px; background: var(--s2); border: 1px solid var(--b1); border-radius: var(--r);
+    }
+    .rd-comp-l { display: flex; align-items: center; gap: 9px; }
+    .rd-comp-name { font-size: 13px; font-weight: 600; color: var(--t1); }
+    .rd-comp-detail { font-family: var(--mono); font-size: 10px; color: var(--t3); margin-top: 2px; }
+    .rd-comp-dev { font-family: var(--mono); font-size: 13px; font-weight: 600; }
+    .rd-pill { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .rd-building { padding: 22px 12px; text-align: center; color: var(--t3); font-size: 12px; line-height: 1.6; }
+    /* bandes couleur */
+    .rd-high   { color: var(--accent); }
+    .rd-normal { color: var(--blue); }
+    .rd-low    { color: var(--orange); }
+    .rd-flag   { color: var(--red); }
+    .rd-high-bg   { background: var(--accent); }
+    .rd-normal-bg { background: var(--blue); }
+    .rd-low-bg    { background: var(--orange); }
+    .rd-flag-bg   { background: var(--red); }
+
     /* ── LABELS ── */
     .lbl {
       font-family: var(--mono); font-size: 10px; font-weight: 600;
