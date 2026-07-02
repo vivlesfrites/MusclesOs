@@ -2769,7 +2769,13 @@ function renderFatigue() {
       <span>Muscle</span><span></span><span>Pts</span><span>État</span><span>Récup</span>
     </div>
     <div class="fat-groups">${groupsHtml}</div>` : ''}
-    ${freshHtml}`;
+    ${freshHtml}
+    <div class="bm-wrap" style="margin-top:18px">
+      <div id="bm-fat-svg"></div>
+      <div id="bm-fat-det" class="bm-det">
+        <span class="bm-det-hint">Clique sur un muscle pour voir son état</span>
+      </div>
+    </div>`;
 
   document.getElementById('btn-fat-reset')?.addEventListener('click', () => {
     if (confirm('Réinitialiser toute la fatigue stockée ?')) {
@@ -2777,6 +2783,34 @@ function renderFatigue() {
       renderFatigue();
     }
   });
+
+  // ── Carte anatomique (fatigue) ────────────────────
+  if (typeof BODY_MAP !== 'undefined') {
+    const LEVEL_COLOR_MUSCLE = {
+      fresh:'var(--accent)', light:'var(--accent)', moderate:'var(--c-core)',
+      heavy:'var(--orange)', critical:'var(--red)',
+    };
+    BODY_MAP.render('bm-fat-svg', (muscleId) => {
+      const val   = FATIGUE_ENGINE.getAll()[muscleId] || 0;
+      const label = MUSCLE_LABELS[muscleId] || muscleId;
+      const det   = document.getElementById('bm-fat-det');
+      if (!det) return;
+      if (val < 5) {
+        det.innerHTML = `<span class="bm-det-name">${label}</span><span class="bm-det-hint" style="margin-left:8px">Frais ✓</span>`;
+      } else {
+        const { level, label: stateLabel } = FATIGUE_ENGINE.classify(val);
+        const color = LEVEL_COLOR_MUSCLE[level] || 'var(--t3)';
+        const recup = FATIGUE_ENGINE.getHoursToRecover(muscleId, 20);
+        const recupStr = recup != null
+          ? (recup >= 48 ? `${(recup/24).toFixed(1)}j` : `${Math.round(recup)}h`) : '';
+        det.innerHTML = `
+          <span class="bm-det-name">${label}</span>
+          <span class="bm-det-state" style="color:${color}">${Math.round(val)} pts — ${stateLabel}</span>
+          ${recupStr ? `<span class="bm-det-recup">Récup : ${recupStr}</span>` : ''}`;
+      }
+    });
+    BODY_MAP.updateFatigue('bm-fat-svg', all);
+  }
 }
 
 // ════════════════════════════════════════════════════
