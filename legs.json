@@ -539,6 +539,7 @@
       "variants": {
         "barre": {
           "label": "Hip thrust barre",
+          "equipment": "barre",
           "description": "Épaules sur banc, barre sur les hanches — extension de hanche maximale",
           "activation": {
             "GLUTE_MAX": {
@@ -1413,6 +1414,7 @@
       "variants": {
         "machine": {
           "label": "Machine abducteurs assis",
+          "equipment": "machine",
           "description": "Machine adducteur/abducteur — isolation moyen fessier en position assise",
           "activation": {
             "GLUTE_MED": {
@@ -1453,6 +1455,7 @@
         },
         "cable": {
           "label": "Câble debout — moyen fessier",
+          "equipment": "câble",
           "description": "Câble à la cheville, abduction debout — moyen fessier + stabilisation unilatérale",
           "activation": {
             "GLUTE_MED": {
@@ -1514,6 +1517,7 @@
       "variants": {
         "machine": {
           "label": "Machine adducteurs assis",
+          "equipment": "machine",
           "description": "Machine adducteur — isolation groupe adducteur en position assise",
           "activation": {
             "ADDUCTOR": {
@@ -1554,6 +1558,7 @@
         },
         "cable": {
           "label": "Câble debout — adducteur",
+          "equipment": "câble",
           "description": "Câble à la cheville, adduction debout en appui unipodal",
           "activation": {
             "ADDUCTOR": {
@@ -2139,6 +2144,72 @@
             }
           },
           "load_variation": null
+        }
+      }
+    },
+    "pistol_squat": {
+      "label": "Pistol squat",
+      "category": "compound",
+      "equipment": ["aucun"],
+      "movement_pattern": "squat_unilateral",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "description": "Squat complet sur une jambe, l'autre tendue devant — charge unilatérale complète, équilibre requis",
+          "activation": {
+            "QUAD_VAST_MED": { "percent": 85, "heads": {}, "role": "primary", "sources": ["Andersen_2014_squat_muscles"] },
+            "QUAD_VAST_LAT": { "percent": 80, "heads": {}, "role": "primary", "sources": ["Andersen_2014_squat_muscles"] },
+            "GLUTE_MAX": { "percent": 72, "heads": {}, "role": "primary", "sources": ["Contreras_2015_hip_thrust"] },
+            "QUAD_RECT": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Andersen_2014_squat_muscles"] },
+            "HAMSTRING_BF_LONG": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Camara_2016_squat_hamstrings"] },
+            "GLUTE_MED": { "percent": 65, "heads": {}, "role": "secondary", "sources": ["Contreras_2015_hip_thrust"] },
+            "GASTRO_MED": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["Lum_2020_lunge"] },
+            "CORE_TRANS": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du squat bilatéral (Andersen_2014_squat_muscles), pas de mesure EMG directe sur le pistol squat (variante unilatérale) ; l'équilibre unilatéral augmente fortement la demande du moyen fessier et des stabilisateurs par rapport au squat bilatéral."
+        },
+        "assiste": {
+          "label": "Assisté (appui/contrepoids)",
+          "description": "Aide d'un appui (sangle, poteau) ou d'un léger contrepoids — réduit la charge et la demande d'équilibre",
+          "activation": {
+            "QUAD_VAST_MED": { "percent": 68, "heads": {}, "role": "primary", "sources": ["Andersen_2014_squat_muscles"] },
+            "QUAD_VAST_LAT": { "percent": 64, "heads": {}, "role": "primary", "sources": ["Andersen_2014_squat_muscles"] },
+            "GLUTE_MAX": { "percent": 58, "heads": {}, "role": "primary", "sources": ["Contreras_2015_hip_thrust"] },
+            "QUAD_RECT": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Andersen_2014_squat_muscles"] },
+            "HAMSTRING_BF_LONG": { "percent": 36, "heads": {}, "role": "secondary", "sources": ["Camara_2016_squat_hamstrings"] },
+            "GLUTE_MED": { "percent": 48, "heads": {}, "role": "secondary", "sources": ["Contreras_2015_hip_thrust"] },
+            "GASTRO_MED": { "percent": 28, "heads": {}, "role": "stabilizer", "sources": ["Lum_2020_lunge"] },
+            "CORE_TRANS": { "percent": 30, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du squat bilatéral (Andersen_2014_squat_muscles), pas de mesure EMG directe sur le pistol squat. L'appui réduit la demande d'équilibre par rapport à la version standard."
+        }
+      }
+    },
+    "shrimp_squat": {
+      "label": "Shrimp squat",
+      "category": "compound",
+      "equipment": ["aucun"],
+      "movement_pattern": "squat_unilateral",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "description": "Squat sur une jambe, l'autre fléchie tenue derrière — étirement du quadriceps arrière accru, équilibre différent du pistol",
+          "activation": {
+            "QUAD_VAST_MED": { "percent": 82, "heads": {}, "role": "primary", "sources": ["Andersen_2014_squat_muscles"] },
+            "QUAD_VAST_LAT": { "percent": 78, "heads": {}, "role": "primary", "sources": ["Andersen_2014_squat_muscles"] },
+            "QUAD_RECT": { "percent": 62, "heads": {}, "role": "secondary", "sources": ["Andersen_2014_squat_muscles"] },
+            "GLUTE_MAX": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Contreras_2015_hip_thrust"] },
+            "GLUTE_MED": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["Contreras_2015_hip_thrust"] },
+            "HIP_FLEX": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["Calatayud_2017_hanging_leg_raise"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du squat unilatéral (Andersen_2014_squat_muscles), pas de mesure EMG directe sur le shrimp squat. La jambe arrière fléchie modifie l'équilibre et accentue l'étirement du quadriceps en position basse par rapport au pistol squat."
         }
       }
     }

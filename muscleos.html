@@ -23,7 +23,7 @@
 <header>
   <div class="brand">
     <span class="brand-name">MuscleOS</span>
-    <span class="brand-v">v3.9</span>
+    <span class="brand-v">v3.14</span>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="hdr-date"></div>
@@ -64,6 +64,18 @@
     <button class="btn-dc" id="btn-dc">✕</button>
   </div>
   <div class="d-body" id="d-body"></div>
+</div>
+
+<div id="routines-drawer" class="drawer">
+  <div class="d-pill"></div>
+  <div class="d-top">
+    <div>
+      <div class="d-title" id="rd-title">Routines</div>
+      <div class="d-breadcrumb" id="rd-crumb"></div>
+    </div>
+    <button class="btn-dc" id="btn-rdc">✕</button>
+  </div>
+  <div class="d-body" id="rd-body"></div>
 </div>
 
 <div id="pr-toast"></div>
@@ -229,6 +241,41 @@ const PR_ENGINE = {
   }
 };
 
+// ════════════════════════════════════════════════════
+// ROUTINES_DB — Séances types réutilisables
+// ════════════════════════════════════════════════════
+const ROUTINES_DB = {
+  KEY: 'muscleos_v2_routines',
+
+  load() {
+    try { return JSON.parse(localStorage.getItem(this.KEY) || '[]'); }
+    catch { return []; }
+  },
+
+  save(arr) { localStorage.setItem(this.KEY, JSON.stringify(arr)); },
+
+  create(name, items) {
+    const routine = { id: uid(), name, createdAt: new Date().toISOString(), items };
+    const all = this.load();
+    all.push(routine);
+    this.save(all);
+    return routine;
+  },
+
+  update(id, name, items) {
+    const all = this.load();
+    const r = all.find(x => x.id === id);
+    if (!r) return;
+    r.name = name;
+    r.items = items;
+    this.save(all);
+  },
+
+  delete(id) {
+    this.save(this.load().filter(x => x.id !== id));
+  }
+};
+
 
 
 // ── Exercices isométriques (holds) ──────────────────────────────────────────
@@ -282,7 +329,7 @@ function rebuildFatigue() {
       if (entry.type === 'activity') {
         // Activité cardio/sport — doses calculées depuis le profil ACTIVITY_FATIGUE
         if (!entry.activityType || !entry.duration || !entry.intensity) continue;
-        const doses = calcActivityDoses(entry.activityType, entry.duration, entry.intensity, entry.boosts || {});
+        const doses = calcActivityDoses(entry.activityType, entry.duration, entry.intensity, entry.boosts || {}, entry.bpm);
         if (Object.keys(doses).length) {
           const profile = ACTIVITY_FATIGUE[entry.activityType];
           FATIGUE_ENGINE.applyDoses(doses, entry.ts || sessionTs, profile?.recovery_scale ?? 1.0);
@@ -343,16 +390,45 @@ function calcVol(entry) {
   return entry.sets.reduce((s, x) => s + (x.weight || 0) * (x.reps || 0), 0);
 }
 
-function calcActivityDoses(actType, duration, intensity, boosts) {
+// TRIMP de Banister (1991) — dose cardio depuis le BPM réel.
+// Retourne le facteur intensité×durée normalisé, ou null si non calculable
+// (→ le caller retombe alors sur le chemin subjectif).
+function calcTrimpFactor(actType, duration, bpm) {
+  if (!bpm || !duration) return null;
+  if (ACTIVITY_CATALOG[actType]?.group !== 'running') return null;   // course uniquement
+  if (typeof USER_PROFILE === 'undefined') return null;
+  const p = USER_PROFILE.load();
+  const repos = +p.fc_repos, max = +p.fc_max, sexe = p.sexe;
+  if (!(repos > 0) || !(max > repos) || (sexe !== 'homme' && sexe !== 'femme')) return null;
+  const hrr = (bpm - repos) / (max - repos);
+  if (!(hrr > 0)) return null;                                        // BPM ≤ repos → données douteuses
+  const hrrC = Math.min(1, hrr);                                      // borne haute (BPM > FCmax estimée)
+  const k = (x) => sexe === 'homme' ? 0.64 * Math.exp(1.92 * x)
+                                    : 0.86 * Math.exp(1.67 * x);
+  const REF_HRR = 0.70, REF_DUR = 60;                                 // ancrage 60min @ 70% HRR
+  const trimp    = duration * hrrC * k(hrrC);
+  const trimpRef = REF_DUR  * REF_HRR * k(REF_HRR);
+  return trimp / trimpRef;                                            // = facteur (remplace dur×int)
+}
+
+function calcActivityDoses(actType, duration, intensity, boosts, bpm) {
   const profile = ACTIVITY_FATIGUE[actType];
   if (!profile || !duration || !intensity) return {};
   const roleF = { p: 1.0, s: 0.45, t: 0.18 };
-  const durationFactor = Math.max(0.2, duration / 60);
-  const intensityFactor = Math.max(0.1, intensity / 5); // référence = intensité 5
+  const trimpF = calcTrimpFactor(actType, duration, bpm);            // null si non éligible
+  let durationFactor, intensityFactor, effFactor;
+  if (trimpF != null) {
+    effFactor = trimpF;                                              // TRIMP : dur×int en un bloc
+    durationFactor = 1; intensityFactor = 1;                         // pour le calcul des boosts hors-profil
+  } else {
+    durationFactor  = Math.max(0.2, duration / 60);                  // chemin subjectif inchangé
+    intensityFactor = Math.max(0.1, intensity / 5);
+    effFactor = durationFactor * intensityFactor;
+  }
   const doses = {};
   for (const [id, data] of Object.entries(profile.muscles)) {
     const rf = roleF[data.r] ?? 0.18;
-    let dose = (data.p / 100) * rf * durationFactor * intensityFactor * profile.base_dose;
+    let dose = (data.p / 100) * rf * effFactor * profile.base_dose;
     // Appliquer les boosts manuels
     if (boosts && boosts[id]) dose *= BOOST_MULT[boosts[id]] ?? 1;
     doses[id] = Math.round(dose * 10) / 10;
@@ -363,7 +439,7 @@ function calcActivityDoses(actType, duration, intensity, boosts) {
       if (!doses[id]) {
         // Muscle boosted pas dans le profil de base → dose minimale boostée
         const rf = roleF['s'];
-        doses[id] = Math.round((30 / 100) * rf * durationFactor * intensityFactor * profile.base_dose * BOOST_MULT[level] * 10) / 10;
+        doses[id] = Math.round((30 / 100) * rf * effFactor * profile.base_dose * BOOST_MULT[level] * 10) / 10;
       }
     }
   }
@@ -397,6 +473,29 @@ function exLabel(cat, exId) {
 function varLabel(cat, exId, varId) {
   const v = CATALOG[cat]?.exercises[exId]?.variants[varId];
   return (v && typeof v === 'object') ? v.label : (v || varId);
+}
+
+// Liste triée des équipements disponibles dans une catégorie (union des `equipment`
+// de chaque exercice — pas de nouvelle donnée, juste une agrégation de CATALOG).
+function equipmentOptionsForCategory(cat) {
+  const set = new Set();
+  Object.values(CATALOG[cat]?.exercises || {}).forEach(ex =>
+    (ex.equipment || []).forEach(e => set.add(e)));
+  return [...set].sort();
+}
+
+// Exercices d'une catégorie dont la liste `equipment` contient l'équipement donné.
+// equipment === null/undefined → pas de filtre, retourne tout.
+function exercisesByEquipment(cat, equipment) {
+  return Object.entries(CATALOG[cat]?.exercises || {})
+    .filter(([, ex]) => !equipment || (ex.equipment || []).includes(equipment));
+}
+
+// true si au moins une variante de l'exercice active le muscle donné (via FATIGUE_DATA).
+function exerciseTrainsMuscle(cat, exId, muscleId) {
+  const variants = FATIGUE_DATA?.[cat]?.[exId];
+  if (!variants) return false;
+  return Object.values(variants).some(v => v && Object.prototype.hasOwnProperty.call(v, muscleId));
 }
 
 function showPrToast(msg) {
@@ -544,6 +643,7 @@ function renderToday() {
 
     <div class="sec-hdr">
       <span class="lbl">Séance du jour</span>
+      <button class="btn-routines" id="btn-routines">📋 Routines</button>
     </div>
     ${statsBar}
     <div id="entries-wrap">
@@ -595,6 +695,7 @@ function renderToday() {
   });
 
   document.getElementById('btn-add-ex').addEventListener('click', () => openDrawer());
+  document.getElementById('btn-routines').addEventListener('click', () => ROUTINES.open());
 
   // Bind all entry events
   S.today.entries.forEach(e => bindEntry(e.id));
@@ -652,6 +753,7 @@ function renderEntry(entry) {
   const stats = entryStats(entry);
   const isOpen = S.expandedEntry === entry.id;
   const isHold = isHoldVariant(entry.category, entry.exerciseId, entry.variantId);
+  const target = entry.target;
 
   // Sets rows
   const setsRows = entry.sets.length > 0
@@ -689,7 +791,10 @@ function renderEntry(entry) {
 
   const panel = isOpen ? `
     <div class="sets-panel">
-      <div class="lbl" style="margin-bottom:8px">Séries</div>
+      <div class="lbl" style="margin-bottom:8px;display:flex;align-items:center;gap:8px">
+        Séries
+        ${target ? `<span style="font-family:var(--mono);font-weight:600;color:var(--t3);text-transform:none;letter-spacing:0">· cible ${entry.sets.length}/${target.sets} × ${target.reps}${isHold ? 's' : ' reps'}</span>` : ''}
+      </div>
       <div class="sets-list">${setsRows}</div>
       <div class="add-set-form">
         <div class="fg">
@@ -698,7 +803,7 @@ function renderEntry(entry) {
         </div>
         <div class="fg">
           <label class="fl">${isHold ? 'Sec' : 'Reps'}</label>
-          <input class="fi" id="ir-${entry.id}" type="number" placeholder="${isHold ? '30' : '5'}" min="1">
+          <input class="fi" id="ir-${entry.id}" type="number" placeholder="${isHold ? '30' : '5'}" min="1" value="${target ? target.reps : ''}">
         </div>
         <div class="fg">
           <label class="fl">RIR</label>
@@ -1126,7 +1231,7 @@ function openDrawer(editData) {
       editEntryId: editData.entryId,
     };
   } else {
-    S.drawer = { open: true, step: 1, cat: null, ex: null, actType: null, actBoosts: {},
+    S.drawer = { open: true, step: 1, cat: null, ex: null, equipment: null, actType: null, actBoosts: {},
                  editMode: false, editSessionId: null, editEntryId: null,
                  actGroup: null, _distance: null, _bpm: null, _paceUnit: 'min_km',
                  _actDate: DB.todayId(), _exDate: DB.todayId() };
@@ -1185,6 +1290,7 @@ function renderDrawer() {
         S.drawer._actDate = S.drawer._date;
         S.drawer._exDate  = S.drawer._date;
         S.drawer.cat = c.dataset.cat;
+        S.drawer.equipment = null;
         S.drawer.step = 2;
         renderDrawer();
       }));
@@ -1202,7 +1308,35 @@ function renderDrawer() {
     if (!catData) { console.error('[renderDrawer] step2 — cat invalide:', cat); S.drawer.step=1; renderDrawer(); return; }
     title.textContent = catData.label;
     crumb.innerHTML = `<span>${catData.label}</span>`;
-    const items = Object.entries(catData.exercises).map(([k, v]) => `
+    const options = equipmentOptionsForCategory(cat);
+    const items = options.map(eq => `
+      <div class="sel-item" data-eq="${eq}">
+        <div>
+          <div class="si-name">${eq}</div>
+          <div class="si-sub">${exercisesByEquipment(cat, eq).length} ex.</div>
+        </div>
+        <span class="si-arr">›</span>
+      </div>`).join('');
+    body.innerHTML = `
+      <button class="btn-back" id="bb1">‹ Retour</button>
+      <div class="lbl" style="margin:0 0 6px">Matériel</div>
+      <div class="sel-list">${items}</div>`;
+    body.querySelector('#bb1').addEventListener('click', () => { S.drawer.step=1; renderDrawer(); });
+    body.querySelectorAll('.sel-item').forEach(i =>
+      i.addEventListener('click', () => {
+        S.drawer.equipment = i.dataset.eq;
+        S.drawer.step = 6;
+        renderDrawer();
+      }));
+  }
+
+  else if (step === 6) {
+    const catData = CATALOG[cat];
+    if (!catData) { console.error('[renderDrawer] step6 — cat invalide:', cat); S.drawer.step=1; renderDrawer(); return; }
+    const equipment = S.drawer.equipment;
+    title.textContent = catData.label;
+    crumb.innerHTML = `<span>${catData.label}</span> <span style="color:var(--t3)">›</span> <span>${equipment}</span>`;
+    const items = exercisesByEquipment(cat, equipment).map(([k, v]) => `
       <div class="sel-item" data-ex="${k}">
         <div>
           <div class="si-name">${v.label}</div>
@@ -1211,21 +1345,21 @@ function renderDrawer() {
         <span class="si-arr">›</span>
       </div>`).join('');
     body.innerHTML = `
-      <button class="btn-back" id="bb1">‹ Retour</button>
+      <button class="btn-back" id="bb1b">‹ ${equipment}</button>
       <div class="sel-list">${items}</div>`;
-    body.querySelector('#bb1').addEventListener('click', () => { S.drawer.step=1; renderDrawer(); });
+    body.querySelector('#bb1b').addEventListener('click', () => { S.drawer.step=2; renderDrawer(); });
     body.querySelectorAll('.sel-item').forEach(i =>
       i.addEventListener('click', () => {
         S.drawer.ex = i.dataset.ex;
-        S.drawer.step = 3;
+        S.drawer.step = 7;
         renderDrawer();
       }));
   }
 
-  else if (step === 3) {
+  else if (step === 7) {
     const catData = CATALOG[cat];
     const exData = catData?.exercises[ex];
-    if (!catData || !exData) { console.error('[renderDrawer] step3 — ex invalide:', cat, ex); S.drawer.step = cat ? 2 : 1; renderDrawer(); return; }
+    if (!catData || !exData) { console.error('[renderDrawer] step7 — ex invalide:', cat, ex); S.drawer.step = cat ? 6 : 1; renderDrawer(); return; }
     title.textContent = exData.label;
     crumb.innerHTML = `<span>${catData.label}</span> <span style="color:var(--t3)">›</span> <span>${exData.label}</span>`;
     const todayId = DB.todayId();
@@ -1239,7 +1373,7 @@ function renderDrawer() {
       <button class="btn-back" id="bb2">‹ ${catData.label}</button>
       <div class="lbl" style="margin:10px 0 6px">Variante</div>
       <div class="sel-list">${items}</div>`;
-    body.querySelector('#bb2').addEventListener('click', () => { S.drawer.step=2; renderDrawer(); });
+    body.querySelector('#bb2').addEventListener('click', () => { S.drawer.step=6; renderDrawer(); });
     body.querySelectorAll('.sel-item').forEach(i =>
       i.addEventListener('click', () => {
         const dateVal = S.drawer._exDate || S.drawer._date || DB.todayId();
@@ -1848,11 +1982,12 @@ function deleteActivity(sessionId, entryId) {
 
 // État local de l'onglet progression
 const PROG = {
-  cat: null,      // catégorie sélectionnée
-  exId: null,     // exercice sélectionné
-  varId: null,    // variante sélectionnée
-  openSel: null,  // quel sélecteur est ouvert : 'cat' | 'ex' | 'var' | null
-  muscle: null,   // muscle sélectionné sur la carte anatomique
+  cat: null,       // catégorie sélectionnée
+  equipment: null, // matériel sélectionné (filtre la liste d'exercices)
+  exId: null,      // exercice sélectionné
+  varId: null,     // variante sélectionnée
+  openSel: null,   // quel sélecteur est ouvert : 'cat' | 'equipment' | 'ex' | 'var' | null
+  muscle: null,    // muscle sélectionné sur la carte anatomique
 };
 
 function renderProgress() {
@@ -1896,11 +2031,20 @@ function renderProgress() {
   }
 
   // ── Sélecteur ────────────────────────────────────
-  const { cat, exId, varId, openSel } = PROG;
+  const { cat, equipment, exId, varId, openSel, muscle } = PROG;
 
   const catLabel  = cat   ? CATALOG[cat]?.label : null;
+  const equipmentLabel = cat ? (equipment || 'Tous') : null;
   const exLabel_  = (cat && exId) ? exLabel(cat, exId) : null;
   const varLabel_ = (cat && exId && varId) ? varLabel(cat, exId, varId) : null;
+
+  // Exercices de la catégorie filtrés par matériel choisi et (si présent) muscle cliqué
+  // sur la carte anatomique — même logique de filtre que le drawer d'ajout d'exercice.
+  function filteredExercises() {
+    let list = exercisesByEquipment(cat, equipment);
+    if (muscle) list = list.filter(([k]) => exerciseTrainsMuscle(cat, k, muscle));
+    return list;
+  }
 
   // Options dropdown selon quel sélecteur est ouvert
   let ddHtml = '';
@@ -1909,11 +2053,22 @@ function renderProgress() {
       Object.entries(CATALOG).map(([k, v]) =>
         `<div class="prog-dd-item${cat===k?' active':''}" data-dd-cat="${k}">${v.icon} ${v.label}</div>`
       ).join('') + `</div>`;
-  } else if (openSel === 'ex' && cat) {
+  } else if (openSel === 'equipment' && cat) {
+    const options = equipmentOptionsForCategory(cat);
     ddHtml = `<div class="prog-dropdown">` +
-      Object.entries(CATALOG[cat].exercises).map(([k, v]) =>
-        `<div class="prog-dd-item${exId===k?' active':''}" data-dd-ex="${k}">${v.label}</div>`
+      `<div class="prog-dd-item${!equipment?' active':''}" data-dd-equipment="">Tous</div>` +
+      options.map(eq =>
+        `<div class="prog-dd-item${equipment===eq?' active':''}" data-dd-equipment="${eq}">${eq}</div>`
       ).join('') + `</div>`;
+  } else if (openSel === 'ex' && cat) {
+    const items = filteredExercises();
+    ddHtml = `<div class="prog-dropdown">` +
+      (items.length
+        ? items.map(([k, v]) =>
+            `<div class="prog-dd-item${exId===k?' active':''}" data-dd-ex="${k}">${v.label}</div>`
+          ).join('')
+        : `<div class="prog-dd-item" style="color:var(--t3);cursor:default">Aucun exercice pour ce filtre</div>`
+      ) + `</div>`;
   } else if (openSel === 'var' && cat && exId) {
     ddHtml = `<div class="prog-dropdown">` +
       Object.entries(CATALOG[cat].exercises[exId].variants).map(([k, v]) =>
@@ -1923,9 +2078,10 @@ function renderProgress() {
 
   // Insère le dropdown après la ligne ouverte
   const selRows = [
-    { key: 'cat', label: 'Catégorie', value: catLabel,  locked: false },
-    { key: 'ex',  label: 'Exercice',  value: exLabel_,  locked: !cat },
-    { key: 'var', label: 'Variante',  value: varLabel_,  locked: !exId },
+    { key: 'cat',       label: 'Catégorie', value: catLabel,       locked: false },
+    { key: 'equipment', label: 'Matériel',  value: equipmentLabel, locked: !cat },
+    { key: 'ex',        label: 'Exercice',  value: exLabel_,       locked: !cat },
+    { key: 'var',       label: 'Variante',  value: varLabel_,      locked: !exId },
   ].map(row => {
     const rowHtml = `
       <div class="prog-sel-row${row.locked?' locked':''}" data-sel="${row.key}">
@@ -2054,6 +2210,12 @@ function renderProgress() {
     if (item.dataset.ddCat !== undefined) {
       item.addEventListener('click', () => {
         PROG.cat = item.dataset.ddCat;
+        PROG.equipment = null; PROG.exId = null; PROG.varId = null; PROG.openSel = null;
+        renderProgress();
+      });
+    } else if (item.dataset.ddEquipment !== undefined) {
+      item.addEventListener('click', () => {
+        PROG.equipment = item.dataset.ddEquipment || null;
         PROG.exId = null; PROG.varId = null; PROG.openSel = null;
         renderProgress();
       });
@@ -2079,9 +2241,12 @@ function renderProgress() {
       DB.load().flatMap(s => s.entries.map(e => e.category).filter(Boolean))
     );
     BODY_MAP.render('bm-prog-svg', (muscleId, category) => {
+      const muscleChanged = PROG.muscle !== muscleId;
       PROG.muscle = muscleId;
       if (category && PROG.cat !== category) {
-        PROG.cat = category; PROG.exId = null; PROG.varId = null; PROG.openSel = null;
+        PROG.cat = category; PROG.equipment = null; PROG.exId = null; PROG.varId = null; PROG.openSel = null;
+      } else if (muscleChanged) {
+        PROG.exId = null; PROG.varId = null; PROG.openSel = null;
       }
       renderProgress();
     });
@@ -2884,6 +3049,15 @@ const ONBOARDING = (() => {
       ]
     },
     {
+      key: 'sexe',
+      label: 'Sexe biologique ?',
+      hint: 'Utilisé uniquement pour la pondération lactate du calcul de charge cardio (TRIMP).',
+      options: [
+        { value: 'homme', label: 'Homme' },
+        { value: 'femme', label: 'Femme' },
+      ]
+    },
+    {
       key: 'fc_max',
       type: 'input',
       label: 'Ta fréquence cardiaque maximale ?',
@@ -3089,6 +3263,7 @@ const ONBOARDING = (() => {
         protein: p.protein,
         stress: p.stress,
         goal: p.goal,
+        sexe: p.sexe || null,
         fc_max: p.fc_max || null,
         fc_repos: p.fc_repos || null,
       };
@@ -3138,6 +3313,236 @@ const ONBOARDING = (() => {
 // ════════════════════════════════════════════════════
 
 // ════════════════════════════════════════════════════
+// ROUTINES — Séances types réutilisables
+// ════════════════════════════════════════════════════
+const ROUTINES = (() => {
+  'use strict';
+
+  const _state = { formId: null, formName: '', formItems: [] };
+
+  function open() {
+    document.getElementById('overlay').classList.add('on');
+    document.getElementById('routines-drawer').classList.add('on');
+    _renderList();
+  }
+
+  function close() {
+    document.getElementById('overlay').classList.remove('on');
+    document.getElementById('routines-drawer').classList.remove('on');
+  }
+
+  function _renderList() {
+    document.getElementById('rd-title').textContent = 'Routines';
+    document.getElementById('rd-crumb').innerHTML = '';
+    const routines = ROUTINES_DB.load();
+
+    const cards = routines.length === 0
+      ? `<div style="font-size:12px;color:var(--t3);padding:20px 0;text-align:center">Aucune routine — crée ta première séance type</div>`
+      : routines.map(r => `
+        <div class="routine-card">
+          <div>
+            <div class="si-name">${r.name}</div>
+            <div class="si-sub">${r.items.length} exercice${r.items.length > 1 ? 's' : ''}</div>
+          </div>
+          <div class="routine-actions">
+            <button class="btn-log" data-apply="${r.id}" style="flex:1">Appliquer à aujourd'hui</button>
+            <button class="btn-back" data-edit="${r.id}" style="margin:0">Modifier</button>
+            <button class="btn-de" data-del="${r.id}">Supprimer</button>
+          </div>
+        </div>`).join('');
+
+    document.getElementById('rd-body').innerHTML = `
+      <button class="btn-add-ex" id="rd-btn-new">＋ Créer une routine</button>
+      <button class="btn-add-ex" id="rd-btn-fromtoday" style="margin-top:8px">📌 Enregistrer la séance du jour comme routine</button>
+      <div style="margin-top:16px">${cards}</div>
+    `;
+
+    document.getElementById('rd-btn-new').addEventListener('click', () => _openForm(null));
+    document.getElementById('rd-btn-fromtoday').addEventListener('click', _saveTodayAsRoutine);
+    document.querySelectorAll('[data-apply]').forEach(b =>
+      b.addEventListener('click', () => _applyRoutine(b.dataset.apply)));
+    document.querySelectorAll('[data-edit]').forEach(b =>
+      b.addEventListener('click', () => _openForm(routines.find(r => r.id === b.dataset.edit))));
+    document.querySelectorAll('[data-del]').forEach(b =>
+      b.addEventListener('click', () => _deleteRoutine(b.dataset.del)));
+  }
+
+  function _openForm(routine) {
+    _state.formId = routine ? routine.id : null;
+    _state.formName = routine ? routine.name : '';
+    _state.formItems = routine ? JSON.parse(JSON.stringify(routine.items)) : [];
+    _renderForm();
+  }
+
+  function _renderForm() {
+    document.getElementById('rd-title').textContent = _state.formId ? 'Modifier la routine' : 'Nouvelle routine';
+    document.getElementById('rd-crumb').innerHTML = '';
+
+    const itemsHtml = _state.formItems.length === 0
+      ? `<div style="font-size:12px;color:var(--t3);padding:6px 0 10px">Aucun exercice — ajoute-en un ci-dessous</div>`
+      : _state.formItems.map((it, i) => `
+        <div class="routine-item-row">
+          <div>
+            <div class="si-name">${exLabel(it.category, it.exerciseId)}</div>
+            <div class="si-sub">${varLabel(it.category, it.exerciseId, it.variantId)} · ${it.targetSets} × ${it.targetReps}</div>
+          </div>
+          <button class="btn-de" data-rmitem="${i}">✕</button>
+        </div>`).join('');
+
+    const catOptions = Object.entries(CATALOG)
+      .map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('');
+
+    document.getElementById('rd-body').innerHTML = `
+      <div class="fg" style="margin-bottom:14px">
+        <label class="fl">Nom de la routine</label>
+        <input class="fi" id="rf-name" type="text" placeholder="Ex. Push day" value="${_state.formName}">
+      </div>
+      <div class="lbl" style="margin-bottom:8px">Exercices</div>
+      <div id="rf-items">${itemsHtml}</div>
+
+      <div class="lbl" style="margin:16px 0 8px">Ajouter un exercice</div>
+      <div class="fg" style="margin-bottom:8px">
+        <label class="fl">Catégorie</label>
+        <select class="fi" id="rf-cat"><option value="">—</option>${catOptions}</select>
+      </div>
+      <div class="fg" style="margin-bottom:8px">
+        <label class="fl">Exercice</label>
+        <select class="fi" id="rf-ex" disabled><option value="">—</option></select>
+      </div>
+      <div class="fg" style="margin-bottom:8px">
+        <label class="fl">Variante</label>
+        <select class="fi" id="rf-var" disabled><option value="">—</option></select>
+      </div>
+      <div class="add-set-form" style="grid-template-columns:1fr 1fr auto">
+        <div class="fg">
+          <label class="fl">Séries cibles</label>
+          <input class="fi" id="rf-sets" type="number" min="1" placeholder="3" value="3">
+        </div>
+        <div class="fg">
+          <label class="fl">Reps cibles</label>
+          <input class="fi" id="rf-reps" type="number" min="1" placeholder="8" value="8">
+        </div>
+        <button class="btn-log" id="rf-additem">＋</button>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:20px">
+        <button class="btn-back" id="rf-cancel" style="margin:0">‹ Annuler</button>
+        <button class="btn-log" id="rf-save" style="flex:1;text-align:center">Enregistrer la routine</button>
+      </div>
+    `;
+
+    const catSel = document.getElementById('rf-cat');
+    const exSel  = document.getElementById('rf-ex');
+    const varSel = document.getElementById('rf-var');
+
+    catSel.addEventListener('change', () => {
+      const cat = catSel.value;
+      exSel.innerHTML = '<option value="">—</option>';
+      varSel.innerHTML = '<option value="">—</option>';
+      varSel.disabled = true;
+      if (!cat) { exSel.disabled = true; return; }
+      Object.entries(CATALOG[cat]?.exercises || {}).forEach(([k, v]) => {
+        exSel.insertAdjacentHTML('beforeend', `<option value="${k}">${v.label}</option>`);
+      });
+      exSel.disabled = false;
+    });
+
+    exSel.addEventListener('change', () => {
+      const cat = catSel.value, ex = exSel.value;
+      varSel.innerHTML = '<option value="">—</option>';
+      if (!cat || !ex) { varSel.disabled = true; return; }
+      Object.entries(CATALOG[cat]?.exercises[ex]?.variants || {}).forEach(([k, v]) => {
+        const label = typeof v === 'object' ? v.label : v;
+        varSel.insertAdjacentHTML('beforeend', `<option value="${k}">${label}</option>`);
+      });
+      varSel.disabled = false;
+    });
+
+    document.getElementById('rf-additem').addEventListener('click', () => {
+      _state.formName = document.getElementById('rf-name').value;
+      const cat = catSel.value, ex = exSel.value, va = varSel.value;
+      const sets = parseInt(document.getElementById('rf-sets').value) || 0;
+      const reps = parseInt(document.getElementById('rf-reps').value) || 0;
+      if (!cat || !ex || !va) { showPrToast('⚠ Choisis catégorie, exercice et variante'); return; }
+      if (sets <= 0 || reps <= 0) { showPrToast('⚠ Séries et reps doivent être > 0'); return; }
+      _state.formItems.push({ category: cat, exerciseId: ex, variantId: va, targetSets: sets, targetReps: reps });
+      _renderForm();
+    });
+
+    document.querySelectorAll('[data-rmitem]').forEach(b =>
+      b.addEventListener('click', () => {
+        _state.formName = document.getElementById('rf-name').value;
+        _state.formItems.splice(parseInt(b.dataset.rmitem), 1);
+        _renderForm();
+      }));
+
+    document.getElementById('rf-cancel').addEventListener('click', _renderList);
+
+    document.getElementById('rf-save').addEventListener('click', () => {
+      const name = document.getElementById('rf-name').value.trim();
+      if (!name) { showPrToast('⚠ Donne un nom à la routine'); return; }
+      if (_state.formItems.length === 0) { showPrToast('⚠ Ajoute au moins un exercice'); return; }
+      if (_state.formId) {
+        ROUTINES_DB.update(_state.formId, name, _state.formItems);
+      } else {
+        ROUTINES_DB.create(name, _state.formItems);
+      }
+      showPrToast('✅ Routine enregistrée');
+      _renderList();
+    });
+  }
+
+  function _deleteRoutine(id) {
+    const r = ROUTINES_DB.load().find(x => x.id === id);
+    if (!r) return;
+    if (!confirm(`Supprimer la routine "${r.name}" ?`)) return;
+    ROUTINES_DB.delete(id);
+    _renderList();
+  }
+
+  function _saveTodayAsRoutine() {
+    const musc = S.today.entries.filter(e => e.type !== 'activity');
+    if (musc.length === 0) { showPrToast('⚠ Aucun exercice dans la séance du jour'); return; }
+    const name = prompt('Nom de la routine :', '');
+    if (!name || !name.trim()) return;
+    const items = musc.map(e => {
+      const lastSet = e.sets.length > 0 ? e.sets[e.sets.length - 1] : null;
+      return {
+        category: e.category,
+        exerciseId: e.exerciseId,
+        variantId: e.variantId,
+        targetSets: e.sets.length || 1,
+        targetReps: lastSet ? lastSet.reps : 8
+      };
+    });
+    ROUTINES_DB.create(name.trim(), items);
+    showPrToast('✅ Routine enregistrée');
+    _renderList();
+  }
+
+  function _applyRoutine(id) {
+    const routine = ROUTINES_DB.load().find(r => r.id === id);
+    if (!routine || !routine.items.length) return;
+    const n = routine.items.length;
+    if (!confirm(`Appliquer "${routine.name}" à la séance d'aujourd'hui ? (${n} exercice${n > 1 ? 's' : ''})`)) return;
+
+    const todayId = DB.todayId();
+    routine.items.forEach(item => {
+      addEntry(item.category, item.exerciseId, item.variantId, todayId);
+      const entry = S.today.entries[S.today.entries.length - 1];
+      if (entry) entry.target = { sets: item.targetSets, reps: item.targetReps };
+    });
+    DB.saveToday(S.today);
+    renderToday();
+    close();
+    switchTab('today');
+    showPrToast(`✓ Routine appliquée — ${n} exercice(s) ajouté(s)`);
+  }
+
+  return { open, close };
+})();
+
+// ════════════════════════════════════════════════════
 // DATA_BACKUP — Export / Import localStorage
 // ════════════════════════════════════════════════════
 const DATA_BACKUP = (() => {
@@ -3147,11 +3552,12 @@ const DATA_BACKUP = (() => {
     'muscleos_v2_sessions',
     'muscleos_v2_fatigue',
     'muscleos_v2_profile',
-    'muscleos_prs'
+    'muscleos_prs',
+    'muscleos_v2_routines'
   ];
 
   function exportData() {
-    const snapshot = { version: '3.9', exportedAt: new Date().toISOString(), data: {} };
+    const snapshot = { version: '3.14', exportedAt: new Date().toISOString(), data: {} };
     KEYS.forEach(k => {
       const val = localStorage.getItem(k);
       if (val !== null) snapshot.data[k] = JSON.parse(val);
@@ -3216,7 +3622,8 @@ function init() {
     btn.addEventListener('click', () => switchTab(btn.dataset.tab)));
 
   document.getElementById('btn-dc').addEventListener('click', closeDrawer);
-  document.getElementById('overlay').addEventListener('click', closeDrawer);
+  document.getElementById('btn-rdc').addEventListener('click', () => ROUTINES.close());
+  document.getElementById('overlay').addEventListener('click', () => { closeDrawer(); ROUTINES.close(); });
 
   // Bouton profil → ouvre l'onboarding en mode édition
   document.getElementById('btn-profile')?.addEventListener('click', () => ONBOARDING.open(true));

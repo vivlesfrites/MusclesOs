@@ -1,0 +1,524 @@
+{
+  "_meta": {
+    "category": "callisthenie",
+    "label": "Callisthénie",
+    "description": "Exercices — Callisthénie (skills au poids du corps). Aucune étude EMG dédiée n'existe pour la plupart de ces mouvements (recherche menée le 2026-07-04) : les valeurs d'activation sont des MODÈLES extrapolés par analogie biomécanique avec des mouvements déjà sourcés dans sources.json, explicitement notés comme tels sur chaque variante. Pas de mesure EMG directe tant qu'une note ne dit pas le contraire."
+  },
+  "exercises": {
+    "muscle_up": {
+      "label": "Muscle-up",
+      "category": "compound",
+      "equipment": ["barre de traction", "anneaux"],
+      "movement_pattern": "traction_verticale_transition_poussee",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "barre": {
+          "label": "Barre",
+          "equipment": "barre de traction",
+          "description": "Traction explosive jusqu'au transfert, puis dip au-dessus de la barre",
+          "activation": {
+            "LAT": { "percent": 85, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TRICEP_LAT": { "percent": 70, "heads": {}, "role": "primary", "sources": ["Booghs_2012_dips"] },
+            "TRICEP_MED": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Booghs_2012_dips"] },
+            "BICEP_LONG": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "PECT_MAJ_STER": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "DELT_ANT": { "percent": 50, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "TRAP_MED": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["Youdas_2010_pullup_chinup"] },
+            "CORE_RECT_SUP": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — mouvement combiné traction (Youdas_2010_pullup_chinup) + dip (Booghs_2012_dips), pas de mesure EMG directe sur le muscle-up."
+        },
+        "anneaux": {
+          "label": "Anneaux",
+          "equipment": "anneaux",
+          "description": "Identique à la barre, instabilité des anneaux en plus (adduction d'épaule accrue en phase dip)",
+          "activation": {
+            "LAT": { "percent": 82, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TRICEP_LAT": { "percent": 68, "heads": {}, "role": "primary", "sources": ["Booghs_2012_dips"] },
+            "TRICEP_MED": { "percent": 62, "heads": {}, "role": "primary", "sources": ["Booghs_2012_dips"] },
+            "BICEP_LONG": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "PECT_MAJ_STER": { "percent": 52, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "DELT_ANT": { "percent": 50, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "DELT_MED": { "percent": 45, "heads": {}, "role": "stabilizer", "sources": ["Reinold_2004_rotator_cuff"] },
+            "TRAP_MED": { "percent": 42, "heads": {}, "role": "stabilizer", "sources": ["Youdas_2010_pullup_chinup"] },
+            "CORE_RECT_SUP": { "percent": 38, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — mouvement combiné traction + dip, instabilité des anneaux ajoutée par analogie (Reinold_2004_rotator_cuff pour la stabilisation d'épaule), pas de mesure EMG directe."
+        }
+      }
+    },
+    "front_lever": {
+      "label": "Front lever",
+      "category": "isometric",
+      "equipment": ["barre de traction", "anneaux"],
+      "movement_pattern": "traction_isometrique_horizontale",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "tuck": {
+          "label": "Tuck — genoux repliés",
+          "hold": true,
+          "description": "Corps horizontal, genoux repliés sur la poitrine — bras de levier réduit",
+          "activation": {
+            "LAT": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 45, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "RHOMBOID": { "percent": 40, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TRAP_INF": { "percent": 35, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_LONG": { "percent": 40, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 38, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "CORE_RECT_SUP": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "CORE_RECT_INF": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la position basse (isométrique) d'un pull-up (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le front lever."
+        },
+        "advanced_tuck": {
+          "label": "Advanced tuck — hanches ouvertes",
+          "hold": true,
+          "description": "Genoux repliés mais hanches plus ouvertes que le tuck — bras de levier intermédiaire",
+          "activation": {
+            "LAT": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 52, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "RHOMBOID": { "percent": 46, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TRAP_INF": { "percent": 40, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_LONG": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 42, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "CORE_RECT_SUP": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "CORE_RECT_INF": { "percent": 42, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la position basse (isométrique) d'un pull-up (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le front lever."
+        },
+        "straddle": {
+          "label": "Straddle — jambes écartées tendues",
+          "hold": true,
+          "description": "Jambes tendues et écartées — bras de levier long, écartement réduisant le couple",
+          "activation": {
+            "LAT": { "percent": 78, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 62, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "RHOMBOID": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TRAP_INF": { "percent": 48, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_LONG": { "percent": 52, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 48, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "CORE_RECT_SUP": { "percent": 65, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "CORE_RECT_INF": { "percent": 50, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la position basse (isométrique) d'un pull-up (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le front lever."
+        },
+        "full": {
+          "label": "Full — jambes tendues jointes",
+          "hold": true,
+          "description": "Corps entièrement tendu et horizontal — bras de levier maximal",
+          "activation": {
+            "LAT": { "percent": 92, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 75, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "RHOMBOID": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TRAP_INF": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_LONG": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "CORE_RECT_SUP": { "percent": 78, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "CORE_RECT_INF": { "percent": 60, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la position basse (isométrique) d'un pull-up (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le front lever."
+        }
+      }
+    },
+    "back_lever": {
+      "label": "Back lever",
+      "category": "isometric",
+      "equipment": ["barre de traction", "anneaux"],
+      "movement_pattern": "extension_epaule_isometrique_horizontale",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "tuck": {
+          "label": "Tuck — genoux repliés",
+          "hold": true,
+          "description": "Corps inversé, genoux repliés — bras de levier réduit",
+          "activation": {
+            "LAT": { "percent": 50, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 45, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "PECT_MAJ_STER": { "percent": 40, "heads": {}, "role": "primary", "sources": ["Rodriguez_Ridao_2020_bench_inclinations"] },
+            "BICEP_LONG": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 42, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "DELT_POST": { "percent": 35, "heads": {}, "role": "secondary", "sources": ["Lehman_2004_reverse_fly"] },
+            "CORE_RECT_SUP": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique d'extension d'épaule sous tension (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le back lever."
+        },
+        "straddle": {
+          "label": "Straddle — jambes écartées tendues",
+          "hold": true,
+          "description": "Jambes tendues et écartées — bras de levier long, écartement réduisant le couple",
+          "activation": {
+            "LAT": { "percent": 68, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 60, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "PECT_MAJ_STER": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Rodriguez_Ridao_2020_bench_inclinations"] },
+            "BICEP_LONG": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 54, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "DELT_POST": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Lehman_2004_reverse_fly"] },
+            "CORE_RECT_SUP": { "percent": 52, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique d'extension d'épaule sous tension (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le back lever."
+        },
+        "full": {
+          "label": "Full — jambes tendues jointes",
+          "hold": true,
+          "description": "Corps entièrement tendu et horizontal, inversé — bras de levier maximal",
+          "activation": {
+            "LAT": { "percent": 85, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "TERES_MAJ": { "percent": 75, "heads": {}, "role": "primary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "PECT_MAJ_STER": { "percent": 68, "heads": {}, "role": "primary", "sources": ["Rodriguez_Ridao_2020_bench_inclinations"] },
+            "BICEP_LONG": { "percent": 70, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "BICEP_COURT": { "percent": 65, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "DELT_POST": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Lehman_2004_reverse_fly"] },
+            "CORE_RECT_SUP": { "percent": 65, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique d'extension d'épaule sous tension (Youdas_2010_pullup_chinup), pas de mesure EMG directe sur le back lever."
+        }
+      }
+    },
+    "planche_gymnique": {
+      "label": "Planche (skill gymnique)",
+      "category": "isometric",
+      "equipment": ["parallettes", "aucun"],
+      "movement_pattern": "poussee_isometrique_horizontale",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "frog": {
+          "label": "Frog stance",
+          "hold": true,
+          "description": "Genoux posés sur les coudes, hanches fléchies — première étape d'apprentissage",
+          "activation": {
+            "DELT_ANT": { "percent": 45, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "SERR_ANT": { "percent": 40, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MIN": { "percent": 35, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MAJ_CLAV": { "percent": 35, "heads": {}, "role": "secondary", "sources": ["Calatayud_2015_pushup"] },
+            "CORE_RECT_SUP": { "percent": 40, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_FLEX_SUP": { "percent": 30, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du gainage en appui/pompe (Calatayud_2015_pushup pour deltoïde antérieur et dentelé), pas de mesure EMG directe sur la planche gymnique."
+        },
+        "tuck": {
+          "label": "Tuck — genoux repliés sur la poitrine",
+          "hold": true,
+          "description": "Hanches et genoux repliés, corps décollé du sol",
+          "activation": {
+            "DELT_ANT": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "SERR_ANT": { "percent": 50, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MIN": { "percent": 42, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MAJ_CLAV": { "percent": 42, "heads": {}, "role": "secondary", "sources": ["Calatayud_2015_pushup"] },
+            "CORE_RECT_SUP": { "percent": 50, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_FLEX_SUP": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du gainage en appui/pompe (Calatayud_2015_pushup), pas de mesure EMG directe sur la planche gymnique."
+        },
+        "advanced_tuck": {
+          "label": "Advanced tuck — hanches ouvertes",
+          "hold": true,
+          "description": "Genoux repliés mais hanches plus ouvertes — bras de levier intermédiaire",
+          "activation": {
+            "DELT_ANT": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "SERR_ANT": { "percent": 58, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MIN": { "percent": 50, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MAJ_CLAV": { "percent": 48, "heads": {}, "role": "secondary", "sources": ["Calatayud_2015_pushup"] },
+            "CORE_RECT_SUP": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_FLEX_SUP": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du gainage en appui/pompe (Calatayud_2015_pushup), pas de mesure EMG directe sur la planche gymnique."
+        },
+        "straddle": {
+          "label": "Straddle — jambes écartées tendues",
+          "hold": true,
+          "description": "Jambes tendues et écartées — bras de levier long, écartement réduisant le couple",
+          "activation": {
+            "DELT_ANT": { "percent": 78, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "SERR_ANT": { "percent": 70, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MIN": { "percent": 60, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MAJ_CLAV": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Calatayud_2015_pushup"] },
+            "CORE_RECT_SUP": { "percent": 72, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_FLEX_SUP": { "percent": 48, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du gainage en appui/pompe (Calatayud_2015_pushup), pas de mesure EMG directe sur la planche gymnique."
+        },
+        "full": {
+          "label": "Full — jambes tendues jointes",
+          "hold": true,
+          "description": "Corps entièrement tendu et horizontal — bras de levier maximal",
+          "activation": {
+            "DELT_ANT": { "percent": 92, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "SERR_ANT": { "percent": 85, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MIN": { "percent": 72, "heads": {}, "role": "primary", "sources": ["Calatayud_2015_pushup"] },
+            "PECT_MAJ_CLAV": { "percent": 65, "heads": {}, "role": "secondary", "sources": ["Calatayud_2015_pushup"] },
+            "CORE_RECT_SUP": { "percent": 85, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_FLEX_SUP": { "percent": 55, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique du gainage en appui/pompe (Calatayud_2015_pushup), pas de mesure EMG directe sur la planche gymnique."
+        }
+      }
+    },
+    "l_sit": {
+      "label": "L-sit",
+      "category": "isometric",
+      "equipment": ["parallettes", "aucun", "barres parallèles"],
+      "movement_pattern": "flexion_hanche_isometrique_appui",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "tuck": {
+          "label": "Tuck — genoux repliés",
+          "hold": true,
+          "description": "En appui, genoux repliés sur la poitrine",
+          "activation": {
+            "CORE_RECT_SUP": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "HIP_FLEX": { "percent": 50, "heads": {}, "role": "primary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "CORE_RECT_INF": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "TRICEP_LONG": { "percent": 40, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "SERR_ANT": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["Calatayud_2015_pushup"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique de la relevé de jambes suspendu (Calatayud_2017_hanging_leg_raise), pas de mesure EMG directe sur le L-sit."
+        },
+        "one_leg": {
+          "label": "Une jambe tendue",
+          "hold": true,
+          "description": "Une jambe tendue devant, l'autre repliée",
+          "activation": {
+            "CORE_RECT_SUP": { "percent": 68, "heads": {}, "role": "primary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "HIP_FLEX": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "CORE_RECT_INF": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "TRICEP_LONG": { "percent": 48, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "SERR_ANT": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["Calatayud_2015_pushup"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique de la relevé de jambes suspendu (Calatayud_2017_hanging_leg_raise), pas de mesure EMG directe sur le L-sit."
+        },
+        "full": {
+          "label": "Full — jambes tendues",
+          "hold": true,
+          "description": "Les deux jambes tendues à l'horizontale",
+          "activation": {
+            "CORE_RECT_SUP": { "percent": 82, "heads": {}, "role": "primary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "HIP_FLEX": { "percent": 80, "heads": {}, "role": "primary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "CORE_RECT_INF": { "percent": 68, "heads": {}, "role": "secondary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "TRICEP_LONG": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Booghs_2012_dips"] },
+            "SERR_ANT": { "percent": 48, "heads": {}, "role": "stabilizer", "sources": ["Calatayud_2015_pushup"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique de la relevé de jambes suspendu (Calatayud_2017_hanging_leg_raise), pas de mesure EMG directe sur le L-sit."
+        }
+      }
+    },
+    "dragon_flag": {
+      "label": "Dragon flag",
+      "category": "isolation",
+      "equipment": ["banc", "aucun"],
+      "movement_pattern": "anti_extension_excentrique",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "description": "Épaules en appui sur le banc, corps entier levé puis abaissé en excentrique lent",
+          "activation": {
+            "CORE_RECT_SUP": { "percent": 88, "heads": {}, "role": "primary", "sources": ["McGill_2010_plank"] },
+            "CORE_RECT_INF": { "percent": 75, "heads": {}, "role": "primary", "sources": ["McGill_2010_plank"] },
+            "HIP_FLEX": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["Calatayud_2017_hanging_leg_raise"] },
+            "LUMBAR": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé du gainage anti-extension (McGill_2010_plank) ; la phase excentrique lente caractéristique du mouvement n'est pas quantifiée par une mesure EMG directe."
+        }
+      }
+    },
+    "handstand_pushup": {
+      "label": "Handstand push-up",
+      "category": "compound",
+      "equipment": ["mur", "aucun"],
+      "movement_pattern": "poussee_verticale_inversee",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "mur_pike": {
+          "label": "Mur (pike, dos au mur)",
+          "equipment": "mur",
+          "description": "Pieds contre le mur, tronc plié en pike — assistance de l'appui mural",
+          "activation": {
+            "DELT_ANT": { "percent": 75, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRICEP_LAT": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRICEP_MED": { "percent": 60, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRICEP_LONG": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "DELT_MED": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRAP_SUP": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "CORE_RECT_SUP": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé du développé militaire inversé (Saeterbakken_2013_OHP), pas de mesure EMG directe sur le handstand push-up."
+        },
+        "freestanding": {
+          "label": "Freestanding — sans appui",
+          "description": "Équilibre libre, sans mur — demande d'équilibre et de stabilisateurs largement accrue",
+          "activation": {
+            "DELT_ANT": { "percent": 82, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRICEP_LAT": { "percent": 70, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRICEP_MED": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRICEP_LONG": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "DELT_MED": { "percent": 68, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRAP_SUP": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "CORE_RECT_SUP": { "percent": 58, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] },
+            "FOREARM_EXT": { "percent": 40, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé du développé militaire inversé (Saeterbakken_2013_OHP), pas de mesure EMG directe. La version freestanding ajoute une demande d'équilibre/stabilisateurs non quantifiée par les sources proxy."
+        }
+      }
+    },
+    "handstand_hold": {
+      "label": "Handstand (équilibre)",
+      "category": "isometric",
+      "equipment": ["mur", "aucun"],
+      "movement_pattern": "equilibre_isometrique_inverse",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "mur": {
+          "label": "Contre le mur",
+          "hold": true,
+          "equipment": "mur",
+          "description": "Poirier en appui contre un mur — stabilisation assistée",
+          "activation": {
+            "DELT_MED": { "percent": 60, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "DELT_ANT": { "percent": 50, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRAP_SUP": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "CORE_TRANS": { "percent": 40, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_EXT": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la stabilisation isométrique d'épaule en position overhead (Saeterbakken_2013_OHP), pas de mesure EMG directe sur le handstand."
+        },
+        "freestanding": {
+          "label": "Freestanding — sans appui",
+          "hold": true,
+          "description": "Équilibre libre — demande de stabilisation/proprioception très largement supérieure à la version au mur",
+          "activation": {
+            "DELT_MED": { "percent": 78, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "DELT_ANT": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Saeterbakken_2013_OHP"] },
+            "TRAP_SUP": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "CORE_TRANS": { "percent": 60, "heads": {}, "role": "secondary", "sources": ["McGill_2010_plank"] },
+            "FOREARM_EXT": { "percent": 55, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la stabilisation isométrique d'épaule en position overhead (Saeterbakken_2013_OHP), pas de mesure EMG directe. Freestanding = demande d'équilibre/stabilisateurs bien supérieure au mur, non quantifiée par la source proxy."
+        }
+      }
+    },
+    "human_flag": {
+      "label": "Human flag",
+      "category": "isometric",
+      "equipment": ["barre verticale"],
+      "movement_pattern": "flexion_laterale_isometrique",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "tuck": {
+          "label": "Tuck — genoux repliés",
+          "hold": true,
+          "description": "Corps latéral, genoux repliés — bras de levier réduit",
+          "activation": {
+            "CORE_OBL_EXT": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Sundstrup_2012_cable_woodchop"] },
+            "CORE_OBL_INT": { "percent": 50, "heads": {}, "role": "primary", "sources": ["Sundstrup_2012_cable_woodchop"] },
+            "LAT": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "DELT_MED": { "percent": 40, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "FOREARM_FLEX_SUP": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique anti-rotation/flexion latérale (Sundstrup_2012_cable_woodchop), pas de mesure EMG directe sur le human flag."
+        },
+        "straddle": {
+          "label": "Straddle — jambes écartées tendues",
+          "hold": true,
+          "description": "Jambes tendues et écartées — bras de levier long, écartement réduisant le couple",
+          "activation": {
+            "CORE_OBL_EXT": { "percent": 72, "heads": {}, "role": "primary", "sources": ["Sundstrup_2012_cable_woodchop"] },
+            "CORE_OBL_INT": { "percent": 65, "heads": {}, "role": "primary", "sources": ["Sundstrup_2012_cable_woodchop"] },
+            "LAT": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "DELT_MED": { "percent": 52, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "FOREARM_FLEX_SUP": { "percent": 45, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique anti-rotation/flexion latérale (Sundstrup_2012_cable_woodchop), pas de mesure EMG directe sur le human flag."
+        },
+        "full": {
+          "label": "Full — jambes tendues jointes",
+          "hold": true,
+          "description": "Corps entièrement tendu à l'horizontale, latéral — bras de levier maximal",
+          "activation": {
+            "CORE_OBL_EXT": { "percent": 88, "heads": {}, "role": "primary", "sources": ["Sundstrup_2012_cable_woodchop"] },
+            "CORE_OBL_INT": { "percent": 80, "heads": {}, "role": "primary", "sources": ["Sundstrup_2012_cable_woodchop"] },
+            "LAT": { "percent": 72, "heads": {}, "role": "secondary", "sources": ["Youdas_2010_pullup_chinup"] },
+            "DELT_MED": { "percent": 65, "heads": {}, "role": "secondary", "sources": ["Saeterbakken_2013_OHP"] },
+            "FOREARM_FLEX_SUP": { "percent": 55, "heads": {}, "role": "stabilizer", "sources": ["Kleiber_2015_grip_EMG"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé de la mécanique anti-rotation/flexion latérale (Sundstrup_2012_cable_woodchop), pas de mesure EMG directe sur le human flag."
+        }
+      }
+    },
+    "australian_pullup": {
+      "label": "Row australien",
+      "category": "compound",
+      "equipment": ["barre basse", "anneaux"],
+      "movement_pattern": "traction_horizontale",
+      "bodyweight_possible": true,
+      "elastic_variant": false,
+      "variants": {
+        "standard": {
+          "label": "Standard",
+          "description": "Corps incliné, pieds au sol, traction horizontale vers la barre basse",
+          "activation": {
+            "LAT": { "percent": 70, "heads": {}, "role": "primary", "sources": ["Fenwick_2009_rowing"] },
+            "TRAP_MED": { "percent": 60, "heads": {}, "role": "primary", "sources": ["Fenwick_2009_rowing"] },
+            "RHOMBOID": { "percent": 55, "heads": {}, "role": "primary", "sources": ["Fenwick_2009_rowing"] },
+            "BICEP_LONG": { "percent": 55, "heads": {}, "role": "secondary", "sources": ["Fenwick_2009_rowing"] },
+            "BICEP_COURT": { "percent": 52, "heads": {}, "role": "secondary", "sources": ["Fenwick_2009_rowing"] },
+            "DELT_POST": { "percent": 45, "heads": {}, "role": "secondary", "sources": ["Lehman_2004_reverse_fly"] },
+            "CORE_RECT_SUP": { "percent": 35, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé du rowing horizontal (Fenwick_2009_rowing), mécanique proche (tirage horizontal en chaîne fermée) mais pas de mesure EMG directe sur le row australien au poids du corps."
+        },
+        "pieds_surleves": {
+          "label": "Pieds surélevés",
+          "description": "Pieds posés sur un support surélevé — angle du corps plus horizontal, résistance accrue",
+          "activation": {
+            "LAT": { "percent": 80, "heads": {}, "role": "primary", "sources": ["Fenwick_2009_rowing"] },
+            "TRAP_MED": { "percent": 68, "heads": {}, "role": "primary", "sources": ["Fenwick_2009_rowing"] },
+            "RHOMBOID": { "percent": 62, "heads": {}, "role": "primary", "sources": ["Fenwick_2009_rowing"] },
+            "BICEP_LONG": { "percent": 62, "heads": {}, "role": "secondary", "sources": ["Fenwick_2009_rowing"] },
+            "BICEP_COURT": { "percent": 58, "heads": {}, "role": "secondary", "sources": ["Fenwick_2009_rowing"] },
+            "DELT_POST": { "percent": 52, "heads": {}, "role": "secondary", "sources": ["Lehman_2004_reverse_fly"] },
+            "CORE_RECT_SUP": { "percent": 45, "heads": {}, "role": "stabilizer", "sources": ["McGill_2010_plank"] }
+          },
+          "load_variation": null,
+          "note": "MODÈLE — extrapolé du rowing horizontal (Fenwick_2009_rowing), pas de mesure EMG directe sur le row australien au poids du corps."
+        }
+      }
+    }
+  }
+}

@@ -6,15 +6,24 @@ const CATALOG = {
   chest: {
     label: 'Poitrine', icon: '◈',
     exercises: {
-      developpe_couche: {
-        label: 'Développé couché', equipment: ['barre', 'haltères', 'machine'],
-        angleAdaptable: true, angleDefault: 0,
+      developpe_couche_plat: {
+        label: 'Développé couché plat', equipment: ['barre', 'haltères', 'machine'],
         variants: {
           prise_large:  'Prise large (>150% biacromial)',
           prise_serree: 'Prise serrée (<100% biacromial)',
-          halteres:     'Haltères (ROM élargi)',
-          incline_30:   'Incliné 30° — chef claviculaire',
-          decline_15:   'Décliné -15° — chef sternal inférieur'
+          halteres:     'Haltères (ROM élargi)'
+        }
+      },
+      developpe_couche_incline: {
+        label: 'Développé couché incliné (30°)', equipment: ['barre', 'haltères', 'machine'],
+        variants: {
+          standard_30: 'Incliné 30° (optimal chef claviculaire)'
+        }
+      },
+      developpe_couche_decline: {
+        label: 'Développé couché décliné', equipment: ['barre', 'haltères'],
+        variants: {
+          decline_15: 'Décliné -15°'
         }
       },
       ecarte_halteres: {
@@ -387,6 +396,17 @@ const CATALOG = {
           machine: 'Machine adducteurs assis',
           cable:   'Câble debout'
         }
+      },
+      pistol_squat: {
+        label: 'Pistol squat', equipment: ['aucun'],
+        variants: {
+          standard: 'Standard',
+          assiste:  'Assisté (appui/contrepoids)'
+        }
+      },
+      shrimp_squat: {
+        label: 'Shrimp squat', equipment: ['aucun'],
+        variants: { standard: 'Standard' }
       }
     }
   },
@@ -395,7 +415,10 @@ const CATALOG = {
     exercises: {
       planche: {
         label: 'Planche', equipment: ['aucun'],
-        variants: { frontale: 'Frontale', laterale: 'Latérale' }
+        variants: {
+          frontale: { label: 'Frontale',  hold: true },
+          laterale: { label: 'Latérale',  hold: true }
+        }
       },
       crunch: {
         label: 'Crunch', equipment: ['aucun'],
@@ -462,8 +485,88 @@ const CATALOG = {
       hollow_body: {
         label: 'Hollow body (position creuse)', equipment: ['aucun'],
         variants: {
-          standard: 'Statique — tension maximale',
+          standard: { label: 'Statique — tension maximale', hold: true },
           rock:     'Hollow rock — dynamique'
+        }
+      }
+    }
+  },
+  callisthenie: {
+    label: 'Callisthénie', icon: '◒',
+    exercises: {
+      muscle_up: {
+        label: 'Muscle-up', equipment: ['barre de traction', 'anneaux'],
+        variants: {
+          barre:   { label: 'Barre', equipment: 'barre de traction' },
+          anneaux: { label: 'Anneaux', equipment: 'anneaux' }
+        }
+      },
+      front_lever: {
+        label: 'Front lever', equipment: ['barre de traction', 'anneaux'],
+        variants: {
+          tuck:          { label: 'Tuck — genoux repliés', hold: true },
+          advanced_tuck: { label: 'Advanced tuck — hanches ouvertes', hold: true },
+          straddle:      { label: 'Straddle — jambes écartées', hold: true },
+          full:          { label: 'Full — jambes tendues jointes', hold: true }
+        }
+      },
+      back_lever: {
+        label: 'Back lever', equipment: ['barre de traction', 'anneaux'],
+        variants: {
+          tuck:     { label: 'Tuck — genoux repliés', hold: true },
+          straddle: { label: 'Straddle — jambes écartées', hold: true },
+          full:     { label: 'Full — jambes tendues jointes', hold: true }
+        }
+      },
+      planche_gymnique: {
+        label: 'Planche (skill gymnique)', equipment: ['parallettes', 'aucun'],
+        variants: {
+          frog:          { label: 'Frog stance', hold: true },
+          tuck:          { label: 'Tuck — genoux repliés', hold: true },
+          advanced_tuck: { label: 'Advanced tuck — hanches ouvertes', hold: true },
+          straddle:      { label: 'Straddle — jambes écartées', hold: true },
+          full:          { label: 'Full — jambes tendues jointes', hold: true }
+        }
+      },
+      l_sit: {
+        label: 'L-sit', equipment: ['parallettes', 'aucun', 'barres parallèles'],
+        variants: {
+          tuck:    { label: 'Tuck — genoux repliés', hold: true },
+          one_leg: { label: 'Une jambe tendue', hold: true },
+          full:    { label: 'Full — jambes tendues', hold: true }
+        }
+      },
+      dragon_flag: {
+        label: 'Dragon flag', equipment: ['banc', 'aucun'],
+        variants: { standard: 'Standard — excentrique lent' }
+      },
+      handstand_pushup: {
+        label: 'Handstand push-up', equipment: ['mur', 'aucun'],
+        variants: {
+          mur_pike:    { label: 'Mur (pike, dos au mur)', equipment: 'mur' },
+          freestanding: 'Freestanding — sans appui'
+        }
+      },
+      handstand_hold: {
+        label: 'Handstand (équilibre)', equipment: ['mur', 'aucun'],
+        variants: {
+          mur:          { label: 'Contre le mur', hold: true, equipment: 'mur' },
+          freestanding: { label: 'Freestanding — sans appui', hold: true }
+        }
+      },
+      human_flag: {
+        label: 'Human flag', equipment: ['barre verticale'],
+        variants: {
+          tuck:     { label: 'Tuck — genoux repliés', hold: true },
+          straddle: { label: 'Straddle — jambes écartées', hold: true },
+          full:     { label: 'Full — jambes tendues jointes', hold: true }
+        }
+      },
+      australian_pullup: {
+        label: 'Row australien', equipment: ['barre basse', 'anneaux'],
+        variants: {
+          standard: 'Standard',
+          pieds_surleves: 'Pieds surélevés'
         }
       }
     }
@@ -472,7 +575,8 @@ const CATALOG = {
 
 const CAT_COLORS = {
   chest: '#ff6b6b', back: '#5ba3ff', shoulders: '#ffaa3d',
-  arms: '#c084fc', legs: '#3dffa0', core: '#ffd166'
+  arms: '#c084fc', legs: '#3dffa0', core: '#ffd166',
+  callisthenie: '#5bd8d0'
 };
 
 // ════════════════════════════════════════════════════

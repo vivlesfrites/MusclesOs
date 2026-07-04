@@ -21,6 +21,7 @@
       --c-arms:     #c084fc;
       --c-legs:     #3dffa0;
       --c-core:     #ffd166;
+      --c-callisthenie: #5bd8d0;
       --mono: 'IBM Plex Mono', monospace;
       --sans: 'DM Sans', sans-serif;
       --r:  8px;
@@ -962,6 +963,35 @@
     }
     .backup-btn:hover { border-color: var(--b3); color: var(--t1); }
     .backup-btn.import-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+    /* ── ROUTINES ── */
+    .btn-routines {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid var(--b1);
+      border-radius: var(--r);
+      background: var(--s2);
+      color: var(--t2); font-size: 11px;
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: border-color .15s, color .15s;
+    }
+    .btn-routines:hover { border-color: var(--accent); color: var(--accent); }
+
+    .routine-card {
+      background: var(--s2); border: 1px solid var(--b1);
+      border-radius: var(--r); padding: 12px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .routine-card:hover { border-color: var(--b2); }
+    .routine-actions { display: flex; align-items: center; gap: 8px; }
+
+    .routine-item-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: var(--s2); border: 1px solid var(--b1);
+      border-radius: var(--r); padding: 10px 12px; margin-bottom: 6px;
+    }
 
     /* ── BODY MAP ── */
     .bm-wrap {

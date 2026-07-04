@@ -147,6 +147,7 @@ const USER_PROFILE = (() => {
   function _defaultProfile() {
     return {
       age:            '26-35',
+      sexe:           null,
       training_level: 'intermediate',
       sleep:          '7to8',
       protein:        'adequate',

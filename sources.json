@@ -625,6 +625,26 @@
       "pubmed_id": "15330581",
       "notes": "Cuban press et exercices de rotation externe : infraépineux 72% MVIC, teres minor 65% MVIC. Exercice de préhab coiffe des rotateurs — activation supérieure à la rotation externe simple car combinaison upright row + rotation + press.",
       "validated_by_kine": false
+    },
+    "Banister_1991_TRIMP": {
+      "authors": ["Banister EW"],
+      "title": "Modeling elite athletic performance",
+      "journal": "Physiological Testing of the High-Performance Athlete (2nd ed., Human Kinetics)",
+      "year": 1991,
+      "doi": null,
+      "pubmed_id": null,
+      "notes": "Modele TRIMP (Training Impulse) — charge d'entrainement = duree x %HRR x facteur exponentiel pondere par le sexe. Base du calcul de dose cardio course.",
+      "validated_by_kine": false
+    },
+    "Karvonen_1957_HRR": {
+      "authors": ["Karvonen MJ", "Kentala E", "Mustala O"],
+      "title": "The effects of training on heart rate: a longitudinal study",
+      "journal": "Annales Medicinae Experimentalis et Biologiae Fenniae",
+      "year": 1957,
+      "doi": null,
+      "pubmed_id": "13470504",
+      "notes": "Methode de la reserve de frequence cardiaque (%HRR) utilisee dans le calcul du TRIMP.",
+      "validated_by_kine": false
     }
   }
 }

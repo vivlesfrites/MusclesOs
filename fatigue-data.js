@@ -269,7 +269,7 @@ const FATIGUE_DATA = {
         }
       }
     },
-    "developpe_couche": {
+    "developpe_couche_plat": {
       "prise_large": {
         "PECT_MAJ_STER": {
           "p": 85,
@@ -351,8 +351,10 @@ const FATIGUE_DATA = {
           "p": 40,
           "r": "t"
         }
-      },
-      "incline_30": {
+      }
+    },
+    "developpe_couche_incline": {
+      "standard_30": {
         "PECT_MAJ_CLAV": {
           "p": 90,
           "r": "p"
@@ -373,7 +375,9 @@ const FATIGUE_DATA = {
           "p": 55,
           "r": "s"
         }
-      },
+      }
+    },
+    "developpe_couche_decline": {
       "decline_15": {
         "PECT_MAJ_STER": {
           "p": 92,
@@ -2852,6 +2856,38 @@ const FATIGUE_DATA = {
           "r": "t"
         }
       }
+    },
+    "pistol_squat": {
+      "standard": {
+        "QUAD_VAST_MED": { "p": 85, "r": "p" },
+        "QUAD_VAST_LAT": { "p": 80, "r": "p" },
+        "GLUTE_MAX": { "p": 72, "r": "p" },
+        "QUAD_RECT": { "p": 55, "r": "s" },
+        "HAMSTRING_BF_LONG": { "p": 45, "r": "s" },
+        "GLUTE_MED": { "p": 65, "r": "s" },
+        "GASTRO_MED": { "p": 35, "r": "t" },
+        "CORE_TRANS": { "p": 40, "r": "t" }
+      },
+      "assiste": {
+        "QUAD_VAST_MED": { "p": 68, "r": "p" },
+        "QUAD_VAST_LAT": { "p": 64, "r": "p" },
+        "GLUTE_MAX": { "p": 58, "r": "p" },
+        "QUAD_RECT": { "p": 45, "r": "s" },
+        "HAMSTRING_BF_LONG": { "p": 36, "r": "s" },
+        "GLUTE_MED": { "p": 48, "r": "s" },
+        "GASTRO_MED": { "p": 28, "r": "t" },
+        "CORE_TRANS": { "p": 30, "r": "t" }
+      }
+    },
+    "shrimp_squat": {
+      "standard": {
+        "QUAD_VAST_MED": { "p": 82, "r": "p" },
+        "QUAD_VAST_LAT": { "p": 78, "r": "p" },
+        "QUAD_RECT": { "p": 62, "r": "s" },
+        "GLUTE_MAX": { "p": 58, "r": "s" },
+        "GLUTE_MED": { "p": 60, "r": "s" },
+        "HIP_FLEX": { "p": 35, "r": "t" }
+      }
     }
   },
   "core": {
@@ -3461,6 +3497,257 @@ const FATIGUE_DATA = {
           "p": 20,
           "r": "t"
         }
+      }
+    }
+  },
+  "callisthenie": {
+    "muscle_up": {
+      "barre": {
+        "LAT": { "p": 85, "r": "p" },
+        "TRICEP_LAT": { "p": 70, "r": "p" },
+        "TRICEP_MED": { "p": 65, "r": "p" },
+        "BICEP_LONG": { "p": 60, "r": "s" },
+        "BICEP_COURT": { "p": 55, "r": "s" },
+        "PECT_MAJ_STER": { "p": 55, "r": "s" },
+        "DELT_ANT": { "p": 50, "r": "s" },
+        "TRAP_MED": { "p": 40, "r": "t" },
+        "CORE_RECT_SUP": { "p": 35, "r": "t" }
+      },
+      "anneaux": {
+        "LAT": { "p": 82, "r": "p" },
+        "TRICEP_LAT": { "p": 68, "r": "p" },
+        "TRICEP_MED": { "p": 62, "r": "p" },
+        "BICEP_LONG": { "p": 58, "r": "s" },
+        "BICEP_COURT": { "p": 55, "r": "s" },
+        "PECT_MAJ_STER": { "p": 52, "r": "s" },
+        "DELT_ANT": { "p": 50, "r": "s" },
+        "DELT_MED": { "p": 45, "r": "t" },
+        "TRAP_MED": { "p": 42, "r": "t" },
+        "CORE_RECT_SUP": { "p": 38, "r": "t" }
+      }
+    },
+    "front_lever": {
+      "tuck": {
+        "LAT": { "p": 55, "r": "p" },
+        "TERES_MAJ": { "p": 45, "r": "p" },
+        "RHOMBOID": { "p": 40, "r": "p" },
+        "TRAP_INF": { "p": 35, "r": "s" },
+        "BICEP_LONG": { "p": 40, "r": "s" },
+        "BICEP_COURT": { "p": 38, "r": "s" },
+        "CORE_RECT_SUP": { "p": 45, "r": "s" },
+        "CORE_RECT_INF": { "p": 35, "r": "t" }
+      },
+      "advanced_tuck": {
+        "LAT": { "p": 65, "r": "p" },
+        "TERES_MAJ": { "p": 52, "r": "p" },
+        "RHOMBOID": { "p": 46, "r": "p" },
+        "TRAP_INF": { "p": 40, "r": "s" },
+        "BICEP_LONG": { "p": 45, "r": "s" },
+        "BICEP_COURT": { "p": 42, "r": "s" },
+        "CORE_RECT_SUP": { "p": 55, "r": "s" },
+        "CORE_RECT_INF": { "p": 42, "r": "t" }
+      },
+      "straddle": {
+        "LAT": { "p": 78, "r": "p" },
+        "TERES_MAJ": { "p": 62, "r": "p" },
+        "RHOMBOID": { "p": 55, "r": "p" },
+        "TRAP_INF": { "p": 48, "r": "s" },
+        "BICEP_LONG": { "p": 52, "r": "s" },
+        "BICEP_COURT": { "p": 48, "r": "s" },
+        "CORE_RECT_SUP": { "p": 65, "r": "s" },
+        "CORE_RECT_INF": { "p": 50, "r": "t" }
+      },
+      "full": {
+        "LAT": { "p": 92, "r": "p" },
+        "TERES_MAJ": { "p": 75, "r": "p" },
+        "RHOMBOID": { "p": 65, "r": "p" },
+        "TRAP_INF": { "p": 58, "r": "s" },
+        "BICEP_LONG": { "p": 60, "r": "s" },
+        "BICEP_COURT": { "p": 55, "r": "s" },
+        "CORE_RECT_SUP": { "p": 78, "r": "s" },
+        "CORE_RECT_INF": { "p": 60, "r": "t" }
+      }
+    },
+    "back_lever": {
+      "tuck": {
+        "LAT": { "p": 50, "r": "p" },
+        "TERES_MAJ": { "p": 45, "r": "p" },
+        "PECT_MAJ_STER": { "p": 40, "r": "p" },
+        "BICEP_LONG": { "p": 45, "r": "s" },
+        "BICEP_COURT": { "p": 42, "r": "s" },
+        "DELT_POST": { "p": 35, "r": "s" },
+        "CORE_RECT_SUP": { "p": 40, "r": "t" }
+      },
+      "straddle": {
+        "LAT": { "p": 68, "r": "p" },
+        "TERES_MAJ": { "p": 60, "r": "p" },
+        "PECT_MAJ_STER": { "p": 55, "r": "p" },
+        "BICEP_LONG": { "p": 58, "r": "s" },
+        "BICEP_COURT": { "p": 54, "r": "s" },
+        "DELT_POST": { "p": 45, "r": "s" },
+        "CORE_RECT_SUP": { "p": 52, "r": "t" }
+      },
+      "full": {
+        "LAT": { "p": 85, "r": "p" },
+        "TERES_MAJ": { "p": 75, "r": "p" },
+        "PECT_MAJ_STER": { "p": 68, "r": "p" },
+        "BICEP_LONG": { "p": 70, "r": "s" },
+        "BICEP_COURT": { "p": 65, "r": "s" },
+        "DELT_POST": { "p": 55, "r": "s" },
+        "CORE_RECT_SUP": { "p": 65, "r": "t" }
+      }
+    },
+    "planche_gymnique": {
+      "frog": {
+        "DELT_ANT": { "p": 45, "r": "p" },
+        "SERR_ANT": { "p": 40, "r": "p" },
+        "PECT_MIN": { "p": 35, "r": "p" },
+        "PECT_MAJ_CLAV": { "p": 35, "r": "s" },
+        "CORE_RECT_SUP": { "p": 40, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 30, "r": "t" }
+      },
+      "tuck": {
+        "DELT_ANT": { "p": 55, "r": "p" },
+        "SERR_ANT": { "p": 50, "r": "p" },
+        "PECT_MIN": { "p": 42, "r": "p" },
+        "PECT_MAJ_CLAV": { "p": 42, "r": "s" },
+        "CORE_RECT_SUP": { "p": 50, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 35, "r": "t" }
+      },
+      "advanced_tuck": {
+        "DELT_ANT": { "p": 65, "r": "p" },
+        "SERR_ANT": { "p": 58, "r": "p" },
+        "PECT_MIN": { "p": 50, "r": "p" },
+        "PECT_MAJ_CLAV": { "p": 48, "r": "s" },
+        "CORE_RECT_SUP": { "p": 60, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 40, "r": "t" }
+      },
+      "straddle": {
+        "DELT_ANT": { "p": 78, "r": "p" },
+        "SERR_ANT": { "p": 70, "r": "p" },
+        "PECT_MIN": { "p": 60, "r": "p" },
+        "PECT_MAJ_CLAV": { "p": 55, "r": "s" },
+        "CORE_RECT_SUP": { "p": 72, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 48, "r": "t" }
+      },
+      "full": {
+        "DELT_ANT": { "p": 92, "r": "p" },
+        "SERR_ANT": { "p": 85, "r": "p" },
+        "PECT_MIN": { "p": 72, "r": "p" },
+        "PECT_MAJ_CLAV": { "p": 65, "r": "s" },
+        "CORE_RECT_SUP": { "p": 85, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 55, "r": "t" }
+      }
+    },
+    "l_sit": {
+      "tuck": {
+        "CORE_RECT_SUP": { "p": 55, "r": "p" },
+        "HIP_FLEX": { "p": 50, "r": "p" },
+        "CORE_RECT_INF": { "p": 45, "r": "s" },
+        "TRICEP_LONG": { "p": 40, "r": "s" },
+        "SERR_ANT": { "p": 35, "r": "t" }
+      },
+      "one_leg": {
+        "CORE_RECT_SUP": { "p": 68, "r": "p" },
+        "HIP_FLEX": { "p": 65, "r": "p" },
+        "CORE_RECT_INF": { "p": 55, "r": "s" },
+        "TRICEP_LONG": { "p": 48, "r": "s" },
+        "SERR_ANT": { "p": 40, "r": "t" }
+      },
+      "full": {
+        "CORE_RECT_SUP": { "p": 82, "r": "p" },
+        "HIP_FLEX": { "p": 80, "r": "p" },
+        "CORE_RECT_INF": { "p": 68, "r": "s" },
+        "TRICEP_LONG": { "p": 58, "r": "s" },
+        "SERR_ANT": { "p": 48, "r": "t" }
+      }
+    },
+    "dragon_flag": {
+      "standard": {
+        "CORE_RECT_SUP": { "p": 88, "r": "p" },
+        "CORE_RECT_INF": { "p": 75, "r": "p" },
+        "HIP_FLEX": { "p": 60, "r": "s" },
+        "LUMBAR": { "p": 35, "r": "t" }
+      }
+    },
+    "handstand_pushup": {
+      "mur_pike": {
+        "DELT_ANT": { "p": 75, "r": "p" },
+        "TRICEP_LAT": { "p": 65, "r": "p" },
+        "TRICEP_MED": { "p": 60, "r": "p" },
+        "TRICEP_LONG": { "p": 55, "r": "s" },
+        "DELT_MED": { "p": 55, "r": "s" },
+        "TRAP_SUP": { "p": 45, "r": "s" },
+        "CORE_RECT_SUP": { "p": 40, "r": "t" }
+      },
+      "freestanding": {
+        "DELT_ANT": { "p": 82, "r": "p" },
+        "TRICEP_LAT": { "p": 70, "r": "p" },
+        "TRICEP_MED": { "p": 65, "r": "p" },
+        "TRICEP_LONG": { "p": 60, "r": "s" },
+        "DELT_MED": { "p": 68, "r": "s" },
+        "TRAP_SUP": { "p": 55, "r": "s" },
+        "CORE_RECT_SUP": { "p": 58, "r": "t" },
+        "FOREARM_EXT": { "p": 40, "r": "t" }
+      }
+    },
+    "handstand_hold": {
+      "mur": {
+        "DELT_MED": { "p": 60, "r": "p" },
+        "DELT_ANT": { "p": 50, "r": "p" },
+        "TRAP_SUP": { "p": 45, "r": "s" },
+        "CORE_TRANS": { "p": 40, "r": "s" },
+        "FOREARM_EXT": { "p": 35, "r": "t" }
+      },
+      "freestanding": {
+        "DELT_MED": { "p": 78, "r": "p" },
+        "DELT_ANT": { "p": 65, "r": "p" },
+        "TRAP_SUP": { "p": 58, "r": "s" },
+        "CORE_TRANS": { "p": 60, "r": "s" },
+        "FOREARM_EXT": { "p": 55, "r": "t" }
+      }
+    },
+    "human_flag": {
+      "tuck": {
+        "CORE_OBL_EXT": { "p": 55, "r": "p" },
+        "CORE_OBL_INT": { "p": 50, "r": "p" },
+        "LAT": { "p": 45, "r": "s" },
+        "DELT_MED": { "p": 40, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 35, "r": "t" }
+      },
+      "straddle": {
+        "CORE_OBL_EXT": { "p": 72, "r": "p" },
+        "CORE_OBL_INT": { "p": 65, "r": "p" },
+        "LAT": { "p": 58, "r": "s" },
+        "DELT_MED": { "p": 52, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 45, "r": "t" }
+      },
+      "full": {
+        "CORE_OBL_EXT": { "p": 88, "r": "p" },
+        "CORE_OBL_INT": { "p": 80, "r": "p" },
+        "LAT": { "p": 72, "r": "s" },
+        "DELT_MED": { "p": 65, "r": "s" },
+        "FOREARM_FLEX_SUP": { "p": 55, "r": "t" }
+      }
+    },
+    "australian_pullup": {
+      "standard": {
+        "LAT": { "p": 70, "r": "p" },
+        "TRAP_MED": { "p": 60, "r": "p" },
+        "RHOMBOID": { "p": 55, "r": "p" },
+        "BICEP_LONG": { "p": 55, "r": "s" },
+        "BICEP_COURT": { "p": 52, "r": "s" },
+        "DELT_POST": { "p": 45, "r": "s" },
+        "CORE_RECT_SUP": { "p": 35, "r": "t" }
+      },
+      "pieds_surleves": {
+        "LAT": { "p": 80, "r": "p" },
+        "TRAP_MED": { "p": 68, "r": "p" },
+        "RHOMBOID": { "p": 62, "r": "p" },
+        "BICEP_LONG": { "p": 62, "r": "s" },
+        "BICEP_COURT": { "p": 58, "r": "s" },
+        "DELT_POST": { "p": 52, "r": "s" },
+        "CORE_RECT_SUP": { "p": 45, "r": "t" }
       }
     }
   }

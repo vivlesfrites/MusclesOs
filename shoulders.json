@@ -16,6 +16,7 @@
       "variants": {
         "barre_devant": {
           "label": "OHP barre devant (military press)",
+          "equipment": "barre",
           "description": "Barre descendue devant la tête, prise overhand, debout ou assis",
           "activation": {
             "DELT_ANT": {
@@ -96,6 +97,7 @@
         },
         "halteres": {
           "label": "OHP haltères (prise neutre ou pronée)",
+          "equipment": "haltères",
           "description": "Haltères — plus grande amplitude, rotation possible",
           "activation": {
             "DELT_ANT": {
@@ -282,6 +284,7 @@
         },
         "elastique": {
           "label": "Élévation latérale élastique",
+          "equipment": "élastique",
           "description": "Élastique sous le pied ou ancré latéralement — résistance croissante en abduction",
           "activation": {
             "DELT_MED": {
@@ -352,6 +355,7 @@
       "variants": {
         "halteres": {
           "label": "Élévation frontale haltères",
+          "equipment": "haltères",
           "description": "Monter le bras droit devant soi jusqu'à hauteur d'épaule",
           "activation": {
             "DELT_ANT": {
@@ -487,6 +491,7 @@
         },
         "elastique": {
           "label": "Face pull élastique",
+          "equipment": "élastique",
           "description": "Élastique ancré à hauteur de visage — même pattern que câble, option home",
           "activation": {
             "DELT_POST": {
@@ -694,6 +699,7 @@
       "variants": {
         "incline_neutre": {
           "label": "Reverse fly incliné prise neutre",
+          "angle": 45,
           "description": "Tronc incliné ~45°, prise neutre — maximise deltoïde post et infra-épineux",
           "activation": {
             "DELT_POST": {
@@ -757,6 +763,7 @@
         },
         "machine": {
           "label": "Reverse fly machine (peck deck inversé)",
+          "equipment": "machine",
           "description": "Machine butterfly inversée — mouvement guidé, isolation du deltoïde postérieur",
           "activation": {
             "DELT_POST": {
@@ -1050,6 +1057,7 @@
       "variants": {
         "cable": {
           "label": "Câble — lat pulldown derrière",
+          "equipment": "câble",
           "description": "Poulie haute, barre tirée derrière la tête — trapèze moyen et inférieur très sollicités",
           "activation": {
             "LAT": {
@@ -1238,6 +1246,7 @@
         },
         "cable_bas": {
           "label": "Câble bas debout — rotation externe",
+          "equipment": "câble",
           "description": "Câble à hauteur de hanche, coude fléchi à 90° collé au corps — rotation externe debout",
           "activation": {
             "INFRA": {
@@ -1299,6 +1308,7 @@
       "variants": {
         "halteres": {
           "label": "Cuban press haltères",
+          "equipment": "haltères",
           "description": "Upright row + rotation externe + press vertical — exercice de préhab coiffe des rotateurs unique",
           "activation": {
             "INFRA": {

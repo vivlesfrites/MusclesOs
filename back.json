@@ -1091,6 +1091,7 @@
       "variants": {
         "barre": {
           "label": "Shrug barre",
+          "equipment": "barre",
           "description": "Barre en prise pronée ou neutre, élévation pure des épaules — menton dégagé",
           "activation": {
             "TRAP_SUP": {
@@ -1146,6 +1147,7 @@
         },
         "halteres": {
           "label": "Shrug haltères",
+          "equipment": "haltères",
           "description": "Haltères de chaque côté — ROM légèrement augmenté, moins de contrainte sur les avant-bras",
           "activation": {
             "TRAP_SUP": {
@@ -1657,6 +1659,7 @@
       "variants": {
         "barre": {
           "label": "Seal row barre (banc surélevé)",
+          "equipment": "barre",
           "description": "Allongé à plat ventre sur banc surélevé, tirer la barre vers la poitrine — érecteurs entièrement déchargés",
           "activation": {
             "LAT": {
@@ -1755,6 +1758,7 @@
         },
         "halteres": {
           "label": "Seal row haltères (bilatéral ou unilatéral)",
+          "equipment": "haltères",
           "description": "Même position que seal row barre mais avec haltères — ROM légèrement augmenté",
           "activation": {
             "LAT": {

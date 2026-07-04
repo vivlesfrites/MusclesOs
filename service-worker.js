@@ -15,7 +15,7 @@
 //    C'est la SEULE chose à modifier dans ce fichier.
 // ════════════════════════════════════════════════════
 
-const CACHE_VERSION = 'muscleos-v3.9';
+const CACHE_VERSION = 'muscleos-v3.14.0';
 
 // ════════════════════════════════════════════════════
 // FICHIERS À METTRE EN CACHE
@@ -43,6 +43,7 @@ const STATIC_FILES = [
   './arms.json',
   './legs.json',
   './core.json',
+  './callisthenie.json',
 
   // Icônes
   './icons/icon-192.png',

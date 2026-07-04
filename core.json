@@ -1053,6 +1053,7 @@
         },
         "elastique": {
           "label": "Pallof press élastique",
+          "equipment": "élastique",
           "description": "Élastique ancré latéralement — même pattern anti-rotation que câble, option home",
           "activation": {
             "CORE_OBL_EXT": {

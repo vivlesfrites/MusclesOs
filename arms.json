@@ -179,6 +179,7 @@
         },
         "elastique": {
           "label": "Curl élastique debout",
+          "equipment": "élastique",
           "description": "Élastique sous les pieds, curl en supination — résistance croissante vers le pic de flexion",
           "activation": {
             "BICEP_LONG": {
@@ -242,6 +243,7 @@
       "variants": {
         "poulie_haute": {
           "label": "Pushdown câble haut (corde ou barre)",
+          "equipment": "câble",
           "description": "Câble en position haute, pousser vers le bas",
           "activation": {
             "TRICEP_LAT": {
@@ -320,6 +322,7 @@
         },
         "elastique_pushdown": {
           "label": "Pushdown élastique",
+          "equipment": "élastique",
           "description": "Élastique ancré en hauteur — extension triceps vers le bas, equivalent pushdown câble",
           "activation": {
             "TRICEP_LAT": {
@@ -493,6 +496,7 @@
       "variants": {
         "barre_ez": {
           "label": "Skull crusher barre EZ (couché)",
+          "equipment": "barre_ez",
           "description": "Allongé, descendre la barre vers le front — longue portion en étirement maximal",
           "activation": {
             "TRICEP_LONG": {
@@ -618,6 +622,7 @@
       "variants": {
         "poulie_haute": {
           "label": "Poulie haute — pushdown (corde ou barre)",
+          "equipment": "câble",
           "description": "Câble haut, tirer vers le bas en extension — chef latéral et médial dominants",
           "activation": {
             "TRICEP_LAT": {
@@ -768,6 +773,7 @@
       "variants": {
         "barre_ez": {
           "label": "Barre EZ — pupitre",
+          "equipment": "barre_ez",
           "description": "Appui du triceps sur le pupitre incliné — biceps en position raccourcie à la contraction",
           "activation": {
             "BICEP_LONG": {
@@ -810,6 +816,7 @@
         },
         "haltere": {
           "label": "Haltère unilatéral — pupitre",
+          "equipment": "haltère",
           "description": "Même position que barre EZ, un bras à la fois — supination complète possible",
           "activation": {
             "BICEP_LONG": {
@@ -959,6 +966,7 @@
       "variants": {
         "haltere": {
           "label": "Haltère — appui banc",
+          "equipment": "haltère",
           "description": "Tronc horizontal, coude à 90°, extension complète — isolation chef latéral et médial en position raccourcie",
           "activation": {
             "TRICEP_LAT": {

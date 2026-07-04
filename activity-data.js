@@ -15,7 +15,8 @@ const ACTIVITY_CATALOG = {
   running_intervals: { label: 'Fractionné',         icon: '↯', color: '#ffaa3d', group: 'running' },
   running_race:      { label: 'Compétition',        icon: '★', color: '#ff5252', group: 'running' },
   // ── Autres activités ──
-  velo:              { label: 'Vélo',               icon: '⊙', color: '#3dffa0', group: 'other' },
+  velo:              { label: 'Vélo',               icon: '⊙', color: '#3dffa0', group: 'other', hasDistance: true },
+  natation:          { label: 'Natation',           icon: '∿', color: '#5ba3ff', group: 'other', hasDistance: true },
   sport_collectif:   { label: 'Sport collectif',    icon: '⬡', color: '#ffaa3d', group: 'other' },
   yoga:              { label: 'Yoga / Mobilité',    icon: '◯', color: '#c084fc', group: 'other' },
   autre:             { label: 'Autre activité',     icon: '◈', color: '#8892a4', group: 'other' },
@@ -24,7 +25,7 @@ const ACTIVITY_CATALOG = {
 // Groupes d'affichage step 4
 const ACTIVITY_GROUPS = [
   { label: 'Course à pied', keys: ['running','running_recovery','running_easy','running_long','running_tempo','running_intervals','running_race'] },
-  { label: 'Autres activités', keys: ['velo','sport_collectif','yoga','autre'] },
+  { label: 'Autres activités', keys: ['velo','natation','sport_collectif','yoga','autre'] },
 ];
 
 // Profils de fatigue musculaire par activité.
@@ -191,6 +192,25 @@ const ACTIVITY_FATIGUE = {
       HIP_FLEX:          { p: 40, r: 's' },
     }
   },
+  natation: {
+    base_dose: 32,
+    recovery_scale: 0.25,   // Concentrique + portance eau → peu d'excentrique, récup rapide
+    muscles: {
+      LAT:               { p: 70, r: 'p' },
+      TRAP_MED:          { p: 50, r: 's' },
+      TRAP_INF:          { p: 40, r: 's' },
+      DELT_ANT:          { p: 50, r: 's' },
+      DELT_MED:          { p: 40, r: 's' },
+      TRICEP_LONG:       { p: 45, r: 's' },
+      BICEP_LONG:        { p: 35, r: 's' },
+      CORE_TRANS:        { p: 45, r: 'p' },
+      CORE_OBL_EXT:      { p: 35, r: 's' },
+      GLUTE_MAX:         { p: 35, r: 's' },
+      HAMSTRING_BF_LONG: { p: 25, r: 's' },
+      GASTRO_MED:        { p: 25, r: 's' },
+      HIP_FLEX:          { p: 30, r: 's' },
+    }
+  },
   sport_collectif: {
     base_dose: 45,
     recovery_scale: 0.55,   // Mix sprints anaérobies + changements direction + contacts
@@ -250,6 +270,7 @@ const ACTIVITY_BOOST_MUSCLES = {
   running_intervals: ['GASTRO_MED','HAMSTRING_BF_LONG','GLUTE_MAX','HIP_FLEX','QUAD_VAST_LAT','CORE_TRANS'],
   running_race:      ['GASTRO_MED','HAMSTRING_BF_LONG','GLUTE_MAX','HIP_FLEX','QUAD_VAST_LAT','SOLEUS','CORE_TRANS'],
   velo:              ['QUAD_VAST_LAT','QUAD_VAST_MED','GLUTE_MAX','GASTRO_MED','HIP_FLEX','HAMSTRING_BF_LONG'],
+  natation:          ['LAT','DELT_ANT','TRICEP_LONG','BICEP_LONG','CORE_TRANS','CORE_OBL_EXT','GLUTE_MAX'],
   sport_collectif:   ['GLUTE_MAX','GLUTE_MED','QUAD_RECT','HAMSTRING_BF_LONG','GASTRO_MED','ADDUCTOR','CORE_OBL_EXT','HIP_FLEX'],
   yoga:              ['CORE_TRANS','CORE_OBL_INT','GLUTE_MED','HIP_FLEX','HAMSTRING_BF_LONG','LUMBAR'],
   autre:             ['GLUTE_MAX','QUAD_RECT','HAMSTRING_BF_LONG','GASTRO_MED','CORE_TRANS'],
