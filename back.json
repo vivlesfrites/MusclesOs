@@ -124,6 +124,120 @@
           },
           "load_variation": null
         },
+        "pronation": {
+          "label": "Tractions pronation standard (largeur épaules)",
+          "description": "Prise overhand, mains à largeur d'épaules, paumes vers l'avant — entre pronation_large (mains écartées) et neutre",
+          "activation": {
+            "LAT": {
+              "percent": 118,
+              "heads": {
+                "LAT_SUP": 106,
+                "LAT_INF": 128
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup",
+                "Lusk_2010_lat_exercises"
+              ],
+              "note": "MODÈLE — base pronation_large (Youdas_2010_pullup_chinup) ajustée à la baisse selon l'effet de largeur de prise mesuré en tirage vertical (Lusk_2010_lat_exercises : prise large = plus de LAT), pas de mesure EMG directe sur tractions prise standard."
+            },
+            "BICEP_LONG": {
+              "percent": 84,
+              "heads": {
+                "BICEP_LONG_SUP": 78,
+                "BICEP_LONG_DEEP": 89
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup",
+                "Lusk_2010_lat_exercises"
+              ],
+              "note": "MODÈLE — ajusté à la hausse vs pronation_large selon l'effet de largeur de prise (Lusk_2010_lat_exercises : prise serrée = plus de biceps), pas de mesure EMG directe sur tractions prise standard."
+            },
+            "BICEP_COURT": {
+              "percent": 79,
+              "heads": {
+                "BICEP_COURT_SUP": 74,
+                "BICEP_COURT_DEEP": 84
+              },
+              "role": "primary",
+              "sources": [
+                "Youdas_2010_pullup_chinup",
+                "Lusk_2010_lat_exercises"
+              ],
+              "note": "MODÈLE — même ajustement que BICEP_LONG (Lusk_2010_lat_exercises), pas de mesure EMG directe sur tractions prise standard."
+            },
+            "BRACHIAL": {
+              "percent": 63,
+              "heads": {
+                "BRACHIAL_MED": 68,
+                "BRACHIAL_LAT": 58
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup",
+                "Lusk_2010_lat_exercises"
+              ],
+              "note": "MODÈLE — même ajustement que BICEP_LONG (Lusk_2010_lat_exercises), pas de mesure EMG directe sur tractions prise standard."
+            },
+            "INFRA": {
+              "percent": 75,
+              "heads": {},
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_INF": {
+              "percent": 55,
+              "heads": {
+                "TRAP_INF_MAIN": 55
+              },
+              "role": "secondary",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "TRAP_MED": {
+              "percent": 48,
+              "heads": {
+                "TRAP_MED_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Dickie_2017_pullup_variations"
+              ]
+            },
+            "PECT_MAJ_STER": {
+              "percent": 44,
+              "heads": {
+                "PECT_STER_SUP": 40,
+                "PECT_STER_INF": 48
+              },
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "CORE_OBL_EXT": {
+              "percent": 33,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            },
+            "LUMBAR": {
+              "percent": 40,
+              "heads": {},
+              "role": "stabilizer",
+              "sources": [
+                "Youdas_2010_pullup_chinup"
+              ]
+            }
+          },
+          "load_variation": null
+        },
         "supination": {
           "label": "Chin-up (prise supination)",
           "description": "Prise underhand, paumes vers soi, largeur d'épaules",

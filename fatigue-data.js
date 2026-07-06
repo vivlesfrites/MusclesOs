@@ -267,6 +267,32 @@ const FATIGUE_DATA = {
           "p": 50,
           "r": "s"
         }
+      },
+      "barre_fixe": {
+        "TRICEP_LAT": {
+          "p": 92,
+          "r": "p"
+        },
+        "TRICEP_MED": {
+          "p": 86,
+          "r": "p"
+        },
+        "TRICEP_LONG": {
+          "p": 79,
+          "r": "p"
+        },
+        "PECT_MAJ_STER": {
+          "p": 52,
+          "r": "s"
+        },
+        "PECT_MAJ_CLAV": {
+          "p": 40,
+          "r": "s"
+        },
+        "DELT_ANT": {
+          "p": 48,
+          "r": "s"
+        }
       }
     },
     "developpe_couche_plat": {
@@ -497,6 +523,48 @@ const FATIGUE_DATA = {
         },
         "BRACHIAL": {
           "p": 60,
+          "r": "s"
+        },
+        "INFRA": {
+          "p": 75,
+          "r": "s"
+        },
+        "TRAP_INF": {
+          "p": 55,
+          "r": "s"
+        },
+        "TRAP_MED": {
+          "p": 48,
+          "r": "s"
+        },
+        "PECT_MAJ_STER": {
+          "p": 44,
+          "r": "t"
+        },
+        "CORE_OBL_EXT": {
+          "p": 33,
+          "r": "t"
+        },
+        "LUMBAR": {
+          "p": 40,
+          "r": "t"
+        }
+      },
+      "pronation": {
+        "LAT": {
+          "p": 118,
+          "r": "p"
+        },
+        "BICEP_LONG": {
+          "p": 84,
+          "r": "p"
+        },
+        "BICEP_COURT": {
+          "p": 79,
+          "r": "p"
+        },
+        "BRACHIAL": {
+          "p": 63,
           "r": "s"
         },
         "INFRA": {

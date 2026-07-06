@@ -894,7 +894,8 @@
       "label": "Dips (bras)",
       "category": "compound",
       "equipment": [
-        "barres_parallèles"
+        "barres_parallèles",
+        "barre_fixe"
       ],
       "movement_pattern": "poussée_verticale_basse",
       "variants": {
@@ -1013,6 +1014,87 @@
               "sources": [
                 "Booghs_2012_dips"
               ]
+            }
+          },
+          "load_variation": null
+        },
+        "barre_fixe": {
+          "label": "Dips barre fixe (prise rapprochée, après muscle-up)",
+          "equipment": "barre_fixe",
+          "description": "Barre de traction simple, mains rapprochées (parfois superposées) — suite typique d'un muscle-up, torse vertical par nécessité d'équilibre",
+          "activation": {
+            "TRICEP_LAT": {
+              "percent": 92,
+              "heads": {
+                "TRICEP_LAT_MAIN": 92
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips",
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "MODÈLE — base dips tronc_vertical (Booghs_2012_dips) ajustée à la hausse selon l'effet de prise rapprochée mesuré au développé couché (Stastny_2017_bench_grip : prise serrée = plus de triceps), pas de mesure EMG directe sur dip barre simple."
+            },
+            "TRICEP_MED": {
+              "percent": 86,
+              "heads": {
+                "TRICEP_MED_MAIN": 86
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips",
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "MODÈLE — même ajustement que TRICEP_LAT (Stastny_2017_bench_grip), pas de mesure EMG directe sur dip barre simple."
+            },
+            "TRICEP_LONG": {
+              "percent": 79,
+              "heads": {
+                "TRICEP_LONG_PROX": 73,
+                "TRICEP_LONG_DIST": 85
+              },
+              "role": "primary",
+              "sources": [
+                "Booghs_2012_dips",
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "MODÈLE — même ajustement que TRICEP_LAT (Stastny_2017_bench_grip), pas de mesure EMG directe sur dip barre simple."
+            },
+            "PECT_MAJ_STER": {
+              "percent": 52,
+              "heads": {
+                "PECT_STER_SUP": 48,
+                "PECT_STER_INF": 56
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips",
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "MODÈLE — ajusté à la baisse vs tronc_vertical selon l'effet de prise rapprochée (Stastny_2017_bench_grip : prise large = plus de chef sternal), pas de mesure EMG directe sur dip barre simple."
+            },
+            "PECT_MAJ_CLAV": {
+              "percent": 40,
+              "heads": {
+                "PECT_CLAV_MED": 42,
+                "PECT_CLAV_LAT": 38
+              },
+              "role": "secondary",
+              "sources": [
+                "Stastny_2017_bench_grip"
+              ],
+              "note": "MODÈLE — absent de la variante tronc_vertical, ajouté par analogie avec la prise serrée au développé couché (Stastny_2017_bench_grip : prise serrée = plus de chef claviculaire), pas de mesure EMG directe sur dip barre simple."
+            },
+            "DELT_ANT": {
+              "percent": 48,
+              "heads": {
+                "DELT_ANT_MAIN": 48
+              },
+              "role": "secondary",
+              "sources": [
+                "Booghs_2012_dips"
+              ],
+              "note": "Légèrement majoré vs tronc_vertical — stabilisation accrue nécessaire sur une barre ronde simple (pas d'appui bilatéral fixe comme aux barres parallèles)"
             }
           },
           "load_variation": null

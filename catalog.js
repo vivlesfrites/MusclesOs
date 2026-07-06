@@ -68,10 +68,11 @@ const CATALOG = {
         }
       },
       dips: {
-        label: 'Dips', equipment: ['barres parallèles'],
+        label: 'Dips', equipment: ['barres parallèles', 'barre de traction'],
         variants: {
           tronc_vertical: 'Tronc droit (triceps dominant)',
-          tronc_incline:  'Tronc incliné (pectoral dominant)'
+          tronc_incline:  'Tronc incliné (pectoral dominant)',
+          barre_fixe:     'Barre fixe (prise rapprochée)'
         }
       },
       pullover_haltere: {
@@ -94,6 +95,7 @@ const CATALOG = {
         label: 'Tractions', equipment: ['barre de traction'],
         variants: {
           pronation_large: 'Pronation prise large',
+          pronation: 'Pronation prise standard',
           supination: 'Supination (chin-up)',
           neutre: 'Prise neutre'
         }
